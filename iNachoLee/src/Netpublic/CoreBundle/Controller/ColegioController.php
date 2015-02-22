@@ -33,6 +33,7 @@ class ColegioController extends Controller
         $url="/home/vhost/host1/iNachoLee/iNachoLee/app/console ";
         $url_cache="/home/vhost/host1/iNachoLee/iNachoLee/app/cache";
         $url_git="/home/vhost/host1/iNachoLee/iNachoLee";
+        echo "vamos con todo";
         //Bajamos via git la ultima actualizacion
         echo exec("git -C $url_git pull origin master  2>&1");
         //Actualizamos el modelo de datos.
