@@ -38,7 +38,7 @@ class ColegioController extends Controller
         //Actualizamos el modelo de datos.
         //echo exec("$url  doctrine:schema:update --force");
         //Borramos cache
-        //echo exec("whoami");
+        echo exec("whoami");
         
         return new \Symfony\Component\HttpFoundation\Response("ok");
         
