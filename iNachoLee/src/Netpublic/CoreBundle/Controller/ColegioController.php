@@ -32,13 +32,13 @@ class ColegioController extends Controller
         //$comando1="/home/vhost/iNachoLee/iNachoLee/app/console ";
         $url="/home/vhost/host1/iNachoLee/iNachoLee/app/console ";
         $url_cache="/home/vhost/host1/iNachoLee/iNachoLee/app/cache";
-        $url_git="/home/vhost/host1/iNachoLee";
+        $url_git="/home/vhost/host1/iNachoLee/iNachoLee";
         //Bajamos via git la ultima actualizacion
         echo exec("git -C $url_git pull origin master  2>&1");
         //Actualizamos el modelo de datos.
-        echo exec("$url  doctrine:schema:update --force");
+        //echo exec("$url  doctrine:schema:update --force");
         //Borramos cache
-        echo exec("whoami");
+        //echo exec("whoami");
         
         return new \Symfony\Component\HttpFoundation\Response("ok");
         
