@@ -109,11 +109,6 @@ class Asignatura {
     * 
     */    
     protected $condicion_asignatura;
-    /**
-     * @ORM\OneToMany(targetEntity="Netpublic\RedsaberBundle\Entity\PlanArea",mappedBy="alumno")  
-     * 
-    */    
-    protected $plan_area;
     
     
     public function __toString() {
