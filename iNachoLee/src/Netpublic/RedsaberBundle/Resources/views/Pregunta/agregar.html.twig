@@ -1,0 +1,248 @@
+
+{% extends tipo ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig"  %}
+{% block title %}Crear exámen tipo ICFES.{% endblock %}
+{%block breadcrumb%}
+<div class="no-imprimir">
+<li><i class="fa fa-cog"></i>
+<a href="{{ path('usuario') }}">Adicionar | Importar preguntas.</a>
+</li>
+</div>
+{%endblock%}  
+
+
+{%block sub_container %}
+
+
+<!-- Button trigger modal -->
+    
+<!-- Modal -->
+<div class="modal fade no-imprimir" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade no-imprimir" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="container-agregar-pregunta" class="col-lg-12 " style="margin-top: 20px;">
+
+    {#label pregunta/Total de preguntas#}
+    <div class="col-lg-12">
+    <div class="col-lg-7"></div>
+    <div class="col-lg-2" style="padding-top: 10px;padding-right: 0px;">
+        <span style="font-size: 45px;color: gainsboro;">{{indice_pregunta_actual+1}}/{{examen.getNroPreguntas}}</span>
+    </div>
+
+    <div class="col-lg-3" style="padding-top: 10px;">
+        <a class="btn btn-primary btn-lg" onclick="procesarListaImportar();" href="{{path('pregunta_importar',{'tipo': 1 })}}"  data-toggle="modal" data-target="#myModal">Importar Pregunta</a>
+    </div>
+    </div>
+     
+    {#fin label#}    
+     <input type="hidden" id="hidden_contenido_{{pregunta_banco_dato.id}}" value="0" />
+     <div id="contenido_{{pregunta_banco_dato.id}}" class="col-lg-12" style="border:gainsboro solid thin;padding: 20px 20px;height: 400px;">
+         {%set cuerpo_id=pregunta_banco_dato.contenido.id%}
+             
+         <iframe id="child_frame" name="child_frame" scrolling="no"
+                 src="{{path('examenicfes_informes',{'cuerpo_id': cuerpo_id,'tipo':0 })}}"
+                 style="width: 100%;border: none;height: 350px;">
+            Tu navegador no soporta el elemento iframe.
+         </iframe>
+     </div>
+     <div class="clearfix"></div> 
+     <form role="form">
+             <div   style="width: 2%;float: left;">
+            <label>
+                <input type="radio"
+                   value="A."
+                   id="optionsRadios_A"
+                   onchange="actualizarMatrixRespuesta({{respuesta_ok.id}},{{respuesta_porcentaje.id}},'A');"
+                   name="label"
+                   {%if pregunta_banco_dato.label=='A.'%}
+                        checked="checked"
+                   {%endif%}
+                   >
+                </label> 
+                </div>
+             <div id="container-descripcion-A" style="float: left;width:96%;" onmouseover="procesarEntradaAgregarPregunta('A')"
+                  onmouseout="procesarSalidaAgregarPregunta('A')">
+                A. <span id="descripcionA">{{pregunta_banco_dato.getDescripcionA}}</span>
+                <span class="containes_btns " id="container_btns_A" style="display: none;">
+                    <input style="display: none;" type="text" value="sss" id="input_descripcionA" />
+                    <a href="#" onclick="actualizarLabelPregunta({{pregunta_banco_dato.id}},'A')">Actualizar</a>
+                </span>
+             
+         </div>
+                      <div style="clear: both;"></div>
+            <div   style="width: 2%;float: left;">
+            <label>
+                <input type="radio"
+                   value="B."
+                   id="optionsRadios_B"
+                   onchange="actualizarMatrixRespuesta({{respuesta_ok.id}},{{respuesta_porcentaje.id}},'B');"
+                   name="label"
+                   {%if pregunta_banco_dato.label=='B.'%}
+                        checked="checked"
+                   {%endif%}
+                   >
+                </label> 
+                </div>
+             <div id="container-descripcion-B" style="float: left;width:96%;" onmouseover="procesarEntradaAgregarPregunta('B')"
+                  onmouseout="procesarSalidaAgregarPregunta('B')">
+                B. <span id="descripcionB">{{pregunta_banco_dato.getDescripcionB}}</span>
+                <span class="containes_btns " id="container_btns_B" style="display: none;">
+                    <input style="display: none;" type="text" value="sss" id="input_descripcionB" />
+                    <a href="#" onclick="actualizarLabelPregunta({{pregunta_banco_dato.id}},'B')">Actualizar</a>
+                </span>
+             
+         </div>   
+             <div style="clear: both;"></div>
+            <div   style="width: 2%;float: left;">
+            <label>
+                <input type="radio"
+                   value="C."
+                   onchange="actualizarMatrixRespuesta({{respuesta_ok.id}},{{respuesta_porcentaje.id}},'C');"
+                   id="optionsRadios_C"
+                   name="label"
+                   {%if pregunta_banco_dato.label=='C.'%}
+                        checked="checked"
+                   {%endif%}
+                   >
+                </label> 
+                </div>
+             <div id="container-descripcion-C" style="float: left;width:96%;" onmouseover="procesarEntradaAgregarPregunta('C')"
+                  onmouseout="procesarSalidaAgregarPregunta('C')">
+                C. <span id="descripcionC">{{pregunta_banco_dato.getDescripcionC}}</span>
+                <span class="containes_btns " id="container_btns_C" style="display: none;">
+                    <input style="display: none;" type="text" value="sss" id="input_descripcionC" />
+                    <a href="#" onclick="actualizarLabelPregunta({{pregunta_banco_dato.id}},'C')">Actualizar</a>
+                </span>
+             
+         </div>   
+    
+
+         <div style="clear: both;"></div>
+            <div   style="width: 2%;float: left;">
+            <label>
+                <input type="radio"
+                   value="D."
+                   onchange="actualizarMatrixRespuesta({{respuesta_ok.id}},{{respuesta_porcentaje.id}},'D');"
+                   id="optionsRadios_D"
+                   name="label"
+                   {%if pregunta_banco_dato.label=='D.'%}
+                        checked="checked"
+                   {%endif%}
+                   >
+                </label> 
+                </div>
+             <div id="container-descripcion-D" style="float: left;width:96%;" onmouseover="procesarEntradaAgregarPregunta('D');"
+                  onmouseout="procesarSalidaAgregarPregunta('D')">
+                D. <span id="descripcionD">{{pregunta_banco_dato.getDescripcionD}}</span>
+                <span class="containes_btns " id="container_btns_D" style="display: none;">
+                    <input style="display: none;" type="text" value="sss" id="input_descripcionD" />
+                    <a href="#" onclick="actualizarLabelPregunta({{pregunta_banco_dato.id}},'D')">Actualizar</a>
+                </span>
+             
+         </div>   
+
+    </form>   
+     
+     <div class="col-lg-12">
+       <div class="col-lg-3">   
+         Porcentaje:  
+            <input value="{{render(controller('NetpublicRedsaberBundle:Pregunta:porcentaje',{'pregunta_id':respuesta_porcentaje.id,'label': pregunta_banco_dato.label}))}}" 
+                   type="text" id="p{{respuesta_porcentaje.id}}"
+                   placeholder="%" style="width: 50px;" 
+                   onkeyup="actualizarMatrixPorcentaje({{respuesta_porcentaje.id}},{{respuesta_ok.id}});"
+                       />
+            </div>
+       <div class="col-lg-9">
+                 {%if examen.grados is null%}
+                     <a class="disabled" href="#">Temas a evaluar</a>
+                 {%else%}
+                     <a 
+                    href="{{path('planarea_temasevaluar',{'grado_id':examen.grados.id,'pregunta_id': pregunta_banco_dato.id})}}" 
+                    data-toggle="modal" data-target="#myModal">Temas a evaluar</a>
+                 {%endif%}
+                     <div id="container-temas">
+                     {%for t in pregunta_banco_dato.temas%}
+                        {{loop.index}}.-{{t.nombre}}
+                    {%endfor%}
+                
+                     </div>   
+                     
+        </div>
+       <div style="margin-top: 60px;background-color: red;">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-7">
+                    <a 
+                    href="{{path('componente_showpruebastree',{'grado_id':examen.grados.id,'pregunta_id': pregunta_banco_dato.id})}}" 
+                    data-toggle="modal" data-target="#myModal1">Componentes ICFES</a>
+                 <div id="container-componentes">
+                    {%for c in pregunta_banco_dato.componente%}
+                        {{loop.index}}.-{{c.nombre}}
+                    {%endfor%}
+                
+                 </div>
+                 </div>
+                <div class="col-lg-2">
+                    <input onchange="actualizarEstadoPregunta(this,{{pregunta_banco_dato.id}});" {%if pregunta_banco_dato.getEstado%}checked="checked" {%endif%} type="checkbox" >Compartir en RED Saber
+                </div>
+             </div>
+     </div>
+     
+     <div class="clearfix"></div>     
+<div>
+    <input type="hidden" id="examen_id" value="{{examen.id}}" />
+    <input type="hidden" id="my_pregunta_id" value="{{pregunta_banco_dato.id}}">
+    <div class="btn-group">
+    {%if (indice_pregunta_actual>0)%}
+    <a  class="btn btn-default btn-sm" 
+        onmouseover="guardaPregunta({{pregunta_banco_dato.id}});"
+             href="{{path('pregunta_setpreguntaactiva',{'tipo_avance':0,'examen_id':examen.id})}}"
+           
+             > Atras </a>
+    {%endif%}
+    {%if (indice_ultima_pregunta != indice_pregunta_actual)%}
+    <a class="btn btn-default btn-sm"
+        onmouseover="guardaPregunta({{pregunta_banco_dato.id}});"
+            href="{{path('pregunta_setpreguntaactiva',{'tipo_avance':1,'examen_id':examen.id})}}"> Siguiente</a>
+    {%else%}
+    <a  class="btn btn-default btn-sm" onclick="procesarUltimaPregunta({{pregunta_banco_dato.id}},{{examen.id}},{{examen.tipo}});"
+        > Ir Ver detalles del exámen</a>
+    {%endif%}
+        
+    </div>    
+</div>
+
+</div>
+<div class="no-imprimir" style="margin-top: 30px;height: 30px;color: white;">.....</div>
+{%endblock%}

@@ -1,0 +1,17 @@
+{%for tema in temas%}
+      <li class="parent_li grupo" id="grupo_{{tema.id}}">
+          
+          <span class="items_remoto" id="nodo_asg_subtemas_evaluar_{{tema.id}}" data-id="{{tema.id}}"  title="Collapse this branch">
+                <i class="icon-plus-sign"></i> {{tema.nombre}}
+          </span>
+          
+          <input type="checkbox" class="check_temas check_item_tema" value="{{tema.id}}" />
+          
+          <ul id="padre_{{tema.id}}">
+          </ul>
+      </li>
+{%endfor%}    
+<script>
+    procesarul("");
+</script>
+      

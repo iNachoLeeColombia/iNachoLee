@@ -1,0 +1,14 @@
+{%for subc in subtemas%}
+      <li class="grupo" id="grupo_{{subtema.id}}">          
+          <span class="items_remoto" id="nodo_subtema_evaluar_{{subtema.id}}" data-id={{subtema.id}}  title="Collapse this branch">
+                <i class="icon-book"></i> {{subtema.nombre}}
+          </span>          
+          <input type="checkbox" class="check_subtemas" value="{{subtema.id}}" />
+          
+          <ul id="ul_ca_{{subtema.id}}">
+          </ul>
+      </li>
+{%endfor%}    
+<script>
+    procesarul("");
+</script>

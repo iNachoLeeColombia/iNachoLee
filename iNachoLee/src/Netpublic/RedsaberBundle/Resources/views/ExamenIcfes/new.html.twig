@@ -1,0 +1,123 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Crear exámen tipo ICFES.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+<a href="{{ path('usuario') }}">Crear exámen tipo ICFES.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Crear exámen ICFES.<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block sub_container %}
+
+<form action="{{ path('examenicfes_create') }}" method="post" {{ form_enctype(form) }}>
+
+<div class="col-lg-12">
+<div class="col-lg-5">
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.nombre)}}
+        {{ form_widget(form.nombre)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">        
+        {{form_label(form.tipo)}}
+        <div class="col-lg-12" style="padding: 0 0;">
+           <div class="col-lg-7" style="margin: 0 0;padding: 0 0;">    
+                {{ form_widget(form.tipo)}}
+           </div>
+           <div class="col-lg-5">
+           </div> 
+               
+       </div>        
+   </div>
+    <div class="form-group" style="margin-top: 30px;">
+        {{form_label(form.nro_preguntas)}}
+         <div class="col-lg-12" style="padding: 0 0;">
+           <div class="col-lg-1" style="margin: 0 0;padding: 0 0;">    
+                {{ form_widget(form.nro_preguntas)}}
+           </div>
+           <div class="col-lg-11">
+           </div> 
+               
+       </div>        
+                  
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.fecha_inicio)}}
+        {{ form_widget(form.fecha_inicio)}}              
+   </div>
+        <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.hora)}}
+        <div class="col-lg-12" style="padding: 0 0;">            
+            <div class="col-lg-1" style="margin: 0 0;padding: 0 0;">    
+                {{ form_widget(form.hora)}} horas 
+           </div>
+           <div class="col-lg-1">:</div>     
+           <div class="col-lg-2">
+               {{ form_widget(form.minuto)}}minutos
+           </div> 
+           <div class="col-lg-8"></div>
+        </div>
+   </div><br/>
+    <div class="form-group" style="margin-top: 20px;">        
+        {{form_label(form.nota_maxima)}}
+        <div class="col-lg-12" style="padding: 0 0;">
+           <div class="col-lg-7" style="margin: 0 0;padding: 0 0;">    
+                {{ form_widget(form.nota_maxima)}}
+           </div>
+           <div class="col-lg-5">
+           </div> 
+               
+       </div>        
+   </div>
+     <br/>
+    <div class="form-group" style="margin-top: 20px;">
+        {{ form_widget(form.componente)}}              
+   </div>
+     <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.reponsable)}}
+        {{ form_widget(form.reponsable)}}              
+   </div>
+
+</div>
+  <div class="col-lg-7" style="border-left: gray dotted thin;">
+   
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.grados)}}
+        {{ form_widget(form.grados)}}              
+    </div>
+        <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.grupo)}}
+        {{ form_widget(form.grupo)}}              
+              
+   </div>
+      
+        <div class="sub-container-left tree" style="width: 90%;height: 290px;overflow-y: auto;background-color: white;border: none;" id="container-componentes_evaluar">
+            <h5> Seleccione el Componente a Evaluar.</h5>
+            <ul>
+                <li class="parent_li">
+                   <ul id="ul_grados">
+                       </ul>    
+	       </li>        
+	    </ul>
+                            
+    </div>
+    
+
+</div>
+</div>
+<div class="col-lg-12 pull-right">
+    <div class="col-lg-8"></div>
+    <div class="col-lg-4 btn-group">
+        <a class="btn" href="{{path('examenicfes_menuprincipal')}}">Atras</a>
+        <button class="btn btn-primary"> Crear examen Ahora!!</button>
+    </div>
+ </div>
+{{form_widget(form._token)}}   
+</form>    
+{% endblock %}
+    

@@ -1,0 +1,45 @@
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+
+<div class="sub-container-temas_evaluar tree">
+    <ul>
+        <li class="parent_li">
+               <ul>
+                {%for prueba in pruebas%}             
+                     <li class="parent_li asg_temas_evaluar" id="asg_temas_evaluar_{{prueba.id}}">
+                        <span 
+                              id="nodo_pruebaicfes_{{prueba.id}}"
+                              data-id="{{prueba.id}}"
+                              title="Collapse this branch"><i class="icon-plus-sign"></i> {{prueba.nombre}}
+                      </span>
+                      <ul id="padre_{{prueba.id}}">
+                      </ul>    
+                    </li>             
+                {%endfor%}
+              </ul>
+        </li>
+   </ul>
+   <div class="clearfix"></div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+                {%if pregunta_id==0%}
+                onclick="procesarAdicionComponenteNuevaPregunta();$('#myModal1').modal('hide');"
+                {%else%}
+                onclick="procesarAdicionarComponenteIcfes({{pregunta_id}});$('#myModal1').modal('hide');$('#myModal2').modal('hide');"
+                {%endif%}
+
+                >Adicionar componentes, Ahora!!</button>
+      </div>
+    </div>
+  </div>
+          
+<script>
+    procesarul("");
+</script>
+

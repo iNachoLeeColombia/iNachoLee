@@ -1,0 +1,27 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th> Componentes ICFES</th>
+        </tr>
+        <tr>
+            <th>
+            Pregunta.
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+{%for c in componentes%}
+    <tr>
+        <td>
+    {%for c_p in c.pregunta.componente%}
+        {{c_p.nombre}}
+    {%endfor%}
+        </td>
+        <td>
+            Pregunta # {{c.posicion}}<br/>
+        </td>
+    </tr>
+    
+{%endfor%}
+   </tbody> 
+</table>    

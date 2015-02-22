@@ -1,0 +1,184 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Resumen de exámen ICFES.{% endblock%} 
+
+{% block sub_container %}
+
+<div style="margin: 20px;font-size: 11px;" class="well">
+<div>
+    <h1 style="text-align: center;font-weight: 900;">EVALUACIÓN ICFES: {{a_e.examen.nombre|upper}}</h1>
+        <div class="col-lg-12" style="border-bottom:  #DCDCDC solid thin;padding-top: 14px;">     
+            <table class="table table-bordered" style="font-size: 12px;">
+         <tr>
+             <td rowspan="3" style="width: 10%;">
+                 
+                 <a   class="thumbnail" href="{{ path('profesor_perfiladmin', { 'id': a_e.alumno.id }) }}">   
+                    {%if a_e.alumno.usuario.getEsFotoperfil()==TRUE%}
+                <img  style="width:100px;
+                     height: 100px;                                          
+                    " src="{{asset('uploads/documents/strongalumno'~a_e.alumno.id~'.jpg')}}" />        
+            {%else%}
+                 <img style="width:130px;height: 130px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+            {%endif%} 
+                </a> 
+             </td>    
+             <td style="width: 20%;">Nombre Completo: </td><td>{{a_e.alumno}}</td></tr>
+             <tr><td>Grado/Grupo:</td><td> {{a_e.alumno.grado}}/{{a_e.alumno.grupo}}</td></tr>
+             <tr><td>Sede: </td><td>{{a_e.alumno.sede}}</td></td></tr>
+             </table>
+         </div>
+</div>    
+<div class="well" style="margin: 0 0 0 0;padding: 0 0 0 0;">
+<h4>Hoja de respuestas del estudiante {{a_e.alumno|upper}}</h4>
+{%set ls_c=17%}
+{%for bloque in 0..ultimo_bloque%}    
+<div>bloque # {{loop.index}}</div>
+
+    {%set li=bloque*4%}
+    {%set ls=li+3%}
+    {%for fila in li..ls%}    
+        {%if bloque==ultimo_bloque%}
+            {%set ls_c=(a_e.examen.getNroPreguntas-(ultimo_bloque*18+1))%}            
+        {%endif%}
+        {%for columna in 0 .. ls_c%}
+            {% set buble=entities[fila][columna]%}
+            <div style="width: 50px;float: left;margin-right: 1px;position: relative;
+                      {%if buble.estado==1%}
+                         background-color: green;
+                      {%else%}
+                         background-color: gray;
+                      {%endif%}
+                       ">
+                     &nbsp;{{buble.label}}
+                     {%if buble.estado==1%}
+                        <i class="icon icon-check-sign"></i> {{buble.estado}}
+                     {%else%}
+                         <i class="icon icon-check-empty"></i>
+                     {%endif%}
+                     {%if fila==li%}
+                        {%set pregunta=entities[fila][columna].respuesta%}
+                         <span style="font-size: 8px;color: white;font-weight: 900;position: absolute;top: 23px;z-index: 4;">{{pregunta.indice}}</span>
+                     {%endif%}
+    
+            </div>
+            
+        {%endfor%}
+<div style="clear: both;"></div>
+    {%endfor%}
+{%endfor%}
+</div>
+<div class="well" style="margin: 0 0 0 0;padding: 0 0 0 0;">
+<h4>Matrix de porcentajes.</h4>
+{#--------------------------------------------------Matriz de porcentajes------------------------------------#}
+{%set ls_c=17%}
+{%for bloque in 0..ultimo_bloque%}    
+<div>bloque # {{loop.index}}</div>
+
+    {%set li=bloque*4%}
+    {%set ls=li+3%}
+    {%for fila in li..ls%}    
+        {%if bloque==ultimo_bloque%}
+            {%set ls_c=(a_e.examen.getNroPreguntas-(ultimo_bloque*18+1))%}            
+        {%endif%}
+        {%for columna in 0 .. ls_c%}
+            {% set buble=entities_porcentajes[fila][columna]%}
+            <div style="width: 50px;float: left;margin-right: 1px;position: relative;
+                      {%if buble.estado>0%}
+                         background-color: green;
+                      {%else%}
+                         background-color: gray;
+                      {%endif%}
+                       ">
+                     &nbsp;{{buble.label}}
+                     {%if buble.estado>0%}
+                        <i class="icon icon-check-sign"></i> {{buble.estado}}
+                     {%else%}
+                         <i class="icon icon-check-empty"></i>
+                     {%endif%}
+                     {%if fila==li%}
+                        {%set pregunta=entities_porcentajes[fila][columna].respuesta%}
+                         <span style="font-size: 8px;color: white;font-weight: 900;position: absolute;top: 23px;z-index: 4;">{{pregunta.indice+1}}</span>
+                     {%endif%}
+    
+            </div>
+            
+        {%endfor%}
+<div style="clear: both;"></div>
+    {%endfor%}
+{%endfor%}
+
+</div>
+<div class="well" style="margin: 0 0 0 0;padding: 0 0 0 0;">
+<h4>Matriz de respuestas correctas del exámen..</h4>
+{#--------------------------------------------------Matriz de repuestas------------------------------------#}
+{%set ls_c=17%}
+{%for bloque in 0..ultimo_bloque%}    
+<div>bloque # {{loop.index}}</div>
+
+    {%set li=bloque*4%}
+    {%set ls=li+3%}
+    {%for fila in li..ls%}    
+        {%if bloque==ultimo_bloque%}
+            {%set ls_c=(a_e.examen.getNroPreguntas-(ultimo_bloque*18+1))%}            
+        {%endif%}
+        {%for columna in 0 .. ls_c%}
+            {% set buble=entities_correctas[fila][columna]%}
+            <div style="width: 50px;float: left;margin-right: 1px;position: relative;
+                      {%if buble.estado==1%}
+                         background-color: green;
+                      {%else%}
+                         background-color: gray;
+                      {%endif%}
+                       ">
+                     &nbsp;{{buble.label}}
+                     {%if buble.estado==1%}
+                        <i class="icon icon-check-sign"></i> {{buble.estado}}
+                     {%else%}
+                         <i class="icon icon-check-empty"></i>
+                     {%endif%}
+                     {%if fila==li%}
+                        {%set pregunta=entities_correctas[fila][columna].respuesta%}
+                         <span style="font-size: 8px;color: white;font-weight: 900;position: absolute;top: 23px;z-index: 4;">{{pregunta.indice+1}}</span>
+                     {%endif%}
+    
+            </div>
+            
+        {%endfor%}
+<div style="clear: both;"></div>
+    {%endfor%}
+{%endfor%}
+
+</div>
+<br/><br/>
+<table class="table table-boletin table-bordered">
+    <thead>
+        <tr>
+            <th> Componente ICFES.</th>
+            <th>Puntaje Promedio.</th>
+            <th> Temas Evaluados-plan area.</th>
+            <th>Puntaje Promedio.</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {%for componente in componentes_icfes%}
+        <tr>
+            <td>{{componente.nombre}} </td>
+            <td>{{render(controller("NetpublicRedsaberBundle:ExamenIcfes:informeunestudiantecomponenete",{'examen_id':a_e.examen.id,'referencia': referencia,'componente_id':componente.id}))}}</td>
+        {%endfor%}
+        
+            <td>no
+            </td>
+            <td>
+                no
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div style="text-align: center;">
+    __________________________________<br/>
+            Firma del Rector.
+</div>
+{%endblock%}
+
+        

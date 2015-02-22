@@ -1,0 +1,45 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+           
+            <th>Componentes</th>
+            <th>Nro Pregunas</th>
+            <th>Puntajes Promedios</th>
+        </tr>
+    </thead>
+    <tbody>
+
+{%for html_option in html_options%}
+    <tr>
+        <td>
+    {{html_option|raw}}
+        </td>        
+       {%if tipo==1%}
+       <td>
+           <span id="mensanje_izquierda_1{{loop.index}}">
+            no calculado
+           </span>
+       </td>
+       <td>
+           <span id="mensanje_izquierda_2{{loop.index}}">
+            no calculado
+           </span>
+                 
+       </td>
+       {%else%}
+       <td>
+           <span id="mensanje_derecha_1{{loop.index}}">
+            basado en el origen.
+           </span>
+       </td>
+       <td>
+           <span id="mensanje_derecha_2{{loop.index}}">
+            no calculado
+           </span>
+       </td>
+       {%endif%}       
+           
+</tr>
+{%endfor%}
+       </tbody>
+</table>       

@@ -1,0 +1,14 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>Pregunta</td><td>Porcentaje</td><td>NroParcial/NroTotal</td>
+    </tr>
+    </thead>
+    <tbody>
+{%for p in preguntas%}
+    <tr>
+        <td>pregunta #{{p.posicion+1}}</td><td>{{porcentajes[loop.index0].estado}}%</td><td>{{nro_parcial[loop.index0]}}/{{nro_total}}</td>
+    </tr>
+{%endfor%}
+    </tbody>
+</table>     

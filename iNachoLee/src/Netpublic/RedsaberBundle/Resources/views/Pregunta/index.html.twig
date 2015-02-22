@@ -1,0 +1,250 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Preguntas Red Saber.{% endblock %}
+
+{%block  sub_container %}
+<div id="container-principal">
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paginacion">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+
+<div class="col-lg-12">
+    <div>
+        <div class="pull-right">    
+         <div class="btn-group">
+          <a class="btn" href="#" onclick="newCrearPregunta();">
+              <i class="icon-stop"></i>
+              Nueva pregunta
+          </a>
+          <a class="btn" onclick="eliminarPreguntas();" href="#">
+              <i class="icon-trash"></i>
+              Eliminar pregunta(s)
+          </a>
+        </div>        
+    </div>
+    </div>
+</div>
+<div style="margin-bottom: 20px;">
+    <select id="grado_lista_pregunta" 
+            onchange="getAsignaturasGrado('grado_lista_pregunta','asg_lista_pregunta');">
+        
+        <option value="*">Grado ?</option>
+        {%for grado in grados%}
+            <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}
+    </select>
+    <select id="asg_lista_pregunta" onchange="mostraSelectTemasAsg();">
+        <option>Asignatura</option>
+    </select>
+ 
+</div>
+<div class="col-lg-12" style="margin-bottom: 10px;">
+    <form class="form-search ">
+                                            <span class="input-icon">
+                                                <input placeholder="Ej: Suma de fracionarios" type="text" autocomplete="off" onkeyup="listaSeguimientoProfesores(1)" id="my-input2" class="nav-search-input">
+                                                <i class="icon-search nav-search-icon"></i>
+                                            </span>
+                                        </form>
+</div>
+<div class="well col-lg-12" id="container-todas-pregunta">
+    
+          <input type="checkbox" id="all_check_prenguntas" onchange="allCheckBox('all_check_prenguntas','check_prenguntas')" />
+          {%for pregunta_importar in pagination%}
+          <div style="margin-bottom: 20px;padding-left: 10px;padding-top: 10px;border: white dashed thin;">
+            <input value="{{pregunta_importar.id}}" type="checkbox" class="check_prenguntas"> 
+            <div class="col-lg-12">
+                <div class="well" id="container-editar-contenido-pregunta-readyonly-{{pregunta_importar.id}}"
+                     style="margin-left: 20px;background-color: whitesmoke;">
+                    <p>{{pregunta_importar.contenido.cuerpo|raw}}</p>
+                </div>
+                <div id="container-editar-contenido-pregunta-{{pregunta_importar.id}}" style="display: none;">
+                </div>
+                    <div class="pull-right">    
+                        <a href="#" onclick="editarContenidoPregunta({{pregunta_importar.id}});">Editar</a>
+                          | 
+                        <a href="#" onclick="actualizarContenidoPregunta({{pregunta_importar.id}});">Actualizar</a>                
+                    </div>
+            </div>        
+            <div id="container-opciones-pregunta-{{pregunta_importar.id}}">    
+                      <div class="radio" >
+                          <label>
+                            A
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta_importar.id}});"    
+                               value="A."
+                               id="optionsRadios1"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='A.'%}
+                               checked="checked"
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='A.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                                
+                            </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionA}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            B
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta_importar.id}});"
+                               value="B."
+                               id="optionsRadios2"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='B.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='B.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionB}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            C
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta_importar.id}});"
+                               value="C."
+                               id="optionsRadios3"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='C.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='C.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                          
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionC}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            D
+                            <input type="radio"
+                               value="D."
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta_importar.id}});"
+                               id="optionsRadios4"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='D.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='D.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionD}}
+                            </span>     
+                      </div>
+                       
+                      
+               </div>      
+       <div class="col-lg-12">         
+            <div class="col-lg-5">
+                 <a class="btn btn-default btn-sm btn-small"
+                    {%if pregunta_importar.grado != null%}
+                        href="{{path('planarea_temasevaluar',{'grado_id': pregunta_importar.grado.id,'pregunta_id': pregunta_importar.id})}}" 
+                    {%else%}
+                        href="#"
+                    {%endif%}
+                    data-toggle="modal" data-target="#myModal1">Temas a evaluar
+                 </a>
+                <div id="container-temas_{{pregunta_importar.id}}" class="well">
+                     {%for tema in pregunta_importar.getTemas%}
+                         <strong>{{loop.index}}.-</strong>{{tema.nombre}}
+                     {%endfor%}        
+                </div>   
+                     
+            </div>
+            <div class="col-lg-5">
+                     <a class="btn btn-default btn-sm btn-small"
+                    {%if pregunta_importar.grado != null%}                        
+                         href="{{path('componente_showpruebastree',{'grado_id':pregunta_importar.grado.id,'pregunta_id': pregunta_importar.id})}}" 
+                    {%else%}
+                         href="#"
+                    {%endif%}
+                    data-toggle="modal" data-target="#myModal2">Componentes ICFES</a>
+                    <div style="position: relative;">
+                    <div id="container-componentes_{{pregunta_importar.id}}" class="well">
+                        {%for com in pregunta_importar.getComponente()%}
+                            <strong>{{loop.index}}.-</strong>{{com.nombre}}
+                        {%endfor%}    
+                    </div>
+                            <span style="position: relative;right: 0px;bottom: 0px;"></span>        
+                    </div>        
+                
+            </div>
+           <div class="col-lg-2">
+                    <input onchange="actualizarEstadoPregunta(this,{{pregunta_importar.id}});" 
+                        {%if pregunta_importar.getEstado%}checked="checked" {%endif%} type="checkbox" >Compartir en RED Saber
+           </div>
+      </div>
+      <div  class="col-lg-12" style="font-size: 11px;color: gray;border-top: black outset thin;"> 
+                   Elaborado por: {{pregunta_importar.getCreadorExamen}} | Fecha de publicación : {{pregunta_importar.getFechaPrublicacion|date('Y-m-d h:i')}}
+                            | <a href="#">Enviar sugerencia</a>
+                            | <a href="#">Subir puntuación</a>
+                            | <a href="#">Compartir</a>
+                            | Banco de preguntas: 
+                            {%if pregunta_importar.estado==1%}
+                            Red Saber.
+                            {%else%}
+                            {{colegio}}
+                            {%endif%}
+      </div>
+         <div style="clear: both;"></div>   
+          </div>
+          {%endfor%}    
+</div>
+</div>
+{%endblock%}

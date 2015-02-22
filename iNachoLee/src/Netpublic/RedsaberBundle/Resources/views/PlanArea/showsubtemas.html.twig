@@ -1,0 +1,11 @@
+{%for subtema in subtemas%}
+      <li class="parent_li">
+          <span class="items_remoto"  id="nodo_subtema_{{subtema.getAnchorInterno}}" data-id="{{subtema.getAnchorInterno}}"  title="Collapse this branch">
+                <i class="icon-book"></i>
+                {{subtema.nombre}}
+          </span>
+          <ul>
+          </ul>
+      </li>
+{%endfor%}
+                                

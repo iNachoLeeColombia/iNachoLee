@@ -1,0 +1,16 @@
+{%for competencia in competencias%}
+      <li class="grupo" id="grupo_{{competencia.id}}">          
+          <span class="items_remoto" id="nodo_pruebaicfes_{{competencia.id}}" data-id={{competencia.id}}  title="Collapse this branch">
+                <i class="icon-book"></i> {{competencia.nombre}}
+          </span>      
+         {%if competencia.getEsUltimo%}     
+          <input type="checkbox" class="check_competencia check_items" value="{{competencia.id}}" />
+         {%endif%} 
+          <ul id="padre_{{competencia.id}}">
+          </ul>
+      </li>
+{%endfor%}    
+<script>
+    procesarul("");
+</script>
+      

@@ -1,0 +1,87 @@
+                     <div class="radio" >
+                          <label>
+                            A
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta.id}});"    
+                               value="A."
+                               id="optionsRadios1"
+                               name="label{{pregunta.id}}"
+                               {%if pregunta.label=='A.'%}
+                               checked="checked"
+                               {%endif%}
+                               >
+                               {%if pregunta.label=='A.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                                
+                            </label>
+                            <span>
+                                {{pregunta.getDescripcionA}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            B
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta.id}});"
+                               value="B."
+                               id="optionsRadios2"
+                               name="label{{pregunta.id}}"
+                               {%if pregunta.label=='B.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta.label=='B.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta.getDescripcionB}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            C
+                            <input type="radio"
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta.id}});"
+                               value="C."
+                               id="optionsRadios3"
+                               name="label{{pregunta.id}}"
+                               {%if pregunta.label=='C.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta.label=='C.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                          
+                          </label>
+                            <span>
+                                {{pregunta.getDescripcionC}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            D
+                            <input type="radio"
+                               value="D."
+                               onchange="actualizarOpionVerdaderaPregunta({{pregunta.id}});"
+                               id="optionsRadios4"
+                               name="label{{pregunta.id}}"
+                               {%if pregunta.label=='D.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta.label=='D.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta.getDescripcionD}}
+                            </span>     
+                      </div>
+                       
+                      <div style="clear: both;"></div>
+ 

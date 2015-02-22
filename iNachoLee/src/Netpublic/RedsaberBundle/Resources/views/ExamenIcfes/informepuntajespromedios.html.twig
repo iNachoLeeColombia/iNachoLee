@@ -1,0 +1,28 @@
+<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Puntajes Promedios De Los Estudiantes</h4>
+      </div>
+      <div class="modal-body">
+          <h2> Desviación Estandar: {{desviacion}} <br/> Puntaje Promedio : {{promedio}}</h2>    
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Puntaje Promedio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for a_e in data%}
+        <tr>
+            <td>{{a_e.alumno}}</td>
+            <td>{{a_e.promedio}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>          

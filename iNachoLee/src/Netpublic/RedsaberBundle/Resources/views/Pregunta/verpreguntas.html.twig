@@ -1,0 +1,43 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Preguntas Red Saber.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+	<a href="{{ path('usuario') }}">Red saber.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Gestores para la Red Saber.<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+    <div id="frame_principal">    
+{%for exam_pregunta in preguntas%}
+  <div style="border-bottom: black solid thin;">
+             <div style="margin-left: 20px;margin-bottom: 10px;font-size: 30px;">
+          <div style="width: 80px;background-color: gainsboro;margin-top: 20px;text-align: center;border-radius: 8px;">{{loop.index}}</div>  
+      </div>
+      <div style="width: 80%;margin-left: 20px;margin-bottom: 20px;text-align: justify;">
+          {{exam_pregunta.pregunta.contenido.cuerpo|raw}}
+      </div>
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+          A. {{exam_pregunta.pregunta.getDescripcionA}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         B. {{exam_pregunta.pregunta.getDescripcionB}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         C. {{exam_pregunta.pregunta.getDescripcionC}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         D. {{exam_pregunta.pregunta.getDescripcionD}}
+      </div>
+ </div>    
+
+{%endfor%}
+            <button onclick="verSiguienteHoja();">Ver siguiete</button>
+</div>
+{%endblock%}

@@ -1,0 +1,313 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+
+{% block title %}Mi colegio.{% endblock %}
+
+{%block sub_container %}
+    <!-- Modal -->
+<div class="modal fade no-imprimir" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade no-imprimir" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+{%if app.request.isXmlHttpRequest==0 %}
+<div style="margin: 20px;">
+     <div class="col-lg-12" style="margin-top: 10px;">
+    
+         <div class="col-lg-8"></div>
+         <div class="col-lg-4">  
+  <span class="input-icon">
+      <input type="text" class="nav-search-input" id="my-input1"
+             onkeyup="listaAlumnosExamenesICFES();" autocomplete="off" 
+             placeholder="Cédula | Nombre">
+        <i class="icon-search nav-search-icon"></i>
+  </span>
+    </div>
+   </div>          
+    <div class="col-lg-12" style="margin-top: 10px;">
+    <div class="col-lg-4">  
+  <span class="input-icon">
+      <input type="text" class="nav-search-input" id="my-input2"
+             
+             onkeyup="listaExamenesICFES();" autocomplete="off" 
+             placeholder="Id exámen">
+        <i class="icon-search nav-search-icon"></i>
+  </span>
+    </div>
+        <div class="col-lg-8" style="margin: 0 0 0 0;">
+        <div class="btn-group">
+            <a class="btn btn-sm btn-primary" href="{{path('examenicfes_listarevisar')}}">
+              <i class="icon-eye-close"></i>
+Inicio
+            </a>
+          <a class="btn btn-sm"  href="{{path('examenicfes_informecomparacioncomponente')}}">
+              <i class="icon-retweet"></i>
+              Comparación por componente.
+          </a>
+          
+                <a class="btn btn-sm" href="{{path('examenicfes_informecomparacionpuntajespromedio')}}">
+              <i class="icon-check"></i>
+              Comparación por puntajes promedios
+          </a>
+          
+
+        </div>
+    </div>    
+</div>   
+      
+{%endif%}
+        
+<div id="container-principal">
+
+
+        
+<div class="col-lg-12" id="container_informe_alumnos_icfes" style="margin-top: 30px;" >
+  <div class="paginacion">
+    {{ knp_pagination_render(pagination) }}
+</div>
+</div>
+        <div class="clearfix"></div>
+        <div id="container_alumnos_icfes">
+    <table class="table table-bordered">
+    <thead>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Leido ?</th>
+        <th>Creador</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        
+    
+{%for examen in pagination%}
+        <tr>
+            <td>{{examen.id}}</td>
+            <td>{{examen.nombre}} # {{examen.getNroPreguntas}}</td>
+            <td>
+            {%if examen.getEsEvalauado==1%}
+                   <i class="icon icon-check-sign green"></i> 
+            {%else%}
+                   <i class="icon icon-unchecked green"></i>
+            {%endif%}
+            </td>
+            <td>
+                {{examen.getCreadorExamen}}
+                <br/>
+                <span style="font-size: 9px;"><strong>Responsable:</strong>({{examen.reponsable}})</span>
+                <br/>
+                <span style="font-size: 9px;">{{examen.grupo}}</span>
+            </td>
+            <td>
+                
+                {%if examen.getEsEvalauado==1%}
+                <a href="{{path('examenicfes_informe',{'examen_id': examen.id })}}"  data-toggle="modal" data-target="#myModal1">
+                ver informe
+                </a>    
+                |
+               {%if examen.tipo==1%}                
+                    <a href="{{path('examenicfes_newrevisar',{'id': examen.id })}}"  data-toggle="modal" data-target="#myModal2">
+                        Volver a revisar
+                    </a>
+                {%endif%}
+                {%if examen.tipo==2%}                
+                    <a href="#" onclick="iniciarRevisarExamenVirtual({{examen.id}})">
+                        Volver a revisar
+                    </a>
+                {%endif%}
+
+                
+                {%endif%}
+                {%if examen.getEsEvalauado==0%}
+                |
+                {%if examen.tipo==1%}                
+                    <a href="{{path('examenicfes_newrevisar',{'id': examen.id })}}"  data-toggle="modal" data-target="#myModal">
+                        revisar
+                    </a>
+                {%endif%}
+                {%if examen.tipo==2%}                
+                <a href="#" onclick="iniciarRevisarExamenVirtual({{examen.id}})">
+                        revisar 
+                    </a>
+                {%endif%}
+
+                {%endif%}
+                | <a href="#" onclick="reiniciarTodasHR({{examen.id}});"> 
+                    Reiniciar matrix(todas).
+                </a>
+                |<a href="{{path('examenicfes_resumen',{'examen_id': examen.id })}}" target="_blank"> 
+                    Imprimir preguntas-Hojas de respuesta.
+                </a>
+                |<a href="{{path('examenicfes_corregir',{'examen_id': examen.id })}}" target="_blank"> 
+                    Corregir pregunta(s).
+                </a> |
+                
+                <a href="{{path('examenicfes_newinformenivelcomplejidad',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal3">Nivel Complejidad</a>
+                                                                | 
+                <a href="{{path('examenicfes_informepuntajespromedios',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal4">Puntajes Promedio</a> |
+                <a href="{{path('examenicfes_newinformecomponenete',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal5">Componentes ICFES</a> |
+                <a href="{{path('examenicfes_informefrecuenciapreguntas',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal6">Frecuencia de preguntas</a> |
+
+                                                                
+            </td> 
+                
+        </tr>
+{%endfor%}
+   </tbody>     
+</table>
+                </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Revisar!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Revisar!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{%endblock%}

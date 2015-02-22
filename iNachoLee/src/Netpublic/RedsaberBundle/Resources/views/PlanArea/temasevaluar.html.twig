@@ -1,0 +1,42 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Por favor seleccione los temas a evaluar por esta pregunta</h4>
+      </div>
+      <div class="modal-body">
+    <div class="sub-container-temas_evaluar tree">
+    <ul>
+        <li class="parent_li">
+               <ul>
+                {%for asignatura in asignaturas%}             
+                     <li class="parent_li asg_temas_evaluar" id="asg_temas_evaluar_{{asignatura.id}}">
+                        <span class="items_remoto"
+                              id="nodo_asg_temas_evaluar_{{asignatura.id}}"
+                              data-id="{{asignatura.id}}"
+                              title="Collapse this branch"><i class="icon-plus-sign"></i> {{asignatura}}
+                      </span>
+                      <ul id="padre_{{asignatura.id}}">
+                      </ul>    
+                    </li>             
+                {%endfor%}
+              </ul>
+        </li>
+   </ul>
+   <div class="clearfix"></div>
+    </div>
+  </div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+   <button type="button" class="btn btn-primary"
+           {%if pregunta_id==0%}
+                   onclick="procesarAdicionTemaNuevaPregunta();$('#myModal').modal('hide');"
+           {%else%}
+                    onclick="procesarAdicionarTemaPregunta({{pregunta_id}});$('#myModal').modal('hide');$('#myModal2').modal('hide');$('#myModal1').modal('hide');$('#myModal2').data('bs.modal', null);$('#myModal1').data('bs.modal', null);"
+           {%endif%}
+           >
+       Agregar Tema(s) ahora!!!
+   </button>
+</div>
+<script>
+    procesarul("");
+</script>
+    

@@ -1,0 +1,33 @@
+<div style="margin: 20px;">
+<div class="col-lg-4" style="background-color: gainsboro;">
+      <div id="sub-container-left_impresion" class="tree col-lg-12" style="font-size: 12px;">
+	 <ul>
+            {%for padre in padres%}
+              <li class="parent_li">
+                 <span class="items_remoto"  id="nodo_tema_{{padre.id}}" data-id="{{padre.id}}" title="Collapse this branch">
+                     <i class="icon-plus-sign"></i>                                
+                        {{padre.nombre}}
+                 </span>
+                 <ul id="ul_subtemas_{{padre.id}}" >
+                  </ul>
+             <li>        
+           {%endfor%}
+         </ul>
+         <div class="clearfix"></div>
+     </div>
+</div>
+<div id="container-contenido" class="col-lg-8" style="border: gainsboro solid thin;">
+<div class="btn-group pull-right" style="margin-top:10px;margin-bottom: 10px;">
+                    <a data-original-title="Align Right (Ctrl/Cmd+R)" class="btn btn-sm btn-primary" data-edit="justifyright" title="" onclick="newPlanArea();">
+                        <i class="icon icon-stop"></i> Nuevo
+                    </a>
+                    
+                    
+</div>
+<div class="clearfix"></div>
+
+</div>
+</div>        
+        
+        
+

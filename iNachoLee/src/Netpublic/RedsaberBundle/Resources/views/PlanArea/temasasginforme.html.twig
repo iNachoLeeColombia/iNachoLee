@@ -1,0 +1,10 @@
+<ul>
+    {%for tema in temas%}
+    <li>
+        {{tema.nombre}}
+        {{render(controller('NetpublicRedsaberBundle:PlanArea:temaevaluado',{'tema_id':tema.id}))}}
+                  
+    </li>
+    {%endfor%}
+</ul>
+    

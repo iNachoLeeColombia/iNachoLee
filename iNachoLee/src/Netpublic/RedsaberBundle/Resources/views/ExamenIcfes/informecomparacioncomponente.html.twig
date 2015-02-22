@@ -1,0 +1,103 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+
+
+{%block sub_container %}
+  {%if not app.request.isXmlHttpRequest%}
+     <div class="col-lg-12" style="margin-top: 10px;">
+    
+         <div class="col-lg-8"></div>
+         <div class="col-lg-4">  
+  <span class="input-icon">
+      <input type="text" class="nav-search-input" id="my-input1"
+             onkeyup="listaAlumnosExamenesICFES();" autocomplete="off" 
+             placeholder="Cédula | Nombre">
+        <i class="icon-search nav-search-icon"></i>
+  </span>
+    </div>
+   </div>          
+    <div class="col-lg-12" style="margin-top: 10px;">
+    <div class="col-lg-4">  
+  <span class="input-icon">
+      <input type="text" class="nav-search-input" id="my-input2"
+             onkeyup="listaExamenesICFES();" autocomplete="off" 
+             placeholder="Id exámen">
+        <i class="icon-search nav-search-icon"></i>
+  </span>
+    </div>
+        <div class="col-lg-8" style="margin: 0 0 0 0;">
+        <div class="btn-group">
+            <a class="btn btn-sm" href="{{path('examenicfes_listarevisar')}}">
+              <i class="icon-eye-close"></i>
+Inicio
+            </a>
+          <a class="btn btn-sm btn-primary"  href="{{path('examenicfes_informecomparacioncomponente')}}">
+              <i class="icon-retweet"></i>
+              Comparación por componente.
+          </a>
+          
+                <a class="btn btn-sm" href="{{path('examenicfes_informecomparacionpuntajespromedio')}}">
+              <i class="icon-check"></i>
+              Comparación por puntajes promedios
+          </a>
+          
+
+        </div>
+    </div>    
+</div>      
+{%endif%}
+<div class="col-lg-12" id="container_informe_alumnos_icfes" style="margin-top: 30px;" >
+
+</div>
+<div class="clearfix"></div>
+<div id="container_alumnos_icfes">
+</div>
+ <div class="col-lg-12" style="margin-top: 40px;">
+    <div class="col-lg-5">
+        <select id="grado1" onchange="
+            getGruposGradoEstandar('grado1','grupo1');
+                        ">
+            <option value="*">Grados</option>
+            {%for grado in grados%}
+            <option value="{{grado.id}}">{{grado}}</option>
+            {%endfor%}
+        </select>
+        <select id="grupo1" onchange="mostrarExamenesGrupo('grupo1','examen1');">
+            <option value="*">
+             grupo
+            </option>
+        </select><br/>
+            <select id="examen1" onchange="verComparacionComponentes(1);">
+            <option value="*"> Examenes</option>
+        </select>
+            <div id="container1" style="font-size: 9px;margin-top: 40px;">
+            </div>
+                
+    </div>
+        <div class="col-lg-1">
+            <span class="label small label-info arrowed">Comparar</span>  
+            
+        </div>
+        <div class="col-lg-6">
+        <select id="grado2" onchange="getGruposGradoEstandar('grado2','grupo2');">
+            <option value="*">Grados</option>
+            {%for grado in grados%}
+            <option value="{{grado.id}}">{{grado}}</option>
+            {%endfor%}
+        </select>
+            <select id="grupo2"  onchange="mostrarExamenesGrupo('grupo2','examen2');">
+            <option value="*">
+             grupo
+            </option>
+        </select><br/>
+            <select id="examen2"  onchange="verComparacionComponentes(2);">
+            <option value="*"> Examenes</option>
+        </select>
+                <div id="container2" style="font-size: 9px;margin-top: 40px;">
+                
+            </div>
+    </div>     
+</div>
+
+
+{%endblock%}

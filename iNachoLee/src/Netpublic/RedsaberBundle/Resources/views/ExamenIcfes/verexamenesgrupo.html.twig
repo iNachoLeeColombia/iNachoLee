@@ -1,0 +1,46 @@
+{%for examen in examenes%}
+<div class="widget-box" style="margin-top: 40px;">
+                                    <div class="widget-header widget-header-flat widget-header-small">
+                                        <h5>
+                                            
+                                            {{examen.nombre}}-{{examen.id}}
+					</h5>
+                                     </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <div style="font-size: 11px;">
+                                                Nro Preguntas: {{examen.getNroPreguntas}} <br/>
+                                                Creador:{{examen.getCreadorExamen}}<br/>
+                                                Responsable: {{examen.getReponsable}}<br/>
+                                                Duración: {{examen.hora}} horas y {{examen.minuto}} minutos<br/>
+                                            </div>
+                                            <div class="legend">
+                                                     <div class="hr hr8 hr-double"></div>
+                                                     <h6>Informes.</h6>
+                                                    <div class="clearfix">
+                                                        <div class="grid1" style="font-size: 10px;">
+                                                                <a 
+                                                                    href="{{path('examenicfes_newinformenivelcomplejidad',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal">Nivel Complejidad</a>
+                                                                | 
+                                                                <a 
+                                                                    href="{{path('examenicfes_informepuntajespromedios',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal">Puntajes Promedio</a> |
+                                                                <a 
+                                                                    href="{{path('examenicfes_newinformecomponenete',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal">Componentes ICFES</a> |
+
+                                                                <a href="#">Temas de las Areas</a>
+                                                                <a 
+                                                                    href="{{path('examenicfes_informefrecuenciapreguntas',{'examen_id':examen.id})}}" 
+                    data-toggle="modal" data-target="#myModal">Frecuencia de preguntas</a> |
+
+                                                                
+							</div>
+                                                                                                                  
+                                                    </div>
+					</div><!-- /widget-main -->
+                                    </div><!-- /widget-body -->
+				</div>
+    </div>        
+{%endfor%}

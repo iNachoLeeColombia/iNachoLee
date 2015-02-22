@@ -1,0 +1,61 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Cofiguración local de la red saber.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+			<a href="{{ path('usuario') }}">Configuración local.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Gestores para la Red Saber.<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+<div class="col-lg-12" >
+<div class="well col-lg-4">
+</div>
+    <div  class="well col-lg-8">
+{%for grado_t in grados%}
+<div class="col-lg-12" style="margin-top: 5px;border-bottom: white solid thin;">
+    <div class="col-lg-4">
+        <select id="grado{{grado_t.id}}" style="width: 170px;">
+            {%for grado in grados if grado_t.id==grado.id %}
+                <option 
+                    selected="selected"
+                    value="{{grado.id}}">{{grado}}</option>
+            {%endfor%}
+        </select>
+  </div>          
+    <div class="col-lg-8">
+        <select id="tipo_{{grado_t.id}}">
+            <option value="*">tipo</option>
+            <option value="1">Componentes 3°.</option>
+            <option value="2">Componentes 5°.</option>
+            <option value="3">Componentes 9°.</option>
+            <option value="4">Componentes 11°.</option>    
+        </select>
+            <button 
+            {%if render(controller("NetpublicRedsaberBundle:Componente:tienecomponentes",{'grado_id': grado_t.id}))==1%}    
+                    class="btn btn-success btn-sm disabled"
+            {%else%}
+                class="btn btn-default btn-sm"
+                onclick="procesarGenerarComponentesGrado({{grado_t.id}});"
+            {%endif%}    
+                    
+                    >
+            {%if render(controller("NetpublicRedsaberBundle:Componente:tienecomponentes",{'grado_id': grado_t.id}))==1%}    
+                    <i class="fa fa-check-circle"></i>Ya estan generados!!
+            {%else%}
+                Generar
+            {%endif%}    
+            </button>
+    </div>
+</div>            
+{%endfor%}
+        <div class="clearfix"></div>  
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,68 @@
+<div style="color: white;">--------</div>
+<div class="container_especial_imprmir" style="
+     margin: 0 0;
+     padding: 0 0;
+     width: 680px;
+     border: black solid thin;
+     position: relative;
+     text-align: center;">
+       
+    <div>
+        <h2 style="font-size: 35px;font-weight: 900;margin-bottom: 0px;">EXAMEN TIPO ICFES.
+            <img style="width:130px;height:110px"
+               src="{{asset('bundles/netpublicredsaber/images/logo_icfes.gif')}}"
+               />        
+          
+        </h2>
+        <div style="color: gray;font-size: 30px;font-weight: 800;">{{alumno_examen.alumno.sede}}</div>
+    </div>
+    <p style="margin-top: 20px;font-size: 12px;color: gray;">
+        Verifique que este numero aparezca en su hoja de respuestas 
+        <span style="font-size: 39px;background-color: yellowgreen;padding: 10px 10px;">{{alumno_examen.examen.id}}</span>
+    </p>
+    <table class="table table-condensed table-boletin" style="text-align: left;width: 80%;margin-left: 20px;">
+            <tbody>
+                <tr>
+                    <td style="width: 50%;"><strong>Alumno</strong></td><td>{{alumno_examen.alumno}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Nombre de el examen</strong></td><td>{{alumno_examen.examen.nombre}}</td>
+                </tr>
+                {%if alumno_examen.nota!=null%}
+                <tr>
+                    <td><strong>Asignatura</strong></td><td>{{alumno_examen.nota.asignatura}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Componente a evaluar</strong></td><td>{{alumno_examen.nota.dimension}}</td>
+                </tr>
+                {%endif%}
+                
+                <tr>
+                    <td><strong>Grado/grupo</strong></td><td>{{alumno_examen.alumno.grado}}-{{alumno_examen.alumno.grupo}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Fecha</strong></td><td>{{alumno_examen.examen.getfechaInicio|date("H:i Y/m/d")}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Duración</strong></td><td>{{alumno_examen.examen.hora}} horas y {{alumno_examen.examen.minuto}} minutos</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Responsable</strong></td><td>{{alumno_examen.examen.reponsable}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Creador</strong></td><td>{{alumno_examen.examen.getCreadorExamen}}</td>
+                </tr>
+
+            </tbody>
+        </table> 
+    <div>
+        <img style="width:130px;height:110px"
+               src="{{asset('bundles/netpublicredsaber/images/logo_icfes.gif')}}"
+               />
+    </div>
+</div>
+<div class="footer-div"></div>
+
+<div class="footer-div"></div>
+

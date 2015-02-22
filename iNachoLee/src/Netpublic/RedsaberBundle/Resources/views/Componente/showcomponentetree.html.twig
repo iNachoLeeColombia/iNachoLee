@@ -1,0 +1,14 @@
+{%for componente in componentes%}
+      <li class="grupo" id="grupo_{{componente.id}}">          
+          <span class="items_remoto" id="nodo_pruebaicfes_{{componente.id}}" data-id={{componente.id}}  title="Collapse this branch">
+                <i class="icon-book"></i> {{componente.nombre}}
+          </span>          
+          <input type="checkbox" class="check_componente check_items" value="{{componente.id}}" />
+          
+          <ul id="padre_{{componente.id}}">
+          </ul>
+      </li>
+{%endfor%}    
+<script>
+    procesarul("");
+</script>

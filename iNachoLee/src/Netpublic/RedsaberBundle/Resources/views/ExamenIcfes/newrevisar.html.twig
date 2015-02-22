@@ -1,0 +1,22 @@
+<form class="form-horizontal"   enctype="multipart/form-data">
+    
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Revisión de examenen</h4>
+</div>
+<div class="modal-body">
+    <h4>Vas a revisar el examen tipo ICFES: {{entity.nombre}}</h4>
+    Numero preguntas: {{entity.getNroPreguntas}}
+    <br>
+    <input type="file" name="hrzip" id="hrzip" />
+    <input type="hidden" name="id"  id="id" value="{{entity.id}}" />
+     <br/>
+          
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+   <button type="button" class="btn btn-primary" onclick="uploadAjax('{{path('examenicfes_createrevisar')}}');">
+       Iniciar revisión Ahora!!
+   </button>
+</div>
+</form>

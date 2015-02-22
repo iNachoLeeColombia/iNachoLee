@@ -1,0 +1,60 @@
+{% extends "NetpublicCoreBundle::layout_ajax.html.twig" %}
+
+{%block  sub_container  %}
+{%set exam_pregunta=pregunta%}
+<div id="frame_principal" style="padding-bottom: 400px;"> 
+    <div class="col-lg-12" style="border-bottom: gainsboro thin solid;margin-bottom: 20px;"> 
+            <div class="col-lg-8">
+            <div class="cronometro_ well">
+		<div class=" col-lg-4 marcador_">
+                    <input style="background-color: #EFEFEF;border: none;font-size: 25px;"  id="crono" type="text" name="display" value="00:00:00"></input>
+		</div>
+                    <div class="col-lg-8" style="color: gray;font-size: 18px;">
+                        <strong>Pregunta / Nro Preguntas:</strong> {{exam_pregunta.posicion+1}}/{{examen.getNroPreguntas}} 
+            </div>
+                    <div class="clearfix"></div>        
+            </div>
+            </div>
+                   
+            <div class="col-lg-4 btn-group">
+                <a href="#" onclick="iniciar2ExamenVirtualAhora({{examen.id}},{{app.session.get('hora')}},{{app.session.get('minutos')}})" class="btn btn-primary btn-xs">Abrir Exámen</a>                
+                <a href="#" onclick="abrirHoraRespuesta({{examen.id}},{{a_e.referencia}});" class="btn btn-xs">Abrir Hoja De Respuesta</a>
+                
+            </div>    
+        </div>        
+<div class="col-lg-12">	
+    <div class="col-lg-1">
+        <button  onclick="verSiguienteHoja(2,{{examen.id}},{{hora}},{{minuto}});"> < <br/>Atras</button>
+    </div>    
+        <div class="col-lg-10">
+    <div style="border-bottom: black solid thin;">
+            
+      <div style="width: 80%;margin-left: 20px;margin-bottom: 20px;text-align: justify;">
+          {{exam_pregunta.pregunta.contenido.cuerpo|raw}}
+      </div>
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+          A. {{exam_pregunta.pregunta.getDescripcionA}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         B. {{exam_pregunta.pregunta.getDescripcionB}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         C. {{exam_pregunta.pregunta.getDescripcionC}}
+      </div>    
+      <div style="width: 80%;margin-left: 30px;margin-bottom: 20px;">
+         D. {{exam_pregunta.pregunta.getDescripcionD}}
+      </div>
+        <div style="clear: both;"></div>  
+ </div>    
+    </div>        
+    <div class="col-lg-1">
+        <button onclick="verSiguienteHoja(1,{{examen.id}},{{hora}},{{minuto}});"> ><br/>Siguiete </button>
+    </div>     
+</div>            
+</div>
+{%endblock%}
+{%block js_final%}
+<script>
+arrancarCrono({{hora}},{{minuto}},'{{url('examenicfes_resumenalumno',{'examen_id': examen.id})}}');
+</script>
+{%endblock%}

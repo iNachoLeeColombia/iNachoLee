@@ -1,0 +1,42 @@
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Informe de rendimiento por Componentes.</h4>
+      </div>
+      <div class="modal-body">
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Asignaturas</th>
+            <th>Componentes</th>
+            <th>Puntajes Promedios</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+{%for asg in asignaturas%}
+    <tr>    
+        <td>
+            {{asg}}
+       </td>
+       <td>
+            {{render(controller('NetpublicRedsaberBundle:Componente:showprueba',{'grado_id':grado_id,'examen_id':examen_id,'asg_id': asg.id}))}}
+       </td>
+       <td>
+           <span id="mensanje{{asg.id}}">
+            no calculado
+           </span>
+       </td>
+   </tr>    
+{%endfor%}
+    </body>
+    
+</table>   
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+          

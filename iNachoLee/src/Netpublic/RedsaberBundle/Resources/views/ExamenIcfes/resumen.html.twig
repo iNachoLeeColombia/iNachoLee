@@ -1,0 +1,81 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+
+{% block title %}Mi colegio.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+			<a href="{{ path('usuario') }}">Gestor de administración.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Gestores para la Red Saber.<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+
+<h3 class="no-imprimir">Resumen de examen</h3>
+<div class="col-lg-12  no-imprimir" style="margin-top: 10px;">
+    <div class="btn-group btn-group-xs pull-right no-imprimir">
+          <a class="btn" onclick="imprimirTodasHojaRepuestaEstudiantes({{examen.id}});" href="#">
+              <i class="icon-print"></i>
+              ExameneS & Hojas de respuestas.
+          </a>
+          <a class="btn" onclick="imprimirTodasSoloHojaRepuestaEstudiantes({{examen.id}});" href="#">
+              <i class="icon-print"></i>
+             Hojas de repuestas.
+          </a>  
+           <a class="btn" onclick="imprimirTodasSoloHojaPricipalEstudiantes({{examen.id}});" href="#">
+              <i class="icon-print"></i>
+              Encabezado.
+          </a> 
+           <a class="btn" onclick="imprimirTodasSoloHojaPreguntasSinPrincipalEstudiantes({{examen.id}});" href="#">
+              <i class="icon-print"></i>
+             Exámen
+          </a> 
+            <a class="btn" href="#" onclick="imprimirTodasSoloHojaBorradorEstudiantes({{examen.id}});">
+              <i class="icon-print"></i>
+              Hojas de Borrador.
+          </a>
+    </div>
+</div>
+
+
+<div  class="col-lg-12">
+  <div class="col-lg-5 no-imprimir">   
+        <table class="table table-bordered">
+            <tr>
+               <td>Nombre :</td><td>{{examen}}</td>
+             </tr><tr>   
+                <td>Duración : </td><td>{{examen.hora}}horas y {{examen.minuto}} minutos</td>
+             </tr><tr>   
+                 <td>Fecha de Inicio: </td><td>{{examen.getFechaInicio|date('Y/m/d h:i')}}</td>
+            </tr><tr>    
+                <td>Numero de prenguntas: </td><td>{{examen.getNroPreguntas}}</td>
+            </tr><tr>    
+                <td>Componente a evaluar: </td><td>{{examen}}</td>
+            </tr><tr>    
+                <td>Grado-Grupo:</td><td>{{examen.grados}}</td>
+            </tr><tr>    
+                <td>Temas a evaluar:</td><td>{{examen}}</td>
+            </tr><tr>    
+                <td>Profesor: </td><td>{{examen.getCreadorExamen}}</td>
+            </tr><tr>    
+                <td>Responsable</td><td>{{examen.reponsable}}</td>
+            </tr>
+        </table>
+         </div>
+  <h1 class="green no-imprimir">Examen realizado correctamente!!!</h1>
+  
+  <div  class="col-lg-7" id="container-imprimir" >
+      <span style="color: gray;"> <i class="icon icon-print"></i> zona de impresión</span>
+  </div>
+  <div class="col-lg-12 pull-right  no-imprimir btn-group">
+      <a class="btn" href="{{path('examenicfes_listarevisar')}}">Finalizar</a>
+             <a class="btn btn-primary" href="{{path('examenicfes_corregir',{'examen_id': examen.id })}}"> Revisar preguntas del exámen.</a>  
+  
+  </div>      
+</div> 
+{%endblock%}

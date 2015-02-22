@@ -1,0 +1,52 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+
+{% block  sub_container %}
+    <h1>ExamenIcfes list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nro_preguntas</th>
+                <th>Tipo</th>
+                <th>Nombre</th>
+                <th>Fecha_inicio</th>
+                <th>Fecha_entregas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('examenicfes_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nropreguntas }}</td>
+                <td>{{ entity.tipo }}</td>
+                <td>
+                    {{ entity.nombre }}
+                    <a href="{{path('examenicfes_newrevisar',{'id':entity.id})}}">Realizar revision con Maquina OMR</a>
+                </td>
+                <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>mm</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('examenicfes_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('examenicfes_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('examenicfes_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

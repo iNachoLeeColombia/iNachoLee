@@ -1,0 +1,87 @@
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Nivel de complejidad</h4>
+      </div>
+      <div class="modal-body">
+          <table class="table table-condensed grey">
+    <thead>
+        <tr>
+            <th>
+                Nivel de complejidad
+            </th>
+            <th>
+                Porcentajes(%)
+            </th>
+            <th>
+                Intervalos de identificación.
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                B
+            </td>
+            <td><span id="message_B">no calculado</span></td>
+            <td>
+                Tomar preguntas con porcentajes<br/> Desde 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_B','input_superior_B','message_B');" 
+                       id="input_inferior_B" style="width: 40px;" type="text" >  Hasta 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_B','input_superior_B','message_B');" 
+                       style="width: 40px;" type="text" id="input_superior_B">
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                C
+            </td>
+            <td><span id="message_C">no calculado</span></td>
+            <td>
+                Tomar preguntas con porcentajes<br/> Desde 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_C','input_superior_C','message_C');" 
+                       id="input_inferior_C" style="width: 40px;" type="text" >  Hasta 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_C','input_superior_C','message_C');" 
+                       style="width: 40px;" type="text" id="input_superior_C">
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                D
+            </td>
+            <td><span id="message_D">no calculado</span></td>
+            <td>
+                Tomar preguntas con porcentajes<br/> Desde 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_D','input_superior_D','message_D');" 
+                       id="input_inferior_D" style="width: 40px;" type="text" >  Hasta 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_D','input_superior_D','message_D');" 
+                       style="width: 40px;" type="text" id="input_superior_D">
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                F
+            </td>
+            <td><span id="message_F">no calculado</span></td>
+            <td>
+                Tomar preguntas con porcentajes<br/> Desde 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_F','input_superior_F','message_F');" 
+                       id="input_inferior_F" style="width: 40px;" type="text" >  Hasta 
+                <input onkeyup="getPorcentajeComplejidad({{examen.id}},'input_inferior_F','input_superior_F','message_F');" 
+                       style="width: 40px;" type="text" id="input_superior_F">
+                
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  

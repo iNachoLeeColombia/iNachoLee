@@ -1,0 +1,43 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+
+{% block title %}Finalizar examen ICFES.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+			<a href="{{ path('usuario') }}">Gestor de administración.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Gestores para la Red Saber.<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+<h1 class="green no-imprimir">Examen realizado correctamente!!!</h1>
+  
+<div class="col-lg-12 no-imprimir">   
+        <table class="table table-bordered">
+            <tr>
+               <td>Nombre :</td><td>{{examen}}</td>
+             </tr><tr>   
+                <td>Duración : </td><td>{{examen.hora}}horas y {{examen.minuto}} minutos</td>
+             </tr><tr>   
+                 <td>Fecha de Inicio: </td><td>{{examen.getFechaInicio|date('Y/m/d h:i')}}</td>
+            </tr><tr>    
+                <td>Numero de prenguntas: </td><td>{{examen.getNroPreguntas}}</td>
+            </tr><tr>    
+                <td>Componente a evaluar: </td><td>{{examen}}</td>
+            </tr><tr>    
+                <td>Grado-Grupo:</td><td>{{examen.grados}}-{{examen.grupo}}</td>
+            </tr><tr>    
+                <td>Temas a evaluar:</td><td>{{examen}}</td>
+            </tr><tr>    
+                <td>Profesor: </td><td>{{examen.getCreadorExamen}}</td>
+            </tr><tr>    
+                <td>Responsable</td><td>{{examen.reponsable}}</td>
+            </tr>
+        </table>
+  </div>
+{%endblock%}

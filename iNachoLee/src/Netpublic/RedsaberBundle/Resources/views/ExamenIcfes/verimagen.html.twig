@@ -1,0 +1,18 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+			<a href="{{ path('usuario') }}">Gestor de administración.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Hoja de respuesta del alumno. {{a_e.alumno}}<small>
+ <i class="icon-double-angle-right"></i>
+    Red Saber.
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+<img src="{{src}}" alt="Foto de hoja de respuesta del estudiante.">
+{%endblock%}

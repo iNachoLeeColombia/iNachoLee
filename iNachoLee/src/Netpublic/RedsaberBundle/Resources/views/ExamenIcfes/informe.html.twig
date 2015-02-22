@@ -1,0 +1,56 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+            #
+            </th>
+            <th>
+            Alumno
+            </th>
+            <th>
+            OK
+            </th>
+            <th>
+            NO_OK
+            </th>
+            <th>
+            Nota
+            </th>
+            <th>
+            Lectura
+            </th>
+            <th>
+            Acciones
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for a_d in alumnos_datos%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{a_d.alumno}}</td>
+                <td style="background-color: red;">{{data[loop.index0].incorrectas}}/{{examen.getNroPreguntas}}</td>
+                <td style="background-color: yellowgreen;">{{data[loop.index0].correctas}}/{{examen.getNroPreguntas}}</td>
+                <td>{{data[loop.index0].nota}}</td>
+                <td>
+                    {%if a_d.getEstadoLectura==1%}
+                        <i class="ico icon-check icon-2x green"></i>
+                    {%elseif a_d.getEstadoLectura==2%}
+                        <span style="color: red;">Llenado incorrectamente</span>
+                    {%else%}
+                        <i class="icon icon-unchecked icon-2x green"></i>
+                    {%endif%}
+                </td>
+                <td>
+                    <a href="#" onclick="reiniciarMatrix({{a_d.referencia}},{{examen.id}});"> Reiniciar matrix</a>
+                    <br/> |
+                    <a target="_blank" href="{{path('pregunta_matrices',{'examen_id':examen.id,'referencia':a_d.referencia})}}" class="disabled">Ver Matrix</a>
+                    <br/> |
+                    <a target="_blank" href="{{path('examenicfes_verimagen',{'examen_id':examen.id,'referecia':a_d.referencia})}}" class="disabled">Ver Hoja De Respuesta</a>
+                    
+                </td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>

@@ -1,0 +1,394 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Crear Examen tipo ICFES.{% endblock %}
+{%block main_container %}
+<div class="clearfix"></div>
+{%for pregunta_examen in preguntas_examen%}
+{%set pregunta=pregunta_examen.pregunta %}
+<div style="background-color: rosybrown;margin-top: 20px;">
+    {{pregunta.indice}}
+        <button onclick="procesarAgregarContenido({{pregunta.id}})">agregar pregunta</button>
+        <button onclick="actualizarContenido({{pregunta.id}})">actualizar pregunta</button>
+        
+        <button>importar pregunta</button>
+        {#%if pregunta.contenido is null%#}
+        <input type="hidden" id="hidden_contenido_{{pregunta.id}}" value="0">
+        <div id="contenido_{{pregunta.id}}" class="col-lg-12" style="border: black solid thick;">
+            <div class="col-lg-1">
+                <button>Plt 1</button>
+                <button>Plt 2</button>
+                <button>Plt 3</button>
+                
+            </div>
+            <div class="col-lg-11">
+                <div class="col-lg-12">
+                    <div class="col-lg-12" style="background-color: red;">
+                        <div class="wysiwyg-toolbar btn-toolbar center wysiwyg-style2" style="" id="panel_configuracion">
+            <div class="btn-group">
+                <a data-original-title="Font" class="btn btn-sm  dropdown-toggle" data-toggle="dropdown" title="">
+                    <i class="icon-font"></i>
+                    <i class="icon-angle-down icon-on-right"></i>
+                </a> 
+                    <ul class="dropdown-menu dropdown-light"> 
+                        <li>
+                            <a data-edit="fontName Arial" style="font-family:'Arial'" onclick="procesarFuncionesPanel('Arial','tipo_letra');">Arial</a>
+                        </li> 
+                        <li>
+                            <a data-edit="fontName Courier" style="font-family:'Courier'" onclick="procesarFuncionesPanel('Courier','tipo_letra');">Courier</a>
+                        </li> 
+                        <li>
+                            <a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'" onclick="procesarFuncionesPanel('Comic Sans MS','tipo_letra');">Comic Sans MS</a>
+                        </li>
+                        <li>
+                            <a data-edit="fontName Helvetica" style="font-family:'Helvetica'" onclick="procesarFuncionesPanel('Helvetica','tipo_letra');">Helvetica</a>
+                        </li> 
+                        <li>
+                            <a data-edit="fontName Open Sans" style="font-family:'Open Sans'" onclick="procesarFuncionesPanel('Open Sans','tipo_letra');">Open Sans</a>
+                        </li>
+                        <li>
+                            <a data-edit="fontName Tahoma" style="font-family:'Tahoma'" onclick="procesarFuncionesPanel('Tahoma','tipo_letra');">Tahoma</a>
+                        </li>
+                        <li>
+                            <a data-edit="fontName Verdana" style="font-family:'Verdana'" onclick="procesarFuncionesPanel('Verdana','tipo_letra');">Verdana</a>
+                        </li> 
+                    </ul>
+                </div> 
+                      <div class="btn-group">
+                    <a data-original-title="Font Size" class="btn btn-sm  dropdown-toggle" data-toggle="dropdown" title="">
+                        <i class="icon-text-height"></i>&nbsp;<i class="icon-angle-down icon-on-right"></i></a>
+                        <ul class="dropdown-menu dropdown-light"> 
+                                                                                    <li>
+                                <a data-edit="fontSize 10" onclick="procesarFuncionesPanel(10,'font_size');">10px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 15" onclick="procesarFuncionesPanel(15,'font_size');">15px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 20" onclick="procesarFuncionesPanel(20,'font_size');">20px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 25" onclick="procesarFuncionesPanel(25,'font_size');">25px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 30" onclick="procesarFuncionesPanel(30,'font_size');">30px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 35" onclick="procesarFuncionesPanel(35,'font_size');">35px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 40" onclick="procesarFuncionesPanel(40,'font_size');">40px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 45" onclick="procesarFuncionesPanel(45,'font_size');">45px</a>
+                            </li>
+                                                                                                                                                                                                                                                                                                                                                <li>
+                                <a data-edit="fontSize 50" onclick="procesarFuncionesPanel(50,'font_size');">50px</a>
+                            </li>
+                                                                                </ul>
+                </div>
+                <div class="btn-group">
+                    <a data-original-title="Bold (Ctrl/Cmd+B)" class="btn btn-sm btn-info" data-edit="bold" title="" onclick="procesarFuncionesPanel(this,'negrilla');">
+                        <i class="icon-bold"></i>
+                    </a>
+                    <a data-original-title="Italic (Ctrl/Cmd+I)" class="btn btn-sm btn-info" data-edit="italic" title="" onclick="procesarFuncionesPanel(this,'cursiva');">
+                        <i class="icon-italic"></i>
+                    </a> 
+                    <a data-original-title="Strikethrough" class="btn btn-sm btn-info" data-edit="strikethrough" title="" onclick="procesarFuncionesPanel(this,'strike');">
+                        <i class="icon-strikethrough"></i>
+                    </a>
+                    <a data-original-title="Underline" class="btn btn-sm btn-info" data-edit="underline" title="" onclick="procesarFuncionesPanel(this,'underline');">
+                        <i class="icon-underline"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a data-original-title="Align Left (Ctrl/Cmd+L)" class="btn btn-sm btn-primary " data-edit="justifyleft" title="" onclick="procesarFuncionesPanel(this,'justifyleft');">
+                        <i class="icon-align-left"></i>
+                    </a>
+                    <a data-original-title="Center (Ctrl/Cmd+E)" class="btn btn-sm btn-primary" data-edit="justifycenter" title="" onclick="procesarFuncionesPanel(this,'justifycenter');">
+                        <i class="icon-align-center"></i>
+                    </a>
+                    <a data-original-title="Align Right (Ctrl/Cmd+R)" class="btn btn-sm btn-primary" data-edit="justifyright" title="" onclick="procesarFuncionesPanel(this,'justifyright');">
+                        <i class="icon-align-right"></i>
+                    </a>
+                    <a data-original-title="Justify (Ctrl/Cmd+J)" class="btn btn-sm btn-inverse" data-edit="justifyfull" title="" onclick="procesarFuncionesPanel(this,'justifyfull');">
+                        <i class="icon-align-justify"></i></a>
+               </div>
+               
+            <div class="btn-group"> 
+                <select style="display: none;" class="hide wysiwyg_colorpicker" title="Change Color" onchange="procesarFuncionesPanel(this,'color_letra');" id="color_letra">
+                    <option value="#ac725e">#ac725e</option>
+                    <option value="#d06b64">#d06b64</option> 
+                    <option value="#f83a22">#f83a22</option>
+                    <option value="#fa573c">#fa573c</option> 
+                    <option value="#ff7537">#ff7537</option> 
+                    <option value="#ffad46">#ffad46</option> 
+                    <option value="#42d692">#42d692</option> 
+                    <option value="#16a765">#16a765</option>
+                    <option value="#7bd148">#7bd148</option> 
+                    <option value="#b3dc6c">#b3dc6c</option> 
+                    <option value="#fbe983">#fbe983</option>
+                    <option value="#fad165">#fad165</option>
+                    <option value="#92e1c0">#92e1c0</option>
+                    <option value="#9fe1e7">#9fe1e7</option>
+                    <option value="#9fc6e7">#9fc6e7</option>
+                    <option value="#4986e7">#4986e7</option>
+                    <option value="#9a9cff">#9a9cff</option>
+                    <option value="#b99aff">#b99aff</option>
+                    <option value="#c2c2c2">#c2c2c2</option>
+                    <option value="#cabdbf">#cabdbf</option>
+                    <option value="#cca6ac">#cca6ac</option>
+                    <option value="#f691b2">#f691b2</option>
+                    <option value="#cd74e6">#cd74e6</option>
+                    <option value="#a47ae2">#a47ae2</option>
+                    <option value="#444444">#444444</option>
+                </select>
+                    <div class="dropdown dropdown-colorpicker">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span title="" data-original-title="" class="btn-colorpicker" style="background-color:#ac725e">
+                            </span>
+                        </a>
+                            <ul class="dropdown-menu dropdown-caret pull-right">
+                                <li>
+                                    <a class="colorpick-btn selected" href="#" style="background-color:#ac725e;" data-color="#ac725e" onclick="procesarFuncionesPanel('#ac725e','color_letra');">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#d06b64;" data-color="#d06b64" onclick="procesarFuncionesPanel('#d06b64','color_letra');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#f83a22;" data-color="#f83a22" onclick="procesarFuncionesPanel('#f83a22','color_letra');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#fa573c;" data-color="#fa573c" onclick="procesarFuncionesPanel('#fa573c','color_letra');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#ff7537;" data-color="#ff7537" onclick="procesarFuncionesPanel('#ff7537','color_letra');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#ffad46;" data-color="#ffad46" onclick="procesarFuncionesPanel('#ffad46','color_letra');">
+                                    </a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#42d692;" data-color="#42d692" onclick="procesarFuncionesPanel('#42d692','color_letra');"></a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#16a765;" data-color="#16a765" onclick="procesarFuncionesPanel('#16a765','color_letra');"></a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#7bd148;" data-color="#7bd148" onclick="procesarFuncionesPanel('#7bd148','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#b3dc6c;" data-color="#b3dc6c" onclick="procesarFuncionesPanel('#b3dc6c','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#fbe983;" data-color="#fbe983" onclick="procesarFuncionesPanel('#fbe983','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#fad165;" data-color="#fad165" onclick="procesarFuncionesPanel('#fad165','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#92e1c0;" data-color="#92e1c0" onclick="procesarFuncionesPanel('#92e1c0','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9fe1e7;" data-color="#9fe1e7" onclick="procesarFuncionesPanel('#9fe1e7','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9fc6e7;" data-color="#9fc6e7" onclick="procesarFuncionesPanel('#9fc6e7','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#4986e7;" data-color="#4986e7" onclick="procesarFuncionesPanel('#4986e7','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9a9cff;" data-color="#9a9cff" onclick="procesarFuncionesPanel('#9a9cff','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#b99aff;" data-color="#b99aff" onclick="procesarFuncionesPanel('#b99aff','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#c2c2c2;" data-color="#c2c2c2" onclick="procesarFuncionesPanel('#c2c2c2','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cabdbf;" data-color="#cabdbf" onclick="procesarFuncionesPanel('#cabdbf','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cca6ac;" data-color="#cca6ac" onclick="procesarFuncionesPanel('#cca6ac','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#f691b2;" data-color="#f691b2" onclick="procesarFuncionesPanel('#f691b2','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cd74e6;" data-color="#cd74e6" onclick="procesarFuncionesPanel('#cd74e6','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#a47ae2;" data-color="#a47ae2" onclick="procesarFuncionesPanel('#a47ae2','color_letra');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#444444;" data-color="#444444" onclick="procesarFuncionesPanel('#444444','color_letra');"></a></li>
+                          </ul>
+                        </div> 
+                    <input type="text" style="display:none;" disabled="" class="hide" data-edit="foreColor">
+            </div>
+            <div class="btn-group"> 
+                <select style="display: none;" class="hide wysiwyg_colorpicker" title="Change Color" onchange="procesarFuncionesPanel(this,'color_letra');" id="color_letra">
+                    <option value="#ac725e">#ac725e</option>
+                    <option value="#d06b64">#d06b64</option> 
+                    <option value="#f83a22">#f83a22</option>
+                    <option value="#fa573c">#fa573c</option> 
+                    <option value="#ff7537">#ff7537</option> 
+                    <option value="#ffad46">#ffad46</option> 
+                    <option value="#42d692">#42d692</option> 
+                    <option value="#16a765">#16a765</option>
+                    <option value="#7bd148">#7bd148</option> 
+                    <option value="#b3dc6c">#b3dc6c</option> 
+                    <option value="#fbe983">#fbe983</option>
+                    <option value="#fad165">#fad165</option>
+                    <option value="#92e1c0">#92e1c0</option>
+                    <option value="#9fe1e7">#9fe1e7</option>
+                    <option value="#9fc6e7">#9fc6e7</option>
+                    <option value="#4986e7">#4986e7</option>
+                    <option value="#9a9cff">#9a9cff</option>
+                    <option value="#b99aff">#b99aff</option>
+                    <option value="#c2c2c2">#c2c2c2</option>
+                    <option value="#cabdbf">#cabdbf</option>
+                    <option value="#cca6ac">#cca6ac</option>
+                    <option value="#f691b2">#f691b2</option>
+                    <option value="#cd74e6">#cd74e6</option>
+                    <option value="#a47ae2">#a47ae2</option>
+                    <option value="#444444">#444444</option>
+                </select>
+                    <div class="dropdown dropdown-colorpicker">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span title="" data-original-title="" class="btn-colorpicker" style="background-color:#ac725e">
+                            </span>
+                        </a>
+                            <ul class="dropdown-menu dropdown-caret pull-right">
+                                <li>
+                                    <a class="colorpick-btn selected" href="#" style="background-color:#ac725e;" data-color="#ac725e" onclick="procesarFuncionesPanel('#ac725e','color_fondo');">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#d06b64;" data-color="#d06b64" onclick="procesarFuncionesPanel('#d06b64','color_fondo');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#f83a22;" data-color="#f83a22" onclick="procesarFuncionesPanel('#f83a22','color_fondo');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#fa573c;" data-color="#fa573c" onclick="procesarFuncionesPanel('#fa573c','color_fondo');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#ff7537;" data-color="#ff7537" onclick="procesarFuncionesPanel('#ff7537','color_fondo');"></a>
+                                </li>
+                                <li>
+                                    <a class="colorpick-btn" href="#" style="background-color:#ffad46;" data-color="#ffad46" onclick="procesarFuncionesPanel('#ffad46','color_fondo');">
+                                    </a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#42d692;" data-color="#42d692" onclick="procesarFuncionesPanel('#42d692','color_fondo');"></a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#16a765;" data-color="#16a765" onclick="procesarFuncionesPanel('#16a765','color_fondo');"></a>
+                                </li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#7bd148;" data-color="#7bd148" onclick="procesarFuncionesPanel('#7bd148','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#b3dc6c;" data-color="#b3dc6c" onclick="procesarFuncionesPanel('#b3dc6c','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#fbe983;" data-color="#fbe983" onclick="procesarFuncionesPanel('#fbe983','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#fad165;" data-color="#fad165" onclick="procesarFuncionesPanel('#fad165','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#92e1c0;" data-color="#92e1c0" onclick="procesarFuncionesPanel('#92e1c0','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9fe1e7;" data-color="#9fe1e7" onclick="procesarFuncionesPanel('#9fe1e7','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9fc6e7;" data-color="#9fc6e7" onclick="procesarFuncionesPanel('#9fc6e7','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#4986e7;" data-color="#4986e7" onclick="procesarFuncionesPanel('#4986e7','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#9a9cff;" data-color="#9a9cff" onclick="procesarFuncionesPanel('#9a9cff','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#b99aff;" data-color="#b99aff" onclick="procesarFuncionesPanel('#b99aff','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#c2c2c2;" data-color="#c2c2c2" onclick="procesarFuncionesPanel('#c2c2c2','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cabdbf;" data-color="#cabdbf" onclick="procesarFuncionesPanel('#cabdbf','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cca6ac;" data-color="#cca6ac" onclick="procesarFuncionesPanel('#cca6ac','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#f691b2;" data-color="#f691b2" onclick="procesarFuncionesPanel('#f691b2','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#cd74e6;" data-color="#cd74e6" onclick="procesarFuncionesPanel('#cd74e6','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#a47ae2;" data-color="#a47ae2" onclick="procesarFuncionesPanel('#a47ae2','color_fondo');"></a></li>
+                                <li><a class="colorpick-btn" href="#" style="background-color:#444444;" data-color="#444444" onclick="procesarFuncionesPanel('#444444','color_fondo');"></a></li>
+                          </ul>
+                        </div> 
+                    <input type="text" style="display:none;" disabled="" class="hide" data-edit="foreColor">
+            </div> 
+                      
+                <div class="btn-group">
+                    
+                    <a data-original-title="Redo (Ctrl/Cmd+Y)" class="btn btn-sm active btn-primary" data-edit="redo" title="" onclick="procesarGuardarBc3();">
+                        <i class="icon-save"></i></a>
+                </div>
+            </div>
+                    </div>
+                    <div class="col-lg-6" style="
+                         background-color: blue;
+                         height: 150px;
+                         position: relative;
+                         "
+                         onmouseover="$('#img_texto_zona_1{{pregunta.id}}').show();"
+                         onmouseout="$('#img_texto_zona_1{{pregunta.id}}').hide();"
+                             
+                         >
+                        <div id="img_texto_zona_1{{pregunta.id}}" style="position:absolute;right: 10px;bottom: 10px;display: none;"
+                             >
+                            <button onclick="procesarImgNewZonas({{pregunta.id}},'{{path('pregunta_subirfoto',{'pregunta_id': pregunta.id})}}');">Imagen</button>
+                            <button  onclick="procesarTextoNewZonas({{pregunta.id}});">Texto</button>
+                        </div>
+                             <div id="div_textarea_{{pregunta.id}}">     
+                                 <textarea cols="50" data="{{pregunta.id}}" rows="7" id="textarea_zona1_{{pregunta.id}}"></textarea>
+                             </div>
+                    </div>
+                    <div class="col-lg-6" style="
+                         background-color: yellow;
+                         height: 150px;
+                         position: relative;
+                         "
+                         onmouseover="$('#img_texto_zona_2{{pregunta.id}}').show();"
+                         onmouseout="$('#img_texto_zona_2{{pregunta.id}}').hide();"
+                         
+                         >
+                       <div id="img_texto_zona_2{{pregunta.id}}" style="position:absolute;right: 10px;bottom: 10px;display: none;"
+                             >
+                            <button>Imagen</button>
+                            <button>Texto</button>
+                        </div> 
+                       <textarea cols="50" rows="7"></textarea>
+                    </div>
+                    <div class="col-lg-12" style="
+                         background-color: brown;
+                         height: 150px;
+                         position: relative;
+                         "
+                         onmouseover="$('#img_texto_zona_3{{pregunta.id}}').show();"
+                         onmouseout="$('#img_texto_zona_3{{pregunta.id}}').hide();"
+                         
+                         >
+                        <div id="img_texto_zona_3{{pregunta.id}}" style="position:absolute;right: 10px;bottom: 10px;display: none;"
+                             >
+                            <button>Imagen</button>
+                            <button>Texto</button>
+                        </div>     
+                        <textarea cols="110" rows="7"></textarea>
+                    </div>
+                    <div class="col-lg-12" style="
+                         background-color: lawngreen;
+                         height: 150px;
+                         position: relative;
+                         "
+                         onmouseover="$('#img_texto_zona_4{{pregunta.id}}').show();"
+                         onmouseout="$('#img_texto_zona_4{{pregunta.id}}').hide();"
+                         
+                         >
+                        <div id="img_texto_zona_4{{pregunta.id}}" style="position:absolute;right: 10px;bottom: 10px;display: none;"
+                             >
+                            <button>Imagen</button>
+                            <button>Texto</button>
+                        </div>
+                        <textarea cols="110" rows="7"></textarea>
+                    </div>
+                    
+                </div>
+            </div>        
+        </div>
+        {#%else%}
+        {{pregunta.contenido}}
+        {%endif%#}
+    <form role="form">
+     {%for buble in pregunta.buble%}
+        <div  onmouseout="procesarDejarPregunta();" onmouseover="$('.labels_oval').each(function(){$(this).hide()});$('#btn_editar{{buble.id}}').show();">    
+            <div class="radio" style="float: left;">
+            <label>{{buble.label}}
+            <input type="radio"
+                   value="option2"
+                   id="optionsRadios2"
+                   name="optionsRadios"
+                   onchange="actualizarMatrixRespuesta({{pregunta.id}},{{buble.id}});"
+                   {%if buble.estado==1%}
+                   checked="checked"
+                   {%endif%}
+                   >
+            </label>
+                    <span id="descripcion_atualizada{{buble.id}}">{{buble.descripcion}}</span>     
+             </div>
+      <span style="display: none;float: left;" class="labels_oval" id="btn_editar{{buble.id}}">
+                <a class="small" href="#" onclick="edicionLabelPregunta({{buble.id}});"> editar</a>
+                <a class="small" href="#" onclick="actualizarLabelPregunta({{buble.id}});"> actualizar</a>
+      </span>
+      <span style="display: none;" class="label_buble" id="label_bluble{{buble.id}}">{{buble.label}}</span>
+      <div style="clear: both;"></div>
+      </div>          
+      
+    {%endfor%}
+    </form>    
+        Porcentaje: <input value="{{render(controller('NetpublicRedsaberBundle:Pregunta:porcentaje',{'pregunta_id':pregunta.id}))}}" type="text" id="p{{pregunta.id}}" placeholder="%" style="width: 50px;" onkeyup="actualizarMatrixPorcentaje({{pregunta.id}});" />    
+</div>        
+{%endfor%}
+{%endblock%}
+{%block js_final%}
+<script>
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        procesarGuardarContenidozona();
+    }
+});
+    </script>
+{%endblock%}

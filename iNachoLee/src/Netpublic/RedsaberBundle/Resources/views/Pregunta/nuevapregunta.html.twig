@@ -1,0 +1,133 @@
+{% extends app.request.isXmlHttpRequest ? "NetpublicCoreBundle::layout_ajax.html.twig" : "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container  %}
+
+<div id="container-principal" class="well col-lg-12">
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-lg-12">
+<form action="{{ path('pregunta_crearnuevapregunta') }}" method="post" {{ form_enctype(form) }}>
+    <iframe onmouseout="procesarDejataEditorTexto();" id="child_frame" name="child_frame" scrolling="no"
+                 src="{{path('examenicfes_informes',{'cuerpo_id': 0,'tipo':1 })}}"
+                 style="width: 100%;border: none;height: 350px;">
+            Tu navegador no soporta el elemento iframe.
+    </iframe>
+   <div class="form-group" style="margin-top: 20px;">
+            {{ form_widget(form.contenidotexto)}}              
+   </div>
+   
+    <div class="form-group" style="margin-top: 20px;">
+        {{ form_widget(form.label)}}              
+   </div>
+   <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.descripcion_A)}}
+        {{ form_widget(form.descripcion_A)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.descripcion_B)}}
+        {{ form_widget(form.descripcion_B)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.descripcion_C)}}
+        {{ form_widget(form.descripcion_C)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.descripcion_D)}}
+        {{ form_widget(form.descripcion_D)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{form_label(form.grado)}}
+        {{ form_widget(form.grado)}}              
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{ form_widget(form.componentetexto)}} 
+            
+   </div>
+    <div class="form-group" style="margin-top: 20px;">
+        {{ form_widget(form.tematexto)}} 
+          </div>
+    
+    
+           <div class="col-lg-12">         
+            <div class="col-lg-5">
+                 <a class="btn btn-default btn-sm btn-small"
+                    onclick="mostrarTemaNuevaPregunta();"
+                    href="#" 
+                    >Temas a evaluar
+                 </a>
+                <div id="container-temas" class="well">
+                             
+                </div>   
+                     
+            </div>
+            <div class="col-lg-5">
+                     <a class="btn btn-default btn-sm btn-small"
+                    href="#"
+                    onclick="mostrarComponenteNuevaPregunta();"
+                    >Componentes ICFES</a>
+                    <div style="position: relative;">
+                    <div id="container-componentes" class="well">
+                            
+                    </div>
+                            <span style="position: relative;right: 0px;bottom: 0px;"></span>        
+                    </div>        
+                
+            </div>
+           <div class="col-lg-2">
+                        </div>
+      </div>
+    <div class="col-lg-12">
+     <div class="form-group" style="margin-top: 20px;">
+    
+               {{form_label(form.estado)}}
+               {{ form_widget(form.estado)}}
+                   </div>
+
+    </div>
+        
+{{form_widget(form._token)}}   
+    <div class="btn-group">
+    <input class="btn btn-primary btn-small" type="submit" value="Guardar & Nueva Pregunta" />
+    <a class="btn btn-default btn-small" href="{{path('pregunta')}}"> Terminar</a>
+        </div>
+</form>    
+<div class="clearfix"></div>
+</div>
+</div>
+{%endblock%}   

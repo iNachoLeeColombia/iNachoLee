@@ -1,0 +1,15 @@
+{%for item in items%}
+      <li class="grupo" id="grupo_{{item.id}}">          
+          <span class="items_remoto" id="nodo_items_componente_evaluar_{{item.id}}" data-id={{item.id}}  title="Collapse this branch">
+                <i class="icon-book"></i> {{item.nombre}}
+          </span>          
+          <input type="checkbox" class="check_items_componente check_items" value="{{item.id}}" />
+          
+          <ul id="ul_componentes_{{item.id}}">
+          </ul>
+      </li>
+{%endfor%}    
+<script>
+    procesarul("");
+</script>
+      

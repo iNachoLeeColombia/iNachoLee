@@ -1,0 +1,136 @@
+
+<div id="container-principal">
+    
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+<div class="modal-body">
+
+    <div class="paginacion">
+    {{ knp_pagination_render(pagination) }}
+    </div>
+
+          {%for pregunta_importar in pagination%}
+              {%set estado_importacion=0%}  
+              {%for pregunta_session_id in app.session.get('BANCO_DATOS')%}
+                    {%if pregunta_importar.id==pregunta_session_id %}
+                            {%set estado_importacion=1%}
+                           
+                    {%endif%}
+                {%endfor%}    
+                
+          <div style="{%if estado_importacion==1%}background-color: gainsboro;{%endif%}margin-bottom: 20px;padding-left: 10px;padding-top: 10px;border: gainsboro dashed thin;">
+              <input onchange="importarAhora(this);" value="{{pregunta_importar.id}}" type="checkbox" {%if estado_importacion==1%}checked="checked"{%endif%} class="check_prenguntas"> 
+              {%if estado_importacion==1%}
+              <span class="label small label-info arrowed-in">Ya esta incluida en el examen!!</span>
+              {%endif%}
+              <div style="margin-left: 20px;">
+                <p>{{pregunta_importar.contenido.cuerpo|raw}}</p>
+                
+            </div>
+               <div>    
+                      <div class="radio" >
+                          <label>
+                            A
+                            <input type="radio"
+                               value="A"
+                               id="optionsRadios1"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='A.'%}
+                               checked="checked"
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='A.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                                
+                            </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionA}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            B
+                            <input type="radio"
+                               value="B"
+                               id="optionsRadios2"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='B.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='B.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionB}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            C
+                            <input type="radio"
+                               value="C"
+                               id="optionsRadios3"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='C.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='D.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+                          
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionC}}
+                            </span>     
+                      </div>
+                      <div class="radio">
+                          <label>
+                            D
+                            <input type="radio"
+                               value="D"
+                               id="optionsRadios4"
+                               name="label{{pregunta_importar.id}}"
+                               {%if pregunta_importar.label=='D.'%}
+                               checked="checked" 
+                               {%endif%}
+                               >
+                               {%if pregunta_importar.label=='D.'%}
+                               <span class="label small label-success arrowed">correcta!!</span>
+                               {%endif%}
+
+                          </label>
+                            <span>
+                                {{pregunta_importar.getDescripcionD}}
+                            </span>     
+                      </div>
+                       
+                      <div style="clear: both;"></div>
+               </div>      
+               <div style="width: 70%;font-size: 10px;margin-left: 20px;"> 
+                   Elaborado por: {{pregunta_importar.getCreadorExamen}} | Fecha de publicación : {{pregunta_importar.getFechaPrublicacion|date('Y m d h:i')}}
+                            | <a href="#">Enviar sugerencia</a>
+                            | <a href="#">Subir puntuación</a>
+                            | <a href="#">Compartir</a>
+                            | Origen: 
+                            {%if pregunta_importar.estado== 1%}
+                            Red Saber.
+                            {%else%}
+                            Banco de Datos de la IE
+                            {%endif%}
+               </div>
+          </div>
+          {%endfor%}    
+</div>
+
+<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="importarAhora();">Importar ahora!!</button>
+      </div>
+</div>
