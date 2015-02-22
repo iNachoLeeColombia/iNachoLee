@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>
+{%for datos_alumno in alumnos_json%}
+    <dynamic-page>   
+        <div style="font-size: 16px;">     
+        <table>
+            <tr>
+                <td border.type="none" style="width: 10%;">
+                    <img style="width:110px;height: 110px" 
+                         src="../web/uploads/documents/escudo_colegio1.png" />
+                </td>
+                <td border.type="none" style="width: 90%;">
+                    <p style="font-size: 19px;text-align: center;">
+                    DEPARTAMENTO DE CHOCO<br/>  
+                    MUNICIPIO DE CARMEN DEL DARIEN<br/>
+                    Secretaria De Educación-Choco
+                    </p>
+                    
+                    <p style="font-size: 28px;text-align: center;">
+                        <strong>{{colegio}}</strong><br/>
+                        <span style="font-size: 19px;">CODIGO DEL DANE: {{colegio.getCodigoDane}}</span>
+                    </p>                    
+                    <p style="font-size: 28px;text-align: center;"><strong>CERTIFICADO DE CALIFICACIONES.</strong> <br/>
+                    
+                        <span style="font-size: 12px;color: gray;">
+Aprobado mediante resolución N° {{colegio.getNumeroLincFunc()}} por la Administración Temporal Al Servicio Educativo 
+al Departamento del Choco.
+NIT: {{colegio.fax}} DANE: {{colegio.getCodigoDane}}</span>
+</p>
+                </td>
+            </tr>
+        </table>
+                <p style="color: white;">--</p>
+                
+                
+                <p style="text-align: center;"><strong> CERTIFICA(N) QUE</strong></p>
+                <p style="text-align: center;text-decoration: underline;"><strong> {{ datos_alumno.alumno }}</strong></p>
+                
+<p>                
+
+ Identificado con {%if datos_alumno.alumno.getTipoDocumento()==1 %}
+                    Cedula Ciudadania
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==2%}   
+                    Tarjeta de Identidad
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==3%}   
+                    Cédula de Extranjería ó Identificación de Extranjería
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==4%}   
+                    Registro Civil de Nacimiento
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==5%}   
+                    Número de Identificación Personal (NIP)
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==6%}   
+                    Número de Identificación establecido por la Secretaría de  Educación
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==7%}   
+                    Certificado Cabildo
+                 {%endif%}   
+                    N° {{ datos_alumno.alumno.cedula }}  
+</p><p style="text-align: center;">
+{{'cursó'|upper}} Y {{'aprobó'|upper}}</p><p style="text-align: justify;">
+                    los estudios correspondientes al
+ grado {{' '}}{{datos_alumno.alumno.grado }}
+ de educación 
+{%if datos_alumno.alumno.grado.getNivelesEducativo()==1 %} 
+      Nivel PreEscolar
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==2%}                    
+      Básica Primaria
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==3%}                    
+      Básica Secundaria
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==4%}                                        
+      Media
+{%endif%}                    
+  en el año {{matriculas_alumno[loop.index0].ano}}  de acuerdo con el plan de estudio
+  conforme a ley 115 de 1994, al Dec. 1860 de 1994  y Dec.1290 del 2009.
+  Y asentado en el folio indentificado con el numero __ del libro: ___ con matricula numero: _____.
+
+            </p>    
+        
+      
+      <table>  
+     <tr>
+        <td style="background-color: gray;color: white;width: 2%;"> N°</td>
+        <td style="background-color: gray;color: white;width: 80%;"> AREA</td>
+        <td  style="background-color: gray;color: white;width: 4%;"> CAL.</td>
+        <td style="background-color: gray;color: white;width: 12%;">DESEMPEÑO</td>
+        <td style="background-color: gray;color: white;width: 2%;">HOR.SEM</td>
+        </tr>     
+      {%for area in datos_alumno.areas%}  
+         <tr>   
+             <td> {{loop.index}}</td>
+             <td> {{area.nombre|upper}}</td>       
+             <td> {{area.nota}}</td>
+             <td> {{area.desempeno|raw}}</td>
+             <td> {{area.ih}}</td>            
+            
+         </tr>        
+      {%endfor%}  
+      </table>    
+{%if datos_alumno.alumno.grado.getNivelesEducativo==1%}
+{% set hs=800%}
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo==2%}
+{% set hs=1000%}
+
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo==3%}
+{% set hs=1200%}
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo==4%}
+{% set hs=1200%}
+{%endif%}
+
+            
+                Asistencia: Horas Efectivas Servidas por la institución:{{hs}}
+
+ <br/>
+                <span style="color: white;">Asistencia:</span> Horas anuales recibidas por alumno: {{hs}} 
+            <br/>
+                Para constacia, se firma en el municipio de CARMEN DEL DARIEN(CHOCO) {{'now'|date('Y m d h:i')}}
+            
+            <p  style="text-align: center;">
+                <span>___________________________</span>
+                <br/>
+                <span>{{colegio.rector}}</span>
+                <br/>
+                <span style="font-size: 10px;">Rector.</span>
+                <br/>
+                <span style="font-size: 10px;">{{colegio.rector.cedula}}.</span>
+                
+            </p>
+            
+</div>            
+     </dynamic-page>       
+{%endfor%}
+</pdf>

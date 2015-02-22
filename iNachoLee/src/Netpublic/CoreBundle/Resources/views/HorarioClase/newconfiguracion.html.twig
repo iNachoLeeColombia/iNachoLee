@@ -1,0 +1,51 @@
+
+<div class="modal-header"> 
+     <h5>Configuración General Horarios</h5>
+</div> 
+<div class="modal-body"> 
+    <div class="controls well" style="margin-bottom: 50px;">
+        <div style="float: left;" class="well">
+        <label>Numero De Clases por Dia</label>
+            <select class="span5" 
+                id="nro_clase_dia"
+                name="nro_clase_dia"               
+                >
+            <option 
+                {%if sede_principal.getNroClasesDia() is null%}
+                    selected="selected"
+                {%endif%}                   
+                value="0">Nro De Clase X Dia.</option>
+        {%for i in 1..25%}
+        <option 
+             {%if sede_principal.getNroClasesDia()==i%}
+                    selected="selected"
+             {%endif%}                   
+            value="{{i}}">{{i}}</option>
+        {%endfor%}
+    </select><br/>
+    <button class="btn btn-danger" onclick="generarMostrarHorarioConfiguracion();">
+        <i class="icon-refresh icon-white"></i> generar
+    </button>
+    </div>
+            <div style="float: right;" class="well">    
+    <input type="checkbox" id="es_aulafija" name="es_aulafija" />    
+        Aulas Fijas.(
+        <span style="font-size: 10px;">
+            Genera Una Aula Por cada grupo.
+        </span>)
+     </div>   
+            <div style="clear: both;"></div>         
+     </div>  
+        
+        <div style="margin-top: 30px;" id="capa_ram_ca_horario_configuracion">       
+ </div>   
+</div>                        
+<div class="modal-footer">
+    <button class="btn btn-primary"
+       onclick="actualizarConfiguracionCa();">
+        <i class="icon-repeat icon-white"></i> Guardar</button>
+</div>
+
+
+
+

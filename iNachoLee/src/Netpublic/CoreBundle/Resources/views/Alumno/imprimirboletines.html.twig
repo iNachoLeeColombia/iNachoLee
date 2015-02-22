@@ -1,0 +1,29 @@
+             {%for alumno_datos in alumnos_datos%}
+                {%if alumno_datos.plantilla==1%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin1.html.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'rectores':rectores,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'observaciones':alumno_datos.observaciones
+
+                   } only %}
+                 {%endif%}  
+                {%if alumno_datos.plantilla==2%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin2.html.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'rectores':rectores,
+                  'observaciones':alumno_datos.observaciones
+
+                   } only %}
+                 {%endif%}  
+        
+             {%endfor%}         

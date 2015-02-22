@@ -1,0 +1,41 @@
+
+<h4>Lista de Contratos-Asignaturas Del Profesor</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Asignatura</th>
+            <th>Horas Contratadas Semanales</th>
+            <th>Horas Cosumidas</th>
+            <th>Horas Disponibles</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('contrato_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{entity.asignatura  }}</td>
+            <td>{{entity.getHorasBuffer}}</td>
+            <td>{{entity.getHorasBuffer-entity.getHorasContratadas()}}</td>
+            <td>{{entity.getHorasContratadas()}}</td>
+            <td>
+                <ul style="list-style-type: none;">
+                    <li style="float: left;">
+                        <a onclick="showcontratoinfoAcademicaDefectoAno({{ entity.id}})" href="#">show | eliminar</a>
+                    </li>
+                    <li style="float: left;margin-left: 5px;">
+                        | <a onclick="editarcontratoinfoAcademicaDefectoAno({{ entity.id}})" href="#">editar</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>    
+<div class="modal-footer">
+        <button type="submit" class="btn btn-primary" onclick="newcontratoinfoAcademicaDefectoAno();">
+            Nuevo Contrato
+        </button>
+</div>        

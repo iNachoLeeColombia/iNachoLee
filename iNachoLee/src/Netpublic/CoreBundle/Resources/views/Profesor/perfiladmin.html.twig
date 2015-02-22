@@ -1,0 +1,72 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block sub_container%} 
+    <div>
+         <div class="col-md-12" style="height: 200px;border: lightgray solid thin;margin-top: 20px;">
+         {%if entity.usuario.getEsFotoperfil()==TRUE%}
+            <img alt="{{app.user.alumno}}" class="img-circle" 
+                src="{{asset('uploads/documents/strongprofesor'~entity.id~'.png')}}" alt="{{entity}}" />
+         {%else%}
+                <img alt="{{entity}}" 
+                     class="nav-user-photo"
+                     src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{entity}}" />                    
+         {%endif%}    
+    <span class="light-grey">{{entity.nombre}}<small style="font-size: 9px;"> (@{{entity.usuario.username}}) {{entity.sede}}</small></span>                                                   
+    </div>   
+    
+        <nav role="navigation" class="navbar-inl navbar-default col-md-12" >
+        <div id="bs-example-navbar-collapse-1" >
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{path('profesor_perfiladmin',{'id': entity.id})}}" >Inicio</a></li>
+            <li><a href="#" >Horario clase.</a></li>
+            <li><a href="#" onclick="verMisDescriptores({{entity.id}});">Flujo de trabajo.</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Acciones <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                <li  class="disabled"><a href="#" onclick="listar_entrega_notasprofesor({{entity.id}});">Desactivar</a></li>
+                <li><a href="#" onclick="editContrasenIdUsuario({{entity.usuario.id}});">Cambiar Contraseña</a></li>
+                <li><a href="#" onclick="listar_entrega_notasprofesor({{entity.id}});">Fechas de entrega</a></li>
+                <li>
+              
+            <a {%if app.user.profesor%}  
+                href="{{path('profesor_edit', { 'id': entity.id })}}"
+                 {%else%}
+                href="{{ path('alumno_edit', { 'id': entity.id }) }}"
+                {%endif%}
+                 >
+              <i class="icon-edit"></i> Editar Perfil
+            </a>
+              </li>
+                
+              </ul>
+            </li>
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Informes <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                  <li class="disabled" ><a href="#" onclick="mostrarBoletinPerfil({{entity.id}},5);">Hoja de vida</a></li>
+                <li  class="disabled" ><a href="#"  onclick="mostrarCertificadoPerfil({{entity.id}});">Memorandos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      
+        </nav>
+   
+    <div class="col-lg-12" style="margin-top: 30px;">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10"  id="container-minostas-perfil">
+        <div class="col-lg-7"style="border-right: gainsboro solid thin;">
+            grafico con numero de alumnos que le pieden asignaturas
+        </div>
+         <div class="col-lg-5" style="border-left: gainsboro solid thin;">
+            <h4 class="light-grey">Notas de Periodos Academicos.</h4>            
+        </div>
+        
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+</div>            
+{%endblock%}
+

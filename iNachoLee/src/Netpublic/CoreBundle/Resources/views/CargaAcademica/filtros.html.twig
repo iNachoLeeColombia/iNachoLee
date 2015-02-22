@@ -1,0 +1,32 @@
+<h4 style="color: gray;">Cargas Academica de {%if es_profesor==1%}{{profesor}}{%endif%}</h4>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>                                             
+                                              <th>Dia-Hora Clase</th>
+                                              <th>Grupo</th>
+                                              <th>Asignatura</th>
+                                              <th>Aula</th>
+                                            
+                                            </tr>
+                                        </thead>
+                                     <tbody>
+                                    {% for e in entities %}
+                                            
+                                            <tr>
+                                              <td>
+                                                  {%for ha in e.getHorarioAula()%}
+                                                      {{ha}}
+                                                  {%endfor%}    
+                                              
+                                              </td>
+                                                   
+                                                   <td>{{e.grupo}}            </td>       
+                                                   <td>{{e.asignatura}}</td> 
+                                                   <td>{{e.getAula()}}            </td>       
+                                                  
+                                            </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    </table>
+                         

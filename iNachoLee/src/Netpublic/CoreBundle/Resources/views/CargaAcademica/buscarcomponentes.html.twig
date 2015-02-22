@@ -1,0 +1,61 @@
+ <div class="pagination pagination-right" >  
+{#    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_planilas','{{ path('carga_academica_buscarcomponentes', { 'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_planilas','{{ path('carga_academica_buscarcomponentes', { 'page': page }) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarFiltroPaginador('capa_ram_buscar_planilas','{{ path('carga_academica_buscarcomponentes', { 'page': paginador.nextPage }) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>
+#}
+</div>
+
+
+<label class="checkbox">
+    <input type="checkbox"
+           id="todos_check"           
+           onchange="allcheckProfesoresCopiar('todos_check','profesor',this);">
+Todos
+</label>
+{%for profe in profesores%}
+<div style="padding-left: 2px;">   
+<label class="checkbox">
+    <input 
+           data-fuente="todos_check"
+           data-clase-destino="carga_profesor{{profe.id}}"
+           data-clase-me="profesor"
+           data-clase-padre="todos_check"           
+           type="checkbox" value="{{profe.id}}"
+           class="profesor cbox profesor_ca"
+           id="profesor_gcomp{{profe.id}}"
+           onchange="allcheckProfesoresCopiar('profesor_gcomp{{profe.id}}','carga_profesor{{profe.id}}',this);"
+           >
+    <div style="margin-left: 10px;float: left;width: 320px;font-size: 15px;font-weight: 900;">
+        <a href="#"  onclick="verComponentesUnProfesorDetalles({{profe.id}});">{{profe|upper}}</a>
+        <span id="observacion{{profe.id}}"  style="background-color: yellow;color: black;font-size: 10px;"></span>
+     </div>   
+</label>
+        <a id="anchorVerComponentesUnProfesor{{profe.id}}" 
+           class="mas_detalles_profesor" style="font-size: 12px;" onclick="verComponentesUnProfesor({{profe.id}},1);" href="#">
+            Ver ++
+        </a></div>
+       
+        <div style="clear: both;"></div>   
+        <div id="capa_ram_profesores_componentes{{profe.id}}" style="display: none;">
+   
+   </div>     
+</div>        
+{%endfor%}

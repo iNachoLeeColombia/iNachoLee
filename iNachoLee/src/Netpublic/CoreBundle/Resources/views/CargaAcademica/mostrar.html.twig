@@ -1,0 +1,27 @@
+    
+   {%if tipo==0%}
+    <label class="checkbox">
+        <input onchange="allCheckBox('allCheckBoxLibres','optionsCheckboxLibres');" type="checkbox" value="option1" id="allCheckBoxLibres">
+    Todas
+     </label>
+ 
+    {%for c_a in carga_academica%}   
+    <label class="checkbox">
+        <input type="checkbox" data-id="{{c_a.id}}" class="optionsCheckboxLibres">
+        {{c_a.asignatura.nombre}}-{{c_a.grupo}}
+     </label>
+     {%endfor%}
+   {%endif%}
+   {%if tipo==1%}
+    <label class="checkbox">
+    <input type="checkbox" onchange="allCheckBox('allCheckBoxNoLibres','optionsCheckboxNoLibres');" id="allCheckBoxNoLibres">
+    Todas
+     </label>
+ 
+    {%for c_a in carga_academica%}   
+    <label class="checkbox">
+        <input type="checkbox"  data-id="{{c_a.id}}"  class="optionsCheckboxNoLibres">
+        {{c_a.asignatura.nombre}}-{{c_a.grupo}}
+     </label>
+     {%endfor%}
+   {%endif%}

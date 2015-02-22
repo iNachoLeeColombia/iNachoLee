@@ -1,0 +1,58 @@
+<div class="col-lg-12">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Matriculias</th>
+        </tr>
+    </thead>
+{%for alumno in alumnos%}
+    <tr>
+        <td>
+            {{alumno}}
+        </td>
+        <td>
+        {%for matricula in alumno.getMatriculaAlumno%}
+                <div style="background-color: gainsboro;margin-bottom: 5px;" class="well">
+                    Para el año {{matricula.ano}}
+                    {%if matricula.grupo is null%}
+                    <strong>no tiene grupo aun</strong>
+                    {%else%}                       
+                        esta matriculado en grupo <span style="font-weight: 900;">{{matricula.grupo}}({{matricula.grupo.grado}})</span>
+                    {%endif%}
+                        
+                    .<br/>puedes cambiarlo aqui->     
+                    <select id="grado_si_{{matricula.id}}"
+                            onchange="getGruposGradoEstandar('grado_si_{{matricula.id}}','grupo_si_{{matricula.id}}');"
+                            class="grado_{{matricula.ano.id}}"
+                            >
+                         <option value="*">Grado</option>
+                                {%for grado in grados%}
+                                <option value="{{grado.id}}">{{grado}}</option>
+                                {%endfor%}
+                    </select>
+                        <select  data-id="{{matricula.id}}" 
+                                 onchange="procesarActivarCambio(this);" 
+                                 class="grupo_{{matricula.ano.id}}" id="grupo_si_{{matricula.id}}"
+                                 
+                                 >
+                        
+                            {%for grupo in grupos%}
+                            <option
+                                {%if matricula.grupo!=null%}
+                                {%if grupo.id==matricula.grupo.id%}
+                                    selected="selected"
+                                {%endif%}   
+                                {%endif%}    
+                                value="{{grupo.id}}">{{grupo}}</option>
+                            {%endfor%}
+                        
+                    </select>      
+               </div>    
+        {%endfor%}
+        </td>
+    </tr>        
+{%endfor%}
+</table>    
+</div> 
+<button onclick="enviarActualizacionMatriculas();">enviar</button>

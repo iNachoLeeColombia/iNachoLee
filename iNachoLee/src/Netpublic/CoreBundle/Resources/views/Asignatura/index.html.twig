@@ -1,0 +1,71 @@
+<div style="background-color:whitesmoke" class="well">
+            <div style="float: right;">
+        <a href="#" onclick="newAsignaturainfoAcademicaDefectoAno({{tipo}});">
+            <i class="icon-file"></i>Nuevo Area|Asignatura.
+                </a></div>
+        </div>  
+<h5>Lista de Asignaturas| Areas </h5>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th  class="blue header">Id</th>
+            <th  class="yellow header">Nombre</th>
+            <th  class="red header">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+{%if tipo ==1%}
+    {% for entity in entities%}
+        <tr>
+            <td><a href="#" onclick="showAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre}} -{{entity.grado}}- {{entity.getDuracionMinutos/60}} HS  </td>
+            <td>
+       <div id="{{entity.id}}" style="display: inline">                    
+                <a onclick="showAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')" href="#">show</a>
+                
+                <a onclick="editarAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')" href="#">editar</a>                
+                
+<form style="display: inline" name="form_{{entity.id}}" id="form_{{entity.id}}" >                                                                          
+<button style="
+        color: rgb(74, 174, 216);
+        display: inline;
+        background: none;
+        border-style:none;"
+          onclick="deleteAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}');" >
+<i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+</form>                                
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+{%else%}
+    {% for entity in entities%}
+        <tr>
+            <td><a href="#" onclick="showAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre}} -{{entity.grado}} FS({{entity.getFrucuenciaSemana}}) </td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                <a onclick="showAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')" href="#">show</a>                
+                <a onclick="editarAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}')" href="#">editar</a>
+                
+<form style="display: inline" name="form_{{entity.id}}" id="form_{{entity.id}}" >                                                                          
+<button style="
+        color: rgb(74, 174, 216);
+        display: inline;
+        background: none;
+        border-style:none;"
+         onclick="deleteAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}');">
+<i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+</form>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}        
+{%endif%}        
+    </tbody>
+</table>
+

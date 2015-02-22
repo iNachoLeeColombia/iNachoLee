@@ -1,0 +1,200 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+{%block  sub_container  %} 
+<div class="col-sm-12 col-md-12 widget-container-span ui-sortable">
+	<div class="widget-box">
+            <div class="widget-header">               
+                    <div class="widget-toolbar">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+				<a href="#home" data-toggle="tab">Información Básica Del Estudiante.</a>
+                            </li>
+                            <li>
+                                <a href="#acudiente" data-toggle="tab">Acudientes</a>
+                            </li>
+                            <li>
+                                <a href="#matricula" data-toggle="tab">Matriculas</a>
+                            </li>
+                            <li>
+                                <a href="#notas" data-toggle="tab">Mis Notas</a>
+                            </li>
+                            <li>
+                                <a href="#descriptores" data-toggle="tab">Mis Descriptores</a>
+                            </li>
+                            <li>
+                                <a href="#observador" data-toggle="tab">Observador</a>
+                            </li>
+			</ul>
+                        </div>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-6">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home">
+                                 
+                            </div>
+                            <div class="tab-pane" id="acudiente">
+                                {% if entity.tipo==0%}
+         {%if entity.acudiente is null %}
+         <h5>No tiene aun acudiente</h5>
+         {%else%}
+            <a href="{{ path('alumno_perfiladmin', { 'id': entity.acudiente.id }) }}">{{entity.acudiente}}</a>
+         {%endif%}   
+     {%endif%}
+                            </div>
+                            <div class="tab-pane" id="matricula">
+                               <h5>Matriculas.</h5>
+                                 {%for matricula in entity.getMatriculaAlumno()%}
+   
+             <table class="table">
+                <thead>
+                    <tr>                        
+                        <th  class="red header">Estado de pago</th>
+                        <th  class="red header">Grado</th>                        
+                        <th  class="red header">Año Escolar</th>
+                        <th  class="red header">Estado Academico</th>
+                        <th  class="red header">Actas y Requisitos?</th>
+                        <th  class="red header">Obsevarciones</th>
+                        <th  class="red header">Renovacion Matricula?</th>            
+                    </tr>
+                </thead>
+                <tbody>                                
+                <tr id="fila{{entity.id}}">                
+                    <td>
+                        <select  {% if is_granted('ROLE_ESTUDIANTE')%}disabled="disabled"{%endif%} id="pago_matricula{{entity.id}}" style="width: 60px" >
+                            {% if matricula.getEsPagoMatricula()%}
+                                <option selected="selected" value='1'>Si</option>
+                                <option value='0'>No</option>
+                            {%else%}  
+                                <option value='1'>Si</option>
+                                <option selected="selected" value='0'>No</option>
+                            {%endif%} 
+                        </select>
+                    </td>          
+                    <td>      
+                        <input type="text" style="width: 60px" readonly="true" value="{{entity.grado}}"/>
+                    </td>                   
+                    <td>
+                        <input type="text" style="width: 60px" readonly="true" value="{{matricula.ano()}}"/>
+                    </td>
+                    <td>
+                        <input type="text" style="width: 80px" readonly="true" value="Pendiente"/>
+                    </td>          
+                    <td>          
+                        <select {% if is_granted('ROLE_ESTUDIANTE')%}disabled="disabled"{%endif%} id="es_papeles{{entity.id}}" style="width: 60px" >                          
+                        {% if matricula.getEsPapeles()%}
+                            <option selected="selected" value='1'>Si</option>
+                            <option value='0'>No</option>
+                        {%else%}  
+                             <option value='1'>Si</option>
+                            <option selected="selected" value='0'>No</option>
+                        {%endif%} 
+                        </select>
+                    </td>          
+                    <td><textarea  id="observaciones{{entity.id}}"  style="width: 80px;height: 50px" rows="6">{{matricula.observaciones}}</textarea>
+         
+                    </td> 
+                    <td>              
+                    {% if matricula.getEsMatricula()%}
+                            <span class="ui-icon ui-icon-check"></span><span style="font-size: 1.0em">Renovadad</span>
+                    {%else%}  
+                            <span class="ui-icon ui-icon-alert"></span><span style="font-size: 1.0em">No Renovadad</span>
+                            {%endif%} 
+                    </td>   
+                     {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR')%}
+                    <td><a onclick="guardarAlumnoGestorAdministrativo('{{entity.id}}','{{matricula.id}}')" href="#"><span class="ui-icon ui-icon-disk"></span>Guardar</a></td>
+                    {%endif%}
+                </tr>
+            {% endfor%}
+     
+    
+                                </tbody>
+                                 </table> 
+                            </div>
+                            <div class="tab-pane" id="notas">
+                                    <div>                                       
+                                         <div id="tabs2">
+                            
+                            <div id="tabs2-0">                                
+                                <select id="ano_escolar_perfil_alumno" onchange="filtrosObtenerAsgAlumno('{{entity.id}}');">
+                                    <option value="*" >Año Escolar.</option>
+                                    {%for ano_escolar in ano_escolares%}
+                                    <option value="{{ano_escolar.id}}">{{ano_escolar}}</option>
+                                    {%endfor%}
+                                </select>    
+                                    
+                     <select id="asignatura_perfil_alumno" onchange="getPeriodosDimensionAlumno({{entity.id}});">
+                                        <option value="*" >Asignaturas.</option>                                  
+                                                                    </select>                                       
+                                    <select id="perido_escolar_perfil_alumno" onchange="filtrosObtenerNotasAlumno(this,'{{entity.id}}');">
+                                    <option value="*" >Periodos Academico.</option>
+                                    {#%for periodo_escolar in periodos_escolares%}
+                                    <option value="{{periodo_escolar.id}}">{{periodo_escolar}}</option>
+                                    {%endfor%#}
+                                </select>                                        
+                                                
+                                    <div id="registro_notas_alumnos">
+                                        
+                                    </div>  
+                            </div>
+                            
+                        </div>         
+                                    </div>
+                            </div>
+                            <div class="tab-pane" id="descriptores">
+                                <div>                                       
+                                       <div id="tabs4">
+                           
+                            <div id="tabs4-0">                                
+                                <select id="ano_escolar_perfil_descriptores_alumno" onchange="filtrosObtenerNotasdescriptoresAlumno(this,'{{entity.id}}');">
+                                    <option value="*" >Año Escolar.</option>
+                                    {%for ano_escolar in ano_escolares%}
+                                    <option value="{{ano_escolar.id}}">{{ano_escolar}}</option>
+                                    {%endfor%}
+                                </select>    
+                                    
+                     <select id="asignatura_perfil_descriptores_alumno" onchange="getPeriodosDimensiondescriptorAlumno({{entity.id}});">
+                                        <option value="*" >Asignaturas.</option>                                  
+                                    {%for asignaturas__ in asignaturas if asignaturas__.getEsArea()%}
+                                        <option  style="margin-left: 2px;font-size: 16px;font-weight: bold;" value="{{asignaturas__.id}}"> 
+                                           
+                                            {{asignaturas__}}</option>
+                                        {%for asignatura in asignaturas if not asignatura.getEsArea() and asignatura.area.id==asignaturas__.id%}
+                                        <option style="margin-left: 8px;" value="{{asignatura.id}}">
+                                            &nbsp; &nbsp; 
+                                            {{asignatura}}</option>
+                                        {%endfor%}
+                                    {%endfor%}
+                                </select>                                       
+                                    <select id="perido_descriptores_escolar_perfil_alumno" onchange="filtrosObtenerNotasdescriptoresAlumno(this,'{{entity.id}}');">
+                                    <option value="*" >Periodos Academico.</option>
+                                    {#%for periodo_escolar in periodos_escolares%}
+                                    <option value="{{periodo_escolar.id}}">{{periodo_escolar}}</option>
+                                    {%endfor%#}
+                                </select>                                        
+                                                
+                                    <div id="registro_notas_descriptores_alumnos">
+                                        
+                                    </div>  
+                            </div>
+                            
+                        </div>         
+                                </div>
+                            </div>
+                                <div class="tab-pane" id="observador">
+                                  <div id="tabs3-0"> 
+                                    {{render(controller('NetpublicCoreBundle:Observacion:customindex',{'id_alumno':entity.id}))}}
+                                          <div class="clearfix"></div>
+                                 </div>
+                            
+                               
+                                                      
+                                </div>    
+			
+                    </div>
+                </div>
+</div>
+</div>
+</div>
+{%endblock%}
+

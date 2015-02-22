@@ -1,0 +1,622 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/bootstrap.css') }}" type="text/css"  media="screen"/>
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/databoard.css') }}" type="text/css"  media="screen"/>
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/font-awesome.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/font-awesome/css/font-awesome.min.css') }}" type="text/css"  /> 
+                
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/inacholee.css') }}" type="text/css" media="screen" />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/demo.css') }}" type="text/css" media="screen" />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/impresiones.css') }}" type="text/css"  media="print"  />  
+          <!-- ace settings handler -->
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/bootstrap-combined.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/demo.css') }}" type="text/css"  />  
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/impresiones.css') }}" type="text/css"  media="print"  />  
+                
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/inacholee.css') }}" type="text/css" media="screen" />           
+               
+                                        
+{% endblock%}
+{% block body %}
+    <nav class="navbar navbar-inverse navbar-fixed-top no-imprimir" role="navigation">
+      <div class="container-fluid-nav">          
+        <div class="navbar-header col-sm-12 col-md-3">
+          {%if app.user%} 
+            <button type="button" class="navbar-toggle collapsed"
+                   data-toggle="collapse" data-target="#navbar" 
+                   aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> 
+            {%endif%}  
+                <a class="navbar-brand" href="{{path('usuario')}}" style="text-align: left;margin: 4px 0px 0px 0px;padding: 0px;">
+                 <img src="{{ asset('bundles/netpubliccore/images/logo.png') }}" alt="InachoLee" /><br/>
+                 <small style="color: white;font-size: 9px;">Tecnologías de la información para educar mejor.</small>
+             </a>        
+         </div>         
+         {%block login%}
+         <div class="col-sm-12 col-md-5">             
+            <form class="navbar-form" >
+                <div class="input-group">
+                <input class="form-control "
+                       placeholder="buscar alumnos|profesor.." 
+                       id="my-input3"  onkeyup="mostrarMensajeNotificador('Cargando alumnos. ')" 
+                       style="width: 230px;"
+                       type="text">
+                <span class="input-group-btn">
+			<button class="btn btn-default" type="button">
+                            Buscar <i class="icon-search icon-on-right bigger-110"></i>
+                        </button>
+               </span>
+              </div>                        
+            </form>
+             
+        </div>                       
+         <div class="col-sm-12 col-md-4 ">             
+           <ul class="nav navbar-nav nav-pills">     
+                <li> <a href="#" ><i class="icon icon-th icon-2x"></i>  Gestores</a></li>        
+                <li><a href="#"><i class="icon icon-th icon-2x"></i> Informes</a></li>        
+                <li>
+                    <a href="#">
+                        {%if app.user%} 
+                                    {%if not app.user.getEsAlumno%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img  style="width: 35px;height: 35px;" src="{{asset('uploads/documents/strongprofesor'~app.user.profesor.id~'.png')}}"  />
+                                        {%else%}
+                                            <img  class="img-rounded"  style="width: 35px;height: 35px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.profesor}}" />                    
+                                        {%endif%}  
+                                        
+                                   {%else%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img  style="width: 35px;height: 35px;"  
+                                                 src="{{asset('uploads/documents/strongprofesor'~app.user.alumno.id~'.png')}}" />
+                                        {%else%}
+                                            <img  style="width: 35px;height: 35px;" alt="{{app.user.alumno}}" src="{{asset('uploads/documents/strongavatar.png')}}" />                    
+                                        {%endif%}    
+                                                                                              
+                                    {%endif%}
+                                    {%endif%}
+                        {{app.user}}</a>
+                </li>
+           </ul>            
+        </div>
+                 
+        <div class="collapse col-sm-12" id="navbar">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="#">Inicio</a></li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        ResSaber <span class="caret"></span>
+                 </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#"> Crear exámen-icfes virtual.</a></li>
+                    <li><a href="#">Crear exámen-icfes presencial.</a></li>
+                    <li><a href="#">Ver informes.</a></li>
+                    <li><a href="#">Banco de preguntas.</a></li>
+                    <li><a href="#">Nueva pregunta</a></li>
+                    <li><a href="#">Ver informes.</a></li>
+                </ul>
+           </li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        iNachoLee <span class="caret"></span>
+                 </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Nuevo alumno(s)| profesor(es).</a></li>
+                    <li><a href="#">Organizar listas.</a></li>
+                    <li><a href="#">Imprimir boletines | certificados|constacia.</a></li>
+                    <li><a href="#">Carga academica.</a></li>
+                    <li><a href="#">Generar horarios clase .</a></li>
+                    <li><a href="#">Gestionar sedes.</a></li>
+                    <li><a href="#">Informes.</a></li>                   
+                    
+                </ul>
+           </li>
+           <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Personerox <span class="caret"></span>
+                 </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Crear elección.</a></li>
+                    <li><a href="#">Ver Resultados.</a></li>
+                </ul>
+           </li>         
+          </ul>          
+        </div>
+        {%endblock%}   
+             
+      </div>
+    </nav>
+    <div class="container-fluid col-md-12 col-xs-12" id="container">    
+    {%block container%}            
+        <div class="row">          
+            <div class="col-sm-3 col-md-3 sidebar no-imprimir" style="padding: 0px 0px 0px 0px;">          
+                <div class="col-md-12 " style="padding-left: 57px;">              
+                <div class="thumbnail col-md-3">                    
+                                    {%if app.user%} 
+                                    {%if not app.user.getEsAlumno%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img  src="{{asset('uploads/documents/strongprofesor'~app.user.profesor.id~'.png')}}"  />
+                                        {%else%}
+                                            <img  src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.profesor}}" />                    
+                                        {%endif%}  
+                                        
+                                   {%else%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img   
+                                                 src="{{asset('uploads/documents/strongprofesor'~app.user.alumno.id~'.png')}}" />
+                                        {%else%}
+                                            <img alt="{{app.user.alumno}}" src="{{asset('uploads/documents/strongavatar.png')}}" />                    
+                                        {%endif%}    
+                                                                                              
+                                    {%endif%}
+                                    {%endif%}   
+                    
+                </div>
+                <div class="col-md-9">
+                      <strong>
+                                    {%if app.user%} 
+                                    {%if not app.user.getEsAlumno%}
+                                        {{app.user.profesor}}
+                                   {%else%}
+                                        {{app.user.alumno}}                                                       
+                                    {%endif%}
+                                    {%endif%}  
+                          
+                         
+                      </strong><br/>
+                      <small>
+                          {% if is_granted('ROLE_ESTUDIANTE')%}
+                                estudiante
+                          {% elseif is_granted('ROLE_ACUDIENTE')%}
+                                acudiente
+                          {% elseif is_granted('ROLE_PROFESORES')%}
+                                profesor
+                          {% elseif is_granted('ROLE_RECTOR')%}
+                                rector
+                          {% elseif is_granted('ROLE_AUXILIAR')%}
+                                auxiliar administrativa
+                          {%endif%}
+                      <br/>
+                      {{render(controller('NetpublicCoreBundle:Colegio:anoperiodoactivo'))}} 
+                      </small>
+                </div>  
+              </div>
+                {%if momo==23%}    
+                    <ul class="list-unstyled-inl list-unstyled" style="background-color: #E9EAED;width: 100%;padding-left: 57px;">
+                    {% if is_granted('ROLE_ESTUDIANTE') or is_granted('ROLE_ACUDIENTE') %}        
+                <li><a  href="{{ path('alumno_editperfila', { 'id': app.user.alumno.id }) }}">
+                    <i class="icon-edit"></i> Editar Perfil
+                    </a>                
+                         
+                </li>        
+              {%endif%}
+                     {% if is_granted('ROLE_PROFESORES') or is_granted('ROLE_RECTOR')  or is_granted('ROLE_AUXILIAR')%}        
+                <li><a {%if app.user.profesor%}
+                    href="{{path('profesor_edit', { 'id': app.user.profesor.id })}}"
+              {%else%}
+                    href="{{ path('alumno_edit', { 'id': app.user.alumno.id }) }}"
+              {%endif%}
+                 >Editar Perfil
+                    </a>
+              </li>        
+              {%endif%} 
+              <li><a href="#"><i class="icon icon-inbox"></i> Mensajes</a></li>
+              <li><a href="#"><i class="icon icon-calendar"></i> Eventos</a></li>
+              <li><a href="#"><i class="icon icon-picture"></i> Fotos</a></li>              
+              <li><a href="#"><i class="icon icon-book"></i> Biblioteca</a></li>              
+              
+              <li>
+                <a href="#" class="list-unstyled-encabezado-inl">
+                        RED SABER 
+                </a>
+                  <ul class="list-unstyled list-unstyled-inl" >    
+                  {% if is_granted('ROLE_PROFESORES') or is_granted('ROLE_RECTOR')%}                  
+                 
+                    <li><a href="{{path('examenicfes_new')}}"><i class="icon icon-file-alt"></i> Crear exámen icfes virtual.</a></li>
+                    <li><a href="{{path('examenicfes_new')}}"><i class="icon icon-file-text-alt"></i> Crear exámen icfes no-virtual.</a></li>
+                    <li><a href="{{path('examenicfes_listarevisar')}}"><i class="icon icon-ok-circle"></i> Revisar & Calificar.</a></li>
+                    
+                    <li><a href="{{path('examenicfes_listarevisar')}}"><i class="icon icon-bar-chart"></i> Ver informes.</a></li>
+                    
+                    
+                    <li><a href="{{path('pregunta')}}"><i class="icon icon-book"></i> Banco de preguntas.</a></li>
+                    <li><a href="{{path('pregunta')}}"><i class="icon icon-question-sign"></i> Nueva pregunta</a></li>                    
+                    <li><a href="{{path('examenicfes_configuracionlocal')}}"><i class="icon icon-cog"></i> Configuración</a></li>                    
+                    
+                {%else%}
+                    <li><a href="#"><i class="icon icon-bar-chart blue"></i> Ver Informes-Icfes</a></li>                    
+                {%endif%}
+                </ul>    
+           </li>
+             <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        iNachoLee 
+                 </a>
+                    
+                <ul class="list-unstyled list-unstyled-inl" >
+                    {% if is_granted('ROLE_RECTOR')%} 
+                    <li><a href="#" onclick="newAlumnoUnoUnoLoteDefectoAno();"><i class="icon icon-user"></i> Nuevo alumno(s)| profesor(es).</a></li>
+                    <li><a href="{{path('colegio_newgestorgrupo')}}"><i class="icon icon-list-alt"></i> Organizar listas.</a></li>
+                    <li><a  href="{{path('colegio_informeboletines')}}"><i class="icon icon-print"></i> Imprimir boletines | certificados|constacia.</a></li>
+                    <li><a href="{{ path('cargaacademica') }}"><i class="icon icon-resize-full"></i> Carga academica.</a></li>
+                    <li><a href="{{ path('cargaacademica') }}"><i class="icon icon-th-large"></i> Generar horarios clase .</a></li>
+                    <li><a href="{{ path('colegio') }}"><i class="icon icon-home"></i> Gestionar sedes.</a></li>
+                    <li><a href="{{ path('colegio_informes') }}"><i class="icon icon-bar-chart"></i> Consolidados E Informes.</a></li>  
+                    <li><a href="{{ path('colegio_menuconfiguracion') }}"><i class="icon icon-th"></i> Ver todas las opciones.</a></li>
+                    {%endif%}
+                    {% if is_granted('ROLE_PROFESORES')%} 
+                    <li><a href="{{path('profesor_newnotasoffline')}}" onclick="newNotasOfflineProfesor();"> <i class="icon-upload"></i> Subir Nota-Excel.
+                        </a>
+                    </li>
+                    <li><a href="{{ path('profesor_planillasmesa') }}"><i class="icon-edit"></i> Calificar Notas.</a></li>
+                    <li><a onclick="mostrarHorarioClaseProfesor({{app.user.profesor.id}})" href="#"><i class="icon-align-left"></i> Horario Clase.</a></li>
+                
+                    {%endif%}
+                    {% if is_granted('ROLE_ESTUDIANTE')%} 
+                    <li><a href="{{ path('alumno_notas', {'id': app.user.alumno.id}) }}"><i class="icon-edit"></i> Mis Notas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="mostrarHorarioAlumno({{app.user.alumno.id}});" >
+                            <i class="icon-align-justify"></i> Horario Clase
+                        </a>
+                    </li>
+                    {%endif%}
+                    {% if is_granted('ROLE_ACUDIENTE')%} 
+                    <li> <a href="#" onclick="listarAlumnosAcudienteAlumno({{app.user.alumno.id}});">
+                        <i class="icon-edit"></i> Notas De Hijos
+                        </a>
+                    </li>
+                    {%endif%}
+                </ul>
+                
+           </li>
+           <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        PERSONEROX 
+                 </a>
+                <ul class="list-unstyled list-unstyled-inl">
+                   {% if is_granted('ROLE_RECTOR')%}            
+                  
+                    <li><a href="#"><i class="icon icon-bullhorn"></i> Crear elección.</a></li>
+                   {%endif%}  
+                    <li><a href="#"><i class="icon icon-signal"></i> Ver Resultados.</a></li>
+                </ul>
+           </li>
+           <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        General 
+                 </a>
+                <ul class="list-unstyled list-unstyled-inl">
+                    <li><a href="{{ path('logout') }}"><i class="icon icon-off"></i> Salir.</a></li>                    
+                </ul>
+           </li>
+          
+          </ul>
+                {%endif%}    
+                {%if momo==24%}
+                    <ul class="list-unstyled-inl list-unstyled" style="background-color: #E9EAED;width: 100%;padding-left: 57px;">
+                    {% if is_granted('ROLE_ESTUDIANTE') or is_granted('ROLE_ACUDIENTE') %}        
+                <li><a  href="{{ path('alumno_editperfila', { 'id': app.user.alumno.id }) }}">
+                    <i class="icon-edit"></i> Editar Perfil
+                    </a>                
+                         
+                </li>        
+              {%endif%}
+                     {% if is_granted('ROLE_PROFESORES') or is_granted('ROLE_RECTOR')  or is_granted('ROLE_AUXILIAR')%}        
+                <li><a {%if app.user.profesor%}
+                    href="{{path('profesor_edit', { 'id': app.user.profesor.id })}}"
+              {%else%}
+                    href="{{ path('alumno_edit', { 'id': app.user.alumno.id }) }}"
+              {%endif%}
+                 >Editar Perfil
+                    </a>
+              </li>        
+              {%endif%} 
+              <li><a href="#"><i class="icon icon-inbox"></i> Mensajes</a></li>
+              <li><a href="#"><i class="icon icon-calendar"></i> Eventos</a></li>
+              <li><a href="#"><i class="icon icon-picture"></i> Fotos</a></li> 
+              <li><a href="#"><i class="icon icon-book"></i> Biblioteca</a></li> 
+              
+              <li>
+                <a href="#" class="list-unstyled-encabezado-inl">
+                        RED SABER 
+                </a>
+                  <ul class="list-unstyled list-unstyled-inl" >    
+                  {% if is_granted('ROLE_PROFESORES') or is_granted('ROLE_RECTOR')%}                  
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-th"></i> Ver Todas Las Opciones</a></li>                    
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-file-alt"></i> Crear exámen icfes virtual.</a></li>
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-file-text-alt"></i> Crear exámen icfes no-virtual.</a></li>
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-ok-circle"></i> Revisar & Calificar.</a></li>
+                    
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-bar-chart"></i> Ver informes.</a></li>
+                    
+                    
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-book"></i> Banco de preguntas.</a></li>
+                    
+                {%else%}
+                    <li><a href="#"><i class="icon icon-bar-chart blue"></i> Ver Informes-Icfes</a></li>                    
+                {%endif%}
+                </ul>    
+           </li>
+             <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        iNachoLee 
+                 </a>
+                    
+                <ul class="list-unstyled list-unstyled-inl" >
+                    {% if is_granted('ROLE_RECTOR')%} 
+                    <li><a href="{{ path('colegio_menuconfiguracion') }}"><i class="icon icon-th"></i> Ver todas las opciones.</a></li>
+                    <li><a href="#" onclick="newAlumnoUnoUnoLoteDefectoAno();"><i class="icon icon-user"></i> Nuevo alumno(s)| profesor(es).</a></li>
+                    <li><a href="{{path('colegio_newgestorgrupo')}}"><i class="icon icon-list-alt"></i> Organizar listas.</a></li>
+                    <li><a  href="{{path('colegio_informeboletines')}}"><i class="icon icon-print"></i> Imprimir boletines | certificados|constacia.</a></li>
+                    <li><a href="{{ path('colegio_informes') }}"><i class="icon icon-bar-chart"></i> Consolidados E Informes.</a></li>  
+                    {%endif%}
+                    {% if is_granted('ROLE_PROFESORES')%} 
+                    <li><a href="{{path('profesor_newnotasoffline')}}" onclick="newNotasOfflineProfesor();"> <i class="icon-upload"></i> Subir Nota-Excel.
+                        </a>
+                    </li>
+                    <li><a href="{{ path('profesor_planillasmesa') }}"><i class="icon-edit"></i> Calificar Notas.</a></li>
+                    <li><a onclick="mostrarHorarioClaseProfesor({{app.user.profesor.id}})" href="#"><i class="icon-align-left"></i> Horario Clase.</a></li>
+                
+                    {%endif%}
+                    {% if is_granted('ROLE_ESTUDIANTE')%} 
+                    <li><a href="{{ path('alumno_notas', {'id': app.user.alumno.id}) }}"><i class="icon-edit"></i> Mis Notas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="mostrarHorarioAlumno({{app.user.alumno.id}});" >
+                            <i class="icon-align-justify"></i> Horario Clase
+                        </a>
+                    </li>
+                    {%endif%}
+                    {% if is_granted('ROLE_ACUDIENTE')%} 
+                    <li> <a href="#" onclick="listarAlumnosAcudienteAlumno({{app.user.alumno.id}});">
+                        <i class="icon-edit"></i> Notas De Hijos
+                        </a>
+                    </li>
+                    {%endif%}
+                </ul>
+                
+           </li>
+           <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        PERSONEROX 
+                 </a>
+                <ul class="list-unstyled list-unstyled-inl">
+                   {% if is_granted('ROLE_RECTOR')%}            
+                  
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-bullhorn"></i> Crear elección.</a></li>
+                   {%endif%}  
+                    <li><a href="{{path('colegio_losentimos')}}"><i class="icon icon-signal"></i> Ver Resultados.</a></li>
+                </ul>
+           </li>
+           <li>
+                <a class="list-unstyled-encabezado-inl" href="#">
+                        GENERAL 
+                 </a>
+                <ul class="list-unstyled list-unstyled-inl">
+                    <li><a href="{{ path('logout') }}"><i class="icon icon-th"></i> Todas Las Opciones.</a></li>
+                    <li><a href="{{ path('logout') }}"><i class="icon icon-pushpin"></i> Cambiar Contraseña.</a></li>
+                    <li><a href="{{ path('logout') }}"><i class="icon icon-off"></i> Salir.</a></li>                    
+                </ul>
+           </li>
+          
+          </ul>  
+                {%endif%}    
+            </div>
+           <!--Sub-Container -->
+           <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3" id="sub-container">
+               {%block sub_container%}
+                    {%block wall%}
+                    <div id="wall" class="col-sm-12 col-md-9 main" >
+                         <div class="row placeholders">
+                    <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10 well" style="font-size: 10px;text-align: left;background-color: white;border: #E9EAED dashed thick;">
+                        <span style="color: goldenrod;font-weight: 900;position: absolute;top: -1px;left: 1px;">Cartelera escolar.</span>
+                        Mañana a las 7 PM sera la reunion de prefesores en el aula de clase.
+                        <div style="text-align: right;">Rector</div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div> 
+                <div class="col-md-12" style="margin: 0px;padding: 0px;">
+                    <div class="panel panel-default">                  
+                      <div class="panel-body">
+                          <textarea class="col-md-12" style="color: gainsboro;text-align: left;">Que pasa en tu Institución educativa</textarea>
+                      </div>
+                      <div class="panel-footer">
+                          <div class="btn-group pull-right">
+                          <button class="btn btn-default">Subir foto</button>
+                          <button class="btn btn-primary">Publicar</button>
+                          </div> 
+                           <div class="clearfix"></div>    
+                      </div>
+                   </div>
+               </div>
+               <div class="col-md-12" style="margin: 0px;padding: 0px;">
+                    <div class="panel panel-default">
+                     <div class="panel-heading">
+                   <ul class="media-list">
+                            <li class="media">
+                                <a href="#" class="pull-left">
+                                    <img class="img-responsive img-rounded img-thumbnail" src="{{ asset('bundles/netpubliccore/images/avatar_redsaber.png') }}" alt="InachoLee" />
+                                </a>
+                                    <div class="media-body">
+                                    <h6 class="media-heading">RedSaber</h6>
+                                    <p>Compartimos este video, donde se explica como ingresar notas con planillas virtuales.</p>
+                                    <strong style="background-color: yellow;">Pronto, todos podremos compartir!!</strong>
+                                    <p ><iframe style="padding-top: 20px;" width="560" height="315" src="//www.youtube.com/embed/jlkw5nzrgSc" frameborder="0" allowfullscreen></iframe>
+                                    </p>
+                                     
+                            </div>
+                            </li>    
+                        </ul>
+               </div>
+                     <div class="panel-body">
+                        <ul class="media-list">
+                            <li class="media">
+                                <a href="#" class="pull-left">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACW0lEQVR4nO2V227aQBRF8/+fcjDBBSflYgIoJkBEQ1GBuiq3iGvweH5h58FuSlJeWiC7as/DerHGR8vLM/aFtRb/MxdsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZg84cBDJZhBzdXOWREIOLALTYRbuO9NTG2YR05EYgI3LsZzF8z/6gAMdbDGi5FIOKi3AjQDBrwi1X0l+ZlXbwZopZN5H5P8Nzzjw1gZrhzE7lg/IT44JoVBr4DcRu4v7ncE4yxHvhwRCBeB/PIwiweUBSBZIroLcyR898hgFl04YlAJI9yKZ88TNZDrTvGNk63b78MR/JoTTaY3OZeC8YbjGpZiAi8zgjdYgYiDsr9Jcwp5p87QDQNXs6d5H0EQRWF9Jz6gzWiRQ/FjMDrzBDZ6KBgvA1Rz/3cvo7/BStzuvnn3QHzNj6k5zOYRrDWYNZ0ISLI+CHmD1cQceCVKqhUyrj+8aDuR/jNr9ikb/GxU0gD5HA73p14/jm/AdsQVee14LyVCDq1b6mgHMb7hKWxMMvPKDn71+8xj043/7wB7A6TVj55I14drXYdV5lE+Pb705u1B7aoWaCXnvtKf4JB+j0otKfYnWL+uY+AtRbWrBC2fRTS35BTqKA1XCD6Ze1bQYPH7nVyT7mPpbGIN6P0d5ZHa7I7cv57BfiH0ABsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZgowHYAmyeASNjAWkQIohgAAAAAElFTkSuQmCC" alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;">
+                                </a>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Martin Hincampie</h6>
+                                    <p>Muy buen video tutorial
+                                    </p>              
+                                </div>
+                           </li>
+                           <li class="media">
+                                <a href="#" class="pull-left">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACW0lEQVR4nO2V227aQBRF8/+fcjDBBSflYgIoJkBEQ1GBuiq3iGvweH5h58FuSlJeWiC7as/DerHGR8vLM/aFtRb/MxdsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZg84cBDJZhBzdXOWREIOLALTYRbuO9NTG2YR05EYgI3LsZzF8z/6gAMdbDGi5FIOKi3AjQDBrwi1X0l+ZlXbwZopZN5H5P8Nzzjw1gZrhzE7lg/IT44JoVBr4DcRu4v7ncE4yxHvhwRCBeB/PIwiweUBSBZIroLcyR898hgFl04YlAJI9yKZ88TNZDrTvGNk63b78MR/JoTTaY3OZeC8YbjGpZiAi8zgjdYgYiDsr9Jcwp5p87QDQNXs6d5H0EQRWF9Jz6gzWiRQ/FjMDrzBDZ6KBgvA1Rz/3cvo7/BStzuvnn3QHzNj6k5zOYRrDWYNZ0ISLI+CHmD1cQceCVKqhUyrj+8aDuR/jNr9ikb/GxU0gD5HA73p14/jm/AdsQVee14LyVCDq1b6mgHMb7hKWxMMvPKDn71+8xj043/7wB7A6TVj55I14drXYdV5lE+Pb705u1B7aoWaCXnvtKf4JB+j0otKfYnWL+uY+AtRbWrBC2fRTS35BTqKA1XCD6Ze1bQYPH7nVyT7mPpbGIN6P0d5ZHa7I7cv57BfiH0ABsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZgowHYAmyeASNjAWkQIohgAAAAAElFTkSuQmCC" alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;">
+                                </a>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Gina Parody</h6>
+                                    <p>Me gusta mucho el video, gracias por compartir.</p>
+                           
+       
+                                </div>
+                           </li>
+                           <li class="media">
+                                <a href="#" class="pull-left">
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACW0lEQVR4nO2V227aQBRF8/+fcjDBBSflYgIoJkBEQ1GBuiq3iGvweH5h58FuSlJeWiC7as/DerHGR8vLM/aFtRb/MxdsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZg84cBDJZhBzdXOWREIOLALTYRbuO9NTG2YR05EYgI3LsZzF8z/6gAMdbDGi5FIOKi3AjQDBrwi1X0l+ZlXbwZopZN5H5P8Nzzjw1gZrhzE7lg/IT44JoVBr4DcRu4v7ncE4yxHvhwRCBeB/PIwiweUBSBZIroLcyR898hgFl04YlAJI9yKZ88TNZDrTvGNk63b78MR/JoTTaY3OZeC8YbjGpZiAi8zgjdYgYiDsr9Jcwp5p87QDQNXs6d5H0EQRWF9Jz6gzWiRQ/FjMDrzBDZ6KBgvA1Rz/3cvo7/BStzuvnn3QHzNj6k5zOYRrDWYNZ0ISLI+CHmD1cQceCVKqhUyrj+8aDuR/jNr9ikb/GxU0gD5HA73p14/jm/AdsQVee14LyVCDq1b6mgHMb7hKWxMMvPKDn71+8xj043/7wB7A6TVj55I14drXYdV5lE+Pb705u1B7aoWaCXnvtKf4JB+j0otKfYnWL+uY+AtRbWrBC2fRTS35BTqKA1XCD6Ze1bQYPH7nVyT7mPpbGIN6P0d5ZHa7I7cv57BfiH0ABsATYagC3ARgOwBdhoALYAGw3AFmCjAdgCbDQAW4CNBmALsNEAbAE2GoAtwEYDsAXYaAC2ABsNwBZgowHYAmyeASNjAWkQIohgAAAAAElFTkSuQmCC" alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;">
+                                </a>
+                                <div class="media-body">
+                                    <h6 class="media-heading">Raul Cuero</h6>
+                                    <p>Gracias desde buenaventura los veo, muchas gracias por compartir tus conocimientos</p>                   
+       
+                                </div>
+                           </li>    
+                        </ul>
+                 </div>
+                    </div>
+               </div>                  
+         </div>               
+                    </div>
+                    {%endblock%}
+                    {%block sider_left%}
+                   <div class="col-md-3" style="background-color: white;padding: 0px;">
+                        <div>
+                        <img src="{{asset('bundles/netpubliccore/images/p.png')}}" class="img-responsive img-rounded">
+                        </div>
+                        <div class="table-responsive col-md-12 col-sm-12">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                <th>Asignaturas</th>
+                                <th>Grado</th>
+                                <th>Alumnos</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                            <tr>
+                                <td>Matematica</td>
+                                <td>Sexto</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Matematica</td>
+                                <td>Septimo</td>
+                                <td>20</td>
+                               </tr>
+                            <tr>
+                                <td>Matematica</td>
+                                <td>Octavo</td>
+                                <td>20</td>
+                            </tr>
+                        </tbody>
+                            </table>                
+                        </div>    
+                    </div> 
+                    {%endblock%}
+               {%endblock%}    
+           </div>
+           
+        </div>   
+    {%endblock%}
+                     <!-- Modal -->
+ <div class="modal fade  no-imprimir" id="myModal_generica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>        
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery-1.10.2.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/bootstrap.min.js') }}"></script>        
+    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.json-2.3.min.js') }}"></script>        
+    <!-- ace scripts -->
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/handlebars.js') }}"></script>        
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/tooltip.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/typeahead.bundle.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/popover.js') }}"></script>  
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/bootstrap-tree.js') }}"></script> 
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/datepicker.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/timepicker.js') }}"></script>  
+                                                                                      
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.easy-pie-chart.min.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.sparkline.min.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.flot.min.js') }}"></script>  
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.flot.pie.min.js') }}"></script>        
+
+                
+		<!-- inline scripts related to this page -->
+                   <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/inacho_00.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/colegio.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/grado.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/asignatura.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/profesor.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/alumno.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/grupo.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/cargaacademica.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/aula.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/usuario.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/desempeno.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/contrato.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/dimension.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/mensaje.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/observacion.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/helper_filtros.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.rotate.min.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/inacho_00.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/tema_asignatura.js') }}"></script>     
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/profesor_periodo_entrega.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/criterio_academico.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/criteriopromocion.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/redsaber.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/horarioclase.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/auditoria.js') }}"></script>  
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/main.js') }}"></script> 
+
+{%block js_final%}
+   
+ {%endblock%}
+ {%if app.user%}
+   <script> 
+        buscarUsuarioPrincipal("usuario/buscar.json","my-input3");
+   </script>
+ {%endif%}
+ 
+{% endblock%}    

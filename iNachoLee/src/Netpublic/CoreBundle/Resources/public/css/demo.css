@@ -1,0 +1,162 @@
+/*!
+ * jQuery UI Bootstrap (0.22)
+ * http://addyosmani.github.com/jquery-ui-bootstrap
+ *
+ * Copyright 2012, Addy Osmani
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Portions copyright jQuery UI & Twitter Bootstrap
+ */
+
+
+.textaarea_edit{
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #808080;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 4px;-moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+    margin-bottom: 5px;
+}
+.text_insert_textarea{
+    font-size: x-small;
+    font-family: cursive;
+    font-weight: 900;
+    text-decoration: underline;
+}
+div.influencia_black{    
+    background-color: black;
+    margin-right: 2px;
+    border-style: solid solid;
+    border-color: black black;
+    float: left;
+    width: 60px;
+    height: 8px;
+}
+div.influencia_white{
+    
+    background-color: #C9C4C4;
+    margin-right: 2px;
+    border-style: solid solid;
+    border-color: #C9C4C4 #C9C4C4;
+    float: left;
+    width: 60px;
+    height: 8px;
+    
+}
+input.grupoA{       
+    color: black;    
+    background-color: rgb(255, 255, 136);
+}
+input.grupoB{       
+    color: black;    
+    /*background-color: rgb(205, 235, 139);*/
+}
+#dialogo_custom_hide{
+    display: none;
+}
+#dialogo_custom_show{
+    display: block;
+}
+
+div.horarios_clases_libre{    
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #808080;
+    background-color:whitesmoke;
+    
+}
+div.horarios_clases_ocupado{    
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;    
+    font-size: 13px;  
+    
+}
+div.horarios_clases_ocupado button{    
+    border: 1px solid #0064CD;
+    border-radius: 3px 3px 3px 3px;    
+    font-size: 13px;  
+    background-color:#0064CD;
+}
+div.div_horario{
+    float: left;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: x-small;
+    padding-top: 4px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+span.item_menu_principal{
+    color: #080808;
+    font-size: small;
+    letter-spacing: 0.01;
+    font-weight: 400;
+}
+div.foto_perfil{
+   border: 1px solid #CCCCCC;
+   border-radius: 3px 3px 3px 3px;    
+   padding: 4px;-moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;   
+   height: 100px;
+   width: 100px;
+   margin-bottom: 40px;
+   margin-left: 25px;
+}
+div.nombre_perfil{
+    border-bottom: 1px solid #808080;
+    margin-bottom:  17px;
+    padding-bottom:  0px;
+    margin-top: 0px;
+}
+span.error_ajax{
+    color: red;
+}
+span.exito_ajax{
+    color: green;
+}
+#select_calificar_nota{
+    margin-bottom: 50px;
+}
+input.grupoAsistencia{
+    background-color: #d9edf7;
+}
+input.grupoPeriodoFinal{
+    background-color: #3a87ad;
+    color:white;
+    font-size: small;
+    font-weight: bolder;
+}
+td.td_notas{    
+    margin: 0px 0px 0px 0px;
+  
+   
+}
+div#capa_ram_informes_buscar_usuarios{
+     border-style: dashed;
+     background-color: white;
+}
+.celda_intercambiar{
+    background-color: black;
+}
+.celda_libre{
+    background-color: #F5F5F5;
+}
+.celda_no_libre{
+    background-color: blue;
+}
+.celda_festivo{
+    background-color: blueviolet;
+}
+.celda_retirar{
+    background-color: orange;
+    font-size: 40px;
+    color:white;
+    font-weight: 900;
+}
+.tarea{
+    font-weight: 900;
+}

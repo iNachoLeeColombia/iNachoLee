@@ -1,0 +1,44 @@
+<form name="new_desenpeno45" id="new_desenpeno45" action="#" method="post" {{ form_enctype(form) }}>
+<div style="float: right;width: 40%">
+    
+     <div class="input" >                
+         {{ form_label(form.descripcion_sobresaliente, null, { 'label': 'Descripcion De SUPERIOR', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+         {{ form_widget(form.descripcion_sobresaliente) }}               
+         <div class="textaarea_edit" id="_desempenotype_descripcion_sobresaliente"></div>
+    </div>     
+    
+     <div class="input">                
+         {{ form_label(form.descripcion_excelente, null, { 'label': 'Descripcion De ALTO', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+         {{ form_widget(form.descripcion_excelente) }}               
+
+                    <div class="textaarea_edit"  id="_desempenotype_descripcion_excelente"></div>
+    </div> 
+    
+     <div class="input">                
+         {{ form_label(form.descripcion_aceptable, null, { 'label': 'Descripcion De BÁSICO', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+         {{ form_widget(form.descripcion_aceptable) }}               
+
+                    <div class="textaarea_edit"  id="_desempenotype_descripcion_aceptable"></div>
+    </div> 
+    
+     <div class="input">                
+         {{ form_label(form.descripcion_insuficiente, null, { 'label': 'Descripcion De BAJO', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+         {{ form_widget(form.descripcion_insuficiente) }}               
+
+                <div class="textaarea_edit"  id="_desempenotype_descripcion_insuficiente"></div>
+    </div> 
+      
+</div>
+
+
+     {{ form_widget(form) }}
+
+        <button  id="boton_desenpeno" style="float: right;"
+                 class="btn btn-primary"
+                 onclick=createdesempenoinfoAcademicaDefectoAno({{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});>Crear Desempeño.
+        </button>
+<div style="clear: both;"></div>
+</form>
+
+<div id="capa_actividad_desempenos_desempeno" class="well" style="background-color: #E6E6FA;display: none;">        
+</div>    

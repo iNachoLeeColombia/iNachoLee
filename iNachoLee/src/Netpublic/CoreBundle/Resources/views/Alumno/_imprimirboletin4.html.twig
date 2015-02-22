@@ -1,0 +1,91 @@
+<table>  
+    <tr>
+        <td style="width: 20%;">           
+          <img style="width:110px;height:110px;" src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}"/>   
+          
+       </td>
+       <td style="width: 80%;font-size: 50px;text-align: center;">          
+            <strong style="margin-top:15px;">{{alumno.sede}}</strong>
+       </td>
+    </tr>
+</table>  
+<div style="font-size:16px;margin-top:15px;">
+   <table>
+       <tr>
+           <td  colspan="2" style="width:50%;"><strong>NOMBRES Y APELLIDOS:</strong> {{alumno.apellido}} {{alumno.apellido1}} {{alumno.nombre}} {{alumno.nombre1}}</td>
+         
+           </tr>
+         <tr><td><strong>GRADO:</strong>{{alumno.grado}}</td>
+         <td><strong>PUESTO EN GRUPO: </strong>{{puesto_alumno}}/{{nro_alumnos_grupo}}</td>
+        </tr>
+        <tr>
+        
+         <td><strong>PROMEDIO ALUMNO:</strong> {{promedio_alumno|number_format(2)}}</td>
+         <td><strong>AÑO ESCOLAR/PERIODO: </strong> {{ano_escolar_activo}}/{{periodo_escolar_activo}}</td>
+       </tr>
+       
+   </table>
+</div>
+<table  class="table table-bordered table-boletin" style="margin-top: 15px;">
+    <tr style="height: 40px;font-weight: 900;font-size: 20px;">
+        <td><strong>Areas/Asignaturas</strong></td>
+        {%for periodo_academico in periodos_escolares%}
+            <td><strong>P{{loop.index}}</strong></td>
+        {%endfor%}
+        <td><strong>Def</strong></td>
+        <td><strong>Desemp </strong></td>
+        <td><strong>Descriptores|Logros</strong></td>
+        <td><strong>Fallas</strong></td>
+     </tr>   
+ {%for areas in datos%}
+    <tr {%if areas.desempeno=='BAJO'%}
+          style="color: red;font-weight: 600;"
+        {%elseif areas.desempeno=='SUPERIOR'%}
+          style="color: green;font-weight: 600;"
+        {%endif%}>
+        <td><strong>{{areas.nombre|upper}}</td>
+        {%for periodo_academico in periodos_escolares%}
+            <td>--</td>
+        {%endfor%}
+        <td>{{areas.nota_promedio_acumalativa}}</td>
+        <td>
+             {{areas.desempeno}}
+        </td>
+        {%if areas.inasistencia!=0%}
+            <td>{{areas.inasistencia}}</td>
+        {%else%}
+            <td>  </td>
+        {%endif%}          
+     </tr>    
+     {% for asignaturas_area in areas.asignaturas%}
+     <tr style="clear: both">
+             <td>{{asignaturas_area.asignatura.nombre|lower}}</td>         
+             {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                <td>{{periodos_asignatura.periodo.nota}}</td>
+             {%endfor%}   
+             <td>{{asignaturas_area.asignatura.nota}}</td>     
+             <td>-</td>
+             <td style="text-align: justify;">
+               {%for desempenos_asg in asignaturas_area.asignatura.desempenos%}
+                  {%for desempeno_asg in desempenos_asg%}
+                      {{desempeno_asg}}
+                  {%endfor%}
+               {%endfor%}    
+             </td>
+             <td>
+             {%if asignaturas_area.asignatura.inasistencias!=0%}
+                   {{asignaturas_area.asignatura.inasistencias}}
+             {%endif%}                    
+             </td>                 
+        </tr>
+      {%endfor%}
+               
+{%endfor%}
+</table>  
+<table style="width: 100%;">
+    <tr><td style="text-align: center;">------------------------------------------------------------------------</td></tr>
+    <tr><td style="text-align: center;">Firma rector(a).</td></tr>
+</table>
+<div class="footer-div"></div>      
+
+    

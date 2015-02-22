@@ -1,0 +1,28 @@
+﻿<form id="1" name="1" {#action="{{ path('contrato_create') }}"#} method="post" {{ form_enctype(form) }}> 
+  
+            <div class="modal-header">
+ 
+
+             <a class="close" data-dismiss="modal">×</a>
+              <h3>Contratos</h3>
+            </div>
+ 
+           <div class="modal-body"> 
+                <div style="width: 100px;float: left">
+                {{ form_widget(form._token)}}
+                {{form_label(form.grado)}}
+                {{ form_widget(form.grado)}}      
+                {{ form_label(form.asignatura, null, { 'label': 'Asignatura', 'attr': {'for': 'foo'} }) }}
+                {{ form_widget(form.asignatura, { 'attr': {'class': 'xlarge'} }) }}
+                {{ form_label(form.horas_contratadas, null, { 'label': 'Horas Disponobles Semanales', 'attr': {'for': 'foo'} }) }}
+                {{ form_widget(form.horas_contratadas)}}
+               </div>    
+                    
+
+<div style="clear: both"></div>                       
+            </div>
+            <div class="modal-footer">
+                <button onclick="createcontratoinfoAcademicaDefectoAno({{id_profesor_profesor}});" class="btn btn-primary" >Guardar Contrato</button>
+                <a onclick="indexcontratoinfoAcademicaDefectoAno({{id_profesor_profesor}});" class="btn " ><< Atras</a>
+            </div>
+    </form>

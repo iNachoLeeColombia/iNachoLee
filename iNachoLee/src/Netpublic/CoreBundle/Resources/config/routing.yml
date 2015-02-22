@@ -1,0 +1,3 @@
+netpublic_core_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: NetpublicCoreBundle:Default:index }

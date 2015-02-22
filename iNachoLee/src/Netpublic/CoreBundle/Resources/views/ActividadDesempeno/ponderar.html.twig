@@ -1,0 +1,15 @@
+<table border=1>
+{%for n in notas_alumnos%}
+        {%for m in n%}
+        <tr>
+        <td>{{m.alumno.nombre}}</td> 
+        <td>{{m.nota}}</td> 
+        <td>{{m.asignatura}}</td>
+        <td>{{m.dimension.padre}}</td>
+        <td>{{m.dimension}}</td>
+        
+
+        </tr>
+        {%endfor%}
+{%endfor%}
+    </table>

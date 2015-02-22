@@ -1,0 +1,30 @@
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            
+            <th>Criterio Academico</th>
+            <th>--</th>
+            <th>--</th>
+        </tr>
+    </thead>
+    <tbody>
+    {%for entity in entities%}
+        <tr>    
+            <td>
+                <div id="capa_editar_{{entity.id}}">
+                {{entity}} 
+                </div>    
+            </td>
+            <td>
+                <a href="#" onclick="editarCriterioAcademicoAno({{entity.id}});">Editar</a>
+            </td>
+            <td>
+                {{ form(delete_form[loop.index0],{ 'attr': {'style':'display:inline;'} }) }}
+                
+            </td>
+        </tr>        
+    {%endfor%}        
+    </tbody>
+</table>

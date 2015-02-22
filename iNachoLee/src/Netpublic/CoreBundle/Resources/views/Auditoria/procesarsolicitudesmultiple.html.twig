@@ -1,0 +1,58 @@
+<table class="table table-condensed">
+    <thead>
+                <tr>
+                    <th><input type="checkbox" id="input_check_all_auditoria"  onclick="allAlumnosAuditoria();" ></th>          
+                  <th>Alumno
+                      <br/>
+                      Grado | Grupo
+                  </th>
+                  <th>Solicitud</th>
+                  <th>Auditoria</th>
+                  <th>Fecha De Solicitud</th>
+                  <th>Profesor Quien Reporto</th>                
+                </tr>
+     </thead>           
+    {%for solicitud in solicitudes%}
+        <tr>
+            <td><input type="checkbox"  class="fila_alumno" value="{{solicitud.id}}" id="input_ver_solicitud{{solicitud.id}}"  id="input_ver_solicitud{{solicitud.id}}" /></td>
+            <td>
+                {{solicitud.alumno}}<br/>
+                 {{solicitud.alumno.grado}} |  {{solicitud.alumno.grupo}}
+            </td>
+            <td>
+                {% if solicitud.tipo==0%}
+                    Asignar grupo {{solicitud.grupo}}
+                {%endif%}    
+                {% if solicitud.tipo==1%}
+                    Cambiar De Grupo.<br/>
+                    De: {{solicitud.alumno.grupo}} A {{solicitud.grupo}}                    
+                {%endif%}                    
+                {% if solicitud.tipo==2%}
+                    Retirar Del grupo {{solicitud.alumno.grupo}}
+                {%endif%}    
+                    {%if solicitud.getEsRealizada()==1 %}
+                    <span style="color: white;background-color: green;">PROCESADA</span>
+                    {%endif%}
+                </td>
+            
+            <td>
+                {{solicitud.auditoria}}
+            </td>
+            <td>
+                {{solicitud.getFechaSolicitud()|date("Y m d")}}
+            </td>
+            <td>
+                {{solicitud.profesor}}
+            </td>
+            <td>
+                
+                <a class="btn btn-small {%if solicitud.getEsRealizada()==1%}
+                     disabled
+                    {%endif%}
+                "    
+                    id="btn_procesarSolicitudUnoUno{{solicitud.id}}"  href="#" onclick="procesarSolicitudUnoUnoAuditoria({{solicitud.id}});">Procesar</a> 
+            </td>
+            
+        </tr>
+    {%endfor%}
+</table>

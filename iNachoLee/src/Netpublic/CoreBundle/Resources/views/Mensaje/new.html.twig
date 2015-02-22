@@ -1,0 +1,57 @@
+
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Ingreso de Información Academica{% endblock %}
+{%block contenido %} 
+<h5>Redactar Mensaje</h5>
+
+<form action="{{ path('mensaje_create') }}" method="post" {{ form_enctype(form) }}>
+    {#{ form_widget(form.destino) }#}
+        <input type="hidden" id="ids" name="ids" value="">    
+        <div style="display: none;z-index: 3;" class="well" id="filtro_mensaje_lista_usuario">
+           
+                <div id="capa_ram_buscar_usuarios">
+                </div>
+                <div>
+    
+</div>
+
+<div style="clear:both">       </div>  
+
+            </div>
+          {#{ form_label(form.destino) }#}
+        {{ form_errors(form.destino) }}
+        {{ form_widget(form.destino) }}
+        <span>Destino.</span>
+        <div class="well" style="background-color: beige;">
+            <div style="color: gray;">Separe con <strong>";"</strong> para varios destinos</div>
+            <span id="span_destino"></span>
+ 
+        {{ form_errors(form.destinot) }}
+        {{ form_widget(form.destinot) }}
+            </div>
+        {{ form_label(form.asunto) }}
+        {{ form_errors(form.asunto) }}
+        {{ form_widget(form.asunto) }}
+
+        {{ form_label(form.tipo) }}
+        {{ form_errors(form.tipo) }}
+        {{ form_widget(form.tipo) }}
+        
+        {{ form_label(form.doc_adjunto) }}
+        {{ form_errors(form.doc_adjunto) }}
+        {{ form_widget(form.doc_adjunto) }}
+        
+        {{ form_label(form.cuerpo_html, null, { 'label': 'Cuerpo Del Mensaje'}) }}
+        {{ form_errors(form.cuerpo_html) }}
+        {{ form_widget(form.cuerpo_html, { 'attr': {'style':'width:99%;height:400px;font-size:20px;'} }) }}        
+        
+        {{ form_rest(form) }} 
+        <div style="clear:both">       </div>  
+   
+        <button type="submit" class="btn btn-primary" style="float: right">Enviar Mensaje</button>
+   
+</form>
+<a  href="#" onclick="indexMensajeinfoAcademicaDefectoAno();">
+            <i class="icon-arrow-left"></i>  Bandeja entrada
+        </a>  
+{%endblock%}

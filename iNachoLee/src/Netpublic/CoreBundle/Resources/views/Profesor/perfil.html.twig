@@ -1,0 +1,11 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Perfil del Profesor{% endblock %}
+{% block menu_principal %}
+
+          <ul>
+            <li><a href="{{ path('grupo_calificar', { 'id_asignatura':asignatura_defecto.id,'id_grupo':grupo_defecto.id,'id_dimension':dimension_defecto.id}) }}">Quiero Calificar Curso</a></li>
+            <li><a href="#">Quiero Ver Horario De Clases</a></li>            
+          </ul>
+  {%endblock%}
+
+

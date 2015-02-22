@@ -1,0 +1,66 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container %} 
+<div class="modal-header">              
+     <h3>Usuarios Registrados</h3>
+</div>
+
+<table class="table bordered-table">
+    <thead>
+    <th>Usuario</th>
+    <th>Primer Nombre</th>
+    <th>Segundo Nombre</th>
+    <th>Primer Apellido</th>
+    <th>Segundo Apellido</th>
+    <th>Sede</th>
+    <th>Grado</th>
+    <th>Grupo</th>
+    <th>Tipo De Usuario</th>
+    </thead>        
+{%for usuario in usuarios%}
+    {%if usuario.alumno.cedula!='-111111'%}
+    <tr>
+        <td>{{usuario}}</td>
+        <td>{{usuario.alumno.nombre}}</td>
+        <td>{{usuario.alumno.nombre1}}</td>
+        <td>{{usuario.alumno.apellido}}</td>
+        <td>{{usuario.alumno.apellido1}}</td>
+        <td>{{usuario.alumno.sede}}</td>
+    <a href="_imprimirboletin1.html.twig"></a>
+        <td>{{usuario.alumno.grado}}</td>
+        {%set grupo=usuario.alumno.grupo%}
+        <td>{%if grupo is null%}
+                No aplica
+             {%else%}   
+                {{grupo}}
+            {%endif%}
+        </td>
+        {%set tipo=usuario.alumno.tipo%}
+        <td>{%if tipo==0%}
+                Alumno
+             {%else%}   
+                Acudiente
+            {%endif%}
+        </td>
+        
+    </tr>
+    {%else%}
+        <tr style="background-color: red;">
+        <td>No leido</td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td></td>
+        
+    </tr>
+
+        
+    {%endif%}
+{%endfor%}
+</table>
+{%render(controller("NetpublicCoreBundle:Alumno:newexcell"))%}
+
+{%endblock%}

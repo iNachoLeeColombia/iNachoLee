@@ -1,0 +1,16 @@
+        <div>
+            <div class="btn-group">
+                <button class="btn btn-light"><i class="icon-only icon-bold bigger-110"></i></button>
+		<button class="btn btn-light"><i class="icon-only icon-italic bigger-110"></i></button>
+		<button class="btn btn-light"><i class="icon-only icon-underline bigger-110"></i></button>
+            </div>
+            <select onchange="procesarFuncionesPanel(this,'font_size');">
+                <option value="*">Tamaño Letra</option>
+                {%for i in 1..50 %}
+                    <option value="{{i}}">{{i}}px</option>
+                {%endfor%}
+           </select>
+                <button onclick="procesarGuardarBc3();"> <i class="icon icon-save icon-2x"></i> Guardar</button>    
+        </div>
+        
+{# empty Twig template #}

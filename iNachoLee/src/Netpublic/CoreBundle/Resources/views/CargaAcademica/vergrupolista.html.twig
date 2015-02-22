@@ -1,0 +1,146 @@
+
+<div style="padding: 0px 0px;width: 1000px;" id="5" >  
+  {%if entities|length>0%} 
+    {%for notas_alumno in entities%}
+             
+             {%set primer_fila_nombre_dimeniones=notas_alumno%}
+             {%if loop.first%}
+                <ul style="list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                        <li style="float: left;width: 47px;margin: 0px 0px;padding: 0px 0px;">
+                        <input type="text" value="-" style="visibility: hidden;width: 24px;height: 30px;margin: 0px 0px;padding: 0px 0px;"></li>                
+                            <li style="float: left;">
+                                <input type="text" value="-"  style="visibility: hidden;width: 250px;;height: 30px;"></li>
+                            {%for nota_alumno in primer_fila_nombre_dimeniones%}
+                                <li  style="float: left;width: 25px;height: 30px;">
+                                   
+                                    <div style="padding-left: 5px;" class="tarea">{{nota_alumno.dimension|replace({" ":""})}}{%if nota_alumno.dimension.ponderado!=null%}({{nota_alumno.dimension.ponderado}}%){%endif%}
+
+                                    </div>
+
+                                </li>                                                 
+                            {%endfor%}
+                </ul>     
+            {%endif%}
+        <ul style="clear: both;padding: 0px 0px;margin: 0px 0px;">
+            <li  style="display: inline;list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                       <div    
+                           style="height: 40px;width:22px;font-weight: bold;float: left;margin: 0px 0px;background-color: #ECEAE9;border-bottom: #CECECE solid thin;"            
+                            >
+                           {%if notas_alumno|length> 0%}
+                           <input type="checkbox" 
+                                {%if grupos[loop.index0]!=null%}
+                                    {%if tipo==1%}
+                                        data-grupo-fuente-id="{{grupos[loop.index0]}}-{{grupos[loop.index0].id}}"
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        data-grupo-destino-id="{{grupos[loop.index0].id}}"
+                                    {%endif%}    
+                                {%else%}
+                                    {%if tipo==1%}
+                                        data-grupo-fuente-id="0"
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        data-grupo-destino-id="0"
+                                    {%endif%}    
+                                {%endif%} 
+                                class="alumnos
+                                    {%if tipo==1%}
+                                        alumnos_fuente
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        alumnos_destino
+                                    {%endif%}    
+                                      " 
+                                value="{{notas_alumno[0].alumno.id}}" 
+                                id="usuario{{notas_alumno[0].alumno.id}}"          
+                             >
+                           {%else%}
+                           <input
+                                {%if grupos[loop.index0]!=null%}                                
+                                    {%if tipo==1%}
+                                        data-grupo-fuente-id="{{grupos[loop.index0]}}-{{grupos[loop.index0].id}}"
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        data-grupo-destino-id="{{grupos[loop.index0].id}}"
+                                    {%endif%} 
+                                {%else%}
+                                    {%if tipo==1%}
+                                        data-grupo-fuente-id="0"
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        data-grupo-destino-id="0"
+                                    {%endif%}
+                                {%endif%}    
+                                    class="alumnos
+                                    {%if tipo==1%}
+                                        alumnos_fuente
+                                    {%endif%}    
+                                    {%if tipo==2%}    
+                                        alumnos_destino
+                                    {%endif%}"    
+                                    value="{{alumnos[loop.index0].id}}"
+                 type="checkbox" />
+                           
+                           {%endif%}       
+                </div>             
+
+                <span type="text" 
+                        style="border-bottom: #CECECE thin solid;height: 40px;width:25px;font-weight: bold;float: left;margin: 0px 0px;background-color:#ECEAE9; "            
+                                   
+                         >
+                    {{loop.index}}
+                </span>    
+                 {%if notas_alumno|length> 0%}       
+                 <span 
+                     style="border-bottom: #CECECE thin solid;position: relative;height: 40px;font-weight: bold;float: left;width: 250px;background-color: #ECEAE9;"
+                     name="{{notas_alumno[0].alumno.id}}" 
+                     class="alumnos"
+                      >
+                     {{notas_alumno[0].alumno}}<br/>
+                     <span style="position: absolute;right: 0px;bottom: 0px;font-size: 10px;color: #0044cc;font-weight: 100;">
+                     {%for item in notas_alumno[0].alumno.getMatriculaAlumno() if item.ano.id==ano_escolar_id%}
+                         {{item.ano}}-{{item.grupo}}
+                     {%endfor%}
+                     {%set alumno=notas_alumno[0].alumno%}
+                     <a  href="{{path('alumno_vermatricula',{'alumno_id': alumno.id })}}" data-toggle="modal" data-target="#myModal_generica">
+                         cambiar
+                     </a>
+                     </span>
+                     </span>
+                 {%else%}
+            <input type="text" class="alumnos" 
+                   readonly="readonly" style="height: 30px;font-weight: bold;float: left;width: 250px;"
+                   value="{{alumnos[loop.index0]}}">
+                 {%endif%}
+            </li> 
+            {%for nota_alumno_ in notas_alumno%}
+                    <li 
+                            style="display: inline;" class="td_notas">
+                       
+                            <input type="text" 
+                                   id="input_nota{{nota_alumno_.id}}" 
+                            style=" float: left;
+                            height: 40px;width: 25px;"            
+                            readonly="readonly"
+                            data-id="{{nota_alumno_.id}}"
+                            class="alumnos columna{{loop.index}} 
+                            {%if nota_alumno_.dimension.tipo==3%}
+                                celda_fallas
+                            {%elseif nota_alumno_.dimension.tipo==1%}
+                                celda_final_periodo
+                            {%else %}
+                                celda_nota                
+                            {%endif%}
+                                alumnos_ready_only" 
+                            value="{{nota_alumno_}}">
+                    </li>  
+                {%endfor%}
+       </ul>
+    {%endfor%}
+            
+  {%else%}
+            <h3 style="text-align: center;">Lo sentimos no se encontraron ALUMNOS para listar.</h3>
+  {%endif%}
+            
+</div>  
+<div style="clear: both;"></div>

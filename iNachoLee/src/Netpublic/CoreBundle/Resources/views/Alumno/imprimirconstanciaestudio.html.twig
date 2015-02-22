@@ -1,0 +1,74 @@
+<div style="page-break-after: always;">
+<h3 style="text-align: center;margin-bottom: 30px;">C O N S T A N C I A</h3>
+
+   
+
+<h3 style="text-align: center;">LA SUSCRITA RECTORA DE LA INSTITUCIÓN EDUCATIVA
+<br/>
+ {{colegio}}</h3>
+
+
+<h3 style="text-align: center;margin-top: 25px;">H A C E<span style="color: white;width: 10px;">&nbsp;&nbsp;&nbsp;&nbsp</span>      C O N S T A R:</h3>
+
+<p style="font-size: 18px;text-align: justify;font-family: sans-serif;">
+    Que, <strong>{{alumno}}</strong> identificada con 
+{%if alumno.getTipoDocumento()==1 %}
+                    Cedula Ciudadania
+                 {%elseif alumno.getTipoDocumento()==2%}   
+                    Tarjeta de Identidad
+                 {%elseif alumno.getTipoDocumento()==3%}   
+                    Cédula de Extranjería ó Identificación de Extranjería
+                 {%elseif alumno.getTipoDocumento()==4%}   
+                    Registro Civil de Nacimiento
+                 {%elseif alumno.getTipoDocumento()==5%}   
+                    Número de Identificación Personal (NIP)
+                 {%elseif alumno.getTipoDocumento()==6%}   
+                    Número de Identificación establecido por la Secretaría de  Educación
+                 {%elseif alumno.getTipoDocumento()==7%}   
+                    Certificado Cabildo
+                 {%endif%}   
+Nº {{alumno.cedula}} de 
+{%if alumno.departamento is null%}
+________________
+{%else%}
+{{alumno.departamento}} 
+{%endif%} es estudiante de esta Institución Educativa y se encuentra cursando el 
+grado {{alumno.grado}} de Educación 
+{%if alumno.grado.getNivelesEducativo()==1 %} 
+      Nivel PreEscolar
+{%elseif alumno.grado.getNivelesEducativo()==2%}                    
+      Básica Primaria
+{%elseif alumno.grado.getNivelesEducativo()==3%}                    
+      Básica Secundaria
+{%elseif alumno.grado.getNivelesEducativo()==4%}                                        
+      Media
+{%endif%}                    
+
+ y ha cursado más del 80% de las clases. Asistiendo puntualmente.
+</p>
+<p style="font-size: 18px;text-align: justify;margin-top: 70px;font-family: sans-serif;">
+Madre o Padre beneficiario: ___________________________
+</p>
+<p style="font-size: 18px;text-align: justify;font-family: sans-serif;">
+Cedula de Ciudadanía: _______________________________
+</p>
+   
+<p style="font-size: 18px;text-align: justify;margin-top: 50px;font-family: sans-serif;">
+Para constancia se firma en Bagadó, a los ______________ días del mes __________________ de ___________.
+</p>
+
+
+
+<p style="text-align: center;margin-top: 70px;">
+                             ________________________________
+</p>
+<p style="text-align: center;">
+GLORIA SERNA DE RENTERIA
+</p>
+<p style="text-align: center;">
+C.C. 26.290.023 de Bagadó
+</p>
+<p style="text-align: center;">
+Rectora  (E) 
+</p>
+</div>

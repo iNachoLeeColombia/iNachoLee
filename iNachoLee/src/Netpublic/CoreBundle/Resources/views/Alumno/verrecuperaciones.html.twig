@@ -1,0 +1,10 @@
+{%for r in recuperaciones%}
+<div>
+    Asignatura: {{r.nota.asignatura}}
+    Nota en recuperacion: <input type="text" id="nota_rec{{r.id}}" value="{{r.notaRecuperacion}}" />
+    <a href="#" onclick="actualizarNotaRecuperacion({{r.nota.id}},{{r.id}},$('#nota_rec{{r.id}}').val(),{{r.nota.alumno.id}},{{r.id}});">cambiar Nota --></a> nota perdida: {{r.nota}}
+    <br/>
+    Actividades de recuperación:<textarea id="textarea_{{r.id}}" cols="50" rows="8"> {{r.observacion}}</textarea>
+    <a href="#" onclick="actualizarNotaRecuperacionObseracion({{r.id}},$('#nota_rec{{r.id}}').val(),{{r.nota.alumno.id}});">Actualizar Actividad(es)</a>
+</div>        
+{%endfor%}

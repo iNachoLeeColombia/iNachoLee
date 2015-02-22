@@ -1,0 +1,10 @@
+<h5>Editar Observación</h5>
+
+<form id="1" name="1" {#action="{{ path('observacion_update', { 'id': entity.id }) }}"#} method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+   
+
+   
+        <button  class="btn" type="submit" onclick="updateObservacionAlumno('{{entity.id}}','{{entity.alumno.id}}');" style="float: left">Actualizar</button>
+</form>
+

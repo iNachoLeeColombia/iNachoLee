@@ -1,0 +1,95 @@
+<h3>Hijos Matriculados</h3>
+{%for entity in entities%}
+{#<a href="{{ path('alumno_perfiladmin', { 'id': entity.id }) }}" >
+{%if entity.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 30px;height: 40px;" src="/iNachoLeeYuri/web/uploads/documents/miniprofesor{{entity.id}}.jpg" alt="{{entity}}" />
+                {%else%}
+                    <img style="width: 30px;height: 40px;" src="/iNachoLeeYuri/web/uploads/documents/miniavatar.png" alt="InachoLee" />                    
+                {%endif%} 
+<div>{{entity.grado}}</div></a>
+
+
+#}
+
+
+<div  class="well" style="color:gray;font-size: 10px;
+              width: 180px;height: 50px;
+              float: left;              
+              padding: 10px;
+                    {% if entity.getPosicionAcademica==1%}
+                    background-color:rgb(0,128,0);
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==2%}
+                    background-color:rgb(255,215,0);
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==3%}
+                    background-color:rgb(255,215,0);
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==4%}
+                    background-color:rgb(255,215,0);
+                    {%endif%}                    
+              margin-right: 10px;
+              ">
+<a {%if entity.tipo==0%} href="{{ path('alumno_perfiladmin', { 'id': entity.id }) }}"{%else%} href="{{ path('alumno_perfilacudientefiltro', { 'id': entity.id }) }}"                
+                {%endif%}
+               title="{{entity.grado}}-({{entity.grupo}})<br/>
+                    Movil:{{entity.movil}}<br/>
+                    Estado(Año Anterior):
+                      {%if entity.getSituacionAcademicaAnoAnterior()==0%}
+                                            <span>Aun No aplica</span><br/>
+                      {%endif%} 
+                       {%if entity.getSituacionAcademicaAnoAnterior()==1%}
+                                            <span>APROBO</span><br/>
+                      {%endif%}
+                     {%if entity.getSituacionAcademicaAnoAnterior()==2%}
+                                            <span>REPROBO <span><br/>
+                      {%endif%}
+                      {%if entity.getSituacionAcademicaAnoAnterior()==8%}
+                                            <span>NO CULMINO LOS ESTUDIOS</span><br/>
+                      {%endif%}                                            
+                                            
+                    Estado (Finalizar Año):{{entity.getCondicionFinalizarAnoAnterior()}} 
+                     {%if entity.getCondicionFinalizarAnoAnterior()==3%}
+                                            <span>DESERTO</span><br/>
+                      {%endif%} 
+                       {%if entity.getCondicionFinalizarAnoAnterior()==5%}
+                                            <span>TRANSLADA A OTRA INSTITUCION</span><br/>
+                      {%endif%}
+                     {%if entity.getCondicionFinalizarAnoAnterior()==0%}
+                                            <span>No aplica <span><br/>
+                      {%endif%}
+                     
+                    {% if entity.getPosicionAcademica==1%}
+                    <span>Primero Puesto</span>                            
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==2%}
+                    <span>Segundo Puesto</span>                            
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==3%}
+                    <span>Tercer Puesto</span>                            
+                    {%endif%}
+                    {% if entity.getPosicionAcademica==4%}
+                    <span>Cuarto Puesto</span>                            
+                    {%endif%} 
+               
+               " 
+               rel="tooltip"
+             >
+                <div>
+            {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                        
+                        <img style="width:30px;height: 40px;float: left;margin-right: 10px;" src="{{asset('uploads/documents/strongalumno'~entity.id~'.jpg')}}" />        
+            {%else%}
+                        <img style="width:30px;height: 40px;float: left;" src="{{asset('uploads/documents/strongavatar.png')}}" />        
+            {%endif%}
+                         
+                        <span style="font-weight: bolder;color: rgb(59, 89, 152);">{{entity}}</span>
+                    
+                                       
+                    </div>        
+             </a>
+             
+
+      </div>
+{%endfor%}
+<div style="clear: both;"></div>

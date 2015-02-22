@@ -1,0 +1,18 @@
+ 
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Horarios de Aula(Editar).</h3>
+            </div>
+            <div class="modal-body"> 
+                <div style="width: 100px;float: left">
+               {{ form_widget(edit_form) }}
+                        <input type="hidden" value="{{entity.id}}" id="horario_clase_editar_id" />        
+               </div>    
+                    
+ 
+<div style="clear: both"></div>                       
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn" data-dismiss="modal">Finalizar</a>
+              <button type="submit" id="btn_gruardar_contrato" class="btn btn-primary" onclick="updateHorarioclaseAula();">Actualizar</button>
+            </div>

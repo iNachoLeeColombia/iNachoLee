@@ -1,0 +1,7 @@
+<option value="*">Periodos Acádemicos</option>
+{%for periodo in periodos%}
+<option value="{{periodo.id}}">{{periodo}}</option>
+{%if loop.last%}
+    <option value="{{periodo.padre.id}}">Nota Final</option>
+{%endif%}
+{%endfor%}

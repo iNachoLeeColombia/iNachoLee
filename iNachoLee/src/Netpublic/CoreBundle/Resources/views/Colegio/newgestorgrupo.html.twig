@@ -1,0 +1,96 @@
+{%extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}GESTOR: Grupos(retiros,asignaciones y transferencia).{% endblock %}
+{%block container %}
+ <div class="col-md-12 container-principal" style="margin-top: 30px;" >
+    <div style="position: fixed;top: 60px;left: 45%;z-index: 300;">
+        <button class="btn btn-primary btn-lg" onclick="procesarMovimientoAlumnosGrupos();">
+            Actualizar lista            
+        </button>
+    </div>
+     <p style="color: gray;text-align: center;margin-top: 20px;font-size: 28px;">
+         Organiza las planillas  del(os) año(s) {%for ano in anos_escolares%}{{ano}},{%endfor%}</p> 
+    <div class="col-md-12"> 
+        <div class="col-md-6" style="padding: 20px;border: #E0E0E0 dashed thick;margin-top: 20px;">
+        <div class="col-md-12 well-lg" style="background-color: #DFDFDF;">
+            <div class="col-md-6">
+                <input type="hidden" id="h_fuente" value="{{ano_fuente.id}}">
+                <span id="container-form-ano-fuente" class="badge" style="font-size: 24px;">
+                    {{ano_fuente}}
+                </span>
+                <button id="btn-ano-fuente" onclick="procesarCambioAno('container-form-ano-fuente','btn-ano-fuente');">cambiar</button>
+            </div>
+            <div class="col-md-6">
+               <select id="select-grado-origen"
+                    onchange="mostrarListaGrado('container-grupo-fuente','container-listagrupo-fuente','select-grado-origen');">
+                <option>Grado</option>
+                {%for grado in grados%}
+                    <option value="{{grado.id}}">{{grado}}</option>
+                {%endfor%}
+                </select>
+            </div>
+                
+        </div>
+        <div class="input-group col-md-12 pull-right" style="margin-top: 20px;" >
+                <input class="form-control"
+                       placeholder="buscar alumnos.." 
+                       
+                       id="busca_fuente"  onkeyup="procesarBusquedadGC('fuente')" 
+                       style="width: 150px;"
+                       type="text">
+                <span class="input-group-btn">
+			<button class="btn btn-default" type="button">
+                            Buscar <i class="icon-search icon-on-right bigger-110"></i>
+                        </button>
+               </span>
+        </div>
+        <div id="container-listagrupo-fuente" class="col-md-12" style="border-bottom: #DFDFDF thin solid;margin-top: 5px;">
+            
+        </div>    
+        <div class="col-md-12" id="container-grupo-fuente" style="overflow-x: scroll;padding-top: 120px;">
+            
+        </div>
+        
+    </div>
+        <div class="col-md-6"  style="padding: 20px;border: #E0E0E0 dashed thick;margin-top: 20px;">
+        <div class="col-md-12 well-lg"  style="background-color: #DFDFDF;">
+            <div class="col-md-6">
+                <input type="hidden" id="h_destino" value="{{ano_destino.id}}">
+                
+                <span id="container-form-ano-destino" class="badge" style="font-size: 24px;">{{ano_destino}}</span>
+                <button id="btn-ano-destino" onclick="procesarCambioAno('container-form-ano-destino','btn-ano-destino');">cambiar</button>
+            </div>
+            <div class="col-md-6">
+                <select id="select-grado-destino" 
+                        onchange="mostrarListaGrado('container-grupo-destino','container-listagrupo-destino','select-grado-destino');">
+                        <option>Grado</option>
+                    {%for grado in grados%}
+                        <option value="{{grado.id}}">{{grado}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+        
+        </div>
+        <div  class="input-group col-md-12 pull-right" style="margin-top: 20px;">
+                <input class="form-control "
+                       placeholder="buscar alumnos.." 
+                       id="busca_destino"  onkeyup="procesarBusquedadGC('destino');" 
+                       style="width: 150px;"
+                       type="text">
+                <span class="input-group-btn">
+			<button class="btn btn-default" type="button">
+                            Buscar <i class="icon-search icon-on-right bigger-110"></i>
+                        </button>
+               </span>
+        </div>
+        <div id="container-listagrupo-destino"  class="col-md-12" style="border-bottom: #DFDFDF thin solid;margin-top: 5px;">
+            
+        </div>    
+            
+        <div class="col-md-12" id="container-grupo-destino"  style="padding-top: 120px;">
+            
+        </div>
+        
+    </div>
+    </div>            
+</div>        
+{%endblock%}

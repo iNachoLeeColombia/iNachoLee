@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:og="http://ogp.me/ns#" 
+    xml:lang="es"
+    lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Bienvenido a iNachoLee!{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+       <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        {% block stylesheets %}
+            <!-- basic styles -->
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/bootstrap.css') }}" type="text/css"  media="screen"/>
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/bootstrap-theme.min.css') }}" type="text/css"  />           
+                
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/font-awesome.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/ace-fonts.css') }}" type="text/css"  /> 
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/font-awesome/css/font-awesome.min.css') }}" type="text/css"  /> 
+                <!-- Page Specific CSS -->
+
+                <!-- ace styles -->
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/ace.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/ace-rtl.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/ace-skins.css') }}" type="text/css"  />           
+                <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/bootstrap-combined.css') }}" type="text/css"  />           
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/demo.css') }}" type="text/css"  />  
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/impresiones.css') }}" type="text/css"  media="print"  />  
+                
+                <link rel="stylesheet" href="{{ asset('bundles/netpubliccore/css/inacholee.css') }}" type="text/css" media="screen" />           
+                
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <script>
+       entorno="http://{{app.request.getHost()}}{{app.request.getScriptName()}}/";
+       url_web="http://{{app.request.getHost()}}/";
+       
+    </script>
+ </head>
+ <body>
+     <div id="alerta_principal"  style="
+                       padding: 0px 0px;
+                       margin: 0px 0px;
+                       z-index: 2000000000;
+                       position: absolute;
+                       top:200px;
+                       left: 500px;
+                       font-size: 18px;
+                       background-color: rgb(249, 237, 190);
+                       font-weight: bolder;
+                       ">
+                  
+                        </div>   
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+       
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,68 @@
+
+<h5>Lista de Asignaturas| Areas </h5>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+          
+            <th>Asignatura</th>
+            <th>Profesor</th>
+            <th>Periodo Academico</th>
+            <th>Actividad Realizada.</th>
+            <th>Desempe&ntilde;o.</th>
+            <th>Mostrar en Boletin.</th>
+            <th>Mostrar en impresión.</th>
+            
+          
+        </tr>
+    </thead>
+    <tbody>
+    {%for entity in entities%}
+   
+ <tr> 
+    
+    <td>
+   {{entity.asignatura}}
+   </td>
+   <td>
+       {{entity.desempeno.profesor}}
+ </td>
+ <td>
+   {{entity.dimension}}
+ </td>
+ <td>
+   {{entity.desempeno.getDescripcionInf}}
+ </td>
+ <td>
+     <div id="capa_desempeno_alumno_{{entity.id}}">
+  {%if entity.getTieneDescriptorAdicional()==0%}       
+   {%if entity.getIndexDesempeno==1%}
+         {{entity.desempeno.getDescripcionInsuficiente|raw}}
+   {%elseif entity.getIndexDesempeno==2%}
+         {{entity.desempeno.getDescripcionAceptable|raw}}
+   {%elseif entity.getIndexDesempeno==3%}
+         {{entity.desempeno.getDescripcionSobresaliente|raw}}
+   {%elseif entity.getIndexDesempeno==4%}    
+         {{entity.desempeno.getDescripcionExcelente|raw}}
+   {%endif%} 
+  {%else%}
+             {%for da in entity.getDescriptorAdicional%}
+                {{da.observacion}}
+             {%endfor%}
+  {%endif%}           
+     </div>
+         <span id="editar_a_{{entity.id}}">
+         <a href="#" onclick="editDesempenoalumno({{entity.id}});">editar</a>
+         </span>   
+         <span id="update_a_{{entity.id}}" style="display: none;">
+            <a href="#" onclick="updateDesempenoalumno({{entity.id}});">actualizar</a>
+         </span>    
+         <a href="#" onclick="deleteDesempenoalumno({{entity.alumno.id}},{{entity.id}});">eliminar</a>  
+ </td>
+ <td><input type="checkbox" ></td>
+ <td><input type="checkbox" ></td>
+ 
+ </tr>
+    
+{%endfor%}
+    </tbody>
+</table>

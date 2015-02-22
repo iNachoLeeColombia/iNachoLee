@@ -1,0 +1,23 @@
+{%if tipo==1%}
+<h5>Area.</h5>
+{%endif%}
+{%if tipo==2%}
+<h5>Area.</h5>
+{%endif%}
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+    </tbody>
+</table>
+
+   
+<a onclick="indexAsignaturainfoAcademicaDefectoAno({{tipo}});" href="#">
+           << Atras
+ </a>   

@@ -1,0 +1,184 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block contenido %}
+Auditoria Activa :
+<span style="color: orange;">
+{{auditoria_activa}}
+</span>
+<h3 style="text-align: center;margin-bottom: 10px;margin-top: 10px;">
+Aqui puedes enviarnos las NOVEDADES.(Retiros,Cambios De grupo y Adiciones.).
+
+</h3>
+  <div class="well" style="
+                background-color:lightgray;
+                position: relative;
+                width: 80%;
+                margin-left: 20px;
+                "
+                id="capa_filtros_buscar_usuario_superior">
+ <div class="btn-group" style="float: right;">
+                 <button class="btn" onclick="$('#div_adicionar_solicitud').show();"><i class="icon-plus-sign"></i> Adicionar.</button>
+                 <button class="btn" onclick="procesarNewCambiarMultipleAuditoria();"><i class="icon-share-alt"></i> Cambiar De Grupo</button>
+                 <button class="btn" onclick="procesarRetirarMultipleAuditoria();"><i class="icon-minus-sign"></i> Retirar De Grupo</button>
+                    </div>
+      </div>   
+    <div class="well" style="width: 80%;margin-left: 20px;">
+<div style="float: left;width: 70%;">
+    
+    <select id="sedes_filtro_usuario" style="width: 160px;" onchange="procesarFiltrosAuditorias(this);" >
+        <option value="*">Sede(s)</option>
+        {%for sede in sedes%}        
+            <option value="{{sede.id}}">{{sede}}</option>
+        {%endfor%}        
+    </select>
+               
+    <select id="grado_filtro_usuario"  class="span2"   onchange="procesarFiltrosAuditorias(this);">
+        <option value="*">Grado</option>
+          {%for grado in grados%}        
+            <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}      
+    </select>
+      
+        <select   class="span2"   id="ntp_inacholeebundle_type_grupos" onchange="procesarFiltrosAuditorias(this);">                  
+            <option value="*">Grupos</option>
+        </select>  
+                     
+        </div> 
+            <div class="input-append">
+                <input class="span2" placeholder="Nombre,Cedula"
+                       id="input_query" type="text">
+                <button class="btn" type="button" onclick="procesarFiltrosAuditorias(this);">Buscar</button>
+            </div> 
+         <div style="clear: both;"></div>
+      
+         <div id="div_cambiar_multiple_solicitud"
+            class="well"
+            style="background-color: lightblue;margin-top: 10px;display: none;">
+           <h4>A <span id="span_numero_alumnos" 
+                       style="color: white;font-weight: 900;background-color: orange;">
+               </span> alumnos se le cambiara el grupo </h4>
+           <br/>
+            <form class="form-horizontal">
+                <div class="control-group">
+                <label class="control-label" for="inputEmail">Grado/Grupo:</label>
+                  <div class="controls">                        
+                        <select id="select_grado_cambiar_multiple_solicitud"  class="span2" 
+                                onchange="getGruposGradoEstandar('select_grado_cambiar_multiple_solicitud','select_grupo_cambiar_multiple_solicitud');">
+                             <option value="*">------</option>
+                                {%for grado in grados%}        
+                                    <option value="{{grado.id}}">{{grado}}</option>
+                                {%endfor%}      
+                        </select> /      
+                        <select   class="span2"   id="select_grupo_cambiar_multiple_solicitud">                  
+                                <option value="*">------</option>
+                        </select> 
+                  </div>
+                </div>
+                    <div style="float: right;">
+                        <button class="btn btn-primary" type="button" onclick="procesarCambiarMultipleAuditoria();">Por Favor, Cambiar De Grupo.</button>
+                    <button class="btn" type="button" onclick="$('#div_cambiar_multiple_solicitud').hide('slow')">Cancelar</button>
+                   
+                </div>
+                     <div style="clear: both;"></div>
+                </form>         
+        </div>
+       
+       
+       
+       
+       
+       
+       <div id="div_adicionar_solicitud"
+            class="well"
+            style="background-color: lightblue;margin-top: 10px;display: none;">
+            <form class="form-horizontal">
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Primer Nombre:</label>
+                     <div class="controls">
+                       <input type="text" id="inputPrimerNombre" placeholder="Ej: Yesica">
+                     </div>
+                 </div>
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Segundo Nombre:</label>
+                     <div class="controls">
+                       <input type="text" id="inputSegundoNombre" placeholder="Ej: Gigliola">
+                     </div>
+                 </div>
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Primer Apellido:</label>
+                     <div class="controls">
+                       <input type="text" id="inputPrimerApellido" placeholder="Ej: Hinestroza">
+                     </div>
+                 </div>
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Segundo Apellido:</label>
+                     <div class="controls">
+                       <input type="text" id="inputSegundoApellido" placeholder="Ej: Asprilla">
+                     </div>
+                 </div>
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Tipo De Documento:</label>
+                     <div class="controls">
+                         <select id="select_tipo_documento">
+                             <option value=""> </option>
+                             <option value="1">Cedula Ciudadania</option>
+                             <option value="2">Tarjeta de Identidad</option>
+                             <option value="3">Cédula de Extranjería ó Identificación de Extranjería</option>
+                             <option value="5">Registro Civil de Nacimiento</option>
+                             <option value="6">Número de Identificación Personal (NIP)</option>
+                             <option value="7">Número Único de Identificación Personal (NUIP)</option>
+                             <option value="8">Número de Identificación establecido por la Secretaría de  Educación</option>
+                             <option value="9">Certificado Cabildo</option>
+                         </select>
+                             
+                     </div>
+                 </div>
+                    
+                 <div class="control-group">
+                     <label class="control-label" for="inputEmail">Cedula:</label>
+                     <div class="controls">
+                       <input type="text" id="inputCedula" placeholder="Ej: 11812000">
+                     </div>
+                 </div>
+                <div class="control-group">
+                <label class="control-label" for="inputEmail">Grado/Grupo:</label>
+                  <div class="controls">                        
+                        <select id="select_grado_adicionar_solicitud"  class="span2" 
+                                onchange="getGruposGradoEstandar('select_grado_adicionar_solicitud','select_grupo_adicionar_solicitud');">
+                             <option value="*">------</option>
+                                {%for grado in grados%}        
+                                    <option value="{{grado.id}}">{{grado}}</option>
+                                {%endfor%}      
+                        </select> /      
+                        <select   class="span2"   id="select_grupo_adicionar_solicitud" onchange="procesarFiltrosAuditorias(this);">                  
+                                <option value="*">------</option>
+                        </select> 
+                  </div>
+                </div>
+                    <div style="float: right;">
+                        <button class="btn btn-primary" type="button" onclick="procesarAdicionarGrupoAuditoria();">Por Favor, Adicionar.</button>
+                    <button class="btn" type="button" onclick="$('#div_adicionar_solicitud').hide('slow')">Cancelar</button>
+                   
+                </div>
+                     <div style="clear: both;"></div>
+                </form>         
+        </div>
+        <div style="color: #F5F5F5;">-----------</div>   
+    <div id="capa_ram_auditorias">
+        </div>
+        
+         </div>  
+         
+         <div style="float: right;">  
+             <button class="btn">
+             Finalizar
+         </button>
+                 <button class="btn btn-primary">
+             Gracias, No Tengo Novedades.
+         </button>
+                  </div>
+        <div style="clear: both;"></div>        
+        
+
+
+{%endblock%}

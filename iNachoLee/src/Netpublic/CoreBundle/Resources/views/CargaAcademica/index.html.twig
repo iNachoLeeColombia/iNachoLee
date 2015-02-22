@@ -1,0 +1,77 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Ingreso de Información Academica{% endblock %}
+{%block container  %} 
+<div style="width: 100%;">
+            <ol class="breadcrumb">
+              <li class="active">
+                  <a href="{{path('usuario')}}"><i class="fa fa-dashboard"></i> Inicio</a>
+              </li>
+              
+            </ol>
+          </div>
+
+<div class="well">
+    
+  <div class="well">
+     <h3 style="text-align: center;">Gestión De Horarios De Clases</h3>
+     <div class="col-md-8">
+        <div class="btn-group">
+            <a href="#" onclick="verHorarioClase();" class="btn">
+              <i class="icon-eye-close"></i>
+              Ver
+          </a>
+          <a href="#" onclick="generarHorarioClase();" class="btn">
+              <i class="icon-retweet"></i>
+              Generar
+          </a>
+          <a href="#" onclick="newGenerarPorPartesHorarioClase();" class="btn">
+              <i class="icon-retweet"></i>
+              Generar Por partes.
+          </a>
+            <a href="#" onclick="verificarHorarioClase();" class="btn">
+              <i class="icon-check"></i>
+              Verificar
+          </a>
+                
+                <a href="#" onclick="borrarHorarioClase();" class="btn btn-danger">
+              <i class="icon-trash icon-white"></i>
+              Borrar
+          </a>
+           <a href="#" onclick="imprimirHorarioClase();" class="btn">
+              <i class="icon-print"></i>
+              Imprimir
+          </a>
+
+        </div>        
+        </div>
+     <div class="col-md-4">
+         <div class="btn-group">
+             <a href="#" onclick="mostrarListaContratoCargaAcademica();" class="btn btn-primary"> Ver Cargas Academicas.</a>         
+    <a class="btn" href="#"><i class="icon-cog icon-white"></i>Opciones</a>
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+            <li><a href="#" onclick="newConfiguracionHorarioClase();">Configuración Global</a></li>
+            <li><a href="#">Aula(s)</a></li>
+            <li><a href="#" onclick="mostrarListaContratoCargaAcademica();">
+                    Contrato(s)</a></li>            
+            <li>
+                <a href="#" onclick="mostrarListaProfesoresCargaAcademica();">
+                    Profesor(es)</a>
+            </li>
+            <li><a href="#"  onclick="mostrarListaAsignaturasCargaAcademica();">
+                    Asignatura(s)</a></li>
+   
+    </ul>
+    </div>                      
+     
+  </div>
+     <div class="clearfix"></div>   
+  </div>   
+<div id="capa_ram_ca">
+    
+</div>
+</div>        
+{%endblock%}
+
+
+

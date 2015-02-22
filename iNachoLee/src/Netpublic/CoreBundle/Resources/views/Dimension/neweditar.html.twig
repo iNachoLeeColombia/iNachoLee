@@ -1,0 +1,24 @@
+
+<div id="div_adicionar_compo" class="well" style="margin-left: 20px;background-color: gainsboro;"> 
+<h4>Adición De Componentes | Items | Componentes Obligatorios(Fallas-FInalPeriodo).</h4>
+<br/>
+ <form class="form-horizontal">
+
+{%if item_hay%}
+<h3 style="text-align: center;">Edición De Items</h3>
+<input type="text" id="nombre_item_1" value="{{item_principal.nombre}}">
+<input type="text" id="ponderado_item_1" value="{{item_principal.ponderado}}"/>
+<button onclick="procesarEditarComponentesItems();">Actualizar Items</button>
+{%endif%}
+{%if componente_hay%}
+<h3>Edición De Componente</h3>
+
+<input type="text" id="nombre_componente" value="{{componente_principal.nombre}}">
+<input type="text" id="ponderado_componente" value="{{componente_principal.ponderado}}">
+<button style="float: right;margin-left: 4px;" class="btn" onclick="$('capa_neweditar').hide();">Cancelar</button>
+<button style="float: right;" class="btn btn-primary" onclick="procesarEditarComponentesItems();">Actualizar Componente</button>
+
+
+{%endif%}
+</form>
+</div>

@@ -1,0 +1,87 @@
+      <div style="width: 80%;   ">
+           <p style="text-align: center;font-size: 30px;">
+            {{alumno.sede}}
+              </p>          
+          <div style="float: left;margin-right: 10px;">
+          <img style="width:130px;height:150px"
+               src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}"
+               />        
+          </div>   
+          <div style="float: left;font-size: 18px;">
+              <p>Nombres y Apellidos : {{alumno}}</p>
+              <p>Codigo:{{alumno.id}}</p>
+              <p>Grupo: {{alumno.grupo}}</p>
+              <p>   Año Escolar:{{ano_escolar_activo}}
+              (Periodo Actual:{{periodo_escolar_activo}})</p>
+         
+          </div><div style="float: left;font-size: 18px;">              
+              
+          </div>
+      </div>    
+<div style="clear: both;"></div>  
+<div style="width: 80%;background-color:#DDDDDD;">        
+  <div style="color:white;font-weight: bolder;font-size: 16px;background-color: gray;">    
+    <div style="width: 150px;float: left;">Areas/Asignaturas</div>
+    {%for periodo_academico in periodos_escolares%}
+        <div style="width: 50px;float: left;height: 40px;">P{{loop.index}}</div>
+    {%endfor%}
+        <div style="width: 30px;float: left;">Def</div>
+        <div style="width: 55px;float: left;">Desemp </div>
+    <div style="width: 250px;float: left;">Descriptores</div>
+  <div  style="width: 40px;float: left;">Faltas
+  </div>
+  </div>  
+<div style="clear: both;"></div>  
+{%for areas in datos%}
+<div style="
+     width:98%;
+     margin-left: 5px;
+     margin-bottom: 20px;     
+     ">
+  <div>  
+      <div  style="font-size: 16px;width: 150px;float: left;">  {{areas.nombre}}</div>
+        <div style="width: 50px;float: left;height: 20px;"></div>
+        <div style="width: 50px;float: left;height: 20px;"></div>
+        <div style="width: 50px;float: left;height: 20px;"></div>
+        <div style="width: 50px;float: left;height: 20px;"></div>
+      <div style="width: 30px;font-size: 16px;float: left;">{{areas.nota_promedio_acumalativa}}</div>
+      <div style="width: 55px;float: left;">{{areas.desempeno}}</div>
+      <div  style="width: 250px;float: left;"></div>
+      <div  style="width: 40px;float: left;">{{areas.inasistencia}}</div>
+  </div>
+    <div style="clear: both;"></div>  
+      {% for asignaturas_area in areas.asignaturas%}
+        <div>  
+            <div  style="float:left;width: 150px;"> 
+                <span style="color:#DDDDDD;">---</span>{{asignaturas_area.asignatura.nombre}}</div>
+             {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                <div style="width: 50px;height:5px;float:left;">{{periodos_asignatura.periodo.nota}}</div>
+             {%endfor%}   
+                <div style="width: 30px;float:left;">{{asignaturas_area.asignatura.nota}}</div>     
+                <div style="width: 55px;float:left;">&nbsp;</div>
+                <div style="width: 250px;float:left;text-align: justify;">&nbsp;
+                    {%for desempenos_asg in asignaturas_area.asignatura.desempenos%}
+                        {%for desempeno_asg in desempenos_asg%}
+                            {{desempeno_asg|raw}}
+                        {%endfor%}
+                    {%endfor%}    
+                </div>
+                <div style="width: 40px;float:left;">{{asignaturas_area.asignatura.inasistencias}}</div>
+            
+        </div>  
+    <div style="clear: both;"></div>  
+      {%endfor%}
+        <div>---------------------------------------------
+            ----------------------------------------------
+            ----------------------------------------------
+            ----------------------------------------------
+        </div>        
+    </div>       
+{%endfor%}
+<div>
+    <p style="font-size: 15px;color: orange;">Observaciones:</p>
+    {%for observacion in observaciones%}
+        {{observacion}}
+    {%endfor%}    
+</div>   
+</div> 

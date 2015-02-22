@@ -1,0 +1,11 @@
+<h4>Gestion de Grupo.</h4>
+<div class="col-md-12" style="padding: 30px;">
+<select id="select_new_grado" onclick="procesarSeleccionGradoGrupo();">
+    <option value="*" >Selecciona el grado</option>
+    {%for grado in grados%}
+        <option value="{{grado.id}}">{{grado}}</option>
+    {%endfor%}    
+</select>
+<div id="container-nuevo-grupo" style="display: none;margin-top: 20px;">
+</div>
+</div>   

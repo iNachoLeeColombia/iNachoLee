@@ -1,0 +1,85 @@
+<div>
+    
+   
+<div class="well" style="
+                background-color:lightgray;
+                position: relative;"
+                id="capa_filtros_buscar_usuario_superior">
+    
+    <div id="capa_formato_html_xls_pdf" style="
+         position: absolute;
+         top: 100px;
+         left: 30%;
+         background-color:#F5F5F5;
+         width: 350px;
+         height: 70px;
+         padding-left: 5px;
+         padding: 0 0;
+         display: none;"
+         class="well">         
+          
+    </div>
+    <div style="float: left;width: 950%;">
+        <select id="sede" style="width: 160px;" onchange="actualizarSedeConsolidadoColegio();">
+        <option value="*"> Sede?</option>        
+        
+        {%for sede in sedes%}
+            <option value="{{sede.id}}">{{sede}}</option>
+        {%endfor%}
+        </select>    
+        <select id="grupo" style="width: 160px;" onchange="actualizarGrupoConsolidadoColegio();">
+        <option value="*"> Grupo?</option>        
+        
+        {%for grupo in grupos%}
+            <option value="{{grupo.id}}">{{grupo}}</option>
+        {%endfor%}    
+    </select>  
+               
+    
+        
+       
+        </div>        
+    <div class="well" style="float: right;width: 20%;background-color:buttonface;margin-bottom: 0px;">
+        
+       <h2 style="text-align: center;color: #FFD700;">Consolidados</h2>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+             
+             <div class="btn-group" style="margin-left: 90px;">
+            <a href="#" onclick="mostrarConsolidadoLibroFinalColegio();" class="btn">
+              <i class="icon-retweet"></i>
+              C. Libro Final
+          </a>
+                <a href="#" onclick="mostrarConsolidadoColegio(1);" class="btn">
+              <i class="icon-retweet"></i>
+              C. Eficiciencia
+          </a>
+          </a>
+                <a href="#" onclick="mostrarConsolidadoAsgColegioHTML();" class="btn">
+              <i class="icon-retweet"></i>
+              C Asignaturas Perdidas
+          </a>
+                
+                <a href="#" onclick="mostrarConsolidadoPromediosGruposColegio();" class="btn">
+              <i class="icon-retweet"></i>
+              C. Promedio Grupos
+          </a>
+           <a href="#" onclick="mostrarConsolidadoMejoresAlumnosGruposColegio();" class="btn">
+              <i class="icon-retweet"></i>
+              C. Mejores Estudiantes
+          </a>
+
+        </div>   
+   
+    <div class="well" id="notificacion_consolidos" style="margin-top: 10px;margin-left: 15px;width: 90%;;color: black;font-weight:900;font-size: 18px;background-color: #FFD700;">
+    Por favor Click. Y te muestro tu Consolidado
+    </div>
+    
+    <div id="capa_ram_consolidado">
+        
+     {% include 'NetpublicCoreBundle:Colegio:_newconsolidado.html.twig' with {'grados': grados}%}   
+            
+</div>    
+<div style="clear: both;"></div>
+</div>

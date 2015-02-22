@@ -1,0 +1,89 @@
+
+{% if tipo==1%}
+<form id="3" name="3" {#action="{{ path('alumno_create') }}"#} method="post">    
+<div class="modal-header">              
+              <h3>Información De Padres</h3>
+</div>
+<div style="width: 50%;float: left;">  
+<h5>Información De la Padre.</h5>    
+    {{ form_widget(edit_padre_form) }}
+      {{ form_rest(edit_padre_form) }} 
+    </div>        
+ <div style="width: 50%;float: left;">        
+<h5>Información De la Madre.</h5>
+      {{ form_widget(edit_madre_form) }}
+      {{ form_rest(edit_madre_form) }} 
+     </div> 
+    <div style="clear: both"></div>                       
+           
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="button_createPadres" onclick="createPadresinfoAcademicaDefectoAno1({{tipo}});" >Guardar Padres</button>
+              
+            </div> 
+
+    </form>    
+<div id="capa_ram_new_alumno" style="display: none;">
+    
+</div>
+{%endif%}
+{%if tipo==0%}
+<form action="{{ path('alumno_createcustom', { 'tipo': 0 }) }}" method="post" {{ form_enctype(edit_acudiente_form) }}>    
+<div class="modal-header">              
+              <h3>Información De Acudiente</h3>
+</div>
+<div style="width: 50%;float: left;"> 
+    {{form_label(edit_acudiente_form.nombre)}}
+   {{ form_widget(edit_acudiente_form.nombre)}}  
+   
+ {{form_label(edit_acudiente_form.nombre1)}}
+   {{ form_widget(edit_acudiente_form.nombre1)}}  
+
+ {{form_label(edit_acudiente_form.apellido)}}
+   {{ form_widget(edit_acudiente_form.apellido)}}  
+
+ {{form_label(edit_acudiente_form.apellido1)}}
+   {{ form_widget(edit_acudiente_form.apellido1)}}  
+          
+        
+  {{form_label(edit_acudiente_form.parentesco)}}
+   {{ form_widget(edit_acudiente_form.parentesco)}}            
+
+          {{form_label(edit_acudiente_form.tipo_documento)}}
+   {{ form_widget(edit_acudiente_form.tipo_documento)}}            
+
+          {{form_label(edit_acudiente_form.cedula)}}
+   {{ form_widget(edit_acudiente_form.cedula)}}            
+
+  {{form_label(edit_acudiente_form.departamento)}}
+   {{ form_widget(edit_acudiente_form.departamento)}}            
+  {{form_label(edit_acudiente_form.municipio)}}
+   {{ form_widget(edit_acudiente_form.municipio)}}            
+         
+    </div>
+  <div style="width: 50%;float: left;">
+  {{form_label(edit_acudiente_form.direccion_residencia)}}
+   {{ form_widget(edit_acudiente_form.direccion_residencia)}}       
+   {{form_label(edit_acudiente_form.telefono)}}
+   {{ form_widget(edit_acudiente_form.telefono)}}            
+  {{form_label(edit_acudiente_form.ocupacion)}}
+   {{ form_widget(edit_acudiente_form.ocupacion)}}            
+  {{form_label(edit_acudiente_form.empresa)}}
+   {{ form_widget(edit_acudiente_form.empresa)}}            
+   {{form_label(edit_acudiente_form.email)}}
+   {{ form_widget(edit_acudiente_form.email)}}   
+   {{ form_rest(edit_acudiente_form) }} 
+   </div> 
+    <div style="clear: both"></div>                       
+           
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="button_createAcudiente" >Guardar Acudiente</button>
+              
+            </div>        
+</form>
+<div id="capa_ram_new_padre" style="display: none;">
+    
+</div>        
+{%endif%}
+    
+    
+

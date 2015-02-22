@@ -1,0 +1,34 @@
+<div id="div_adicionar_compo" > 
+<h4>Modelo de evaluaciónxxxx.</h4>
+<div class="col-md-10" style="font-size: 10px;">
+<table class="table table-bordered">
+    <tr>
+        <td>
+            <input  type="text" name="name_componente" id="name_componente" placeholder="Ej: Comp Coginitivo.">
+            <input style="width: 50px;" type="text" id="porcentaje" name="porcentaje" placeholder="Ej: 30%">
+            <input style="width: 50px;" type="hidden" name="padre" id="padre" value="{{padre.id}}">
+            <button  onclick="procesarAdiciones(7);">
+                agregar
+            </button>
+        </td>
+        {%for item in hijos%}
+            <td>{{item}} ({{item.ponderado}}) </td>   
+        {%endfor%}
+        <td>Final De Periodo</td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="procesarAdiciones(3);" class="btn btn-info btn-xs">
+                agregar fallas
+            </button>
+        </td>
+        {%for item in hijos%}
+            <td> &nbsp;</td>   
+        {%endfor%}
+        <td>&nbsp;</td>
+    </tr>
+
+</table>            
+</div>
+ 
+</div>

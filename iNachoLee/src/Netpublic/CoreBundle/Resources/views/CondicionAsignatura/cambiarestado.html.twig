@@ -1,0 +1,35 @@
+<div id="celda{{c.id}}" onclick="procesarClickAsignaturaHorarios({{c.id}});" 
+                    class="
+                    celda_column{{c.getDiaColumna()}} 
+                    celda_fila{{c.getHoraFila()}} 
+                    {%if c.tipo==0%}
+                     celda_libre
+                    {%elseif c.tipo==1%}
+                     celda_ocupada
+                    {%endif%}                    
+                    "  
+                    data-id={{c.id}}> 
+                    
+                    
+                    {%if c.tipo==0%}
+                    <i class="icon-check"></i>
+                    {%elseif c.tipo==-1%}    
+                    <i class="icon-remove-circle"></i>
+                    {%elseif c.tipo==1%}
+                                       <span style="
+                                            color: red;
+                                            font-size: 14px;
+                                            font-weight: 900;
+                                 ">(X)
+                                            </span>    
+
+
+                    {%elseif c.tipo==2%}                        
+                        Festivo
+                    {%elseif c.tipo==3%}    
+                        <span style="color: white">    
+                            ------
+                        </span>   
+                    {%endif%}                        
+                    
+                       </div> 

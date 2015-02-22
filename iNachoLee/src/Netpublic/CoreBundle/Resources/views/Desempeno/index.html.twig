@@ -1,0 +1,55 @@
+ <button class="close" onclick="$('#capa_ram_actividades_desempenos_calificar_nota').hide();" style="float: right;margin: 0 0 0 0 ;padding: 0px 0px 0px 0px;">&times;</button></div>
+    
+<h5>Lista de Desempeños</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion Del Desempeño</th>
+             
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('desempeno_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.descripcioninf }} (<span style="font-size:9px">{{entity.periodo}}</span>)</td>
+            
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                    
+                <a href="#" onclick="showdesempenoinfoAcademicaDefectoAno({{entity.id}});">show</a>
+                  |
+                  <a href="#" onclick="editardesempenoinfoAcademicaDefectoAno({{entity.id}},{{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});">editar</a>
+                  |    
+<form style="display: inline" name="form_{{entity.id}}" id="form_{{entity.id}}" >                                                                          
+<button style="
+        color: rgb(74, 174, 216);
+        display: inline;
+        background: none;
+        border-style:none;"
+          onclick="deletedesempenoinfoAcademicaDefectoAno({{entity.id}},{{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});" >
+<i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+</form>                                
+                  
+
+                    </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="#" onclick="
+            newdesempenoinfoAcademicaDefectoAno({{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});">
+            Nuevo
+        </a>
+    </li>
+</ul>
+<div style="clear: both"></div>

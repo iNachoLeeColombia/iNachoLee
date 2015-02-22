@@ -1,0 +1,61 @@
+{#<form action="{{ path('grupo_calificar', {'id_asignatura':1, 'id_grupo': 1,'id_dimension':1}) }}" method="post" >    
+#}
+
+        <div style="float: left;margin-left: 0px ">
+            <ul style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+              <li style="width: 150px;height: 50px;">
+                           </li>   
+            {%for ent in entities[0]%}
+              
+                <li style="margin: 0 0 0 0">
+                    <input type="text" class="alumnos"  name="{{ent.alumno.id}}" readonly style="width: 200px;height: 30px;" value="{{ent.alumno|raw }}" />
+                </li>
+            {%endfor%}    
+            </ul>
+      </div>  
+    {% for f_v_a in form_view%}
+{#Definitica del Periodo#}
+        {%if loop.last%}
+      <div style="float: left;margin-left: 0px ">
+            <ul id="dim{{entities[loop.index0][0].id}}" style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+               <li style="width: 50px;height: 50px;"><div class="tarea">{{entities[loop.index0][0].dimension|raw}}</div></li>   
+            {% for f_v in f_v_a%}                                                     
+                 <li style="margin: 0 0 0 0">   
+                     
+                    {{ form_widget(f_v.nota, { 'attr': {'class': 'grupoPeriodoFinal input_nota','disabled':""} }) }}    
+                    {{ form_rest(f_v) }}
+                </li>        
+            {% endfor%}  
+            </ul> 
+     </div>
+{#Asistencia del Periodo#}
+        {%elseif loop.index==(loop.length-1)%}
+        <div style="float: left;margin-left: 0px ">
+            <ul id="dim{{entities[loop.index0][0].id}}" style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+               <li style="width: 50px;height: 50px;"><div class="tarea">{{entities[loop.index0][0].dimension|raw}}</div></li>   
+            {% for f_v in f_v_a%}                                                     
+                 <li style="margin: 0 0 0 0">   
+                     
+                    {{ form_widget(f_v.nota, { 'attr': {'class': 'grupoAsistencia input_nota'} }) }}    
+                    {{ form_rest(f_v) }}
+                </li>        
+            {% endfor%}  
+            </ul> 
+     </div>
+{#Actividades Dep Periodo#}
+        {%else%}
+      <div style="float: left;margin-left: 0px ">
+            <ul id="dim{{entities[loop.index0][0].id}}" style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+               <li style="width: 50px;height: 50px;"><div class="tarea">{{entities[loop.index0][0].dimension|raw}}</div></li>   
+            {% for f_v in f_v_a%}                                                     
+                 <li style="margin: 0 0 0 0">   
+                     
+                    {{ form_widget(f_v.nota, { 'attr': {'class': 'grupoAtividades input_nota grupoB'} }) }}    
+                    {#{ form_rest(f_v) }#}
+                </li>        
+            {% endfor%}  
+            </ul> 
+     </div>
+     {%endif%}
+    {%endfor%}
+{#</form>#}

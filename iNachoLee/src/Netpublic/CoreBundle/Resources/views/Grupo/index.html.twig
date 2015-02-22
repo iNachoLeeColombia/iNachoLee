@@ -1,0 +1,43 @@
+<h5>Grupos.</h5>
+<div style="background-color:whitesmoke" class="well">
+            <div style="float: right;">
+        <a href="#" onclick="newGrupoinfoAcademicaDefectoAno()">
+            <i class="icon-file"></i>Nuevo Grupo.
+                </a></div>
+        </div>  
+
+<table  class="table">
+    <thead>
+        <tr>
+            <th class="blue header">Id</th>
+            <th class="yellow header">Nombre</th>
+            <th  class="red header">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('grupo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}-{{entity.grado}}</td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                        <a href="#" onclick="showGrupoinfoAcademicaDefectoAno({{entity.id}})">show</a>
+                                        <a href="#" onclick="editarGrupoinfoAcademicaDefectoAno({{entity.id}})">editar</a>
+                
+<form style="display: inline" name="form_{{entity.id}}" id="form_{{entity.id}}">                                                                          
+<button style="color: rgb(74, 174, 216);display: inline;background: none;border-style:none " onclick="deleteGrupoinfoAcademicaDefectoAno({{entity.id}})" >
+<i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+</form>
+
+                
+                
+                </div>
+            </td>
+
+            
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

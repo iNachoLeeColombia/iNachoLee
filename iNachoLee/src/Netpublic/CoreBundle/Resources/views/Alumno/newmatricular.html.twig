@@ -1,0 +1,33 @@
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Renovación De Matricula.</h3>
+            </div>
+            <div class="modal-body"> 
+                <div style="width: 100px;float: left">
+                    <div class="control-group">
+            <label for="select01" class="control-label">Grados</label>
+            <div class="controls">
+                <select id="ntp_inacholeebundle_contratotype_grado" name="ntp_inacholeebundle_contratotype[grado]" onchange="getGruposGrado(this);">
+                    <option value="">Seleccione Grado</option>  
+                {%for grado in grados%}  
+                    <option value="{{grado.id}}">{{grado}}</option>
+                {%endfor%}
+              </select>
+            </div>
+            <div class="control-group">
+            <label for="select01" class="control-label" >Grupos</label>
+            <div class="controls">
+              <select id="ntp_inacholeebundle_contratotype_grupos">               
+              </select>
+            </div>
+          </div>
+          </div>
+               </div>    
+                    
+ 
+<div style="clear: both"></div>                       
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+              <button type="submit" id="btn_gruardar_contrato" class="btn btn-primary" onclick="matricularalumnoantiguoAlumnoinfoAcademicaDefectoAno();">Matricular Ahora</button>
+            </div>

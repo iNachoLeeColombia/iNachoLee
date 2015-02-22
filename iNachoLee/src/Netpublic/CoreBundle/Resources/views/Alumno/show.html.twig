@@ -1,0 +1,66 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block breadcrumb%}
+<li><i class="fa fa-user"></i>
+			<a href="#">Ingreso de nuevo alumno|acudiente.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Ingreso de alumnos nuevos.<small>
+ <i class="fa fa-user"></i>
+    Acudientes | Alumnos
+  </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container %} 
+        {%if not entity.usuario.getEsAlumno%}
+                <div style="float:left ">
+                {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 140px;height: 150px;" src="{{asset('uploads/documents/strongalumno'~entity.id~'.jpg')}}" alt="InachoLee" />
+                {%else%}
+                    <img style="width: 140px;height: 150px;" src="/iNachoLeeYuri/web/uploads/documents/strongavatar.png" alt="InachoLee" />                    
+                {%endif%}
+                    </div>
+                    <div style="float:right;padding-top: 20px;text-align: left;background-color: red">
+                        
+                        <h2>{{entity}}</h2>
+                        </div>       
+           {%else%}
+                    <div style="float:left;width: 30% ">
+                {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 140px;height: 150px;" <img  style="width: 15px;height: 20px;" src="{{asset('uploads/documents/strongalumno'~entity.id~'.jpg')}}" alt="{{entity}}" /> 
+                {%else%}
+                    <img style="width: 140px;height: 150px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+                {%endif%}
+                        </div>
+                    <div style="float:right;width: 70%;padding-top: 60px;text-align: left;">
+                        
+                        <h2>{{entity}}</h2>  
+                </div>    
+                                                                       
+           {%endif%}
+                    
+<span style="color: green;"> No olvides,por defecto el nombre de usuario es:<strong style='color:red;'>{{entity.usuario.getUsername}}</strong>y la "cedula" se 
+                            convierten automaticamente en la "contraseña" del Perfil</span>
+<table class="table">
+    <tr><th>Sede: </th><td>{{entity.sede}}</td></tr>
+    <tr><th>Cedula: </th><td>{{entity.cedula}}</td></tr>
+    <tr><th>Grado: </th><td>{{entity.grado}}</td></tr>
+    <tr><th>Movil: </th><td>{{entity.movil}}</td></tr>
+</table>  
+<div class="modal-footer">
+    
+    <a  href="#" onclick="newAlumnoUnoUnoLoteDefectoAno();" class="btn" >
+            Terminar</a>
+    
+    <a href="{{ path('alumno_editperfil', {'id': entity.id}) }}" class="btn btn-primary" >
+            Editar 
+           {%if (entity.tipo==0)%}
+                Alumno
+           {%else%}
+                Acudiente
+            {%endif%}
+           
+    </a>
+   </div>
+{%endblock%}

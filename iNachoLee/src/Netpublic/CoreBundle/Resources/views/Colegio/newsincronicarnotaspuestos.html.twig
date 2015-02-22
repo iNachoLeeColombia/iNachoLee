@@ -1,0 +1,43 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mejores Estudiantes.{% endblock %}
+{%block  sub_container  %}
+            <div style="float: left;margin-top: 5px;margin-left: 30px;color: orange;">
+                {{ano_escolar_activo}}
+                /{{periodo}}<a href="#" onclick="mostrarPeriodos('colegio_newsincronicarnotaspuestos',this);"> cambiar </a>
+                <div id="mostrar_periodos">
+                
+                </div>
+            </div> 
+
+<h3 style="text-align: center;"> Gestor De Puestos-Grupo.</h3>
+<table class="table table-striped">
+
+    {%for d in data%}
+    <tr><td>
+            <div style="margin-left: 20px;margin-top: 10px;font-size: 14px;"> 
+                <div style="float: left;width: 60%;">  
+                 {{d.nombre}}
+                {%if d.cambios > 0%}    
+                    <span style="color: white;background-color: orange;font-weight: 900;font-size: 8px;">
+                    (Puestos Sin Actualizar).
+                </span>
+                {%endif%}
+             </div>
+                    <div style="float: left;width: 30%;">
+                        <a href="#"
+                           id="anchor_grado_{{d.id}}" 
+                           class="mas_detalles" 
+                           onclick="mostrarVerMasVerMenos('capa_ram_mejores_estudiantes_grado{{d.id}}','colegio/{{d.id}}/verdetallesgradopuestos',this);">   Ver ++</a>
+              </div>       
+                    <div style="clear: both;"></div>      
+            <div id="capa_ram_mejores_estudiantes_grado{{d.id}}">
+
+            </div>
+
+            </div>
+</td>
+</tr>
+        {%endfor%}
+
+</table>
+{%endblock%}

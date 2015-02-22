@@ -1,0 +1,39 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Ingreso de Información Academica{% endblock %}
+{%block contenido %} 
+<div id="accordion1">
+              <div>
+                <h3><a href="#">Descriptores,Actividades Academicas Periodos</a></h3>
+                <div>
+                    <!-- Tabs -->          
+            <div id="tabs9">
+              <ul>
+                  <li><a onclick="indexdesempenoinfoAcademicaDefectoAno();" href="#tabs9-1">Descriptores</a></li>
+
+                  <li><a onclick="indexinfoAcademicaDefectoAno(4)" href="#tabs9-2">Actividades</a></li>
+                <li><a onclick="indexDescriptoresProfesorinfoAcademicaDefectoAno();" href="#tabs9-3">Periodos</a></li>
+              </ul>
+              <div id="tabs9-1">
+                  <div id="_tabs9-1" style="height: 600px">
+                      
+                  </div>   
+              </div>
+              <div id="tabs9-2">
+                    <div id="_tabs9-2" style="height: 400px">
+                      
+                  </div>  
+              </div>
+              <div id="tabs9-3">
+                  <div id="_tabs9-3" style="height: 400px">
+                      
+                  </div>
+              </div>
+
+            </div>
+            <!--end tabs-->
+                </div>
+              </div>
+            
+            </div>
+                
+{%endblock%}

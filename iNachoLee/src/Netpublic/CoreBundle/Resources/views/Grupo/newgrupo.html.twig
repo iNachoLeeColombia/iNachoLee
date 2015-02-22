@@ -1,0 +1,28 @@
+
+<table class="table table-condensed" style="padding: 20px;">
+{%for sede in sedes%}
+    <tr>
+        <td>
+    <div>
+     <input type="checkbox" checked="checked" onclick="procesarCheckedNuevoGrupo(this,{{sede.id}});"><span id="span_{{sede.id}}">{%if sede.getNombreCorto is null%}{{sede}} {%else%}{{sede.getNombreCorto}}{%endif%}</span>
+     <button class="btn btn-xs" id="btn_{{sede.id}}" onclick="actualizarEditarGrupo({{sede.id}},'<input value=\'{{sede}}\' text=\'text\' id=\'input_{{sede.id}}\' />')">cambiar nombre corto</button>
+    
+    <div id="container-info-sede-nuevo-grupo-{{sede.id}}">
+    <br>
+    <label>Nro grupos:</label><input style="width: 30px;" id="input_sede_{{sede.id}}" onkeyup="procesarNroGruposGrado({{sede.id}})" type="text" value="1"><br/>
+    <div id="container-varios-grupos-{{sede.id}}">
+        <input class="nombres nombres_{{sede.id}}" type="text" value="{{label_grado}}01  {%if sede.getNombreCorto is null%}{{sede}} {%else%}{{sede.getNombreCorto}}{%endif%}"><br/>
+    </div>
+    </div>
+    </div>
+    </td>
+    </tr>
+{%endfor%}
+</table>
+<div class="btn-group-sm">
+    <button  class="btn btn-xs" onclick="createGrupoinfoAcademicaDefectoAno(1);" type="submit">Guardar</button>
+    <button  class="btn btn-xs" onclick="createnewGrupoinfoAcademicaDefectoAno()" type="submit">Guardar & Nuevos</button>   
+    <button  class="btn btn-xs" onclick="indexGrupoinfoAcademicaDefectoAno();">
+            << Atras
+    </button>
+</div>

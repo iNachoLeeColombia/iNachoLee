@@ -1,0 +1,81 @@
+/* 
+    Document   : impresiones
+    Created on : 16-may-2012, 11:22:09
+    Author     : yuri
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#container{
+    font-size: 12px;
+}
+#sub-container{
+    width: 100%;
+    clear: both;
+}
+.main-content{
+    margin-left:0px;
+    margin: 0px;
+    padding: 0px;
+}
+div#sub-container-left_impresion{
+    display: none !important;
+    
+}
+div#navbar{
+    display: none !important;
+}
+div#container_top{
+    display: none !important;
+}
+div.container-ws{
+    display: none !important;
+}
+.no-imprimir{
+    display: none !important;
+}
+
+div#sub-container-right-informe-bc3{
+    color: black;
+    overflow-y: visible!important;
+    padding: 0 0;
+    margin: 0 0;
+    width: 100%;
+}
+
+div.footer-div {
+    page-break-after:always;
+}
+.img_fondo{
+    background-color: gray!important;
+}
+table.table-boletin {
+    border:solid #000 thin !important;
+    border-width:1px 1px 1px 1px !important;
+    border-collapse:collapse;
+    width:100%;
+}
+table.table-boletin th, table.table-boletin td {
+    border:solid #000 thin !important;
+    border-width:1px 1px 1px 1px !important;
+    margin: 0 0;
+    font-size: 11px;
+}
+table tr td{
+    padding: 0 0;
+    margin: 0 0 ;
+}
+table.table-boletin td, table.table-boletin tr {
+    margin: 0 0;    
+    height: 7px;
+}
+.asg_item{
+    padding-left: 12px;
+}
+div.divHeader {
+            position: fixed;
+            top: 0;
+        }
+hr.applicant-break {page-break-after:always;}
+
+@page { margin: 1cm } /* All margins set to 2cm */
+

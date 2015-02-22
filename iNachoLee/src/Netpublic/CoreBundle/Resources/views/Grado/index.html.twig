@@ -1,0 +1,103 @@
+
+<h5>Lista de Grados</h5>
+<div style="background-color:whitesmoke" class="well">
+            <div style="float: right;"><a href="#" onclick="newGradoinfoAcademicaDefectoAno(0);">
+            <i class="icon-file"></i>Nuevo Grado.
+                </a></div>
+        </div>  
+<table  class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="blue header">Nombre</th>
+            <th class="yellow header">Areas/Asignaturas</th>
+            <th class="red header">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+{%if es_ajax%} 
+              
+ {% for entity in entities %}
+        <tr>            
+            <td>ss{{ entity.nombre }}</td>
+            <td>
+            {%for a in entity.asignaturas%}
+                 {% if(a.getEsArea()==1) %}                   
+                    <div>
+                        <span style="font-size: small;;">{{a.area}}</span> - <span style="font-size: x-small;">
+                            {{a.nombre}}
+                        </span>
+                        <div>
+                            {{a}}   
+                        </div>
+                    </div>
+                 {%endif%} 
+                 asd
+            {%endfor%}
+            </td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                        <a  onclick="showGradoinfoAcademicaDefectoAno({{entity.id}})" href="#">Mostrar</a>              
+                        | <a  onclick="editarGradoinfoAcademicaDefectoAno({{entity.id}})" href="#">editar</a>
+                  | 
+     <form style="display: inline" name="form_{{entity.id}}" id="form_{{entity.id}}" >                                                                          
+<button style="
+        color: rgb(74, 174, 216);
+        display: inline;
+        background: none;
+        border-style:none;"
+         onclick="deleteGradoinfoAcademicaDefectoAno('{{entity.id}}');">
+<i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+</form>
+             
+                               </div>       
+                 
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+       
+{%else%}    
+ {% for entity in entities %}
+        <tr>            
+            <td>{{ entity.nombre }}</td>
+            <td>
+            {%for a in entity.asignaturas%}
+                 {% if(a.getEsArea()!=1)   %}                   
+                    <div>
+                        {{a.area|upper}}
+                        <div style="padding-left: 20px;">
+                            {{a|lower}}
+                                
+                        </div>
+                    </div> 
+                 {%endif%}   
+            {%endfor%}
+            </td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">
+                    
+                    <a class="ui-button-primary "  href="{{ path('grado_show', {'id':entity.id }) }}">Mostrar</a>              
+                        <a class="ui-button-primary" href="{{ path('grado_edit', {'id':entity.id }) }}">editar</a>
+                   
+                     <form style="display:inline " action="{{ path('grado_delete', {'id':entity.id }) }}" method="post">
+                        {{ form_widget(delete_form[loop.index0]) }}
+                        <span>
+                            <button class="ui-button-primary btn_eliminar_test" >eliminar</button>
+                        </span>
+                    </form>                          
+                    </div>      
+               
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a  href="#" onclick="newGradoinfoAcademicaDefectoAno(0);" >Nuevo</a>          
+{%endif%}            
+   
+  

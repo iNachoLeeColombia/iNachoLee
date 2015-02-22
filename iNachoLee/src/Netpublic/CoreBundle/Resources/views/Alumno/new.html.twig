@@ -1,0 +1,90 @@
+<div class="col-lg-12 col-sm-12">
+<div id="capa_ram_newAlumno" style="margin-top: 10px;">
+<form class="col-lg-12 form-horizontal" role="form" action="{{ path('alumno_creates') }}" method="post" {{ form_enctype(form) }}>
+    
+    <div class="col-lg-4"> 
+        {{ form_widget(form._token)}}
+ 
+        <div class="form-group">  
+            
+ 
+{{form_label(form.tipo)}}
+   {{ form_widget(form.tipo)}}              
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.nombre)}}
+   {{ form_widget(form.nombre)}}            
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.nombre1)}}
+   {{ form_widget(form.nombre1)}}  
+   </div>          
+  <div class="form-group">  
+            
+   {{form_label(form.apellido)}}
+   {{ form_widget(form.apellido)}}            
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.apellido1)}}
+   {{ form_widget(form.apellido1)}}              
+   </div>          
+  <div class="form-group">  
+             
+    
+            
+   {{form_label(form.movil)}}
+   {{ form_widget(form.movil)}}
+   </div>          
+   </div> 
+  <div class="col-lg-4"> 
+  </div>  
+  <div class="col-lg-4"> 
+  <div class="form-group">
+   {{form_label(form.sede)}}
+   {{ form_widget(form.sede)}}            
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.grado)}}
+   {{ form_widget(form.grado)}}    
+   </div>          
+  <div class="form-group">  
+  
+{{form_label(form.grupo)}}
+   {{ form_widget(form.grupo)}}    
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.tipo_documento)}}
+   {{ form_widget(form.tipo_documento)}}            
+   </div>          
+  <div class="form-group">  
+           
+   {{form_label(form.cedula)}}
+   {{ form_widget(form.cedula)}}  <span id="notificador_cedula"></span>  
+   </div>          
+  <div class="form-group">  
+
+   {{form_label(form.foto_academica)}}
+   {{ form_widget(form.foto_academica)}}            
+  </div>          
+  <div class="form-group">  
+
+   {{form_label(form.foto_firma)}}
+   {{ form_widget(form.foto_firma)}}                    
+   </div>
+        
+</div>
+           
+    <div class="col-lg-6 pull-right">
+   <button class="btn btn-primary" value="1" disabled="" id="boton_guardar_alumno">Registrar & Asignar Grupo</button>
+</div>
+</form>
+</div>
+<div id="capa_ram_new_alumno" style="display: none;">
+    
+</div>
+</div>        

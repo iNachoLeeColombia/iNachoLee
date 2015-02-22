@@ -1,0 +1,56 @@
+      <div class="pagination pagination-right" >  
+{#    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarProfesoresCaPaginador('capa_ram_ca','{{ path('cargaacademica_listarprofesores', { 'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a onclick="mostrarProfesoresCaPaginador('capa_ram_ca','{{ path('cargaacademica_listarprofesores', { 'page': page }) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarProfesoresCaPaginador('capa_ram_ca','{{ path('cargaacademica_listarprofesores', { 'page': paginador.nextPage }) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>
+#}
+</div>
+
+<table class="table table-striped">
+{%for profesor in profesores%}    
+        <tr>
+          <td>  
+      <a style="float: left;" href="#" class="thumbnail"> 
+          <div style="width: 50px;">     
+     {%if profesor.usuario.getEsFotoperfil()==TRUE%}
+         <img  style="width: 45px;height: 45px;" src="{{asset('uploads/documents/strongprofesor'~profesor.id~'.jpg')}}" alt="{{app.user.profesor}}" />
+     {%else%}
+     <img style="width: 45px;height: 45px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{profesor}}" />                    
+     {%endif%}     
+    </div>    
+     </a>         
+          <div style="float: left;font-weight: 300;">     
+          {{profesor}} 
+              </div>
+              </td>
+   <td>           
+                <div style="float: right;">          
+     <span style="margin-left: 25px;">
+         <a class="btn btn-inverse" href="#" onclick="mostrarHorarioProfesor({{profesor.id}});">Tiempo Libre....</a>
+     </span>
+         </div>        
+          <div style="clear: both;"></div>          
+     <div id="capa_ram_ca_profesor{{profesor.id}}">
+         
+     </div>
+    </td>      
+  </tr>
+{%endfor%}        
+</table>

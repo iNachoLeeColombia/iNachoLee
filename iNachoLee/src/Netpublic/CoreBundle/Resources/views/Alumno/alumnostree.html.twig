@@ -1,0 +1,11 @@
+{%for alumno in alumnos%}
+      <li class="alumnos" id="alumno_{{alumno.id}}">
+          
+          <span id="nodo_grupo_{{alumno.id}}" data-id={{alumno.id}}  title="Collapse this branch">
+                <i class="icon-user"></i> {{alumno}}
+          </span>
+          
+          <input type="checkbox" class="alumnos" value="{{alumno.id}}" />
+          
+      </li>
+{%endfor%}    

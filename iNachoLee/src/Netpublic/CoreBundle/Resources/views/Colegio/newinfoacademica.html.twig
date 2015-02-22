@@ -1,0 +1,83 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Gestor de Areas-Grados-asignaturas{% endblock %}
+{%block  sub_container  %}
+<div class="col-sm-12 widget-container-span ui-sortable">
+	<div class="widget-box">
+            <div class="widget-header">
+                <h5 class="smaller">Grados | Areas | Asignaturas</h5>
+                    <div class="widget-toolbar no-border">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+				<a href="#home" data-toggle="tab">Grados</a>
+                            </li>
+                            <li>
+                                <a href="#profile" data-toggle="tab">Areas</a>
+                            </li>
+                            <li>
+                                <a href="#info" data-toggle="tab">Asignaturas</a>
+                            </li>
+                            <li>
+                                <a href="#grupo" data-toggle="tab">Grupos</a>
+                            </li>
+			</ul>
+                        </div>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-6">
+                        <div class="tab-content">
+                            <div class="tab-pane in active" id="home">
+                                <p>{{render(controller('NetpublicCoreBundle:Grado:index'))}}.</p>
+                            </div>
+                            <div class="tab-pane" id="profile">
+                                <p>
+                                    <select id="filtros_areas_grados" onchange="indexAsignaturainfoAcademicaDefectoAno(1);">
+                                        <option value="0">Seleccione un grado(NO Aplica)</option>
+                                            {%for g in grados%}
+                                                {%if g.id==app.session.get('grado_session')%}
+                                                    <option selected="selected" value="{{g.id}}">{{g}}</option>
+                                                {%else%}
+                                                    <option value="{{g.id}}">{{g}}</option>
+                                                {%endif%}
+                                             {%endfor%}
+    
+                                    </select>
+                                    </p>
+                                  <a href="#" onclick="newAsignaturainfoAcademicaDefectoAno(1);">
+            <i class="icon-file"></i>Nuevo Area.
+                </a>  
+                                    <div id="area_show" >
+                                    </div>
+                            </div>
+                            <div class="tab-pane" id="info">
+                                <p>
+                                 <select id="filtros_asignaturas_grados" onchange="indexAsignaturainfoAcademicaDefectoAno(2);">
+                                        <option value="0">Seleccione un grado(NO Aplica)</option>
+                                            {%for g in grados%}
+                                                {%if g.id==app.session.get('grado_session')%}
+                                                    <option selected="selected" value="{{g.id}}">{{g}}</option>
+                                                {%else%}
+                                                    <option value="{{g.id}}">{{g}}</option>
+                                                {%endif%}
+                                             {%endfor%}
+    
+                                    </select>
+                                   </p>
+                                   <a href="#" onclick="newAsignaturainfoAcademicaDefectoAno(2);">
+            <i class="icon-file"></i>Nuevo Asignatura.
+                </a>
+                                   <div id="asignatura_show">
+                                   </div>
+                            </div>
+                            <div class="tab-pane" id="grupo">
+                                    {{render(controller('NetpublicCoreBundle:Grupo:index'))}}
+                            </div>    
+			</div>
+                    </div>
+		</div>
+	</div>
+</div>
+              
+
+{% endblock %}
+
+

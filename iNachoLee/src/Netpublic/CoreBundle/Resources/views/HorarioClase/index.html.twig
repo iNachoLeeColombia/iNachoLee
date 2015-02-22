@@ -1,0 +1,72 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%}  
+<h1>HorarioClase listas</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hora_inicio</th>
+            <th>Hora_final</th>
+            <th>Dia_semana</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+{%if es_ajax%}
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('horarioclase_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.horainicio }}</td>
+            <td>{{ entity.horafinal }}</td>
+            <td>{{ entity.diasemana }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('horarioclase_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('horarioclase_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+            
+{%else%}
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('horarioclase_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.horainicio }}</td>
+            <td>{{ entity.horafinal }}</td>
+            <td>{{ entity.diasemana }}</td>
+            <td>
+               
+                        
+                  <div id="{{entity.id}}" style="display: inline">                    
+                    <a href="{{ path('horarioclase_show', { 'id': entity.id }) }}">show</a>             
+                    <a href="{{ path('horarioclase_edit', { 'id': entity.id }) }}">edit</a>                                 
+                     <form style="display:inline " action="{{ path('horarioclase_delete', {'id':entity.id }) }}" method="post">
+                        {{ form_widget(delete_form[loop.index0]) }}
+                        <span>
+                            <button class="ui-button-primary btn_eliminar_test" >eliminar</button>
+                        </span>
+                    </form>                          
+                    </div>          
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<ul>
+    <li>
+        <a href="{{ path('horarioclase_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+
+{%endif%}            
+{%endblock%}

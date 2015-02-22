@@ -1,0 +1,33 @@
+{# src/Acme/BlogBundle/Resources/views/Blog/index.html.twig #}
+{% extends '::base.html.twig' %}
+{% block title %}Prueba{% endblock %}
+{% block body %}
+    {{ name }}
+
+<form action="#" method="post" >
+    <input type="submit" value="guardar" />
+<h3>Alumnos</h3>
+<div style="float: left;background-color:red;margin-left: 0px ">
+        <ul style="list-style: none;background-color: blue;margin:0 0 0 0;padding: 0 0 0 0;">                
+            <li style="font-size: 0.6em;width: 150px;height: 30px;color:white;background-color:#009933;">----</li>
+            {% for a in nombre_alumnos%}        
+            <li style="margin: 0 0 0 0"><input readonly style="width: 150px;height: 30px;color:white;background-color:#009933;" value={{a.nombre}} /></li>
+            {%endfor%}
+        </ul>
+    </div>
+   {% for f in form %}
+    <div style="float: left;background-color:red;margin-left: 0px ">
+        <ul style="list-style: none;background-color: blue;margin:0 0 0 0;padding: 0 0 0 0;">                
+            <li style="font-size: 0.6em;width: 30px;height: 30px;color:white;background-color:#009933;">{{nombre_dimension[loop.index0].nombre |raw}}</li>
+           {% for l in f %}
+                <li style="margin: 0 0 0 0">{{ form_widget(l.nota) }}    
+           {{ form_rest(l) }}</li>
+     {%endfor%}   
+    </ul>
+        </div>
+   {%endfor%}    
+        <div style="clear: both"></div>       
+
+
+</form>
+{% endblock %}

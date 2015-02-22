@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>
+    <dynamic-page>  
+        <table>
+            <tr>
+                <td>Nombre Estudiante</td>   
+                <td>Año matriculado</td>
+                <td>Matriculado ?</td>
+            </tr>    
+        {%for alumno in alumnos%}        
+            <tr>
+                <td>       
+                   {{alumno}} 
+                </td>                
+                    {%for ma in alumno.getMatriculaAlumno()%}
+                        {%if ma.ano.id==id_ano_escolar%}
+                            <td>{{ma.ano}}</td>
+                            <td>{{ma.getEsMatricula()}}</td>
+                        {%endif%}
+                    {%endfor%}    
+                
+            </tr>                    
+        {%endfor%}    
+        </table>        
+    </dynamic-page>
+</pdf>

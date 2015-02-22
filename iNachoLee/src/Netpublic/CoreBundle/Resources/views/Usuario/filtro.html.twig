@@ -1,0 +1,22 @@
+
+
+<table  class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="blue header"><input value="0" id="input_check_all" type="checkbox" onchange="allUsuariosFiltros();"/></th>
+            <th class="yellow header">Nombre.</th>
+            <th class="red header">Grado.</th>
+        </tr>
+    </thead>
+    <tbody>    
+{%for alumno in alumnos%}
+            <tr>
+                <td>
+                    <input class="fila_alumno_filtro" type="checkbox" value="{{alumno.id}}"/>
+                </td>
+                <td>{{alumno.alumno}}</td>
+                <td>{{alumno.alumno.grado}}</td>
+            </tr>
+{%endfor%}
+    </tbody>
+</table>            

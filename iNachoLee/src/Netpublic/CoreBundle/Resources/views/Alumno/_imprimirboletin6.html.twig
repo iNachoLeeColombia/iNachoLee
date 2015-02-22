@@ -1,0 +1,74 @@
+
+<h4 class="light-grey col-lg-7">Notas del Año {{ano_escolar_activo}}</h4>
+<div class="col-lg-5 " style="text-align: right;">
+    <select name="ano_escolar" id="ano_escolar" alumno-id="{{alumno.id}}" onchange="imprimirNotasAnoEscolar(this);" >
+        <option value="*">Seleccione Año Escolar</option>
+        {%for ano in anos_escolares%}
+        <option {%if ano.id==ano_escolar_activo.id%}selected="selected"{%endif%} value="{{ano.id}}">{{ano}}</option>
+        {%endfor%}
+        <option value="0">
+            Todos los años
+        </option>
+    </select>
+</div>
+
+<table class="table table-bordered table-boletin">
+     <thead>
+            <tr>
+                <td>Areas/Asignaturas</td>
+                {%for periodo_academico in periodos_escolares%}
+                <td class="{%if loop.last%}item_fast_boletin{%endif%}">                    
+                    P{{loop.index}}
+                </td>
+                {%endfor%}
+                <td>Def</td>
+                <td>Desmp</td>
+                <td>Fallas</td>
+            </tr>
+     </thead>
+     <tbody>
+            {%for areas in datos%}
+            <tr>
+                <td><strong>  {{areas.nombre|upper}}</strong></td>
+                {%for periodo_academico in periodos_escolares%}
+                <td class="{%if loop.last%}item_fast_boletin{%endif%}"></td>
+                {%endfor%}
+                <td>
+                    {{areas.nota_promedio_acumalativa|number_format(2,'.',',')}}
+                </td>
+                <td>
+                    {{areas.desempeno}}
+                </td>
+                <td>
+                {%if areas.inasistencia!=0 and areas.inasistencia!=-1  %}   
+                    {{areas.inasistencia}}
+                {%endif%}
+                </td>        
+                        
+            </tr>
+            {%for asignaturas_area in areas.asignaturas%}
+            <tr>
+                <td class="asg_item ">{{asignaturas_area.asignatura.nombre|lower}}</td>
+                {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                    <td class="{%if loop.last%}item_fast_boletin{%endif%}" >
+                        {{periodos_asignatura.periodo.nota|number_format(2,'.',',')}}
+                    </td>
+                {%endfor%}
+                    <td>
+                        {{asignaturas_area.asignatura.nota|number_format(2,'.',',')}}
+                    </td>
+                    <td> </td>
+                    <td>
+                        {%if asignaturas_area.asignatura.inasistencias !=0 and asignaturas_area.asignatura.inasistencias !=-1 %}
+                            {{asignaturas_area.asignatura.inasistencias}}
+                        {%endif%}
+                    </td>
+                    
+            </tr>
+           {%endfor%}
+            
+            {%endfor%}
+     </tbody>
+</table>        
+<div class="footer-div"></div>      
+{# empty Twig template #}

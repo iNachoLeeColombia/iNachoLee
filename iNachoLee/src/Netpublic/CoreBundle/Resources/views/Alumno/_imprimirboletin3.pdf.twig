@@ -1,0 +1,138 @@
+<dynamic-page page-size="letter-landscape">       
+      <div style="width: 100%;">           
+           <table>  
+          <tr>
+            <td border.type="none" style="width:20%;text-align:right;">           
+          <img style="width:60px;height:60px;margin-left:100px;" src="../web/uploads/documents/escudo_colegio{{colegio.id}}.png" />   
+          </td>
+         <td border.type="none" style="width:80%;font-size:25px;color:red;padding-top:10px;">          
+            <strong style="margin-top:15px;">{{alumno.sede}}</strong>
+         </td>
+         </tr>
+        </table>  
+      </div>
+<div style="background-image:../web/uploads/documents/f1.png;width:100%;padding-top:10px;padding-left:10px;height:107px;">
+<div style="font-size:16px;margin-top:15px;">
+   <table>
+       <tr>
+         <td  style="width:50%;" border.type="none" ><strong>NOMBRES Y APELLIDOS:</strong> {{alumno.apellido}} {{alumno.apellido1}} {{alumno.nombre}} {{alumno.nombre1}}</td>
+         <td style="width:25%;" border.type="none" ><strong>GRADO:</strong>{{alumno.grado}}</td>
+         <td  style="width:25%;" border.type="none" ><strong>PUESTO EN GRUPO: </strong>
+                            {{puesto_alumno}}/{{nro_alumnos_grupo}}                           
+                
+        </td>
+       </tr> 
+   </table>
+</div>
+<div  style="font-size:16px;margin-top:10px;">
+   <table>
+       <tr>
+        
+           <td  border.type="none"  style="width:50%;text-align:left;"><strong>PROMEDIO ALUMNO:</strong> {{promedio_alumno|number_format(2)}}</td>
+         <td  border.type="none"  style="width:50%;"><strong>AÑO ESCOLAR/PERIODO: </strong> {{ano_escolar_activo}}/{{periodo_escolar_activo}}</td>
+       </tr> 
+   </table>
+</div>
+ </div>
+<div>
+<div style="width: 100%;background-color:#DDDDDD;">        
+  <div  border.color="#31849B"  style="color:white;font-size: 16px;background-color: #4BACC6;">    
+    <div  border.color="#31849B"  style="width: 150px;height: 25px;float: left;text-align: center;">Areas/Asignaturas</div>
+    {%for periodo_academico in periodos_escolares%}
+        <div  border.color="#31849B"  style="width: 50px;float: left;height: 25px;text-align: center;">P{{loop.index}}</div>
+    {%endfor%}
+        <div border.color="#31849B" style="width: 50px;height: 25px;float: left;text-align: center;">Def</div>
+        <div  border.color="#31849B" style="width: 65px;float: left;height: 25px;text-align: center;">Desemp </div>
+    <div  border.color="#31849B" style="width: 430px;float: left;height: 25px;text-align: center;">Descriptores|Logros</div>
+  <div  border.color="#31849B"  style="width: 40px;float: left;height: 25px;text-align: center;">F
+  </div>
+  </div>  
+<div style="width: 100%;"></div>              
+{%for areas in datos%}
+<div>
+
+    <div border.color="#31849B" style="background-color: #D2EAF1;">  
+        {%if areas.nombre|length<=18%}
+            {%set heigh=20%}            
+        {%elseif areas.nombre|length>=19 and areas.nombre|length<=33%}
+            {%set heigh=34%}            
+         {%elseif areas.nombre|length>=34%}
+            {%set heigh=80%}               
+        {%endif%}    
+        
+      <div border.color="#31849B"  style="font-size: 13px;width: 150px;float: left;height: {{heigh}}px;"> 
+         <strong>{{areas.nombre|upper}}</strong></div>
+        {%for periodo_academico in periodos_escolares%}
+        <div border.color="#31849B" style="width: 50px;float: left;height: {{heigh}}px;"></div>
+    {%endfor%}
+      <div border.color="#31849B" style="height: {{heigh}}px;width: 50px;text-align: center;font-size: 16px;float: left;">{{areas.nota_promedio_acumalativa}}</div>
+      <div border.color="#31849B" style="height: {{heigh}}px;width: 65px;text-align: center;float: left;">{{areas.desempeno}}</div>
+      <div border.color="#31849B" style="height: {{heigh}}px;width: 430px;float: left;"></div>
+      <div border.color="#31849B" style="height: {{heigh}}px;width: 40px;;text-align: center;float: left;">
+{%if areas.inasistencia!=0%}
+  {{areas.inasistencia}}
+{%endif%}          
+          </div>
+  </div>
+    <div style="width: 100%;"></div>  
+      {% for asignaturas_area in areas.asignaturas%}
+         {#numero de caracteres de todos los desempenos#}
+         
+         {%if asignaturas_area.asignatura.nro_caracteres<=101%}
+            {%set heigh_a=16%}            
+        {%elseif asignaturas_area.asignatura.nro_caracteres>101 and asignaturas_area.asignatura.nro_caracteres<=201%}
+            {%set heigh_a=24%}            
+        {%elseif asignaturas_area.asignatura.nro_caracteres>201 and asignaturas_area.asignatura.nro_caracteres<=301%}
+            {%set heigh_a=36%}               
+         {%else%}
+            {%set heigh_a=150%}               
+
+        {%endif%}    
+        
+
+    <div border.color="#31849B" style="background-color: #FFFFFF;font-size: 14px;">  
+            <div border.color="#31849B" style="height: {{heigh_a}}px;;float:left;width: 150px;"> 
+
+       {{asignaturas_area.asignatura.nombre|lower}}
+            </div>
+             {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                <div border.color="#31849B" style="width: 50px;height:{{heigh_a}}px;float:left;text-align: center;">{{periodos_asignatura.periodo.nota}}
+                </div>
+             {%endfor%}   
+                <div border.color="#31849B" style="height: {{heigh_a}}px;width: 50px;float:left;text-align: center;">{{asignaturas_area.asignatura.nota}}</div>     
+                <div border.color="#31849B" style="height: {{heigh_a}}px;width: 65px;float:left;color: white;">-</div>
+                <div border.color="#31849B" style="height: {{heigh_a}}px;width: 430px;float:left;text-align: justify;font-size:9px;">
+                    {%for desempenos_asg in asignaturas_area.asignatura.desempenos%}
+                        {%for desempeno_asg in desempenos_asg%}
+                            {{desempeno_asg}}
+                        {%endfor%}
+                    {%endfor%}    
+                </div>
+                <div border.color="#31849B" style="height: {{heigh_a}}px;width: 40px;float:left;text-align: center;">
+{%if asignaturas_area.asignatura.inasistencias!=0%}
+{{asignaturas_area.asignatura.inasistencias}}
+{%endif%}                    
+                    </div>
+            
+        </div>  
+        <div style="width: 100%;"></div>  
+      {%endfor%}
+        <div>
+        </div>        
+    </div>       
+{%endfor%}
+  
+</div> 
+<div>
+ <table>
+<tr>
+   <td  border.type="none" ><img style="width:400px;height:100px" src="../web/uploads/documents/firma_gloria.png" /></td>
+   <td  border.type="none"><img style="width:500px;height:200px" src="../web/uploads/documents/dir_grupo.png" /></td>
+</tr>
+
+ </table>
+</div>
+</div>
+
+ </dynamic-page>
+    

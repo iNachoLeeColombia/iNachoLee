@@ -1,0 +1,116 @@
+<div  onmouseover="procesarEntradaMouseGC();" onmouseout="procesarSalidaMouseGC();" style="overflow-x: scroll;">
+<table class="table table-bordered" style="font-size: 10px;">
+    <tr>
+        {%for item in 1..nro_componentes%}
+            {%if loop.last%}
+                <td style="background-color: #3A87AD;">
+                <div style="font-size:20px;">
+                    {{loop.index}}
+                </div>
+                <div>
+                    <span>Nota Final</span>
+                    <input value="Nota Final" type="hidden" id="nombre_{{loop.index}}">
+               
+                </div>
+                <div>
+                    100%
+                         <input value="100" type="hidden" id="p_{{loop.index}}">
+               
+                </div>
+                
+            </td>
+            {%elseif item==(nro_componentes-1)%}
+            <td>
+                <div style="font-size: 20px;">
+                    {{loop.index}}
+                </div>
+                <div>
+                    <div style="color: blue;">
+                    <span id="span_nombre_c{{loop.index}}">
+                        Componente Cognitivo
+                    </span><br/>
+                    <button id="btn_edit_nombre_{{loop.index}}" class="btn_editar_gc"
+                            style="color: white;display: none;border: none;text-decoration: none;background-color: gray;" onclick="editComponenteGC({{loop.index}},{{nro_componentes}})">
+                        <i class="icon icon-edit"></i> editar</button>
+                    <input value="Componente Cognitivo" type="hidden" id="nombre_{{loop.index}}">
+                    </div>
+                    <div style="margin-top: 20px;color: blue;">
+                    <span id="span_p_c{{loop.index}}">
+                        70
+                    </span>%<br/>    
+                    <button class="btn_editar_gc"
+                             id="btn_edit_{{loop.index}}"
+                             style="color: white;background-color: gray;display: none;border: none;text-decoration: none;"
+                             onclick="editComponentePorcentajeGC({{loop.index}},{{nro_componentes}})">
+                         editar
+                     </button>
+                     <input value="70" type="hidden" id="p_{{loop.index}}">
+                </div>
+                <div>
+                    <input id="padre{{loop.index}}" onkeyup="procesarPadreGestorComp({{loop.index}},{{nro_componentes}});" type="text" placeholder="padre" style="width: 40px;">
+                </div>
+
+                    
+                    o<br/> 
+                    <span id="falla{{loop.index}}" class="fallas">
+                        Falla 
+                    <input value="Fallas" type="hidden" id="falla_{{loop.index}}">
+                    
+                    <input type="checkbox" onchange="porcesarCheckFallas(this,'{{loop.index}}',{{nro_componentes}});"></span>
+                </div>
+                           </td>
+
+            {%else%}
+            <td>
+                <div style="font-size: 20px;">
+                    {{loop.index}}
+                </div>
+                <div style="color: blue;">
+                    <span id="span_nombre_c{{loop.index}}">
+                        Componente Cognitivo
+                    </span><br/>
+                    <button id="btn_edit_nombre_{{loop.index}}" class="btn_editar_gc"
+                            style="color: white;display: none;border: none;text-decoration: none;background-color: gray;" onclick="editComponenteGC({{loop.index}},{{nro_componentes}})">
+                        <i class="icon icon-edit"></i> editar</button>
+                    <input value="Componente Cognitivo" type="hidden" id="nombre_{{loop.index}}">
+                </div>
+                <div style="margin-top: 20px;color: blue;">
+                    <span id="span_p_c{{loop.index}}">
+                        70
+                    </span>%<br/>    
+                    <button class="btn_editar_gc"
+                             id="btn_edit_{{loop.index}}"
+                             style="color: white;background-color: gray;display: none;border: none;text-decoration: none;"
+                             onclick="editComponentePorcentajeGC({{loop.index}},{{nro_componentes}})">
+                         editar
+                     </button>
+                     <input value="70" type="hidden" id="p_{{loop.index}}">
+                </div>
+                <div>
+                    <input id="padre{{loop.index}}" onkeyup="procesarPadreGestorComp({{loop.index}},{{nro_componentes}});" type="text" placeholder="padre" style="width: 40px;">
+                </div>
+            </td>
+               
+           {%endif%}    
+        {%endfor%}
+    </tr>
+    {%for filas in 1..6%}
+    <tr>
+        {%for item in 1..nro_componentes%}
+            {%if loop.last%}
+                <td style="background-color: #3A87AD;">
+                    &nbsp;
+                </td>
+           {%else%}
+            <td class="fila_{{item}}">
+                &nbsp;
+            </td>
+               
+           {%endif%}    
+        {%endfor%}
+    </tr>
+    {%endfor%}
+</table>
+<div class="clearfix"></div>
+<button class="btn btn-primary">Guardar</button>
+ </div>

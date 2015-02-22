@@ -1,0 +1,8 @@
+{% for i in 1..nro_item %}
+     {{ i }}
+     <select>
+     {%for grupo in grupos%}        
+            <option value="{{grupo.id}}">{{grupo}}</option>        
+     {%endfor%}
+     </select><br>              
+{% endfor %}

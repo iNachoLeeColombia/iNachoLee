@@ -1,0 +1,176 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%} 
+<div id="capa_ram_newAlumno1">
+<div class="modal-header">              
+  <h3>Nuevo Alumno | Acudiente(Archivo en Excell)-Ultima hoja:{{hoja}}</h3>
+</div>
+
+<form action="{{path('alumno_createexcell')}}" method="post"  enctype="multipart/form-data">
+    <div style="width: 50%;float: left;"> 
+        <div class="controls">
+        <select id="sede_excell" name="sede">
+            <option value="*">Seleccione Sede</option>
+            {%for sede in sedes%}
+            <option value="{{sede.id}}">{{sede}}</option>
+            {%endfor%}
+        </select></div>
+        <div class="controls">    
+        <select id="grado_excell" name="grado" onchange="getGruposGrado(this);">
+            <option value="*">Seleccione Grado</option>
+            {%for grado in grados%}
+            <option value="{{grado.id}}">{{grado}}</option>
+            {%endfor%}
+        </select>
+        <select class="span7" id="tipo_excell" name="tipo_usuario">
+            <option value="*" 
+                   {%if tipo_usuario=='*' %}
+                    selected="selected"
+                    {%endif%}
+
+                    >Es Alumno O Acudiente</option>
+            <option value="0"
+                 {%if tipo_usuario==0%}
+                    selected="selected"
+                    {%endif%}
+
+                    >Alumno</option>
+            <option value="1"
+                    {%if tipo_usuario==1%}
+                    selected="selected"
+                    {%endif%}
+
+                    >Acudiente)</option>
+        </select>        
+            </div>      
+        <div class="controls">
+        <select id="ntp_inacholeebundle_contratotype_grupos" name="grupo">
+            <option value="*">-----------</option>
+            
+        </select>
+            </div>  </div> 
+        
+        <div class="controls">    
+            <h4 style="margin-bottom: 20px;">Datos Pertenecientes a la Hoja de EXCEL</h4>
+        <select class="span5" id="tipo_excell" name="es_nombre_completo">
+            <option value="*" class="span10">esta Nombre Completo O Separado</option>
+            <option value="1" 
+                    {%if es_nombre_completo==1%}
+                    selected="selected"
+                    {%endif%}
+                    class="span10">Nombre Completo</option>
+            <option value="2"
+                                        {%if es_nombre_completo==2%}
+                    selected="selected"
+                    {%endif%}
+
+                    class="span10">Nombre Separado</option>
+        </select>
+                    
+   </div> 
+        <div  style="width: 50%;float: left;">
+            
+                <div class="controls">    
+                <select class="controls span9" id="columna_nombre" name="columna_nombre">
+                    <option value="*" {%if columna_nombre=='*'%} selected="selected" {%endif%}>Ubicación Del Nombre(Columna)</option>
+            <option value="0" {%if columna_nombre=='*'%} selected="selected" {%endif%}>A</option>
+            <option value="1" {%if columna_nombre=='1'%} selected="selected" {%endif%}>B</option>
+            <option value="2" {%if columna_nombre=='2'%} selected="selected" {%endif%}>C</option>
+            <option value="3" {%if columna_nombre=='3'%} selected="selected" {%endif%}>D</option>
+            <option value="4" {%if columna_nombre=='4'%} selected="selected" {%endif%}>E</option>
+            <option value="5" {%if columna_nombre=='5'%} selected="selected" {%endif%}>F</option>
+            <option value="6" {%if columna_nombre=='6'%} selected="selected" {%endif%}>G</option>
+            <option value="7" {%if columna_nombre=='7'%} selected="selected" {%endif%}>H</option>
+            <option value="8" {%if columna_nombre=='8'%} selected="selected" {%endif%}>I</option>
+            <option value="9" {%if columna_nombre=='9'%} selected="selected" {%endif%}>J</option>
+            <option value="10" {%if columna_nombre=='10'%} selected="selected" {%endif%}>l</option>
+            <option value="11" {%if columna_nombre=='11'%} selected="selected" {%endif%}>M</option>            
+            
+        </select>
+                        <select class="span9" id="columna_nombre" name="fila_nombre">
+            <option value="*"  {%if fila_nombre=='*'%} selected="selected" {%endif%}>Ubicación Del Nombre(FILA)</option>
+              <option value="0"  {%if fila_nombre=='*'%} selected="selected" {%endif%}>0</option>
+            <option value="1"  {%if fila_nombre=='1'%} selected="selected" {%endif%}>1</option>
+            <option value="2"  {%if fila_nombre=='2'%} selected="selected" {%endif%}>2</option>
+            <option value="3"  {%if fila_nombre=='3'%} selected="selected" {%endif%}>3</option>
+            <option value="4"  {%if fila_nombre=='4'%} selected="selected" {%endif%}>4</option>
+            <option value="5"  {%if fila_nombre=='5'%} selected="selected" {%endif%}>5</option>
+            <option value="6"  {%if fila_nombre=='6'%} selected="selected" {%endif%}>6</option>
+            <option value="7"  {%if fila_nombre=='7'%} selected="selected" {%endif%}>7</option>
+            <option value="8"  {%if fila_nombre=='8'%} selected="selected" {%endif%}>8</option>
+            <option value="9"  {%if fila_nombre=='9'%} selected="selected" {%endif%}>9</option>
+            <option value="10" {%if fila_nombre=='10'%} selected="selected" {%endif%}>10</option>
+            <option value="11" {%if fila_nombre=='11'%} selected="selected" {%endif%}>11</option>
+            <option value="12" {%if fila_nombre=='12'%} selected="selected" {%endif%}>12</option>            
+            <option value="13" {%if fila_nombre=='13'%} selected="selected" {%endif%}>13</option>
+            <option value="14" {%if fila_nombre=='14'%} selected="selected" {%endif%}>14</option>
+            <option value="15" {%if fila_nombre=='15'%} selected="selected" {%endif%}>15</option>
+            <option value="16" {%if fila_nombre=='16'%} selected="selected" {%endif%}>16</option>
+            <option value="17"  {%if fila_nombre=='17'%} selected="selected" {%endif%}>17</option>
+            <option value="18"  {%if fila_nombre=='18'%} selected="selected" {%endif%}>18</option>
+            <option value="19"  {%if fila_nombre=='19*'%} selected="selected" {%endif%}>19</option>
+            <option value="20"  {%if fila_nombre=='20'%} selected="selected" {%endif%}>20</option>
+            <option value="21"  {%if fila_nombre=='21'%} selected="selected" {%endif%}>21</option>
+            <option value="22"  {%if fila_nombre=='22'%} selected="selected" {%endif%}>22</option>
+            <option value="23"  {%if fila_nombre=='23'%} selected="selected" {%endif%}>23</option>
+            <option value="24"  {%if fila_nombre=='24'%} selected="selected" {%endif%}>24</option>            
+                </select></div>
+        
+        <select class="controls span13" id="columna_doc_identidad" name="columna_ti">
+            <option value="*"  {%if columna_ti=='*'%} selected="selected" {%endif%}>Ubicación Documento De Identidad(COLUMNA)</option>
+            <option value="0" {%if columna_ti=='0'%} selected="selected" {%endif%}>A</option>
+            <option value="1" {%if columna_ti=='1'%} selected="selected" {%endif%}>B</option>
+            <option value="2" {%if columna_ti=='2'%} selected="selected" {%endif%}>C</option>
+            <option value="3" {%if columna_ti=='3'%} selected="selected" {%endif%}>D</option>
+            <option value="4" {%if columna_ti=='4'%} selected="selected" {%endif%}>E</option>
+            <option value="5" {%if columna_ti=='5'%} selected="selected" {%endif%}>F</option>
+            <option value="6" {%if columna_ti=='6'%} selected="selected" {%endif%}>G</option>
+            <option value="7" {%if columna_ti=='7'%} selected="selected" {%endif%}>H</option>
+            <option value="8" {%if columna_ti=='8'%} selected="selected" {%endif%}>I</option>
+            <option value="9" {%if columna_ti=='9'%} selected="selected" {%endif%}>J</option>
+            <option value="10" {%if columna_ti=='10'%} selected="selected" {%endif%}>l</option>
+            <option value="11" {%if columna_ti=='11'%} selected="selected" {%endif%}>M</option>            
+
+        </select><br/>
+        <select class="controls span13" id="columna_doc_identidad" name="columna_tipo_documento">
+            <option value="*"  {%if columna_ti=='*'%} selected="selected" {%endif%}>Ubicación Documento De Identidad(COLUMNA)</option>
+            <option value="0" {%if columna_ti=='0'%} selected="selected" {%endif%}>A</option>
+            <option value="1" {%if columna_ti=='1'%} selected="selected" {%endif%}>B</option>
+            <option value="2" {%if columna_ti=='2'%} selected="selected" {%endif%}>C</option>
+            <option value="3" {%if columna_ti=='3'%} selected="selected" {%endif%}>D</option>
+            <option value="4" {%if columna_ti=='4'%} selected="selected" {%endif%}>E</option>
+            <option value="5" {%if columna_ti=='5'%} selected="selected" {%endif%}>F</option>
+            <option value="6" {%if columna_ti=='6'%} selected="selected" {%endif%}>G</option>
+            <option value="7" {%if columna_ti=='7'%} selected="selected" {%endif%}>H</option>
+            <option value="8" {%if columna_ti=='8'%} selected="selected" {%endif%}>I</option>
+            <option value="9" {%if columna_ti=='9'%} selected="selected" {%endif%}>J</option>
+            <option value="10" {%if columna_ti=='10'%} selected="selected" {%endif%}>l</option>
+            <option value="11" {%if columna_ti=='11'%} selected="selected" {%endif%}>M</option>            
+
+        </select><br/>
+        Fila Inicio:<input type="text" name="fila_inicio" id="fila_inico" /><br />
+        Fila Final: <input type="text" name="fila_final" id="fila_final" />
+        <div>
+                    
+{%if hay_archivo_servidor==0%}            
+                <div class="controls">
+                <input type="file" name="archivo_excell">        
+                </div>
+{%endif%}       
+   </div>
+    
+    <div style="clear: both"></div>                       
+<div class="modal-footer">
+  
+    <a onclick="newAlumnoUnoUnoLoteDefectoAno();" name="btn_finalizar" class="btn">Finalizar</a>
+    <button value="1" name="btn_registrar" class="btn" >Registrar</button>
+    <button value="2" name="btn_registrar_matricular" class="btn btn-primary">Registrar & Matricular</button>
+    
+</div>
+        </form>
+</div>
+<div id="capa_ram_new_alumno" style="display: none;">
+    
+</div>
+<div style="clear: both"></div> 
+</div>
+{%endblock%}

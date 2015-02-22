@@ -1,0 +1,179 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Informe academico.{% endblock %}
+{%block container %}
+<!-- Modal -->
+<div class="modal fade no-imprimir" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-principal-informe-bc3"> 
+    <div class="col-lg-12" id="container_top" style="margin-top: 20px;">
+        <a href="{{path('usuario')}}">Inicio</a>
+<div class="btn-group pull-right" style="margin-right: 10px;">
+    <button onclick="procesarinputsCheckBC3('input_check_carnet');procesarImpresionBC3(this);" type="button" class="btn btn-default btn-sm" ><span>
+                        <input class="checkbox_informe_bc3" id="input_check_carnet" style="margin: 0 0;padding: 0 0;" type="checkbox" ></span>
+            <i class="fa fa-print blu fa-2x"></i> Carnet</button>
+  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+      <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li>
+            <div class="checkbox">
+                <label>
+                    <input checked="checked" type="checkbox" class="ace ace-checkbox-2" name="form-field-checkbox">
+                    <span class="lbl"> Por Defecto</span>
+		</label>
+            </div>  
+       </li>
+            
+            
+    
+  </ul>
+</div>
+            
+<div class="btn-group pull-right" style="margin-right: 10px;">
+                <button onclick="procesarinputsCheckBC3('input_check_certificaciones');procesarImpresionBC3(this);" type="button" class="btn btn-default btn-sm" ><span>
+                        <input class="checkbox_informe_bc3" id="input_check_certificaciones" style="margin: 0 0;padding: 0 0;" type="checkbox" ></span>
+                        <i class="fa fa-print fa-2x"></i> Certificaciones</button>
+  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+      <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li>
+            <div class="checkbox">
+                <label>
+                    <input  checked="checked"  type="checkbox" class="ace ace-checkbox-2" name="form-field-checkbox">
+                    <span class="lbl"> Por Defecto</span>
+		</label>
+            </div>  
+      </li>
+  </ul>
+</div>
+            
+<div class="btn-group pull-right" style="margin-right: 10px;">
+                <button onclick="procesarinputsCheckBC3('input_check_constancia');procesarImpresionBC3(this);" type="button" class="btn btn-default btn-sm" ><span>
+                        <input class="checkbox_informe_bc3" style="margin: 0 0;padding: 0 0;" id="input_check_constancia" type="checkbox" >
+                    </span><i class="fa fa-print blu fa-2x"></i> Constacia</button>
+  <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+      <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="ace ace-checkbox-2" name="form-field-checkbox">
+                    <span class="lbl"> Por Defecto</span>
+		</label>
+            </div>  
+      </li>
+      </ul>
+</div>
+            
+
+<div class="btn-group pull-right" style="margin-right: 10px;">
+                <button onclick="procesarinputsCheckBC3('input_check_boletin');procesarImpresionBC3(this);" type="button" class="btn btn-default btn-sm" >
+                    <span><input class="checkbox_informe_bc3" style="margin: 0 0;padding: 0 0;" id="input_check_boletin" checked="checked" type="checkbox" ></span> 
+                    <i class="fa fa-print blu fa-2x"></i> Mostrar Boletines ahora.</button>
+  <button type="button" class="btn btn-default fa-2x dropdown-toggle btn-sm" data-toggle="dropdown">
+      <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+      <li>
+          <div class="checkbox">
+                <label>
+                    <input type="checkbox"  checked="checked"  class="ace ace-checkbox-2 checks_boletines" id="boletin_defecto" value="1" >
+                    <span class="lbl"> Por defecto</span>
+		</label>
+            </div>  
+     </li>
+    <li>
+        <div class="checkbox">
+                <label>
+                    <input type="checkbox"  id="boletin_prescolar" class="ace ace-checkbox-2 checks_boletines"  value="2" >
+                    <span class="lbl">  Prescolar</span>
+		</label>
+            </div> 
+    </li>
+  
+   <li><div class="checkbox">
+                <label>
+                    <input type="checkbox"  id="boletin_semaforo" class="ace ace-checkbox-2 checks_boletines" value="3" >
+                    <span class="lbl"> Semaforos</span>
+		</label>
+            </div>        
+           
+   </li>
+<li><div class="checkbox">
+                <label>
+                    <input type="checkbox"  id="boletin_antiguo" class="ace ace-checkbox-2 checks_boletines" value="4" >
+                    <span class="lbl"> Antiguo</span>
+		</label>
+            </div>        
+           
+   </li>
+   <li>
+       <div class="checkbox">
+                <label>
+                    <input type="checkbox" onchange="procesarCambioBoletines(this);" id="boletin_ultimo_informe" class="ace ace-checkbox-2 checks_boletines" value="5" >
+                    <span class="lbl"> Ultimo informe</span>
+		</label>
+            </div>        
+           
+       </li>
+
+    </ul>
+</div>
+        
+            
+   </div> 
+  <div class="col-lg-12 container-ws " style="margin-top: 10px;">
+      <div class="col-lg-5 panel-ws-lefth"></div>
+      <div class="col-lg-7 panel-ws-right">
+       <div class="btn-group">
+           <a onclick="procesarEditarBc3();" title="" href="#" data-edit="redo" data-original-title="Redo (Ctrl/Cmd+Y)">
+                        <i class="icon-edit"></i>Editar</a> | 
+                        <a onclick="procesarGuardarBc3();" href="#">
+                        <i class="icon-save"></i> Guardar</a> |   
+            <a href="{{path('colegio_mostrarlabels')}}" data-toggle="modal" data-target="#myModal"> Mostra labels</a>            
+                        
+                        
+       </div>
+     </div>
+</div>
+</div> 
+<div class="col-lg-12" style="width: 100%;">      
+   <div id="sub-container-left_impresion" class="sub-container-left tree col-lg-3" style="font-size: 12px;">
+			    <ul >
+                                <li class="parent_li">
+                                    <span id="nodo_grado_boletin"><i class="icon-plus-sign"></i> Grados <br/>
+                                        <small style="font-size: 8.5px;">Click para ver grados.</small></span>
+                                    <ul id="ul_grados">
+                                    </ul>    
+			        </li>        
+			    </ul>
+                            <div class="clearfix"></div>
+    </div>
+     <div id="sub-container-right-informe-bc3"  class="sub-container-right col-lg-9" style="overflow-y: scroll;">
+        ----
+     </div> 
+  </div>              
+</div>
+{%endblock%}

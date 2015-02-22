@@ -1,0 +1,64 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Ingreso de Informacion Academica{% endblock %}
+{%block sub_container%}
+<div>             
+    <select id="sedes_filtro_usuario" onchange="
+        mostrarFiltroPaginador('capa_ram_buscar_usuarios',
+        '{{ path('colegio_informeconsolidadoasgperdidasbuscar', { 'page': 1 }) }}');">
+            <option value="*" >Sede ?</option>
+            {%for sede in sedes%}
+            <option value="{{sede.id}}" >{{sede}}</option>
+            
+            {%endfor%}
+        </select>      
+        <select id="grado_filtro_usuario" onchange="
+            getGruposGradoEstandar('grado_filtro_usuario','ntp_inacholeebundle_type_grupos');
+            mostrarFiltroPaginador('capa_ram_buscar_usuarios',
+        '{{ path('colegio_informeconsolidadoasgperdidasbuscar', { 'page': 1 }) }}');   
+                ">
+            <option value="*" >Grado ?</option>
+            {%for grado in grados%}
+            <option value="{{grado.id}}">{{grado}}</option>
+            {%endfor%}
+        </select>      
+        <select id="ntp_inacholeebundle_type_grupos"
+                onchange="mostrarFiltroPaginador('capa_ram_buscar_usuarios',
+        '{{ path('colegio_informeconsolidadoasgperdidasbuscar', { 'page': 1 }) }}');"
+                >
+            <option value="*" >Grupo ?</option>
+        </select>   
+         <div style="float: right;margin-top: 5px;margin-left: 30px;color: orange;">
+                {{ano_escolar_activo}}
+                /{{periodo_activo}}<a href="#" onclick="mostrarPeriodos('colegio_informeconsolidadoeficiencia',this);"> cambiar </a>
+                <div id="mostrar_periodos">
+                
+                </div>
+            </div> 
+           
+</div>
+<div id="capa_ram_buscar_usuarios">
+    <table class="table table-bordered small">
+        <tr>
+        {%for grado in grados%}
+                <td colspan="5">{{grado}}</td>
+        {%endfor%}
+        </tr>        
+        <tr>
+            {%for grado in grados%}
+                {%for i in 0..4%}
+                <td>{%if loop.last%}+{%endif%}{{loop.index0}}</td>
+                {%endfor%}                
+            {%endfor%}
+        </tr>
+        <tr>
+            {%for grado in grados%}
+                {%for i in 0..4%}
+                <td>--</td>
+                {%endfor%}                
+            {%endfor%}
+        </tr>
+
+     </table>
+</div>
+{%endblock%}
+

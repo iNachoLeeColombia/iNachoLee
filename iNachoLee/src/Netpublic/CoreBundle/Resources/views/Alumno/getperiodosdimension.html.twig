@@ -1,0 +1,9 @@
+<option value="*"> </option>
+{%for pa in periodos_academicos%}
+<option value="{{pa.id}}">{{pa}}</option>
+    {%for e in entities if e.padre.id== pa.id and e.asignatura.id==asignatura_escolar%}
+          {%for grupo in e.grupo if grupo.id==grupo_id%}
+            <option value="{{e.id}}">&nbsp; &nbsp;&nbsp;&nbsp;{{e}}</option>
+          {%endfor%}
+    {%endfor%}
+{%endfor%}

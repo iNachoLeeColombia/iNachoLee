@@ -1,0 +1,77 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Gestor De Componentes.{% endblock %}
+{%block main_container %}
+
+<div style="display: inline;padding: 0px 0px;" id="5" >  
+  {%if entities|length>0%} 
+    {%for notas_alumno in entities%}
+             {%set primer_fila_nombre_dimeniones=notas_alumno%}
+             {%if loop.first%}
+                <ul style="list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                        <li style="float: left;width: 45px;margin: 0px 0px;padding: 0px 0px;">
+                        <input type="text" value="-" disabled="" style="visibility: hidden;width: 45px;height: 30px;margin: 0px 0px;padding: 0px 0px;"></li>                
+                            <li style="float: left;"><input type="text" value="-" disabled="" style="width: 300px;visibility: hidden;height: 30px;"></li>
+                            {%for nota_alumno in primer_fila_nombre_dimeniones%}
+                                <li  style="float: left;width: 45px;height: 30px;">
+                                    <input type="checkbox" id="checkBox{{loop.index}}"
+                                      onchange="procesarEliminarColumna(3,{{loop.index}});" />
+
+                                    <div style="padding-left: 5px;" class="tarea">{{nota_alumno.dimension|replace({" ":""})}}{%if nota_alumno.dimension.ponderado!=null%}({{nota_alumno.dimension.ponderado}}%){%endif%}
+
+                                    </div>
+
+                                </li>                                                 
+                            {%endfor%}
+                </ul>     
+            {%endif%}
+        <ul style="clear: both;padding: 0px 0px;margin: 0px 0px;">
+            <li  style="display: inline;list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                <input type="text" 
+                        style="height: 30px;width:45px;font-weight: bold;float: left;margin: 0px 0px;"            
+                        disabled="disabled"            
+                        value="{{loop.index}}" />
+
+                 <input type="text" 
+                     style="height: 30px;font-weight: bold;float: left;width: 300px;"
+                     name="{{notas_alumno[0].alumno.id}}" 
+                     readonly="readonly"
+                     class="alumnos"
+                     value="{{notas_alumno[0].alumno}}" />
+            </li> 
+            {%for nota_alumno_ in notas_alumno%}
+                    <li 
+                            onmouseover="procesarEntradaListaAlumnos({{nota_alumno_.id}});"
+                            onmouseout="procesarSalidaListaAlumnos({{nota_alumno_.id}});"
+                            style="display: inline;" class="td_notas">
+                        <a id="anchor{{nota_alumno_.id}}" onclick="procesarEliminarCelda({{nota_alumno_.id}},3);" style="float: left;display: none;" href="#">
+                        <div style="width: 40px;background-color: red;height: 28px;float: left;text-align: center;font-size: 18px;padding-top: 13px;">X</div></a>        
+     
+                            <input type="text" 
+                                   id="input_nota{{nota_alumno_.id}}" 
+                            style=" float: left;
+                            height: 30px;width: 45px;"            
+                            readonly="readonly"
+                            data-id="{{nota_alumno_.id}}"
+                            class="alumnos columna{{loop.index}} 
+                            {%if nota_alumno_.dimension.tipo==3%}
+                                celda_fallas
+                            {%elseif nota_alumno_.dimension.tipo==1%}
+                                celda_final_periodo
+                            {%else %}
+                              alumno  celda_nota                
+                            {%endif%}
+                                alumnos_ready_only" 
+                            value="{{nota_alumno_}}">
+                    </li>  
+                {%endfor%}
+       </ul>
+    {%endfor%}
+            
+  {%else%}
+            <h3 style="text-align: center;">Lo sentimos no se encontraron ALUMNOS para listar.</h3>
+  {%endif%}
+            
+</div>  
+<div style="clear: both;"></div>
+
+{%endblock%}

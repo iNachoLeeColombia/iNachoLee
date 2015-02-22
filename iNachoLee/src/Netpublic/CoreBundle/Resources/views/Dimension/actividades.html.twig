@@ -1,0 +1,8 @@
+<option value="*">Actividadenns.</option>
+{#%for a_c in actividades_cabeza %#}
+    {%for actividad in actividades%}        
+            
+            <option style="padding-left: 15px;" value="{{actividad.id}}">{{actividad}}</option>
+           
+    {%endfor%}
+{#%endfor%#}    

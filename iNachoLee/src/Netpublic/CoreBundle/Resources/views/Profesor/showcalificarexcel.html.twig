@@ -1,0 +1,99 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Planillas En Excel{% endblock %}
+
+{%block  sub_container %}
+{% set nombre_dimensiones= items_todos_alumnos[0]%}
+{%set nombre_componentes=componentes_todos[0]%}
+<div id="capa_ram_actividades_desempenos_calificar_nota">
+<div style="margin-top: 10px;">
+{%if nro_errores==0%}
+        <h3 style="color: green;text-align: center;"> FELICITACIONES, Has subidos todas tus notas CORRECTAMENTE.</h3>
+{%else%}
+        <h3 style="color: red;text-align: center"> Por Favor Verifica, Tienes {{nro_errores}} detalles</h3>
+{%endif%}        
+</div>
+    <div class="btn-group pull-right">
+   {%for ca in carga_academica%}    
+      <a  class='btn btn-default {%if ca.id==carga_academica_actual.id%} disabled{%endif%}'  href="{{path('profesor_showcalificarexcel',{'cargaacademica_id':ca.id,'periodo_id':periodo.id,'nro_errores':nro_errores})}}">{{loop.index}}            
+       {{render(controller("NetpublicCoreBundle:Profesor:getnroerrores",{'carga_academica':ca.id,'periodo':periodo.id})) }}
+      </a>
+            
+{%endfor%}
+</div>
+
+        <div style="font-size: 11px;" class="col-lg-12">
+    <h3>{{carga_academica_actual.asignatura}}-{{carga_academica_actual.grupo}}</h3>
+<table class="table table-bordered" style="margin-bottom: 0px;">
+<tr>
+    <td><div  style="width: 15px;">#</div></td>
+        <td><div  style="width: 200px;">Nombre Completo.</div></td>
+        {%for dimensiones in nombre_dimensiones%}
+            {%for dimension in dimensiones%}
+        <td><div class="tarea" style="width: 10px;" >{{dimension.dimension|replace({" ":""})}}</div></td>
+          {%endfor%}    
+        {%endfor%}
+        {%for comp in nombre_componentes%}            
+        <td><div class="tarea" style="width: 10px;" >{{comp.dimension|replace({" ":""})}}</div></td>
+                
+        {%endfor%}
+        <td><div class="tarea" style="width: 10px;" >{{nota_periodo[0].dimension|replace({" ":""})}}</div></td>
+        
+        
+    </tr>
+    
+
+ {%for alumno in alumnos%}
+<tr>
+        {%set clave=loop.index0%}
+        <td>{{loop.index}}</td>
+        <td>{{alumno}}</td>
+        {%for items in items_todos_alumnos[clave]%}
+            {%for item in items%}
+        <td style="
+            {%if item.getEsError==1%}
+            background-color: red;
+            color: white;
+            font-weight: 900;
+            {%endif%}
+            "
+               
+               > {{item}}</td>
+           {%endfor%}
+        {%endfor%}
+        {%for compo in componentes_todos[loop.index0]%} 
+           
+           <td style="
+            {%if compo.getEsError==1%}
+            background-color: red;
+            color: white;
+            font-weight: 900;
+            {%endif%}
+            "
+            > {{compo}}</td>
+          
+                  {%endfor%} 
+           <td style="
+           {%if nota_periodo[loop.index0] is null%}
+             background-color: red;
+            color: white;
+            font-weight: 900;
+           
+           {%else%}
+            {%if nota_periodo[loop.index0].getEsError==1%}
+            background-color: red;
+            color: white;
+            font-weight: 900;
+            {%endif%}
+            {%endif%}
+            "
+            >
+           {{nota_periodo[loop.index0]}}
+           </td>  
+</tr>
+ {%endfor%}       
+ 
+</table>
+</div>                
+    </div>
+{%endblock%}
+        

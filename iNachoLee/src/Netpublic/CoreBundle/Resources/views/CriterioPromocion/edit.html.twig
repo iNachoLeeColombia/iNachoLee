@@ -1,0 +1,26 @@
+                                        
+<div class="col-lg-12" style="font-size: 10px;">
+    <form class="form-inline" action="{{ path('criteriopromocion_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} id="edit_criterio_promocion" name="edit_criterio_promocion">
+        <div class="col-lg-12" >
+        <div class="col-lg-1"> 
+        {{ form_widget(edit_form.tipo, { 'attr': {'style':'display:inline;'} }) }}
+                
+         </div>
+         <div class="col-lg-10"> 
+         <span>Año escolar. En</span>     
+         
+         {{ form_widget(edit_form.grado, { 'attr': {'style':'display:inline;'} }) }}
+             
+         <span>si</span>
+         {{ form_widget(edit_form.es_area_asg, { 'attr': {'style':'display:inline;'} }) }} 
+         <span>perdida(s)</span>
+         {{ form_widget(edit_form.simbolo, { 'attr': {'style':'display:inline;'}}) }}
+         {{ form_widget(edit_form.valor, { 'attr': {'style':'display:inline;width:40px;'} }) }}
+         {{ form_widget(edit_form._token, { 'attr': {'style':'display:inline;'} }) }}
+         </div>
+         <div class="col-lg-1">    
+         <button type="submit" onclick="updateCriterioAcademicoAno({{entity.id}});">Actualizar</button>
+         </div>
+     </div>       
+    </form>
+</div>

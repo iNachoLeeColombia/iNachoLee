@@ -1,0 +1,146 @@
+
+<div id="capa_principal{{id_ca}}" class="well">
+    <div><button style="float: right;"  class="btn btn-danger" 
+                 onclick="$('#capa_principal{{id_ca}}').hide();"
+                 >X Cerrar</button></div>
+        <div style="clear: both;"></div>  <br>  
+    <table class="table table-bordered">
+    <thead> 
+    <th>Hora</th>    
+    <th id="madre_celdacolumna0">Lunes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div><a href="#" onclick="procesarColumnaProfesorHorarios(0,0,'{{id_ca}}');"
+                 id="celdacolumna0" class="btn celda_libre">
+            <i class="icon-check"></i>
+        </a>
+            <a href="#" class="btn" onclick="procesarColumnaProfesorHorarios(0,1,'{{id_ca}}');">
+           <span style="
+                          color: red;
+                          font-size: 14px;
+                          font-weight: 900;
+                          ">(X)
+       </span>    
+                </a></div>             
+    </th>
+    <th>Martes <div>
+        <a href="#" onclick="procesarColumnaProfesorHorarios(1,0,'{{id_ca}}');"
+                 id="celdacolumna0" class="btn celda_libre">
+            <i class="icon-check"></i>
+        </a>
+            <a href="#" class="btn" onclick="procesarColumnaProfesorHorarios(1,1,'{{id_ca}}');">
+           <span style="
+                          color: red;
+                          font-size: 14px;
+                          font-weight: 900;
+                          ">(X)
+       </span>    
+     </a>             
+        </div>
+    </th>
+    <th>Miercoles<div>        <a href="#" onclick="procesarColumnaProfesorHorarios(2,0,'{{id_ca}}');"
+                 id="celdacolumna0" class="btn celda_libre">
+            <i class="icon-check"></i>
+        </a>
+            <a href="#" class="btn" onclick="procesarColumnaProfesorHorarios(2,1,'{{id_ca}}');">
+           <span style="
+                          color: red;
+                          font-size: 14px;
+                          font-weight: 900;
+                          ">(X)
+       </span>    
+     </a>            
+        </div>     
+</th>
+    <th>Jueves<div>         <a href="#" onclick="procesarColumnaProfesorHorarios(3,0,'{{id_ca}}');"
+                 id="celdacolumna0" class="btn celda_libre">
+            <i class="icon-check"></i>
+        </a>
+            <a href="#" class="btn" onclick="procesarColumnaProfesorHorarios(3,1,'{{id_ca}}');">
+           <span style="
+                          color: red;
+                          font-size: 14px;
+                          font-weight: 900;
+                          ">(X)
+       </span>    
+                </a>         </div>    
+</th>
+    <th>Viernes <div>        <a href="#" onclick="procesarColumnaProfesorHorarios(4,0,'{{id_ca}}');"
+                 id="celdacolumna0" class="btn celda_libre">
+            <i class="icon-check"></i>
+        </a>
+            <a href="#" class="btn" onclick="procesarColumnaProfesorHorarios(4,1,'{{id_ca}}');">
+           <span style="
+                          color: red;
+                          font-size: 14px;
+                          font-weight: 900;
+                          ">(X)
+       </span>    
+     </a>           
+        </div>
+</th>
+    <th>Sabado
+</th>
+    <th>Domingo
+</th>
+    </thead>
+    
+    {%for c_h in clases_hora%}
+    {%set fila=loop.index0 %}
+        <tr>
+            {% for c in c_h %}
+                <td id="celda_madre{{c.id}}"><div id="celda{{c.id}}" 
+                      {%if c.tipo!=-1%}                            
+                                                  onclick="procesarClickProfesorHorarios({{c.id}});
+                      {%endif%}                                 
+                                                  " 
+                    class="
+                    celda_column{{c.getDiaColumna()}} 
+                    celda_fila{{c.getHoraFila()}} 
+                    {%if c.tipo==0%}
+                     celda_libre
+                    {%elseif c.tipo==1%}
+                     celda_ocupada
+                    {%endif%}                    
+                    "  
+                    > 
+                    
+                    {%if c.tipo==0%}
+                    <i class="icon-check"></i>
+                    {%elseif c.tipo==-1%}    
+                        <div>      <a href="#" onclick="procesarFilaProfesorHorarios('{{fila}}',0,'{{id_ca}}');"
+                           id="celdacolumna0" class="btn celda_libre">
+                           <i class="icon-check"></i>
+                                   </a>
+                                 <a href="#" class="btn" onclick="procesarFilaProfesorHorarios('{{fila}}',1,'{{id_ca}}');">
+                                           <span style="
+                                            color: red;
+                                            font-size: 14px;
+                                            font-weight: 900;
+                                 ">(X)
+                                            </span>    
+                                 </a>
+                        </div>                    
+                    {%elseif c.tipo==1%}                        
+                    <span style="
+                                            color: red;
+                                            font-size: 14px;
+                                            font-weight: 900;
+                                 ">(X)
+                                            </span>    
+
+                        
+                    {%elseif c.tipo==2%}                        
+                        Festivo
+                    {%elseif c.tipo==3%}    
+                        <span style="color: white">    
+                            ------
+                        </span>   
+                    {%endif%}                        
+                    
+                       </div> 
+                </td>
+            {%endfor%}    
+        </tr>
+    {%endfor%}    
+    
+</table>
+    </div>

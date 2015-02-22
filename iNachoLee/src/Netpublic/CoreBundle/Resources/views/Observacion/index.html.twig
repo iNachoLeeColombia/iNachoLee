@@ -1,0 +1,30 @@
+<h5>Observador Del Estudiante</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Contenido</th>
+            
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('observacion_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.contenido }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('observacion_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('observacion_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

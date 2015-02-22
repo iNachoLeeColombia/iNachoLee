@@ -1,0 +1,32 @@
+{%for grado in grados%}
+  {%if tipo==1%}
+      <li class="parent_li grado" id="grado_boletin_{{grado.id}}">
+      <span class="items_remoto" id="nodo_grado_boletin_{{grado.id}}" data-id={{grado.id}} data-tipo="1"  title="Collapse this branch" >
+                <i class="icon-plus-sign"></i> {{grado}}
+          <br/><small style="font-size: 8.5px;">Click para ver grupos.</small>
+          </span>
+              
+       <ul id="ul_grupo_{{grado.id}}">
+       </ul>
+      </li>
+   {%endif%}   
+  {%if tipo==2%}
+      <li class="parent_li grado" id="grado_comp_{{grado.id}}">
+      <span class="items_remoto" id="nodo_grado_comp_{{grado.id}}" data-id={{grado.id}}  data-tipo="2" title="Collapse this branch" >
+                <i class="icon-plus-sign"></i> {{grado}}
+          <br/><small style="font-size: 8.5px;">Click para ver grupos.</small>
+      </span>
+        <small id="operativo_grado{{grado.id}}">
+            <input value="{{grado.id}}"  type="checkbox" class="grados gradooperativo destino"  id="check_operativo_grado{{grado.id}}">Operativos
+        </small>    
+        <small id="todos_grupo_grado{{grado.id}}" style="display: none;">
+            <input type="checkbox" id="check_todos_grupo_grado{{grado.id}}" onclick="allCheckBox('check_todos_grupo_grado{{grado.id}}','grupos');">
+            Todos los grupos
+        </small>
+                                            
+       <ul id="ul_grupo_{{grado.id}}">
+       </ul>
+      </li>
+   {%endif%}   
+
+{%endfor%}    

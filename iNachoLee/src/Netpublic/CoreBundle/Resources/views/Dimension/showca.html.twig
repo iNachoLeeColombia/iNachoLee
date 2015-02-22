@@ -1,0 +1,14 @@
+
+
+{%for comp in padre.padresgc%}
+<li class="parent_li componente" id="compo_{{comp.id}}">
+    <span class="items_remoto" id="comp_asg_{{comp.id}}" data-id={{comp.id}}  data-carga-id="{{carga.id}}" title="Collapse this branch">
+       
+    {{comp}}</span>
+     <a href="#">Ver lista</a>
+        <ul id="item_{{comp.id}}">
+      {#{ render(controller('NetpublicCoreBundle:Dimension:showcaitems', {'ca_id': carga.id,'dimension_id':comp.id }))}#}
+    </ul>
+  </li>
+{%endfor%}
+  

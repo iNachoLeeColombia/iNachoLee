@@ -1,0 +1,7 @@
+parameters:
+#    netpublic_core.example.class: Netpublic\CoreBundle\Example
+
+services:
+#    netpublic_core.example:
+#        class: %netpublic_core.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

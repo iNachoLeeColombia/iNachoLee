@@ -1,0 +1,4 @@
+<option value="">Seleccione una Asignatura.</option>
+{%for asig in asignaturas if not asig.getEsArea()%}
+<option value="{{asig.id}}">{{asig}}</option>
+{%endfor%}

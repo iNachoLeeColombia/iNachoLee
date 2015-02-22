@@ -1,0 +1,244 @@
+<div style="width: 100%">
+        <div style="float: left;width: 30%;">
+          
+          <img style="width:150px;height:160px" 
+               src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}" />                    
+        </div>
+        <div style="float: left;width: 70%;">
+           <h3>{{alumno.sede}} </h3>
+        <table border.type="none" style="font-size: 18px;">
+            <tr border.type="none">
+                <td border.type="none">Sitio Web: {{colegio.web}}
+                </td>
+                <td border.type="none" >
+                    Dirección y Telefono: {{colegio.direccion}} --{{colegio.telefono}}
+                </td>                                        
+                <td  border.type="none" >Email: {{colegio.email}}</td>                                                                    
+            </tr>
+            <tr>
+                <td  border.type="none" >Rector: {{alumno.sede.rector}}</td>                
+                <td  border.type="none" >Codigo Del DANE: {{colegio.getCodigoDane}}</td>                
+                <td border.type="none" ></td>
+            </tr>             
+        </table>
+        <h3>{{alumno}}</h3>        
+        <table border.type="none" style="font-size: 18px;">            
+             <tr>
+                <td  border.type="none" >Grado: {{alumno.grado}}</td>
+                <td  border.type="none" >
+                    Grupo: {{alumno.grupo}}
+                </td>
+                
+             </tr>    
+             <tr>
+                {%for nivel_academica in alumno.getNivelAcademico() if nivel_academica.getPeriodoActual.id==periodo_escolar_activo.id%}
+                         {%if nivel_academica.tipo==0%}
+                         <td border.type="none" >
+                             Puesto Colegio: {{nivel_academica.puesto}}
+                         
+                         {%endif%}                         
+                        {%if nivel_academica.tipo==2%}
+                        
+                            Puesto Grupo: {{nivel_academica.puesto}}
+                        </td>    
+                         {%endif%}     
+                 {%endfor%}                                 
+                        
+            </tr>
+
+            
+        </table>        
+        </div>       
+        <div style="clear: both;"></div>
+ <div style="
+         width: 100%;
+         font-size: 18px;         
+         ">        
+    <div style="
+               margin-bottom: 0px;          
+               
+               ">   
+        <div style="
+             float: left;
+             width: 5%;   
+             color: white;
+             ">
+           .--
+        </div>
+        <div style="
+             float: left;
+             width: 64%;                       
+             color: white;
+             ">        
+            --
+        </div>
+        <div style="
+                 float: left;
+                 width: 24.5%;                 
+                 background-color: gray;
+                 padding-bottom: 0px;
+                 padding-top: 2px;
+                 padding-left: 2px;
+                 padding-right: 2px;
+                 ">
+               <div style="
+                    background-color: white;
+                    width: 100%;                    
+                    ">      
+                Periodos
+               </div>
+        </div>
+        <div style="
+             float: left;
+             width: 5%;
+             background-color: gray;
+             padding-top: 2px;
+             padding-right: 2px;
+             padding-bottom: 2px;             
+             ">
+                <div style="
+                    background-color: white;
+                    width: 100%;
+                    
+                      ">          
+                    Final
+                </div> 
+        </div> 
+     <div style="clear: both;"></div>        
+    </div>
+          
+{#cuerpo#}            
+     {%for areas in datos%}  
+<div style="
+    background-color: gray;    
+    padding-bottom: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 2px;
+               ">          
+         <div style="
+              background-color: white;              
+              width: 100%;
+                           ">     
+     <div style="          
+          font-size: 18px;          
+          height: 15px;
+          ">
+             <div style="
+             float: left;
+             color:white;
+             width: 5%;
+             
+             ">
+            --
+        </div>
+        <div style="
+             float: left;
+             width: 64%;
+             ">  <div><strong>      
+                 Area: {{areas.nombre}} Promedio: {{areas.nota_promedio_acumalativa}}
+                 </strong>
+                 </div>                 {%for asignaturas_area in areas.asignaturas %}
+                 <div style="font-size: 15px;">
+                    <span style="color: white;">-----</span>        
+            Asignatura: {{asignaturas_area.asignatura.nombre}} Nota Final: 
+            {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                P{{loop.index}}({{periodos_asignatura.periodo.nota}})                
+             {%endfor%}   
+            
+            -Fallas({{asignaturas_area.asignatura.inasistencias}}) 
+            </div>
+                 {%endfor%}
+                 
+        </div>
+            <div style="
+                 float: left;
+                 width: 24%;
+                 background-color: gray;
+                 padding-bottom: 0px;
+                 padding-top: 2px;
+                 padding-left: 2px;
+                 padding-right: 6px;
+                 ">
+                <div style="
+                     width: 100%;                                
+                     padding-left: 5px;
+                     background-color: white;
+                     ">     
+                {%for periodos_area in areas.periodos%}                     
+                     <div style="
+                          float: left;
+                          width:40px;                                                    
+                          background-color: orange;
+                          ">P{{loop.index}}</div>                                                                                       
+                     
+                {%endfor%}                                               
+                 <div style="clear: both;"></div>
+               {%for periodos_area_ in areas.periodos%}                      
+                    {%for p_a in periodos_area_%}                     
+                     <div style="
+                          float: left;
+                          width: 40px;                          
+                          padding: 0px 0px;
+                          margin-bottom: 5px;
+                          text-align: center;
+                          background-color: lightgrey;
+                          
+                          ">
+                                <span style="                                            
+                                      margin: 0px 0px;
+                                      padding: 0px 0px;">
+{{p_a.nota|number_format(colegio.getNumeroCifrasignificativa)}}</span>
+                              
+                            {%set desempeno="Error,Valor no valido" %}
+                            {%if p_a.nota > colegio.getValorMinimoSobresaliente and
+                               p_a.nota <= colegio.getValorMaximoSobresaliente() %}
+                                {% set desempeno="1" %}
+                            {%endif%}             
+                            {%if p_a.nota > colegio.getValorMinimoAceptable() and
+                               p_a.nota <= colegio.getValorMaximoAceptable()%}
+                                {% set desempeno="2" %}
+                            {%endif%}                
+                            {% if p_a.nota > colegio.getValorMinimoInsuficiente() and
+                                  p_a.nota <=colegio.getValorMaximoInsuficiente()%}
+                                {% set desempeno="3"%}
+                            {%endif%}                 
+                            {%if p_a.nota >=colegio.getValorMinimoDeficiente() and
+                               p_a.nota <=colegio.getValorMaximoDeficiente() %}
+                               {% set desempeno="4"%}
+                            {%endif%}
+                            {%if desempeno!="Error,Valor no valido" and p_a.nota!=colegio.getValorDefecto%}  
+                              
+                                <img style="width:25px;height:25px;text-align: center;" 
+                                     src="{{asset('bundles/netpubliccore/images/'~desempeno~'_desempeno.png')}}" />        
+                              
+                            {%endif%}
+                            {%if p_a.nota==colegio.getValorDefecto%}   
+                                <span style="font-size: 9px;">No ingresado por el profesor</span>
+                            {%endif%}    
+                                
+                          </div>                                                                                       
+           
+           
+                    {%endfor%}                          
+                {%endfor%} 
+                 <div style="clear: both;"></div>     
+                 </div>        
+         </div>
+        <div style="
+             float: left;
+             width: 5%;                                   
+             ">
+         {{areas.nota_promedio_acumalativa}}
+         
+        </div>
+             
+     <div style="clear: both;"></div>   
+    </div> 
+    <div style="clear: both;"></div>
+{#Asignaturas de las areas#}       
+              </div>
+    </div>        
+    {%endfor%}        
+    </div>
+</div>    

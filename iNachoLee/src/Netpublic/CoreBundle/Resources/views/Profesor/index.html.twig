@@ -1,0 +1,81 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%}
+<h5>Profesores.</h5>
+{%if es_ajax%}
+<table class="bordered-table">
+    <thead>
+        <tr>
+            <th   class="blue header">Id</th>
+            <th  class="yellow header">Nombre</th>
+            <th   class="red header">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('profesor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                    {{ form_widget(delete_form[loop.index0]) }}  
+                        <a href="#" onclick="showProfesorinfoAcademicaDefectoAno({{entity.id}})">show</a>
+                 
+                        <a href="#" onclick="editarProfesorinfoAcademicaDefectoAno({{entity.id}})">edit</a>
+                        <a href="#" onclick="deleteProfesorinfoAcademicaDefectoAno({{entity.id}})">eliminar</a>
+                    </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="#" onclick="newProfesorinfoAcademicaDefectoAno()">
+            nuevo
+        </a>
+    </li>
+</ul>
+
+{%else%}
+<table class="zebra-striped">
+    <thead>
+        <tr>
+            <th   class="blue header">Id</th>
+            <th  class="yellow header">Nombre</th>
+            <th   class="red header">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('profesor_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>
+               
+                        <a href="{{ path('profesor_show', { 'id': entity.id }) }}" >show</a>
+               
+                        <a href="{{ path('profesor_edit', { 'id': entity.id }) }}">editar</a>
+               <form style="display:inline " action="{{ path('profesor_delete', {'id':entity.id }) }}" method="post">
+                        {{ form_widget(delete_form[loop.index0]) }}
+                        <span>
+                            <button class="ui-button-primary btn_eliminar_test" >eliminar</button>
+                        </span>
+                </form> 
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('profesor_new') }}" onclick="newProfesorinfoAcademicaDefectoAno()">
+            nuevo
+        </a>
+    </li>
+</ul>
+
+{%endif%}
+{%endblock%}
+

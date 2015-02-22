@@ -1,0 +1,32 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Dimension{% endblock %}
+{%block contenido%}  
+<h5>Dimension</h5>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+         <tr>
+            <th>Porcentaje </th>
+            <td>{{ entity.ponderado }}</td>
+        </tr>
+        <tr>
+            <th>Periodo Escolar  </th>
+            <td>{{ entity.padre }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+        <button  onclick="indexinfoAcademicaDefectoAno({{entity.tipo}});">
+            << atras
+        </button>
+    
+{%endblock%}

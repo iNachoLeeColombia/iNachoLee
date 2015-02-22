@@ -1,0 +1,25 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%}  
+{%if es_ajax%}
+<h5>Editar Grado.</h5>
+
+<form  id="1" name="1" {#action="{{ path('grado_update', { 'id': entity.id }) }}"#} method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button onclick="updateGradoinfoAcademicaDefectoAno({{entity.id}})" type="submit" class="btn">Atualizar</button>
+    </p>
+</form>
+    <a href="#"  onclick="indexGradoinfoAcademicaDefectoAno();">
+            << Atras
+        </a>
+
+{%else%}
+    <form action="{{ path('grado_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+{%endif%}   
+{%endblock%}    
+        

@@ -1,0 +1,83 @@
+{% if tipo==0%}
+<h5>Crear Año Escolar</h5>
+{% endif%}
+{{form_errors(form)}}
+ {#%if not es_ajax%}                                   #}
+<form id="form_newDimencion"  name="form_newDimencion" {#action="{{ path('dimension_create', {'tipo':tipo}) }}"#} method="post" {#{ form_enctype(form) }#}>
+    <input type="hidden" name="tipo" id="tipo" value="{{tipo}}" >
+ {#%endif%#}  
+            <div class="clearfix">
+                {% if tipo==0%}
+                   {{ form_label(form.nombre, null, { 'label': 'Año(Ej:2012)', 'attr': {'for': 'xlInput'} }) }}
+                {%else%} 
+                    {{ form_label(form.nombre, null, { 'label': 'Nombre', 'attr': {'for': 'xlInput'} }) }}
+                {% endif%}                            
+                <div class="input">                
+                    {{ form_widget(form.nombre, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%if tipo==4 or tipo==6%}
+            {#{ form_label(form.ano_escolar, null, { 'label': 'Años Escolar', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(form.ano_escolar, { 'attr': {'class': 'span2','onchange': 'getPeriodosAcademicosAnoEscolar_doble("dimension_ano_escolar","dimension_periodoacademico");'} }) }}
+            {{ form_label(form.periodoacademico, null, { 'label': 'Periodo Academico', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(form.periodoacademico, { 'attr': {'class': 'span2','onchange': "getDimSuperiorAcademicosAnoEscolar_doble('dimension_periodoacademico','dimension_padre');"} }) }}<span style="font-size: x-large;font-weight: bold"></span>
+            #}{{ form_label(form.ponderado, null, { 'label': 'Porcentaje', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(form.ponderado, { 'attr': {'class': 'span1'} }) }}<span style="font-size: x-large;font-weight: bold">%</span>
+            {%endif%}
+                    {{ form_widget(form._token) }}
+            {#%if tipo!=0 and tipo!=1%}
+            <div class="clearfix">              
+                {{ form_label(form.es_carita_feliz, null, { 'label': 'Caritas', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(form.es_carita_feliz, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%#}
+            {%if tipo!=0 %}
+            <div class="clearfix">  
+                {%if tipo==6 %}
+                {{ form_label(form.padre, null, { 'label': 'Periodo Academico', 'attr': {'for': 'xlInput'} }) }}
+                {%else%}
+                {{ form_label(form.padre, null, { 'label': 'Dimension Superior', 'attr': {'for': 'xlInput'} }) }}                    
+                {%endif%}    
+                <div class="input">                
+                    {{ form_widget(form.padre, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%}
+            {%if tipo!=0  and tipo!=1 and tipo!=4 and tipo!=6%}
+            <div class="clearfix">              
+                {{ form_label(form.asignatura, null, { 'label': 'Asignatura', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(form.asignatura, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%}
+            {%if tipo!=0  and tipo!=1 and tipo!=6%}
+            <div class="clearfix">              
+                {{ form_label(form.grupo, null, { 'label': 'Grupo', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(form.grupo, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+           {%endif%}
+     {%if tipo==1%}
+                    {{ form_label(form.fecha_inicio) }}
+                    
+                    {{ form_widget(form.fecha_inicio) }}
+            
+            {{ form_label(form.fecha_final) }}
+                    {{ form_widget(form.fecha_final) }}
+     {%endif%}
+            <div class="clearfix"></div> 
+            <br/><br/>
+            <div class="btn-group">        
+            <input class="btn btn-xs" type="submit" value="Guardar" onclick="createinfoAcademicaDefectoAno();" />
+     <input  class="btn btn-xs" type="submit" value="Guardar & Nuevo" onclick="createnewinfoAcademicaDefectoAno();" />
+     </div>
+</form>
+
+

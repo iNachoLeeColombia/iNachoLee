@@ -1,0 +1,27 @@
+
+<form id="1" name="1" {#action="{{ path('contrato_update', { 'id': entity.id }) }}"#} method="post" {{ form_enctype(edit_form) }}>
+<div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Editar Contratos</h3>
+            </div>    
+                   
+ <div class="modal-body"> 
+                <div style="width: 100px;float: left">
+                {{ form_widget(edit_form._token)}}
+                {{form_label(edit_form.grado)}}
+                {{ form_widget(edit_form.grado)}}      
+                {{ form_label(edit_form.asignatura, null, { 'label': 'Asignatura', 'attr': {'for': 'foo'} }) }}
+                {{ form_widget(edit_form.asignatura, { 'attr': {'class': 'xlarge'} }) }}
+                {{ form_label(edit_form.horas_contratadas, null, { 'label': 'Horas Disponobles Semanales', 'attr': {'for': 'foo'} }) }}
+                {{ form_widget(edit_form.horas_contratadas)}}
+               </div>    
+                    
+
+<div style="clear: both"></div>                       
+            </div>
+            <div class="modal-footer">
+                <button onclick="updatecontratoinfoAcademicaDefectoAno('{{entity.id}}','{{id_profesor_profesor}}');" class="btn btn-primary" >Actualizar Contrato</button>
+                <a onclick="indexcontratoinfoAcademicaDefectoAno({{id_profesor_profesor}});" class="btn " ><< Atras</a>
+            </div>
+</form>
+  

@@ -1,0 +1,493 @@
+<div style="width:520px;padding: 10px 10px;margin-top: 10px;margin-left: 10px;" class="well" >
+            
+            <div id="foto_la" style="width: 20%;float: left;height: 140px;"><a style="margin-right:10px;" href="#" 
+                                                                 class="thumbnail">
+                    <img src="{{asset('uploads/documents/strongalumno1.jpg')}}" style="width:80px;height: 80px;"></a></div>
+                    <div style="width: 80%;float: right;">
+                        <div class="well">
+                         <span id="nombre_alumno_la" style="font-size: 14px;"> </span>
+                         <br>  
+                         <span id="dimension_la" style="font-size: 14px;font-weight: 900;"></span>
+                         :
+                         <span style="
+                                 font-size: 28px;
+                                 font-weight: 900;
+                                 
+                                 " id="nota_posible_profesor"> </span>    
+                         <i class="icon-arrow-right"></i>
+                         <strike>
+                            <span id="nota_la" style="
+                                font-size: 13px;                                ">6.14</span>
+                            </strike>     
+                        </div>
+                        </div>  
+                <div style="clear: both;"></div>
+            </div>
+<div id="lapiz_agil_fallas" style="
+             background-color:darkgrey;
+             padding: 1px;
+             display: none;
+             color: white;
+             font-weight: 900;
+             " 
+             class="well"> 
+             
+          <div class="btn-group">
+            <label style="color: white;font-weight: 900;">Asistio a Clase ?</label>   
+            <button class="btn btn-primary " onclick="procesarTomaMasAsitencia();"><i class="icon-ok"></i>Si</button>
+            <button class="btn btn-danger"  onclick="procesarTomaMenosAsitencia()"><i class="icon-remove"></i>No</button> 
+          </div>
+         <div class="btn-toolbar"> 
+          <div class="btn-group">
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);" onclick="colocarNotaInput(this)" value="0">0</button>                  
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);" onclick="colocarNotaInput(this)" value="1">1</button>       
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2">2</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="3">3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4">4</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5">5</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="6">6</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7">7</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="8">8</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="9">9</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)" value="10">10</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="11">11</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="12">12</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);" onclick="colocarNotaInput(this)" value="13">13</button>                  
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="14">14</button>       
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="15">15</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="16">16</button>
+ 
+       </div>
+       </div>
+         <div class="btn-toolbar">  
+       <div class="btn-group">
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="17">17</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="18">18</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="19">19</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="20">20</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="21">21</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="22">22</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="23">23</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="24">24</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="25">25</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="26">26</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="27">27</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="28">28</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="29">29</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="30">30</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="31">31</button>
+
+       </div>
+        </div>         
+        <div style="float: right;margin-top: 10px;">
+      <button class="btn btn-info"            
+           {#onclick="actualizarAllNotasAlumnoGrupo({{nota_minima}},{{nota_maxima}});"#}
+              onclick="guardarTodosLosAlumnos();" >
+         Guardar Notas </button>
+      </div>            
+        </div>   
+    <div id="lapiz_agil_actividades"> 
+
+        <div style="clear: both;"></div>
+        <div>   
+    
+         <div style="clear: both;"></div>     
+{#-----------------------#}
+        
+         <div style="background-color:darkgrey;padding: 1px;" class="well"> 
+     <div class="btn-toolbar">   
+     
+        <div class="btn-group">
+           <button class="btn btn-default"  onclick="procesarBtnRetiroLA(this)" value="---"> &nbsp;&nbsp;<icon class="icon icon-remove"></icon></button>  
+           <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="---" data-value="Observador de estudiante">&nbsp;&nbsp<icon class="icon icon-eye-open"></icon></button>       
+         <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="---"   data-value="Cambiar todas las notas">&nbsp;&nbsp<icon class="icon icon-mail-reply-all"></icon></button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)"  value="---" data-value="Filtrar por mujer">&nbsp;&nbsp<icon class="icon icon-male"></icon></button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)"  value="---" data-value="Filtar por Hombre">&nbsp;&nbsp<icon class="icon icon-female"></icon></button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)"  value="---"  data-value="Alumnos que pierden">&nbsp;&nbsp<icon class="icon icon-frown"></icon></button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)"  value="---"  data-value="Alumnos que ganan">&nbsp;&nbsp<icon class="icon icon-smile"></icon></button>
+        <button class="btn btn-default"  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)"  value="---" data-value="Ingreso de logros por codigo">&nbsp;&nbsp<icon class="icon icon-comment"></icon></button>
+        <button class="btn btn-default"  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)"  value="---"  data-value="0.3">.....</button>
+        <button class="btn btn-primary" onclick="guardarTodosLosAlumnos({{nota_minima}},{{nota_maxima}});">&nbsp;&nbsp;<icon class="icon icon-save"></icon></button>
+        </div>
+        </div>         
+    {% if(colegio.getTipoValoracion==0 or colegio.getTipoValoracion==2)%}
+      {% if (colegio.getTipoValoracion==2)%}              
+     <div class="btn-toolbar">   
+       <div class="btn-group">
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="0.0">0.0</button>       
+         <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="0.1">0.1</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="0.2">0.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="0.3">0.3</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)" value="0.4">0.4</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="0.5">0.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.6">0.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.7">0.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.8">0.8</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)" value="0.9">0.9</button>
+        
+        </div>
+      </div> 
+      {%endif%}
+     <div class="btn-toolbar">   
+       <div class="btn-group">
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.0">1.0</button>       
+         <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.1">1.1</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.2">1.2</button>
+        
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.3">1.3</button>       
+         <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.4">1.4</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.5">1.5</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.6">1.6</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)" value="1.7">1.7</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.8">1.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.9">1.9</button>
+        
+        </div>
+      </div> 
+      <div class="btn-toolbar">   
+       <div class="btn-group" >
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.0">2.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.1">2.1</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"     onclick="colocarNotaInput(this)" value="2.2">2.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.3">2.3</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.4">2.4</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.5">2.5</button>
+   
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.6">2.6</button>         
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.7">2.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.8">2.8</button>
+           <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.9">2.9</button>
+        
+        </div>
+      </div>
+      <div class="btn-toolbar">   
+       <div class="btn-group" >       
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.0">3.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.1">3.1</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.2">3.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.3">3.3</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.4">3.4</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.5">3.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.6">3.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.7">3.7</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.8">3.8</button>
+        
+           <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="3.9">3.9</button>        
+        </div>
+      </div>
+                 <div class="btn-toolbar">
+                      <div class="btn-group" style="margin: 0px;padding: 0px;">       
+           <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="4.0">4.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="4.1">4.1</button>        ̣
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.2">4.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.3">4.3</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.4">4.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.5">4.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.6">4.6</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.7">4.7   </button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.8">4.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.0">4.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.0">5.0</button>
+        
+      
+                 </div> 
+          </div> 
+        {%endif%}          
+        {% if(colegio.getTipoValoracion==3)%}
+            {# 0-10#}     
+      <div class="btn-toolbar">   
+         <div class="btn-group"> 
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.0">0.0</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="0.1">0.1</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="0.2">0.2</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.3">0.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.4">0.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.5">0.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.6">0.6</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.7">0.7</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="0.8">0.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="0.9">0.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.0">1.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.1">1.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.2">1.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.3">1.3</button>
+        </div>
+     </div>      
+                 
+      <div class="btn-toolbar">   
+         <div class="btn-group"> 
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.4">1.4</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.5">1.5</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.6">1.6</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.7">1.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.8">1.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.9">1.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.0">2.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.1">2.1</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="2.2">2.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.3">2.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.4">2.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.5">2.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.6">2.6</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.7">2.7</button>
+        </div>
+     </div>      
+                 
+      <div class="btn-toolbar">   
+         <div class="btn-group"> 
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.8">2.8</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.9">2.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="3.0">3.0</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.1">3.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.2">3.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.3">3.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.4">3.4</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.5">3.5</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="3.6">3.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.7">3.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.8">3.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.9">3.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.0">4.0</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.1">4.1</button>
+        </div>
+     </div>      
+
+       <div class="btn-toolbar">   
+         <div class="btn-group"> 
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.2">4.2</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.3">4.3</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.4">4.4</button>
+         
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="4.5">4.5</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.6">4.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.7">4.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.8">4.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.9">4.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.0">5.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="5.1">5.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.2">5.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.3">5.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.4">5.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.5">5.5</button>
+        </div>
+     </div>      
+       <div class="btn-toolbar">   
+         <div class="btn-group"> 
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.6">5.6</button>
+        
+             <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.7">5.7</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.8">5.8</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="5.9">5.9</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.0">6.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.1">6.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.2">6.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.3">6.3</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.4">6.4</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="6.5">6.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.6">6.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.7">6.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.8">6.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="6.9">6.9</button>
+        </div>
+     </div>
+     <div class="btn-toolbar">   
+                 <div class="btn-group" style="margin: 0px;padding: 0px;">            
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.0">7.0</button>
+        
+                     <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.1">7.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.2">7.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.3">7.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.4">7.4</button>        
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.5">7.5</button>        
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.6">7.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.7">7.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.8">7.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.9">7.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="8.0">8.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.1">8.1</button>        
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.2">8.2</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.3">8.3</button>
+        
+        </div>
+       </div>   
+       <div class="btn-toolbar">   
+        <div class="btn-group" style="margin: 0px;padding: 0px;">
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.4">8.4</button>
+           
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.5">8.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="8.6">8.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.7">8.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.8">8.8</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.9">8.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="9.0">9.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="9.1">9.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.2">9.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.3">9.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.4">9.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.5">9.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.6">9.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="9.7">9.7</button>
+        
+        </div>
+        </div>   
+       <div class="btn-toolbar">       
+        <div class="btn-group" style="margin: 0px;padding: 0px;">
+<button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.8">9.8</button>
+        
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="9.9">9.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="10">10</button>
+        
+        </div>
+        </div>       
+      {%endif%}
+
+        {% if(colegio.getTipoValoracion==1)%}
+        {# 1-10#}         
+      <div class="btn-toolbar">   
+         <div class="btn-group"> 
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.0">1.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.1">1.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.2">1.2</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.3">1.3</button>
+            
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.4">1.4</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="1.5">1.5</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="1.6">1.6</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.7">1.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.8">1.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="1.9">1.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.0">2.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.1">2.1</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="2.2">2.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.3">2.3</button>
+        </div>
+     </div>      
+                 
+      <div class="btn-toolbar">   
+         <div class="btn-group"> 
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.4">2.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.5">2.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.6">2.6</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.7">2.7</button>
+        
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="2.8">2.8</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="2.9">2.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="3.0">3.0</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.1">3.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.2">3.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.3">3.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.4">3.4</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.5">3.5</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="3.6">3.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.7">3.7</button>
+        </div>
+     </div>      
+
+       <div class="btn-toolbar">   
+         <div class="btn-group"> 
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.8">3.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="3.9">3.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.0">4.0</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.1">4.1</button>
+        
+             <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.2">4.2</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="4.3">4.3</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="4.4">4.4</button>   
+         
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="4.5">4.5</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.6">4.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.7">4.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.8">4.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="4.9">4.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.0">5.0</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="5.1">5.1</button>
+        </div>
+     </div>      
+       <div class="btn-toolbar">   
+         <div class="btn-group"> 
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.2">5.2</button>
+        
+             <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.3">5.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.4">5.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.5">5.5</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.6">5.6</button>
+        
+             <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="5.7">5.7</button>
+         <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="5.8">5.8</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="5.9">5.9</button>             
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.0">6.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.1">6.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.2">6.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.3">6.3</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.4">6.4</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="6.5">6.5</button>
+        </div>
+     </div>
+     <div class="btn-toolbar">   
+                 <div class="btn-group" style="margin: 0px;padding: 0px;">            
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.6">6.6</button>
+        
+                     <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.7">6.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="6.8">6.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="6.9">6.9</button>
+        <button class="btn btn-default  " onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.0">7.0</button>
+        
+                     <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.1">7.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.2">7.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.3">7.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.4">7.4</button>        
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.5">7.5</button>        
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.6">7.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="7.7">7.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.8">7.8</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="7.9">7.9</button>
+        
+        </div>
+       </div>   
+       <div class="btn-toolbar">   
+        <div class="btn-group" style="margin: 0px;padding: 0px;">
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="8.0">8.0</button>
+            
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.1">8.1</button>        
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.2">8.2</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.3">8.3</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.4">8.4</button>
+        
+            <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.5">8.5</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="8.6">8.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.7">8.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="8.8">8.8</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="8.9">8.9</button>
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="9.0">9.0</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="9.1">9.1</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.2">9.2</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.3">9.3</button>
+        
+        </div>
+        </div>   
+       <div class="btn-toolbar">       
+        <div class="btn-group" style="margin: 0px;padding: 0px;">
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.4">9.4</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.5">9.5</button>
+        
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.6">9.6</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"    onclick="colocarNotaInput(this)" value="9.7">9.7</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="9.8">9.8</button>
+        
+        <button class="btn btn-default  "   onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"  onclick="colocarNotaInput(this)" value="9.9">9.9</button>
+        <button class="btn btn-default  "  onmouseover="procesarOverClickBotones(this);"   onmouseout="procesarOutClickBotones(this);"   onclick="colocarNotaInput(this)" value="10">10</button>
+        
+        </div>
+        </div>       
+      {%endif%}
+                 
+        </div>
+     <div style="clear: both;"></div>              
+                  
+    </div>          
+        
+     </div>         
+         
+    </div>     
+         
+    

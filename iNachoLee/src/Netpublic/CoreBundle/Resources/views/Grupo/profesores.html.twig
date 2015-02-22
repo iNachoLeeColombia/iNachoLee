@@ -1,0 +1,4 @@
+<option value="*">Profesores.</option>
+{%for c_a in carga_academica%}
+<option value="{{c_a.profesor.id}}">{{c_a.profesor}}</option>
+{%endfor%}

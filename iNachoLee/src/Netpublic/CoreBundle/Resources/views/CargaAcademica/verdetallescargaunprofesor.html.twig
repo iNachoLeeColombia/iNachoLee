@@ -1,0 +1,102 @@
+<h6>{{carga_academica}}</h6>
+
+<div style="display: inline;padding: 0px 0px;" id="5" >  
+  {%if entities|length>0%} 
+    {%for notas_alumno in entities%}
+             
+             {%set primer_fila_nombre_dimeniones=notas_alumno%}
+             {%if loop.first%}
+                <ul style="list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                        <li style="float: left;width: 45px;margin: 0px 0px;padding: 0px 0px;">
+                        <input type="text" value="-" disabled="" style="visibility: hidden;width: 45px;height: 30px;margin: 0px 0px;padding: 0px 0px;"></li>                
+                            <li style="float: left;"><input type="text" value="-" disabled="" style="width: 320px;visibility: hidden;height: 30px;"></li>
+                            {%for nota_alumno in primer_fila_nombre_dimeniones%}
+                                <li  style="float: left;width: 45px;height: 30px;">
+                                    <input type="checkbox" id="checkBox{{loop.index}}"
+                                      onchange="procesarEliminarColumna({{carga_academica.id}},{{loop.index}});" />
+                                   
+                                    <div style="padding-left: 5px;" class="tarea">{{nota_alumno.dimension|replace({" ":""})}}{%if nota_alumno.dimension.ponderado!=null%}({{nota_alumno.dimension.ponderado}}%){%endif%}
+
+                                    </div>
+
+                                </li>                                                 
+                            {%endfor%}
+                </ul>     
+            {%endif%}
+        <ul style="clear: both;padding: 0px 0px;margin: 0px 0px;">
+            <li  style="display: inline;list-style: none;padding: 0px 0px;margin: 0px 0px;">
+                       <div    
+                           style="height: 30px;width:22px;font-weight: bold;float: left;margin: 0px 0px;background-color: #F5F5F5;border-bottom: #CECECE solid thin;"            
+                            >
+                           {%if notas_alumno|length> 0%}
+                           <input type="checkbox" 
+                                {%if notas_alumno[0].alumno.grupo !=null%} 
+                                        data-grupo-id="{{notas_alumno[0].alumno.grupo.id}}"
+                                {%else%}
+                                        data-grupo-id="0"
+                                {%endif%} 
+                                       class="alumnos" 
+                                value="{{notas_alumno[0].alumno.id}}" 
+                                id="usuario{{notas_alumno[0].alumno.id}}"          
+                             >
+                           {%else%}
+                           <input type="checkbox" />
+                           
+                           {%endif%}       
+                </div>             
+
+                <input type="text" 
+                        style="height: 30px;width:45px;font-weight: bold;float: left;margin: 0px 0px;"            
+                        disabled="disabled"            
+                        value="{{loop.index}}" />
+                 {%if notas_alumno|length> 0%}       
+                 <input type="text" 
+                     style="height: 30px;font-weight: bold;float: left;width: 300px;"
+                     name="{{notas_alumno[0].alumno.id}}" 
+                     readonly="readonly"
+                     class="alumnos"
+                     value="{{notas_alumno[0].alumno}}" />
+                 {%else%}
+            <input type="text" class="alumnos" 
+                   readonly="readonly" style="height: 30px;font-weight: bold;float: left;width: 300px;"
+                   value="Ufffff problemas al mostrar este alumno">
+                 {%endif%}
+            </li> 
+            {%for nota_alumno_ in notas_alumno%}
+                    <li 
+                            onmouseover="procesarEntradaListaAlumnos({{nota_alumno_.id}});"
+                            onmouseout="procesarSalidaListaAlumnos({{nota_alumno_.id}});"
+                            style="display: inline;" class="td_notas">
+                        <a id="anchor{{nota_alumno_.id}}" onclick="procesarEliminarCelda({{nota_alumno_.id}},{{carga_academica.id}});" style="float: left;display: none;" href="#">
+                        <div style="width: 40px;background-color: red;height: 28px;float: left;text-align: center;font-size: 18px;padding-top: 13px;">X</div></a>        
+                       
+                            <input type="text" 
+                                   id="input_nota{{nota_alumno_.id}}" 
+                            style=" float: left;
+                            height: 30px;width: 45px;"            
+                            readonly="readonly"
+                            data-id="{{nota_alumno_.id}}"
+                            class="alumnos columna{{loop.index}} 
+                            {%if nota_alumno_.dimension.tipo==3%}
+                                celda_fallas
+                            {%elseif nota_alumno_.dimension.tipo==1%}
+                                celda_final_periodo
+                            {%else %}
+                                celda_nota                
+                            {%endif%}
+                                alumnos_ready_only" 
+                            value="{{nota_alumno_}}">
+                    </li>  
+                {%endfor%}
+       </ul>
+    {%endfor%}
+            
+  {%else%}
+            <h3 style="text-align: center;">Lo sentimos no se encontraron ALUMNOS para listar.</h3>
+  {%endif%}
+            
+</div>  
+<div style="clear: both;"></div>
+ 
+           
+

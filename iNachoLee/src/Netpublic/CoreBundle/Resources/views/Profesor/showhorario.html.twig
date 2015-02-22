@@ -1,0 +1,30 @@
+<div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Horario De Clase</h3>
+            </div>    
+                   
+ <div class="modal-body"> 
+     <table class="table">
+         <tr>
+             <td>Hora</td>
+             <td>Grupo</td>
+             <td>Asignatura</td>
+             <td>Aula</td>
+         </tr>
+         {%for c_a in carga_academica%}
+         <tr>
+             <td>
+                 {% for h_a in c_a.getHorarioAula() %}
+                     {{h_a}}
+                 {%endfor%}
+             </td>
+             <td>{{c_a.grupo}}</td>
+             <td>{{c_a.asignatura}}</td>
+             <td>{{c_a.aula}}</td>
+         </tr>
+         {%endfor%}
+     </table>
+
+<div style="clear: both"></div>                       
+            </div>
+        

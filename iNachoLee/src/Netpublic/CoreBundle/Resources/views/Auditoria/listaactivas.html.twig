@@ -1,0 +1,38 @@
+{%if auditorias|length>0%} 
+<div class="well" style="float: right;width: 150px;font-size: 12px;">
+   
+{%for auditoria in auditorias%}
+    {%if auditoria.tipo==1%}
+         {% if is_granted('ROLE_PROFESORES')%}
+            <a href='{{path('auditoria_reportar')}}' >
+                <span style="background-color: orange;color: white;">
+                     &nbsp;[_]&nbsp;
+                </span>&nbsp;&nbsp;    
+            {{auditoria}}
+            </a>
+          {%endif%}      
+   {%elseif auditoria.tipo==2%}
+         {% if is_granted('ROLE_PROFESORES')%}         
+            <a href='{{path("auditoria_revisionboletines")}}' >
+                <span style="background-color: orange;color: white;">
+            &nbsp;[_]&nbsp;
+        </span>&nbsp;&nbsp;    
+            {{auditoria}}
+            </a>    
+            {%endif%}
+   {%elseif auditoria.tipo==3%}
+         {% if is_granted('ROLE_ESTUDIANTE')%}         
+            <a href='{{path("alumno_imprimirboletin",{'_format':'pdf','alumno_id':alumno_id})}}' >
+                <span style="background-color: orange;color: white;">
+                 &nbsp;[_]&nbsp;
+                </span>&nbsp;&nbsp;    
+            {{auditoria}}
+            </a>    
+        {%endif%}
+  {%endif%} 
+         
+    <div style="color:#E9E9E9;"> ------------------------------</div>
+
+{%endfor%}
+ </div>
+{%endif%}

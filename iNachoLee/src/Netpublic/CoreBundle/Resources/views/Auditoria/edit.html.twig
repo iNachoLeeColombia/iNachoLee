@@ -1,0 +1,22 @@
+<h3 style="text-align: center;">Editar Publicación En Muro</h3>
+
+<form name="form_aditar_auditoria" id="form_aditar_auditoria" action="#" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit" onclick="updateAuditoria({{entity.id}});">Actualizar ahora</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="#" onclick="mostrarGestorDePublicaciones();">
+            << Atras
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('auditoria_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

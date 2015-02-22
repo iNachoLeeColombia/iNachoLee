@@ -1,0 +1,143 @@
+{#Carnet Estudiantil#}
+{%if tipo==1%}                        
+      
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimircarnet', { '_format': 'pdf' }) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#" onclick="ejecutarFiltroUsuario(1,0,0,0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%}
+{%if tipo==2%}
+<a href="{{ path('alumno_imprimirplanillanotas', { '_format': 'xls','periodo_id':perido_id,'profesor_id': profesor_id,'asignatura_id': asigatura_id }) }}">
+            <img style="width: 50px;height: 60px;margin-left: 10px;margin-right: 25px;" src="{{ asset('bundles/netpubliccore/images/icono-excel.gif') }}">
+</a>            
+      
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimirplanillanotas', { '_format': 'pdf','periodo_id':perido_id,'profesor_id': profesor_id,'asignatura_id': asigatura_id }) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#" onclick="ejecutarFiltroUsuario(2,'{{perido_id}}','{{profesor_id}}','{{asigatura_id}}');">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%}  
+{%if tipo==3%}
+<a href="{{ path('alumno_imprimirplanillablanco', { '_format': 'xls','periodo_id':perido_id,'profesor_id': profesor_id,'asignatura_id': asigatura_id}) }}">
+            <img style="width: 50px;height: 60px;margin-left: 10px;margin-right: 25px;" src="{{ asset('bundles/netpubliccore/images/icono-excel.gif') }}">
+</a>            
+      
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimirplanillablanco', { '_format': 'pdf','periodo_id':perido_id,'profesor_id': profesor_id,'asignatura_id': asigatura_id}) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#"  onclick="ejecutarFiltroUsuario(3,'{{perido_id}}','{{profesor_id}}','{{asigatura_id}}');">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+{#Boletines de los estudiantes#}            
+{%if tipo==4%}
+      
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimirboletines', { '_format': 'pdf','periodo_id': perido_id}) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#" onclick="ejecutarFiltroUsuario(4,'{{perido_id}}',0,0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+{#Certificado de Estudio#}            
+{%if tipo==5%}
+ 
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimircertificadoestudio', { '_format': 'pdf'}) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#"  onclick="ejecutarFiltroUsuario(5,0,0,0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+{#Certificado de Estudio de matricula actual#}            
+{%if tipo==6%} 
+<a  target="_blank" 
+    onclick="$('#capa_formato_html_xls_pdf').hide('slow');"
+    href="{{ path('alumno_imprimirconstanciaestudio', { '_format': 'pdf'}) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>
+            <a href="#"  onclick="ejecutarFiltroUsuario(6,0,0,0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+
+{#Mejores Estudiante#}            
+{%if tipo==7%}
+ 
+            <a  target="_blank" onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimirmejorespuntajes', {'_format': 'pdf','ano_escolar': ano_escolar,'periodo_escolar': perido_id}) }}" style="margin-right: 25px;">
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#"  onclick="ejecutarFiltroUsuario(7,'{{perido_id}}','{{ano_escolar}}',0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+
+{#libro final#}            
+{%if tipo==8%}
+            <a  onclick="$('#capa_formato_html_xls_pdf').hide('slow');" href="{{ path('alumno_imprimirlibrofinal') }}"> 
+            <img style="width: 50px;height: 60px;margin-left: 10px;margin-right: 25px;" src="{{ asset('bundles/netpubliccore/images/icono-excel.gif') }}" />
+            
+            </a>
+            
+{%endif%}                
+{#libro final#}            
+{%if tipo==10%}
+           
+<a  target="_blank" style="margin-right: 25px;"href="{{ path('alumno_matricularalumnonuevo', {'_format': 'pdf','ano_escolar_id':ano_escolar,'grupo_id':grupo}) }}" >
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#"  onclick="ejecutarFiltroUsuario(10,'{{grupo}}','2',0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%}                
+{%if tipo==11%}
+           
+<a  target="_blank" style="margin-right: 25px;" href="{{ path('alumno_matricularalumnoantiguo', {'_format': 'pdf','ano_escolar_id':ano_escolar,'grupo_id':grupo}) }}" >
+            <img style="width: 50px;height: 60px;" src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}">
+            
+        </a>  
+            <a href="#" onclick="ejecutarFiltroUsuario(11,'{{grupo}}','{{ano_escolar}}',0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%} 
+{%if tipo==12%}
+ 
+            <a href="#" onclick="ejecutarFiltroUsuario(12,0,'{{ano_escolar}}',0);">
+                <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+            </a>   
+{%endif%}                
+{%if tipo==13%}
+
+  <a  style="margin-top: 200px;;margin-left: 20px;" href="#"  onclick="ejecutarFiltroUsuario(13,0,0,0);">
+        <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+  </a>   
+        
+ 
+{%endif%}                
+{%if tipo==14%}
+
+  <a  style="margin-top: 200px;;margin-left: 20px;" href="#"  onclick="ejecutarFiltroUsuario(14,{{grupo}},0,0);">
+        <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+  </a>   
+        
+ 
+{%endif%}                
+{%if tipo==15%}
+
+  <a  style="margin-top: 200px;;margin-left: 20px;" href="#"  onclick="ejecutarFiltroUsuario(15,{{grupo}},{{ano_escolar}},0);">
+        <span style="font-weight: 900;font-size: 4.5em;">HTML</span>
+  </a>   
+        
+ 
+{%endif%}                

@@ -1,0 +1,7 @@
+parameters:
+#    ntp_inacholee.example.class: Netpublic\CoreBundle\Example
+
+services:
+#    ntp_inacholee.example:
+#        class: %ntp_inacholee.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,29 @@
+<h4 class="blue">Ingresar Observacion para {{alumno|lower}}</h4>
+
+<form class="form-horizontal" id="1" name="1" {#action="{{ path('observacion_create') }}"#} method="post" {{ form_enctype(form) }}>
+    <div class="form-group"> 
+        {{ form_label(form.tipo,null, {'label_attr': {'class':'col-sm-3 control-label no-padding-right'} }) }}
+        <div class="col-sm-9">       
+            {{ form_widget(form.tipo, { 'attr': {'class': 'col-xs-10 col-sm-5'} }) }}
+        </div>        
+    </div>
+    <div class="form-group"> 
+        {{ form_label(form.contenido,null, {'label_attr': {'class':'col-sm-3 control-label no-padding-right'} }) }}
+        <div class="col-sm-9">       
+            {{ form_widget(form.contenido, { 'attr': {'class': 'col-xs-10 col-sm-5'} }) }}
+        </div>        
+    </div>
+   <div class="form-group"> 
+        {{ form_label(form.periodo,null, {'label_attr': {'class':'col-sm-3 control-label no-padding-right'} }) }}
+        <div class="col-sm-9">       
+            {{ form_widget(form.periodo, { 'attr': {'class': 'col-xs-10 col-sm-5'} }) }}
+        </div>        
+    </div>
+            {{ form_widget(form._token)}}
+    <div class="form-actions center">
+        <button class="btn btn-sm btn-success" type="submit" onclick="createObservacionAlumno({{alumno.id}});">
+	ingresar AHORA!!
+	<i class="icon-arrow-right icon-on-right bigger-110"></i>
+        </button>
+    </div>
+ </form>

@@ -1,0 +1,28 @@
+<table class="table">
+            <tr>
+                <td>Nombre Estudiante</td>   
+                <td>Año matriculado</td>
+                <td>Estado De Matricula</td>
+            </tr>    
+        {%for alumno in alumnos%}        
+            <tr>
+                <td>       
+                   {{alumno}} 
+                </td>                
+                    {%for ma in alumno.getMatriculaAlumno()%}
+                        {%if ma.ano.id==id_ano_escolar%}
+                            <td>{{ma.ano}}</td>
+                            
+                            <td>
+                                {%if ma.getEsMatricula()==1%}
+                                    OK
+                                {%else%}    
+                                    {{resultado}}
+                                {%endif%}
+                            </td>        
+                        {%endif%}
+                    {%endfor%}    
+                
+            </tr>                    
+        {%endfor%}    
+        </table>        

@@ -1,0 +1,104 @@
+<div style="width: 980px;overflow: scroll;">      
+<div style="width: 100%;   ">                       
+          <div style="float: left;font-size: 18px; ">           
+          <img 
+              style="width:60px;height:70px" 
+ src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}"
+ />
+          </div>   
+          <div style="float: left;margin-left: 20px;font-size: 15px;">
+              <table style="border-style: none;">
+                  <tr> <td> <strong>
+{{alumno}}</strong></td>
+              <td></td></tr>
+              <tr><td>Grado: {{alumno.grado}} Grupo: {{alumno.grupo}}</td>
+              <td>Año Escolar: {{ano_escolar_activo}} 
+              </td></tr>
+              <tr>
+                  <td>{%for nivel_academica in alumno.getNivelAcademico() if nivel_academica.getPeriodoActual.id==periodo_escolar_activo.id%}
+                         {%if nivel_academica.tipo==0%}
+                            Puesto Colegio: {{nivel_academica.puesto}}
+                         {%endif%} 
+                        {%if nivel_academica.tipo==2%}
+                            Puesto Grupo: {{nivel_academica.puesto}}
+                         {%endif%}     
+                      {%endfor%}
+                  </td>
+                  <td>
+                      Periodo Actual: {{periodo_escolar_activo}}
+                  </td>
+              </tr>
+              </table>
+          </div>
+         <div style="clear:both;"></div>       
+      </div> 
+ 
+
+  <div style="color:white;;font-size: 16px;background-color: gray;">    
+    <div style="width: 150px;float: left;">Areas/Asignaturas</div>
+    {%for periodo_academico in periodos_escolares%}
+        <div style="width: 50px;float: left;height: 40px;">P{{loop.index}}</div>
+    {%endfor%}
+        <div style="width: 50px;float: left;">Def</div>
+        <div style="width: 65px;float: left;">Desemp </div>
+    <div style="width: 430px;float: left;">Descriptores|Logros</div>
+  <div  style="width: 40px;float: left;">Faltas
+  </div>
+ <div style="clear:both;"></div>                 
+  </div>  
+
+{%for areas in datos%}
+<div>
+    <div>  
+      <div  style="font-size: 16px;width: 150px;float: left;"> 
+         {{areas.nombre}}</div>
+        {%for periodo_academico in periodos_escolares%}
+        <div style="width: 50px;float: left;height: 25px;"></div>
+    {%endfor%}
+      <div style="width: 50px;text-align: center;font-size: 16px;float: left;">{{areas.nota_promedio_acumalativa}}</div>
+      <div style="width: 65px;text-align: center;float: left;">{{areas.desempeno}}</div>
+      <div  style="width: 430px;float: left;color: white;">--</div>
+      <div  style="width: 40px;;text-align: center;float: left;">{{areas.inasistencia}}</div>
+  </div>
+    <div style="clear:both;"></div>  
+      {% for asignaturas_area in areas.asignaturas%}
+    <div>  
+            <div  style="float:left;width: 150px;"> 
+                <span style="color:white;">---</span>{{asignaturas_area.asignatura.nombre}}
+            </div>
+             {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                <div style="width: 50px;height:5px;float:left;">{{periodos_asignatura.periodo.nota}}
+                </div>
+             {%endfor%}   
+                <div style="width: 50px;float:left;text-align: center;">{{asignaturas_area.asignatura.nota}}</div>     
+                <div style="width: 65px;float:left;">&nbsp;</div>
+                <div style="width: 430px;float:left;text-align: justify;">&nbsp;
+                    {%for desempenos_asg in asignaturas_area.asignatura.desempenos%}
+                        {%for desempeno_asg in desempenos_asg%}
+                            {{desempeno_asg|raw}}
+                        {%endfor%}
+                    {%endfor%}    
+                        <span style="color: white;">-</span>    
+                </div>
+                <div style="width: 40px;float:left;text-align: center;">{{asignaturas_area.asignatura.inasistencias}}</div>
+            
+        </div>  
+        <div style="clear:both;"></div>  
+      {%endfor%}
+        <div>---------------------------------------------
+            ----------------------------------------------
+            ----------------------------------------------
+            ----------------------------------------------
+            
+        </div>        
+    </div>       
+{%endfor%}
+<div>
+    <p style="font-size: 15px;color: orange;">Observaciones:</p>
+    {%for observacion in observaciones%}
+        {{observacion}}
+    {%endfor%}    
+</div>    
+</div> 
+
+    

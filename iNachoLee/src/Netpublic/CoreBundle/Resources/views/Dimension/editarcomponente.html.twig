@@ -1,0 +1,49 @@
+{%set colores=['#3CD7DD','#55DDAD','#BB89AD','#CC89AD','#AA89AD']%}
+    <table id="tabla_padre{{padre.id}}" class="table table-bordered">
+        <tr>
+            <td>
+                        <label>
+                <input type="radio"
+                   value="{{padre.id}}"
+                   onchange=""
+                   id="optionsRadios_{{padre.id}}"
+                   name="label"
+                   >
+                </label>
+                    </td>
+                {%for com in padre.padresgc%}
+                    {%set idex=loop.index0%}
+                    {%for item in com.padresgc if item.tipo!=4%}
+                            <td style="background-color: {{colores[idex]}}">                    
+                                
+                            {%if item.tipogc!=8%}
+                                ({{item.ponderado}}%)
+                                <span id="span_{{com.id}}">
+                                    <input  id="n{{item.id}}" onkeyup="procesarActualiacionComponentes({{item.id}})"
+                                            type="text" value="{{item|lower}}" />
+                                
+                            (<input id="p{{item.id}}"  onkeyup="procesarActualiacionComponentes({{item.id}});" type="text" value="{{item.ponderado}}" style="width: 30px;" />%)
+                            </span> 
+                            {%endif%}
+                            </td>
+                    
+                    {%endfor%}    
+                    <td {%if com.tipogc==8%} 
+                            style="background-color: #D9EDF7;"
+                        {%elseif com.tipogc==9%}
+                            style="background-color: white;"
+                        {%endif%}  >
+                        {%if com.tipogc!=8%}
+                            <span id="span_{{padre.id}}">
+                                <input  id="n{{com.id}}" onkeyup="procesarActualiacionComponentes({{com.id}})" type="text" value="{{com|upper}}" />
+                            
+                            (<input  id="p{{com.id}}"  onkeyup="procesarActualiacionComponentes({{com.id}})"  type="text" value="{{com.ponderado}}" style="width: 30px;" />%)
+                            </span> 
+                        {%else%}
+                            {{com|upper}}
+                       {%endif%}
+                   </td>
+                {%endfor%}
+                    <td style="background-color: #3A87AD;">{{padre|upper}}</td>
+                </tr>
+            </table>

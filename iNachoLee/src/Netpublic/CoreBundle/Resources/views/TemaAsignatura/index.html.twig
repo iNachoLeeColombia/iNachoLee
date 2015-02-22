@@ -1,0 +1,24 @@
+<table class="table table-striped">
+    <thead>
+        <tr>            
+            <th>Temas</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>            
+            <td>{{ entity.tema }}</td>
+            <td>
+                <div id="{{entity.id}}" style="display: inline">                    
+                    {{ form_widget(delete_form[loop.index0]) }} 
+                        <a href="#" onclick="deleteTemaAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{id_asignatura}}')">Eliminar</a>
+         
+                        |  <a href="#" onclick="editarTemaAsignaturainfoAcademicaDefectoAno({{entity.id}});">Editar</a>
+                    </div>      
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

@@ -1,0 +1,148 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block  sub_container  %} 
+<div>
+    <form action="{{ path('colegio_createsede') }}" method="post"  }} >
+    
+    <div id="accordion" role="tablist">      
+    {% for f in form%}
+    {{ form_errors(f) }}
+        
+                    
+            <div class="clearfix">              
+                {{ form_label(f.nombre, null, { 'label': 'Nombre Sede', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.nombre, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.codigo_dane, null, { 'label': 'Codigo Del Dane Cosecutivo', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.codigo_dane, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.rector, null, { 'label': 'Nombre Cordinador', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.rector, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            
+            <div class="clearfix">              
+                {{ form_label(f.calendario, null, { 'label': 'Calendario', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.calendario, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+ 
+            <div class="clearfix">              
+                {{ form_label(f.discapacidades, null, { 'label': 'Discapacidades', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.discapacidades, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.capacidades_excepcionales, null, { 'label': 'Capacidades Excepcionales', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.capacidades_excepcionales, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.etnias, null, { 'label': 'Etnias', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.etnias, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.resguardo, null, { 'label': 'Resguardos', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.resguardo, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.novedad_inst, null, { 'label': 'Novedad De la Institucion', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.novedad_inst, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.metodologia, null, { 'label': 'Metodologia', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.metodologia, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+                    <div class="clearfix">              
+                {{ form_label(f.zona, null, { 'label': 'Zona', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.zona, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>
+            <div class="clearfix">              
+                {{ form_label(f.barrio, null, { 'label': 'Barrio', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.barrio, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>        
+            <div class="clearfix">              
+                {{ form_label(f.direccion, null, { 'label': 'Direccion', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.direccion, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>        
+                
+            <div class="clearfix">              
+                {{ form_label(f.telefono, null, { 'label': 'Telefono', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.telefono, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>        
+            <div class="clearfix">              
+                {{ form_label(f.fax, null, { 'label': 'Fax', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.fax, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>        
+           
+            <div class="clearfix">              
+                {{ form_label(f.email, null, { 'label': 'Email', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(f.email, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div>                       
+                </div> 
+                {{ form_widget(f._token) }}
+               
+         
+    
+    {%endfor%}   
+    </div>
+     <button style="float: right" class="ui-button-primary" type="submit">Create</button>
+
+ </form>
+       
+ </div>        
+            
+
+ <div style="clear: both;"></div> 
+    
+   
+  
+
+{% endblock %}
+

@@ -1,0 +1,52 @@
+
+{%if not es_area%}
+{%if es_hacer%}
+<h4>Area De {{area}}</h4>  
+<table class="table table-striped">
+{%for entity in entities if (area.id==entity.dimension.id or entity.asignatura.area.id==area.id)%}
+   {%if loop.first%}    
+        <thead>    
+    <tr>
+        <th>{{entity.asignatura}}</th><th>Valor De Notas.</th>
+    </tr>
+        </thead>
+    {%endif%}
+ <tr> 
+    {%if entity.dimension.id==periodo_final%} 
+         <td style="background-color: rgb(230,230,250);">Nota Final de{{entity.dimension}}</td>
+    <td style="background-color: rgb(230,230,250);">
+        {{entity}}
+    </td>
+    {%else%}
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{entity.dimension}}</td>
+    <td>
+        {{entity}}
+    </td>
+    {%endif%}
+{%endfor%}
+</tr>    
+</table>        
+{%endif%}
+{%else%}
+<table class="table table-striped">
+    {%for a_a in asignatura_area%}   
+     
+          
+    <tr>
+        <td><span style="font-weight: bold;color: green;">{{a_a}}</span></td><td><span style="font-weight: bold;color: green;">Valor De Notas.</span></td>
+    </tr>
+        
+    {%for e in entities if a_a.id== e.asignatura.id%}
+         <tr>   
+             {%if e.dimension.tipo==1%}
+             <td style="background-color: rgb(230,230,250);">Nota Final de{{e.dimension}}</td><td style="background-color: rgb(230,230,250);">{{e}}</td>
+             {%else%}
+             <td>{{e.dimension}}</td><td>{{e}}</td>             
+             {%endif%}
+         </tr>       
+    {%endfor%}
+    {%endfor%}        
+    
+     </table> 
+{%endif%}
+       

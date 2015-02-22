@@ -1,0 +1,43 @@
+<h1>Matricula list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Es_matricula</th>
+            <th>Es_pago_matricula</th>
+            <th>Es_papeles</th>
+            <th>Observaciones</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('matricula_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.esmatricula }}</td>
+            <td>{{ entity.espagomatricula }}</td>
+            <td>{{ entity.espapeles }}</td>
+            <td>{{ entity.observaciones }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('matricula_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('matricula_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('matricula_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,9 @@
+NetpublicCoreBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: NetpublicCoreBundle:Default:index }
+hola:
+    pattern: /holainacholee
+    defaults: { _controller: NetpublicCoreBundle:Inacholee:index}
+calificar_grupo:
+    pattern: /calificar_grupo/{id_grupo}/{id_dimension}
+    defaults: { _controller: NetpublicCoreBundle:Inacholee:calificarGrupo}

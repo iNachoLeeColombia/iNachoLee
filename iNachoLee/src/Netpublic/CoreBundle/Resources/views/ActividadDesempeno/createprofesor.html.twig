@@ -1,0 +1,49 @@
+<h3>Seleccione la(s) Actividad(es) Usada para evaluar el Desempeño?</h3>
+
+{%for actividad_desemp_grupo in actividades_desempeno_grupos%}
+<h3> Grupo {{grupos[loop.index0]}}</h3>
+<table class="table">
+    <tr><td>Nombre De Actividad</td><td>Porcentaje De influencia.</td></tr>
+    {%for a_d in actividad_desemp_grupo%}
+            <tr>
+                <td>
+
+{%if a_d.actividad.padre.id==periodo%}
+                    <h4>{{a_d.actividad}}</h4>
+ {%else%}
+                    {{a_d.actividad}}
+ {%endif%}                   
+                </td>    
+                    <td>                        
+                      <div id="{{a_d.id}}" class="capa_actividades">
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;
+                                                                                          width: 10px;
+                                                                                          background-color: #E6E6FA;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #E6E6FA  #E6E6FA;">0%</div>
+                                        
+                      </div>
+                    </td>
+            </tr> 
+    {%endfor%}
+</table>  
+{%endfor%}
+<button
+    onclick="actualizarValoresDescriptivosUnoTodos({{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});$('#capa_ram_actividades_desempenos_calificar_nota').hide('slow');"
+                                                         
+    onclick="actualizarValoresDescriptivos({{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});" class="btn  btn-primary" data-dismiss="modal">Finalizar</button>
+<button type="submit" id="btn_gruardar_contrato" class="btn" onclick="cancelarInfluenciaActividadesDesempeno({{id_desempeno}});">Cancelar</button>

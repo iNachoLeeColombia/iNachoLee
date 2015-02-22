@@ -1,0 +1,89 @@
+
+        <div style="font-size: 19px;page-break-after: always;">     
+        <table>
+            <tr>
+                <td border.type="none" style="width: 20%;">
+                    <img style="width:90px;height: 100px" 
+                         src="../web/uploads/documents/escudo_colegio1.png" />
+                </td>
+                <td border.type="none" style="width: 80%;">
+                    <span style="text-align: center;
+                          font-style: bold;
+                          text-align: center;
+                          font-size:30px;">
+                    {{colegio}}</span> 
+                        <p style="font-size: 10px;">
+LICENCIA DE FUNCIONAMIENTO {{' '}}{{colegio.getNumeroLincFunc()}}
+y Resolución No. {{colegio.resolucion}} de
+_________ por medio de la cual se le entregaron en custodia los libros de la clausurada
+institución </p>
+                </td>
+            </tr>
+        </table>
+            <p style="text-align: center;">
+                CERTIFICADO DE ESTUDIOS No {{colegio.getNumeroCertificados}}
+            </p>
+            <p style="text-align: justify;font-size: 14px;">
+                El Rector(a) :{{ colegio.rector }} de la Institución 
+                <strong>{{colegio}}
+</strong>{{' '}} CERTIFICA QUE:
+<span style="text-decoration: underline;">
+ {{ datos_alumno.alumno }}
+</span>
+ identificado con {%if datos_alumno.alumno.getTipoDocumento()==1 %}
+                    Cedula Ciudadania
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==2%}   
+                    Tarjeta de Identidad
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==3%}   
+                    Cédula de Extranjería ó Identificación de Extranjería
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==4%}   
+                    Registro Civil de Nacimiento
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==5%}   
+                    Número de Identificación Personal (NIP)
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==6%}   
+                    Número de Identificación establecido por la Secretaría de  Educación
+                 {%elseif datos_alumno.alumno.getTipoDocumento()==7%}   
+                    Certificado Cabildo
+                 {%endif%}   
+N° {{ datos_alumno.alumno.cedula }}  cursó y aprobó los estudios correspondientes al
+ grado {{' '}}{{datos_alumno.alumno.grado }}
+ de educación 
+{%if datos_alumno.alumno.grado.getNivelesEducativo()==1 %} 
+      Nivel PreEscolar
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==2%}                    
+      Básica Primaria
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==3%}                    
+      Básica Secundaria
+{%elseif datos_alumno.alumno.grado.getNivelesEducativo()==4%}                                        
+      Media
+{%endif%}                    
+  en el año {{matriculas_alumno.ano}}  cumpliendo con la
+ normatividad vigente de la época.
+
+ Número de matrícula _______Folio ____________
+
+            </p>    
+        
+      
+            <table style="border-style: solid;">  
+     <tr>
+                    <td style="background-color: gray;color: white;">AREAS</td>
+           <td  style="background-color: gray;color: white;">
+               INTESIDAD(horas)
+           </td>
+                    <td style="background-color: gray;color: white;">DESEMPEÑO</td>
+        </tr>     
+      {%for area in datos_alumno.areas%}  
+         <tr>     
+             <td>{{area.nombre}}</td>            
+            <td>{{area.ih}}</td>            
+            <td>{{area.desempeno|raw}}</td>
+         </tr>        
+      {%endfor%}  
+      </table> 
+            <div style="text-align: center">
+                ________________________________________<br/>
+                Rector(a).
+            
+            </div>         
+</div>            

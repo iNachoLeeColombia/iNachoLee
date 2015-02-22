@@ -1,0 +1,7 @@
+{%for comp in componentes_items%}
+<li class="parent_li items" id="item_{{comp.id}}">
+    <span class="items_remoto" title="Collapse this branch">
+    <i class="icon-pencil"></i> {{comp}}</span>
+        <input type="checkbox" class="items" value="{{comp.id}}" onchange="procesarComponenteEvaluar(this,{{comp.id}},{{carga.grupo.id}});">
+  </li>
+{%endfor%}

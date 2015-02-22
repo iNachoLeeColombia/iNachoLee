@@ -1,0 +1,51 @@
+    <a target="_blank"
+       href="{{ path('horarioclase_imprimir', {'_format':'pdf'}) }}">
+        <img 
+            src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}" 
+            alt="icono pdf" />
+    </a>
+{%for clases_hora in clases_profesores %}
+<div>
+    <h3 style="text-align: center;">{{profesores[loop.index0]}}</h3> 
+ <table border="2" class="table table-bordered">
+    <thead> 
+    <th>Hora</th>    
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+    <th>Domingo</th>
+    </thead>
+    
+    {%for c_h in clases_hora%}
+        <tr>
+            {% for c in c_h %}
+                <td> 
+                    
+                    
+                    {%if c.tipo==0%}
+                        
+                    {%elseif c.tipo==1%}
+                        {{c.getCargaAcademica.grupo}}-{{c.getCargaAcademica.asignatura}}
+                    {%elseif c.tipo==2%}                        
+                        Festivo
+                    {%elseif c.tipo==-1%}                        
+                        {{c.valor}}
+                        
+                    {%elseif c.tipo==3%}    
+                        <span style="color: white">    
+                            ------
+                        </span>   
+                    {%endif%}                        
+                    
+                        
+                </td>
+            {%endfor%}    
+        </tr>
+    {%endfor%}    
+    
+</table>
+  </div>
+{%endfor%}

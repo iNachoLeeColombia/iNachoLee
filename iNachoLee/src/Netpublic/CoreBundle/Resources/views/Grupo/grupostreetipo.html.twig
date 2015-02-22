@@ -1,0 +1,10 @@
+{%for grupo in grupos%}
+      <li class="parent_li grupo" id="grupo_{{grupo.id}}">
+          
+          <span class="items_remoto" id="nodo_grupo_redsaber{{grupo.id}}" data-id={{grupo.id}}   title="Collapse this branch">
+                <i class="icon-plus-sign"></i> {{grupo}}
+          </span>
+          <ul id="ul_ca_{{grupo.id}}">
+          </ul>
+      </li>
+{%endfor%}    

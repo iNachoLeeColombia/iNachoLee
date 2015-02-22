@@ -1,0 +1,381 @@
+
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Configuración Básica Del Colegio{% endblock %}
+{%block contenido %} 
+    <div id="accordion">                              
+                <h3>
+                    <a   href="#" tabindex="-1" >Datos Básicos</a>
+                </h3>
+            <div>
+                    <div id="new_colegio_ano_escolar" style="height: 300px">                                                                
+                        <div id="tabs1">                            
+                            <ul>
+                                <li><a href="#tabs1-0" onclick="indexCriterioAcademicoAno();">Criterios de Academicos</a></li>
+                                <li><a href="#tabs1-1">Promover Estudiates </a></li>                                
+                                {#<li>
+<a    href="#tabs1-2">Dimensiones por defecto </a></li>                                
+                                #}
+                            </ul>
+                                <div id="tabs1-0"> 
+                                    <div>                                              
+                                        <div style="float: right;">
+    
+  <div class="btn-toolbar"  style="float: right;">              
+ <div class="btn-group">
+    <a class="btn btn-primary" href="#">
+        <i class="icon-cog icon-white">
+        </i> Acciones
+    </a>
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    <li><a href="#" onclick="newCriterioAcademicoAno(0);">
+            <i class="icon-adjust"></i>            
+              PERDER-Numero Areas Perdidas.
+        </a>
+    </li>
+    <li>
+        <a href="#"  onclick="newCriterioAcademicoAno(2);">
+            <i class="icon-adjust">
+            </i>
+                PERDER-Asignatura perdida
+            </a>
+     </li>    
+    
+    <li><a href="#"  onclick="newCriterioAcademicoAno(1);">
+            <i class="icon-barcode"></i>
+                  HABILITAR-Numero Areas Perdidas.
+        </a></li>
+    <li><a href="#"  onclick="newCriterioAcademicoAno(3);">
+            <i class="icon-barcode"></i>
+                HABILITAR-Asignatura perdida
+        
+        </a></li>
+    </ul>
+    </div>        
+          <div style="clear: both;"></div>        
+        </div>
+                                        </div>    
+                                    </div>
+                                        <div style="clear: both;"></div>                                        
+<div id="tabs1-0-0">
+    {%render(controller("NetpublicCoreBundle:CriterioPromocion:index"))%}
+                                           
+                                        </div>    
+                                    </div>                 
+                               
+                            <div id="tabs1-1">
+{#Inicio de Tabs1-1#}                                
+
+    <input id="todos_criterios_promocion" type="checkbox" onclick="allCheckBox('todos_criterios_promocion','criterios_promocion');"/> Todos<br>
+    
+    <div style="background-color:lightgray" id="capa_ram_criterios_promocions" class="modal-body controls"> 
+
+    <div  style="float: left;"><p>Año actual</p>
+        <div class="controls" >
+            <select disabled="disabled">
+                <option value="*">{{ano_escolar_activo}}</option>
+            </select>
+        </div>
+    </div>        
+    <div style="float: left;">
+        <p style="font-size: 10px;">Criterios Academicos</p>
+    </div>
+    <div style="float: right;" class="controls">
+        <p>Año a Promover</p>
+        <select id="ano_escolar_promover">
+            <option value="0">Seleccione Año a promover</option>
+            {%for ano_escolar in anos_escolares if ano_escolar.id!=ano_escolar_activo.id%}
+                <option value="{{ano_escolar.id}}">{{ano_escolar}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+    {%for g_p in grados_promocion%}
+    <div class="well" style="margin-bottom: 50px;background-color: #CCC;">
+        <div style="margin-bottom: 0px;padding-bottom: 0px;">
+ {#Grado actual#}        
+             <div   style="float: left;height: 100px;margin-bottom: 0px;">         
+    <p style="color: white;font-weight: 900;">Grado Actual</p>
+    <input class="criterios_promocion"
+           data-id={{g_p.id}}           
+           type="checkbox" /> 
+    
+    <select disabled="disabled" class="span8">
+              <option value="0">Grado a Promover</option>
+                {%for grado in grados%}
+                  <option  
+                      {%if grado.id==g_p.getGradoActual.id%}
+                          selected="selected"
+                      {%endif%}
+ value="{{grado.id}}">
+                           {{grado}}
+                      </option>        
+                {%endfor%}
+          </select>        
+
+    </div>
+ {#Condiciones de habilitar Y perder#}       
+            <div style="float: left;">
+                <p style="color: orange;font-size: 15px;font-weight: 900;">
+                    Promover a<br>
+                    --------------></p>                
+          {%if g_p.getCondPerder is null%}
+                <select id="criterios_promocion_pierde{{g_p.id}}">
+                    <option value="0">Cuando se pierde el año Escolar?</option>
+                    {%for c_p in criterios_perder%}                {
+                    <option value="{{c_p.id}}">{{c_p}}</option>                
+                    {%endfor%}
+                   {%for c_p_asg_padre in criterios_perder_asig%}      
+                        {%set flag=0%}                        
+                        {%for c_p_asg in criterios_perder_asig  if c_p_asg_padre.id==c_p_asg.getCriterioPromocion.id%}                                              
+                            {%if loop.index==1%}
+                                 <option
+                   
+                                   value="{{c_p_asg.id}}"                                                          
+                                 >                                
+                               {%set flag=1%}
+                            {%endif%}   
+                                {{c_p_asg}}
+                      {%endfor%}           
+                      {%if flag==1%}       
+                      </option>              
+                      {%endif%}             
+                   {%endfor%} 
+                </select>
+          {%else%}
+                <select id="criterios_promocion_pierde{{g_p.id}}" >
+                    <option value="0">Cuando se pierde el año Escolar?</option>
+                    {%for c_p in criterios_perder%}                {
+                        <option
+                            {%if c_p.id==g_p.getCondPerder.id%}
+                                selected="selected" 
+                            {%endif%}    
+                            value="{{c_p.id}}">{{c_p}}
+                        </option>                
+                    {%endfor%}
+                    {%for c_p_asg_padre in criterios_perder_asig%}      
+                        {%set flag=0%}                        
+                        {%for c_p_asg in criterios_perder_asig  if c_p_asg_padre.id==c_p_asg.getCriterioPromocion.id%}                                              
+                            {%if loop.index==1%}
+                                 <option
+                                   {%if c_p_asg.id==g_p.getCondPerder.id%}
+                                      selected="selected" 
+                                   {%endif%}     
+                                   value="{{c_p_asg.id}}"                                                          
+                                 >                                
+                               {%set flag=1%}
+                            {%endif%}   
+                                {{c_p_asg}}
+                      {%endfor%}           
+                      {%if flag==1%}       
+                      </option>              
+                      {%endif%}             
+                   {%endfor%}                      
+          </select>
+          {%endif%}
+          <br/>          
+          {%if g_p.getCondHabilitacion is null%}
+          <select  id="criterios_promocion_habilitar{{g_p.id}}">
+              <option value="0">Cuando se Habilita el Año Escolar???</option>
+              {%for c_h in criterios_habilitar%}
+              <option value="{{c_h.id}}">{{c_h}}</option>
+              {%endfor%}
+
+            {%for c_p_asg_padre in criterios_habilitar_asig%}      
+                        {%set flag=0%}                        
+                        {%for c_p_asg in criterios_habilitar_asig  if c_p_asg.getCriterioPromocion!= null and c_p_asg_padre.id==c_p_asg.getCriterioPromocion.id%}                                              
+                            {%if loop.index==1%}
+                                 <option
+
+                                   value="{{c_p_asg.id}}"                                                          
+                                 >                                
+                               {%set flag=1%}
+                            {%endif%}   
+                                {{c_p_asg}}
+                      {%endfor%}           
+                      {%if flag==1%}       
+                      </option>              
+                      {%endif%}             
+                   {%endfor%}                      
+              
+              
+          </select>
+                            
+          {%else%}
+          <select  id="criterios_promocion_habilitar{{g_p.id}}">
+              <option value="0">Cuando se Habilita el Año Escolar</option>
+              {%for c_h in criterios_habilitar%}
+              <option
+                  {%if g_p.getCondHabilitacion.id==c_h.id%}
+                      selected="selected"
+                  {%endif%}    
+                  value="{{c_h.id}}">{{c_h}}</option>
+              {%endfor%}
+                 {%for c_p_asg_padre in criterios_habilitar_asig%}      
+                        {%set flag=0%}                        
+                        {%for c_p_asg in criterios_habilitar_asig  if c_p_asg.getCriterioPromocion!= null and c_p_asg_padre.id==c_p_asg.getCriterioPromocion.id%}                                              
+                            {%if loop.index==1%}
+                                 <option
+                                   {%if c_p_asg.id==g_p.getCondHabilitacion.id%}
+                                      selected="selected" 
+                                   {%endif%}     
+                                   value="{{c_p_asg.id}}"                                                          
+                                 >                                
+                               {%set flag=1%}
+                            {%endif%}   
+                                {{c_p_asg}}
+                      {%endfor%}           
+                      {%if flag==1%}       
+                      </option>              
+                      {%endif%}             
+                   {%endfor%}                      
+
+              
+              </select>
+
+          {%endif%}
+           <p style="color: orange;font-size: 15px;font-weight: 900;">
+                    Promover a<br>
+                    --------------></p>                
+
+                </div>   
+{#Grado Siguiente#}        
+
+<div style="float: right;">
+    <p style="color: white;font-weight: 900;">Grado Siguiente</p>
+          {%if g_p.getGradoSiguiente is null%}
+    <select class="span12" id="criterios_promocion_grado{{g_p.id}}">
+              <option value="0">Grado a Promover</option>
+                {%for grado in grados%}
+                  <option value="{{grado.id}}">
+                           aaaa{{grado}}
+                      </option>        
+                {%endfor%}
+          </select>        
+          {%else%}
+          
+        <select  id="criterios_promocion_grado{{g_p.id}}"
+                 onchange="getGruposGradoEstandarClase('criterios_promocion_grado{{g_p.id}}',
+                                                'grado{{g_p.getGradoActual.id}}');">
+              <option value="0">Grado a Promover</option>
+                {%for grado in grados%}
+                  <option  
+                      {%if grado.id==g_p.getGradoSiguiente.id%}
+                          selected="selected"
+                      {%endif%}
+ value="{{grado.id}}">
+                          {{grado}}
+                      </option>        
+                {%endfor%}
+          </select>        
+                  
+          {%endif%}
+                </div>
+             <div style="clear: both;"></div>
+        </div>
+{#GruposActual#}        
+   <div style="margin-top: 0px;">
+   
+       <div style="float: left;">    
+    {%for grupo in grupos_promocion if g_p.getGradoActual.id==grupo.grado.id%}
+             <p style="color: white;font-weight: 900;">Grupo(s) Actual</p>
+             <div style="padding-left: 20px;">
+                 
+          <input class="ids_grupo_promocion"
+                 type="checkbox" data-id="{{grupo.id}}"
+                 id="input_grupo_promovido{{grupo.id}}"
+                 
+          >    
+          <select disabled="disabled" id="grupo_promovido{{grupo.id}}">                    <
+              <option value="{{grupo.getGrupoActual.id}}">{{grupo.getGrupoActual}}</option>        
+            </select>   
+             </div>
+    {%endfor%}    
+     </div>
+{#Grupos Siguientes#}
+<div style="float: right;">
+{%for grupo in grupos_promocion if g_p.getGradoActual.id==grupo.grado.id%}
+        <p style="color: white;font-weight: 900;">Grupo Siguiente</p>
+   {%if grupo.getGrupoSiguiente is null%}
+     <div>   
+         <select class="grado{{g_p.getGradoActual.id}}" id="grupo_promovido_siguiente{{grupo.id}}">
+       {%for grupo_ in grupos if g_p.getGradoActual.id==grupo_.grado.id%}                  
+             <option 
+                    value="{{grupo_.id}}">--{{grupo_}}
+             </option>
+       {%endfor%}
+      </select>
+     </div>         
+   {%else%}
+     <div>
+         <select class="grado{{g_p.getGradoActual.id}}" id="grupo_promovido_siguiente{{grupo.id}}">
+         {%for grupo_ in grupos %}                  
+                <option 
+                      {%if grupo.getGrupoSiguiente.id==grupo_.id%}
+                          selected="selected" 
+                      {%endif%}    
+                      value="{{grupo_.id}}">--{{grupo_}}
+                </option>
+         {%endfor%}
+       </select> 
+     </div>            
+   {%endif%}
+ {%endfor%}    
+</div>        
+   <div style="clear: both"></div>                                 
+ </div>
+            <div style="clear: both"></div>                                 
+ </div>   
+ 
+ <p></p>       
+{%endfor%}    
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" onclick="promoverGradosColegio('promover_matricular');">Pooromover & Matricular</button>
+   <button class="btn" onclick="promoverGradosColegio('promover');" >Promover</button>
+   <a class="btn " >Cerrar</a>
+</div>
+                                                                
+{#EndTabs1-1#}                                    
+
+                            </div>                            {#
+                           
+#}
+                        </div>                    
+                   </div>
+                        <div style="clear: both"></div>
+                </div>                              
+           </div> 
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

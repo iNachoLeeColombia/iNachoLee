@@ -1,0 +1,45 @@
+
+<div id="div_editar_compo" class="well" style="margin-left: 20px;background-color: gainsboro;"> 
+ <form class="form-horizontal">
+
+{%if item_hay%}
+<h3 style="text-align: center;">Edición De Items</h3>
+ <div class="control-group">
+    <label class="control-label" for="inputEmail">Nombre :</label>
+    <div class="controls">
+<input type="text" id="nombre_item_1" value="{{item_principal.nombre}}">
+    </div>
+</div>
+ <div class="control-group">
+    <label class="control-label" for="inputEmail"> Ponderado :</label>
+    <div class="controls">
+
+<input type="text" id="ponderado_item_1" value="{{item_principal.ponderado}}"/>
+</div>
+</div>    
+<button style="float: right;margin-left: 4px;" class="btn" onclick="$('#div_editar_compo').hide();">Cancelar</button>
+<button style="float: right;" class="btn btn-primary" onclick="procesarEditarComponentesItems();">Actualizar Items</button>
+
+{%endif%}
+{%if componente_hay%}
+<h3>Edición De Componente</h3>
+ <div class="control-group">
+    <label class="control-label" for="inputEmail">Nombre :</label>
+    <div class="controls">
+<input type="text" id="nombre_componente" value="{{componente_principal.nombre}}">
+</div>
+</div>
+ <div class="control-group">
+    <label class="control-label" for="inputEmail">Ponderado:</label>
+    <div class="controls">
+<input type="text" id="ponderado_componente" value="{{componente_principal.ponderado}}">
+</div>
+</div>    
+<button style="float: right;margin-left: 4px;" class="btn" onclick="$('#div_editar_compo').hide();">Cancelar</button>
+<button style="float: right;" class="btn btn-primary" onclick="procesarEditarComponentesItems();$('#div_editar_compo').hide();">Actualizar Componente</button>
+
+
+{%endif%}
+</form>
+        <div style="clear: both;"></div>       
+</div>

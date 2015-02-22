@@ -1,0 +1,32 @@
+<table style="border-style: solid;">
+               
+        {%for array_alumno_notas in entities_%}
+    {% if loop.first%}
+    <tr style="border-style: solid;">
+        
+        
+        <td  style="border-style: solid;">--</td>
+        {%for nombres in entities_[0]%}
+         <td  style="border-style: solid;">{{nombres.dimension}} </td>
+         {%endfor%}
+    </tr> 
+{%endif%}
+            <tr style="border-style: solid;">
+                
+            {%for alumno_notas in array_alumno_notas%} 
+                {% if loop.first%}
+                <td style="border-style: solid;">       
+                  {{alumno_notas.alumno}} 
+                </td>
+                {%endif%}
+                <td style="border-style: solid;">       
+                   {{'      '}} 
+                </td>
+                                  
+          
+        {%endfor%}
+                  </tr>
+                              
+         
+        {%endfor%}    
+        </table>        

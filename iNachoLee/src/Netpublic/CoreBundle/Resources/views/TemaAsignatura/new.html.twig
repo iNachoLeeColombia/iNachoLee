@@ -1,0 +1,8 @@
+<h5>Crear TEma Asigantura</h5>
+
+<form id="new_form_tema_asignatura" name="new_form_tema_asignatura" {#action="{{ path('temaasignatura_create') }}"#} method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" onclick="createTemaAsignaturainfoAcademicaDefectoAno({{id_asignatura}});" class="btn">Crear</button>
+    </p>
+</form>

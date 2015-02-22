@@ -1,0 +1,35 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container %} 
+    <h3>
+       Consolidado: FInal de año. 
+    </h3>
+    <div>
+        <a href="{{path('colegio_listaplanillas')}}" class="btn btn-primary">
+            Consolidado Final de año.
+        </a>
+        <a href="{{path('colegio_getplanillagrupo')}}" class="btn">
+            Consolidado: Notas de asignaturas .
+        </a>
+        <a href="{{path('colegio_newplanillaprofesores')}}" class="btn">
+            Planillas de los profesores.
+        </a>    
+    </div>
+    <div class="col-md-12" style="padding-top: 20px;background-color: whitesmoke;">    
+    {%for grado in grados%}        
+        <div class="btn-group col-md-6" style="margin-bottom: 10px;">
+            <a href="{{path('profesor_getplanillagradoresumen',{'grado_id': grado.id})}}" class="btn btn-default" style="width: 150px;"> {{grado}} <i class="icon icon-download-alt icon-white"></i>
+            </a>
+       <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"> Exportar por grupos <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                {%for grupo in grado.grupo%}
+                <li>
+                    <a href="{{path('profesor_getplanillaresumen',{'grupo_id': grupo.id})}}">{{grupo}}</a>
+                </li>
+                {%endfor%}
+                
+            </ul>
+        </div>
+       
+    {%endfor%}
+</div>    
+{%endblock%}    

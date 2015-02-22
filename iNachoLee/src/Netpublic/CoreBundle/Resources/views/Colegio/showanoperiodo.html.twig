@@ -1,0 +1,34 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Gestor de Año | Periodo escilares{% endblock %}
+{%block  sub_container  %}
+<div class="col-sm-12 widget-container-span ui-sortable">
+	<div class="widget-box">
+            <div class="widget-header">
+                <h5 class="smaller">Año | Periodos escolares.</h5>
+                    <div class="widget-toolbar no-border">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+				<a href="#home" data-toggle="tab">Años Escolares</a>
+                            </li>
+                            <li>
+                                <a href="#profile" data-toggle="tab">Periodos Escolares</a>
+                            </li>
+                        </ul>
+                        </div>
+		</div>
+                <div class="widget-body">
+                    <div class="widget-main padding-6">
+                        <div class="tab-content">
+                            <div class="tab-pane in active" id="home">
+                                <p>{{render(controller('NetpublicCoreBundle:Dimension:index',{'tipo': 0}))}}.</p>
+                            </div>
+                            <div class="tab-pane" id="profile">
+                                <p>{{render(controller('NetpublicCoreBundle:Dimension:index',{'tipo': 1}))}}</p>
+                            </div>
+                       </div>
+                    </div>
+		</div>
+	</div>
+</div>
+{%endblock%}
+

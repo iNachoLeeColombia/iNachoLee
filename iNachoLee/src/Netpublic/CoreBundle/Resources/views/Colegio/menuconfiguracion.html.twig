@@ -1,0 +1,122 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+
+{%block  sub_container  %}
+
+<div class="well" style="margin-left: 20px;width: 90%;background-color: gainsboro;font-weight: 900;">
+    <div style="margin-bottom: 20px;" class="col-lg-12">
+        <a class="col-lg-3" href="{{path('colegio_configuracioncolegio')}}" >
+            <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+                <i class="fa fa-bookmark fa-3x"></i><br/>
+            Gestor de datos básicos.
+            </div>                
+        </a>
+        <a class="col-lg-3" href="{{path('colegio_listaplanillas')}}"  >
+            <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+            <i class="fa fa-tasks fa-3x"></i><br/>    
+            Gestor de planillas.
+            </div>
+        </a>        
+        <a class="col-lg-3"  href="{{path('colegio_listacomponentes')}}" >
+            <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+              <i class="fa fa-credit-card fa-3x"></i><br/>    
+              
+           Gestor de componentes de evaluación.
+            </div>                
+        </a>
+        <a class="col-lg-3"  href="{{path('colegio_informeboletines')}}" >
+            <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+                <i class="fa fa-hdd-o fa-3x"></i><br/>    
+                Informe Boletines| Certificados|Carnet
+            </div>                
+        </a>
+ </div>         
+ {#Segundo bloque#} 
+ <div style="margin-top: 20px;" class="col-lg-12"> 
+    <a class="col-lg-3"  href="{{path('profesor_listaflujos')}}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+      <i class="fa fa-bars fa-3x"></i><br/>    
+            
+        Gestor flujo de trabajo de profesores.
+    </div>                
+    </a>
+    <a class="col-lg-3"  href="{{ path('colegio') }}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+        <i class="fa fa-home fa-3x"></i><br/>    
+        Gestor sedes.
+    </div>                
+    </a>
+    <a class="col-lg-3" href="#" onclick="mostrarGestorDePublicaciones();" >
+        <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+         <i class="fa fa-file fa-3x"></i><br/>    
+               
+       Gestor De Auditorias & Novedades.
+    </div>
+    </a> 
+     <a class="col-lg-3"  href="{{path('colegio_newgestorgrupo')}}" >
+        <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+            <i class="fa fa-users fa-3x"></i><br/>    
+            Gestor grupos<br/>(<span style="font-size: 8px;">retiros,transferencias,asignaciones</span>).
+    </div>
+    </a>        
+ </div>         
+ {#Segundo bloque#} 
+    <div style="margin-top: 20px;" class="col-lg-12"> 
+         
+        <a class="col-lg-3"  href="{{ path('cargaacademica') }}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+       <i class="fa fa-link fa-3x"></i><br/>    
+              
+       Gestor De Carga Academica.
+    </div>                
+    </a>
+      <a class="col-lg-3"  href="{{path('colegio_newsincronicarnotaspuestos')}}">  
+          <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+          <i class="fa fa-eject fa-3x"></i><br/>    
+         
+              Gestor mejores estudiantes.
+    </div>                
+    </a>
+    <a class="col-lg-3" href="{{ path('colegio_newgestormatricula') }}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+    <i class="fa fa-yen fa-3x"></i><br/>    
+        Gestor Matriculas.
+    </div>                
+    </a>
+    <a class="col-lg-3" href="{{path('colegio_gestionarpromover')}}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+      <i class="fa fa-retweet fa-3x"></i><br/>    
+               
+      Gestor<br/>Promover De Alumnos.
+    </div>                
+    </a>
+ </div>
+        <div class="col-lg-12" style="margin-top: 20px;">
+    <a class="col-lg-3" href="{{path('colegio_newinfoacademica')}}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+      <i class="fa fa-xing fa-3x"></i><br/>    
+               
+      Gestor<br/>Grados-Areas-Asignaturas
+    </div>                
+    </a>
+    <a class="col-lg-3" href="{{path('colegio_showanoperiodo')}}" >
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+      <i class="fa fa-th-large fa-3x"></i><br/>    
+               
+      Gestor<br/>Años/periodos escolar
+    </div>                
+    </a>
+    <a class="col-lg-3" href="#" onclick="newAlumnoUnoUnoLoteDefectoAno();">
+    <div style="height: 90px;padding-top: 5px;text-align: center;color: white;background-color: #2ECC71;">
+      <i class="fa fa-user fa-3x"></i><br/>    
+               
+      Gestor<br/>usuarios
+    </div>                
+    </a>
+            
+        </div>       
+<div class="clearfix"></div>        
+
+</div>
+
+{%endblock%}

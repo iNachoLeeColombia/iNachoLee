@@ -1,0 +1,58 @@
+    
+      <div style="float: left;width: 2%;padding-top: 30px;padding-right: 10px;">
+          
+          <input type="checkbox" class="fila_alumno" value="{{alumno.id}}"/> 
+  </div>
+      <div style="float: left;width: 90%;">    
+      <a href="#" class="thumbnail" style="width: 70px;height: 75px;float: left;">
+                {%if alumno.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 70px;height: 75px;" src="{{asset('uploads/documents/strongalumno'~alumno.id~'.jpg')}}" alt="InachoLee_" />
+                {%else%}
+                    <img style="width: 70px;height: 75px;" src="{{asset('uploads/documents/strongavatar.png')}}"  uri/web/uploads/documents/" alt="InachoLeeYuri" />                    
+                {%endif%}
+                         
+      </a>
+         <p style="float: left;margin-left: 10px;font-size: 14px;margin-top: 20px;color: gray;">
+               {{alumno}}<br/>
+               <span style="font-size: 12px;">  
+              Grado: {{alumno.grado}} 
+              Grupo: {{alumno.grupo}}
+             </span> 
+               <span style="color: white;font-weight: 900;background-color: orange;">
+                    {%if alumno.getTieneNovedad==true%}
+                       Reportado!!
+                    {%endif%}   
+               </span>   
+          </p>  
+          <div class="btn-group" style="float: right;">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Que Queres Hacer?
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="#" onclick="procesarRetirarGrupoAuditoria({{alumno.id}});">Retirarlo De el grupo</a></li>
+        <li><a href="#" onclick="procesarCambiarGrupoUNoUno('div_cambiarGrupo{{alumno.id}}');">Cambiarlo A Otro Grupo</a></li>        
+        
+    </ul>
+                  
+    </div> 
+       <div class="well" id="div_cambiarGrupo{{alumno.id}}" style="display: none;margin-top: 30px;float: right;">
+           <div>X Cerrar</div>
+           <select  id="select_grado_auditoria{{alumno.id}}"
+                    class="span6"
+                    onchange="getGruposGradoEstandar('select_grado_auditoria{{alumno.id}}','select_grupo_auditoria{{alumno.id}}');">
+             <option>Grado ??</option>
+             {%for grado in grados%}
+             <option value="{{grado.id}}">{{grado}}</option>
+             {%endfor%}
+         </select>
+           <select class="span6" id="select_grupo_auditoria{{alumno.id}}">
+             <option>Grupo ??</option>             
+         </select>
+           <button onclick="procesarCambiarGrupoAuditoria({{alumno.id}});" class="btn btn-small btn-primary" style="float: right;">
+               Por favor, Adicionarlo A Este Grupo
+           </button>
+         </div>   
+                  </div>
+ <div style="clear: both;"></div>       
+        

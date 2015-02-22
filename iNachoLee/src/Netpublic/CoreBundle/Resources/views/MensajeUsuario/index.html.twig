@@ -1,0 +1,95 @@
+<h4 style="color:rgb(100,100,100);font-size:15px;">Bandeja De Entrada</h4>
+  <div class="pagination pagination-right" >  
+{#    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a href="#" 
+   onclick="indexMensajeinfoAcademicaDefectoAno({{paginador.previousPage }});"    >
+        Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#" onclick="indexMensajeinfoAcademicaDefectoAno({{page}});"
+                        >{{ page }}</a></li>
+{% else %}
+<li><a href="#" onclick="indexMensajeinfoAcademicaDefectoAno({{page}});"
+                       >{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+    <li><a href="#" onclick="indexMensajeinfoAcademicaDefectoAno({{paginador.nextPage }});">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>
+#}
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Quien Envio.</th>
+            <th>Tipo Notificación.</th>
+            <th>Asunto</th>
+            <th>Fecha De Envió</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+            <tr {%if not entity.getEsLeido%}
+                    style="font-weight: bolder;"
+                {%else%}
+                    style="color: gray;"
+                {%endif%}
+             >            
+            {#<td>{% if entity.fechaenvio %}{{ entity.fechaenvio|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>{% if entity.fechalectura %}{{ entity.fechalectura|date('Y-m-d H:i:s') }}{% endif%}</td>
+            #}
+            {% if not entity.remitente.getEsAlumno()%}    
+                <td>{{entity.remitente.profesor}}</td>  
+            {%else%}
+                <td>{{entity.remitente.alumno}}</td>  
+            {%endif%}   
+            <td>
+                {%if entity.mensaje.tipo==0%}
+                    <span class="label">Información</span> 
+                {%elseif entity.mensaje.tipo==1%}   
+                    <span class="label label-important">LLamado De Atención.</span> 
+                {%elseif  entity.mensaje.tipo==2%}
+                    <span class="label label-success">Felicitaciones</span> 
+                {%elseif  entity.mensaje.tipo==3%}
+                    <span class="label label-warning">
+                        Envio De Boletines</span> 
+    
+                {%endif%}
+                    
+            </td>
+            <td>
+                {{entity.mensaje.asunto}}
+            </td>
+            <td>
+                {{entity.getFechaEnvio()|date("h:i:s m/d/Y")}}
+            </td>
+            <td>
+                
+
+                <a href="#" onclick="showMensajeinfoAcademicaDefectoAno('{{entity.mensaje.id}}','{{entity.id}}');">
+                    <i class="icon-file"></i>Leer
+                </a> |
+                <form style="display: inline" name="{{entity.id}}" id="{{entity.id}}">                                                                          
+                        <button style="color: rgb(74, 174, 216);display: inline;background: none;border-style:none " onclick="deleteMensajeUsuarioinfoAcademicaDefectoAno({{entity.id}})">
+                    <i class="icon-remove"></i>
+                    Eliminar</button>
+                    {{ form_widget(delete_form[loop.index0]) }}      
+                </form>
+             </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a  href="{{ path('mensaje_new') }}">
+    <i class="icon-pencil"></i> Redactar.
+        </a>

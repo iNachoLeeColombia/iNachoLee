@@ -1,0 +1,341 @@
+/* 
+    Document   : inacholee
+    Created on : 07-mar-2014, 17:16:49
+    Author     : yuri
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@charset "UTF-8";
+
+.nav-search .nav-search-input {
+    border: 1px solid #6FB3E0;
+    border-radius: 4px !important;
+    color: #666666 !important;
+    font-size: 11px;
+    height: 28px !important;
+    transition: width 0.15s ease 0s;    
+    z-index: 11;
+}
+.navbar-inverse{
+    background-color: #438EB9;
+}
+.navbar-inverse .navbar-nav > li > a{
+    color: white;
+}
+.input-group{
+    width: 156px;
+}
+.nav-search {
+    line-height: 24px;
+    position: absolute;
+    right: 50%;
+    top: 6px;
+}
+
+
+/* custom styles for the typeahead */
+
+.tt-dropdown-menu {
+  text-align: left;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+  padding: 8px 12px;
+  line-height: 30px;
+  border: 2px solid #ccc;
+  
+  outline: none;
+}
+
+.typeahead {
+  background-color: #fff;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-dropdown-menu {
+  width: 422px;
+  margin-top: 12px;
+  padding: 8px 0;
+  background-color: #fff;
+  color: black;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+/* styles for dropdown list: custom template */
+.repo-language {
+  
+  font-style: italic;
+}
+
+.repo-name {
+  font-weight: bold;
+}
+
+.media-body {
+  font-size: 10px;
+}
+.media .media-object {
+  width: 40px;
+}
+.media-body{
+    margin: 0px 0px;
+    padding: 0px 0px;
+    
+}
+.media-sugerencias{
+    border-bottom: #999 inset thin;
+    color: gray;
+    padding-bottom: 15px;
+}
+.parte_body{
+    padding-left: 15px;
+    width: 90%;
+}
+a.anchor_media:hover{
+    color: blue;
+}
+
+a.anchor_media{
+    color: red;
+}
+/* tree*/
+.tree li {
+    list-style-type:none;
+    margin:0;
+    padding:10px 5px 0 5px;
+    position:relative
+}
+.tree li::before, .tree li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto
+}
+.tree li::before {
+    border-left:1px solid #999;
+    bottom:50px;
+    height:100%;
+    top:0;
+    width:1px
+}
+.tree li::after {
+    border-top:1px solid #999;
+    height:20px;
+    top:25px;
+    width:25px
+}
+.tree li span {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border:1px solid #999;
+    border-radius:5px;
+    display:inline-block;
+    padding:3px 8px;
+    text-decoration:none
+}
+.tree li.parent_li>span {
+    cursor:pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+    border:0
+}
+.tree li:last-child::before {
+    height:30px
+}
+.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000
+}
+.sub-container-left{
+    background-color: #FBFBFB;
+    width: 40%;
+    height: 500px;
+    border: none;
+    border-right: #ccc solid thin;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+
+}
+.sub-container-right{
+    background-color: #FBFBFB;
+    width: 55%;
+    height: 500px;
+    margin-top: 20px;
+    }
+.container-principal{
+    background-color: #FBFBFB;
+    width: 100%;
+    margin-top: 20px;
+}
+.container-principal-head{
+    border-bottom: #ccc solid thin;
+    font-size: 11px;
+}
+.container-principal-head .table{
+    margin-bottom: 10px;
+    width: 30%;
+}
+.btn-default-inl{
+   -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FAFAFA!important;
+    background-image: linear-gradient(#FFFFFF, #FFFFFF 25%, #E6E6E6)!important;
+    background-repeat: no-repeat!important;
+    border-color: #CCCCCC #CCCCCC #BBBBBB!important;
+    border-image: none!important;
+    border-radius: 4px!important;
+    border-style: solid!important;
+    border-width: 1px!important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)!important;
+    color: #333333!important;
+    cursor: pointer!important;
+    display: inline-block!important;
+    font-size: 13px!important;
+    line-height: 18px!important;
+    padding: 4px 10px!important;
+    text-align: center!important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)!important;
+}
+span.nodo_destino{
+    background-color: gold;
+    
+}
+span.nodo_origen{
+    background-color: gray;
+}
+.inform_head table td{
+    border: #DDDDDD solid thin!important;
+    
+}
+.outer {
+    width: 100%;
+    position: relative;
+}
+.outer .grayBg {
+    position: absolute;
+    left: 0;
+    top: 0;    
+    width: 100%;
+    z-index: 1;
+}
+.inner {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+.item_fast_boletin{
+    background-color: gray!important;
+    font-weight: 900;
+  
+}
+
+.navbar-inl {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    min-height: 45px;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+input[readonly].celda_fallas {
+    background: none repeat scroll 0 0  #D9EDF7 !important;
+    color: gray;
+    cursor: default;
+}
+input[readonly].celda_final_periodo{
+    background-color: #3A87AD !important;
+    color:white;
+    font-weight: 900;    
+}
+input[readonly].celda_nota{
+    background-color: white!important;
+    color:gray;
+}
+
+.activa_bc3{
+    border: yellow solid thick;
+}
+.seleccionada_bc3{
+    border: red solid thick;
+}
+#sub-container-right-informe-bc3{
+    font-size: 11px;
+    
+}
+.encabezado{
+    font-size: 12px;
+    font-weight: 900;
+}
+.btn-circle {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  padding: 50px 0;
+  font-size: 18px;
+  line-height: 1.42;
+  border-radius: 10px;
+}
+.label-circle {
+  padding: 50px 0;
+  line-height: 1.42;
+  border-radius: 2px;
+}
+div.check{
+    background-color: green;
+}
+div.no_check{
+    background-color: #333333;
+}
+.btn-sin-decoracion{
+    border: none;
+    background-color: transparent;
+}
+.progress{
+    margin-bottom: 0px;
+}

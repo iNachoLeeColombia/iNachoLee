@@ -1,0 +1,30 @@
+{%for ca in carga_academica%}
+<div style="padding-left: 50px;font-size: 10px;">   
+<label class="checkbox">
+    <input id="check_carga_academica{{ca.id}}"   
+           data-fuente="profesor_gcomp{{ca.profesor.id}}" 
+           data-clase-destino="componetes_ca{{ca.id}}" 
+           data-clase-me="carga_profesor{{ca.profesor.id}}" 
+           data-clase-padre="profesor_gcomp{{ca.profesor.id}}"            
+           onchange="allcheckProfesoresCopiar('check_carga_academica{{ca.id}}','componetes_ca{{ca.id}}',this);"  
+           type="checkbox"  
+           class="carga_profesor{{ca.profesor.id}} fila_ca cbox profesor_ca" value="{{ca.id}}" />
+    <div style="margin-left: 10px;float: left;width: 300px;font-size: 12px;text-decoration: underline;">
+        <a href="#" onclick="verDetallesCargaAcademicaProfesor({{ca.id}});">
+        {{ca.asignatura|upper}}--
+        ({{ca.grupo|lower}})
+       </a>
+        <span style="background-color: yellow;color: black;font-size: 10px;" id="observacion{{ca.id}}"></span>
+      <span id="letrero_copiar{{ca.id}}" class="letrero" style="font-size: 9px;color: white;background-color: orange;font-weight: 900;" ></span></div>
+    <div style="margin-left: 40px;float: left;">
+        
+        </div>
+   </label>
+        <div style="clear: both;"></div>   
+        <div id="capa_ram_profesores_asignaturas{{ca.id}}" style="display: none;">
+        </div>
+        {%render(controller("NetpublicCoreBundle:CargaAcademica:mostrardetallesprofesorasignatura",{'id_ca':ca.id}))%}
+       
+</div>        
+
+{%endfor%}

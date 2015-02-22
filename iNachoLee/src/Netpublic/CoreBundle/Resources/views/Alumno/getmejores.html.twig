@@ -1,0 +1,69 @@
+          
+<div class="well" style="width: 35%;float: left;background-color: #F5F5DC;">
+    <a target="_blank" href="{{ path('alumno_getmejores', { 'sede':sede,'periodo_academico':periodo_academico,'cgg':cgg,'page': paginador.currentPage,'_format':'pdf'}) }}"><img src="{{ asset('bundles/netpubliccore/images/pdficon.gif') }}" alt="icono pdf" />
+    </a>
+        <a target="_blank" href="{{ path('alumno_getmejores', { 'sede':sede,'periodo_academico':periodo_academico,'cgg':cgg,'page': paginador.currentPage,'_format':'xls'}) }}">        
+<img src="{{ asset('bundles/netpubliccore/images/icono-excel.gif') }}" alt="icono excel" />
+        </a>
+        <a href="#">        
+<span style="color: blue;font-size: 40px;font-weight: bolder;">
+    HMTL
+</span>
+            </a>                
+</div>
+
+<div class="pagination pagination-right" style="float: right;"> 
+
+    <ul>
+{#% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarFiltroPaginadorMejores('{{ path('alumno_getmejores', { 'sede':sede,'periodo_academico':periodo_academico,'cgg':cgg,'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a href="#" onclick="mostrarFiltroPaginadorMejores('{{ path('alumno_getmejores', { 'sede':sede,'periodo_academico':periodo_academico,'cgg':cgg,'page': page}) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarFiltroPaginadorMejores('{{ path('alumno_getmejores', { 'sede':sede,'periodo_academico':periodo_academico,'cgg':cgg,'page': paginador.nextPage}) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>#}
+                  
+</div>
+ <div style="clear: both;"></div> 
+ <div style="text-align: center;color: #FFA500;">{{aquien_aplica}}  </div>
+<table class="table table-bordered">
+                            <thead>
+                            <th>Puesto</th>
+                            <th>Nombre Y Apellidos</th>
+                            <th>Promedio De Notas</th>
+                            <th>Grado</th>                            
+                            <th>Grupo</th>                            
+                            </thead>
+                            {%for entity in entities%}
+                            <tr>
+                                <td>{{entity.puesto}}</td>
+                            <td>
+ <a href="#">
+  <img style="width:30px;
+              height: 40px;
+              float: left;"
+              src="{{asset('uploads/documents/miniavatar.png')}}"
+              />        
+              {{entity.alumno}}
+ </a>
+         </td>
+        <td>{{entity.nota}}</td>
+                            <td>{{entity.alumno.grado}}</td>
+                            <td>{{entity.alumno.grupo}}</td>
+                            </tr>
+
+                           {%endfor%} 
+                        </table>

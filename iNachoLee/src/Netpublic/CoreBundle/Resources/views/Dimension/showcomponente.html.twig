@@ -1,0 +1,41 @@
+{%set colores=['#3CD7DD','#55DDAD','#BB89AD','#CC89AD','#AA89AD']%}
+
+<table id="tabla_padre{{padre.id}}" class="table table-bordered">
+                <tr>
+                    <td>
+                        <label>
+                <input type="radio"
+                   value="{{padre.id}}"
+                   onchange=""
+                   id="optionsRadios_{{padre.id}}"
+                   name="label"
+                   >
+                </label>
+                    </td>
+                {%for com in padre.padresgc%}
+                    {%set idex=loop.index0%}
+                    {%for item in com.padresgc if item.tipo!=4 %}
+                            <td style="background-color: {{colores[idex]}}">                    
+                                ...{{item|lower}} 
+                            {%if item.tipogc!=8%}
+                                ({{item.ponderado}}%)
+                            {%endif%}
+                            </td>
+                    
+                    {%endfor%}    
+                    <td {%if com.tipogc==8%}
+                            style="background-color: #D9EDF7;"
+                            {%elseif com.tipogc==9%}
+                                style="background-color: white;"
+                            {%endif%}  >
+                       
+                        <span id="span_{{padre.id}}">{{com|upper}}</span> 
+                       {%if com.tipogc!=8%}
+                        ({{com.ponderado}}%)
+                       {%endif%}
+                   </td>
+                {%endfor%}
+                    <td style="background-color: #3A87AD;">{{padre|upper}}</td>
+                </tr>
+            </table>
+            

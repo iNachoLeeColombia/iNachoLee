@@ -1,0 +1,17 @@
+<div class="well"  id='div_cambiarPeriodo' style="background-color: gainsboro;">
+    <div><span>Periodo A Calificar.</span>  
+        <button class="close" onclick="$('#div_cambiarPeriodo').hide();" style="float: right;margin: 0 0 0 0 ;padding: 0px 0px 0px 0px;">&times;</button></div>
+    <div style="clear: both;"></div>
+    <select id="periodo_calificar_la">
+    {%for item in periodos_escolares%}
+        <option
+            {%if item.id==periodo_activo%}
+                selected="selected"
+            {%endif%}    
+            value="{{item.id}}">{{item}}</option>
+    {%endfor%}    
+</select>
+<div>
+    <button onclick="cambiarPeriodoActivo('{{href}}');" id="btn_cambiar_periodo_activo">Cambiar De Periodo</button>
+</div>
+</div>

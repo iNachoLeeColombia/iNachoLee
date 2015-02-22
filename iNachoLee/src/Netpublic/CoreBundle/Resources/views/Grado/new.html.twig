@@ -1,0 +1,44 @@
+
+
+<h5>Creación Grado</h5>
+
+<form id="form_newGrado" class="form-horizontal" name="form_newGrado" {#action="{{ path('grado_create') }}"#} method="post" {{ form_enctype(form) }}>
+<div class="form-group">    
+{{ form_label(form.nombre,null,
+{'label': 'Nombre', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+ {{ form_widget(form.nombre,{'attr':{'class':'col-xs-10 col-sm-5'} }) }}
+</div> 
+<div class="form-group">    
+{{ form_label(form.niveles_educativo,null,
+{'label': 'Nivel educativo', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+ {{ form_widget(form.niveles_educativo,{'attr':{'class':'col-xs-10 col-sm-5'} }) }}
+</div> 
+<div class="form-group">    
+{{ form_label(form.grado,null,
+{'label': 'Grado', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+{{ form_widget(form.grado,{'attr':{'class':'col-xs-10 col-sm-5'} }) }}
+</div> 
+{{ form_widget(form._token) }}
+        
+        <a class="btn btn-xs" href="#" onclick="indexGradoinfoAcademicaDefectoAno();">
+            << Atras
+        </a>
+    <button  
+        onclick="createGradoinfoAcademicaDefectoAno()" 
+        class="btn btn-xs"
+        type="submit"
+        >
+        Guardar
+    </button>
+    <button  
+        onclick="createnewGradoinfoAcademicaDefectoAno()" 
+        class="btn btn-xs"
+        type="submit"
+        >
+        Guardar & Nuevo
+    </button>    
+
+
+
+    
+</form>  

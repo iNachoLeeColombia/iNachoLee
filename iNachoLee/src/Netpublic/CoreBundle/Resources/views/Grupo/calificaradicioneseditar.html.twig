@@ -1,0 +1,59 @@
+ <div style="display: inline;" id="5" >  
+   {%if entities|length>0%} 
+    {%set primer_fila_nombre_dimeniones=entities[0]%}
+    <ul style="list-style: none">
+    {%for key,alumno in alumnos%}
+            {%if loop.first%}
+            <ul style="list-style: none;">
+<li style="float: left;width: 35px;"><input type="text" value="-" disabled="" style="visibility: hidden;"></li>                
+                    <li style="float: left;"><input type="text" value="-" disabled="" style="visibility: hidden;"></li>
+    {%for nota_alumno in primer_fila_nombre_dimeniones%}
+<li  style="float: left;width: 43px;">
+    <div style="padding-left: 5px;" class="tarea">{{nota_alumno.dimension|replace({" ":""})}}{%if nota_alumno.dimension.ponderado!=null%}({{nota_alumno.dimension.ponderado}}%){%endif%}</div>
+</li>                                                 
+                         
+            {%endfor%}
+            </ul>     
+         {%endif%}   
+            <div style="clear: both;"></div> 
+            {%if entities[loop.index0]|length>0%}
+            ----    {{entities[loop.index0][0].asignatura}}
+            {%endif%} 
+            <ul>
+                 
+                <li  style="display: inline;list-style: none;">
+                
+     <input type="text" 
+            style="height: 30px;width:22px;font-weight: bold;"            
+            disabled="disabled"            
+            value="{{loop.index}}">
+                    
+     <input type="text" 
+            style="height: 30px;font-weight: bold;"
+            name="{{alumno.id}}" 
+            disabled="disabled"
+            class="alumnos"
+            value="{{alumno}}">
+                </li>  
+              
+                {%for nota_alumno_form in edit_forms[key]%}
+                    
+        <li style="display: inline;" class="td_notas">
+   {{ form_errors(nota_alumno_form.nota) }}{{ form_widget(nota_alumno_form.nota)}}
+                            </li>
+                {%endfor%}
+             </ul>
+         
+             {%endfor%}
+           </ul>
+     <button class="btn btn-info"            
+           onclick="guardarTodosLosAlumnos({{nota_minima}},{{nota_maxima}});" >
+         Guardar Notas</button>
+   {%else%}
+         <h3 style="text-align: center;">
+         Lo sentimos no se encontraron ALUMNOS para listar.
+       
+         </h3>
+   {%endif%}      
+</div>            
+

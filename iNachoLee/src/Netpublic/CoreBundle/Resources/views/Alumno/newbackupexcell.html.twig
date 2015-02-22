@@ -1,0 +1,24 @@
+
+<div id="capa_ram_newAlumno">
+<div class="modal-header">              
+  <h3>Nuevo Alumno | Acudiente(Archivo en Excell)-Ultima hoja:</h3>
+</div>
+
+<form action="{{path('alumno_createbackupexcell')}}" method="post"  enctype="multipart/form-data">
+    <div style="width: 50%;float: left;"> 
+      
+                <div class="controls">
+                <input type="file" name="archivo_excell">        
+                </div>
+   </div>
+    
+    <div style="clear: both"></div>                       
+<div class="modal-footer">
+  
+    <a onclick="newAlumnoUnoUnoLoteDefectoAno();" name="btn_finalizar" class="btn">Finalizar</a>
+    <button value="1" name="btn_registrar" class="btn" >Registrar</button>
+    <button value="2" name="btn_registrar_matricular" class="btn btn-primary">Registrar & Matricular</button>
+    
+</div>
+        </form>
+</div>

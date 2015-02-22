@@ -1,0 +1,24 @@
+<table class="table table-striped">
+        <thead>
+          <tr>            
+            <th>Grupo</th>
+            <th>Directora De Grupo</th>            
+          </tr>
+        </thead>
+        <tbody>
+          {%for entity in entities%}  
+          <tr>
+            <td>{{entity}}</td>
+            {%if entity.getDirectorGrupo()==null%}
+            <td>no tiene</td>
+            {%else%}
+            <td>{{entity.getDirectorGrupo()}}</td>
+            {%endif%}
+            <td>
+                <a href="#" onclick="editarGruposPerfilAdminProfesor({{entity.id}});">editar</a>
+                  
+            </td>
+          </tr>         
+          {%endfor%}
+        </tbody>
+      </table>

@@ -1,0 +1,77 @@
+{%if ready_only%}
+<div class="well" style="font-size: 19px;background-color: #D17975!important;background-image: none;color: white;font-weight: 900;width: 40%;text-align: center;">
+    Tiempo Agotado, Comuníquese con la Administración.
+</div>
+{%endif%}
+
+<div style="display: inline;padding: 0px 0px;" id="5" >  
+  {%if entities|length>0%} 
+    {%for notas_alumno in entities%}
+             {%set primer_fila_nombre_dimeniones=notas_alumno%}      
+        
+            {%if loop.first%}
+            <ul style="list-style: none;">
+<li style="float: left;width: 35px;"><input type="text" value="-" disabled="" style="visibility: hidden;"></li>                
+                    <li style="float: left;"><input type="text" value="-" disabled="" style="visibility: hidden;width: 250px;"></li>
+    {%for nota_alumno in primer_fila_nombre_dimeniones%}
+<li  style="float: left;width: 43px;">
+    <a href="#" onclick="notasPeriodoGrupoAsignatura({{dimension_final.id}},'{{grupo_id}};{{asignatura_id}};{{nota_alumno.dimension.id}};0',3);">
+        <div style="padding-left: 5px;" class="tarea">{{nota_alumno.dimension|replace({" ":""})}}{%if nota_alumno.dimension.ponderado!=null%}({{nota_alumno.dimension.ponderado}}%){%endif%}</div></a>
+</li>                                                 
+                         
+            {%endfor%}
+            </ul>     
+         {%endif%}   
+        
+        
+        
+        
+        <ul style="clear: both;padding: 0px 0px;margin: 0px 0px;">
+            
+            <li  style="display: inline;list-style: none;">
+     <input type="text" style="height: 35px;width:30px;font-weight: bold;" disabled="disabled" value="{{loop.index}}" >
+     {%if notas_alumno|length>0%}
+     <input type="text" 
+            style="
+            {%if notas_alumno[0].alumno.getEsAdicion==1%}
+            background-color: orange;
+            {%endif%}
+            height: 35px;
+            width: 280px;
+            font-weight: bold;"
+            name="{{notas_alumno[0].alumno.id}}" 
+            disabled="disabled"
+            class="alumnos"
+            id="alumno_{{notas_alumno[0].alumno.id}}"
+            value="{{notas_alumno[0].alumno|upper}}" />
+     {%else%}
+     <input type="text" 
+            style="
+            height: 35px;
+            width: 280px;
+            font-weight: bold;"
+            disabled="disabled"
+            value="{{alumnos[loop.index0]}}"
+            class="alumnos" />
+     {%endif%}
+                </li>  
+              
+            {%for nota_alumno_form in edit_forms[loop.index0]%}
+                    {%if notas_alumno|length>0%}     
+                       <li style="display: inline;" class="td_notas notas_alumno_{{notas_alumno[0].alumno.id}}" >
+                         {{ form_errors(nota_alumno_form.nota) }}{{ form_widget(nota_alumno_form.nota)}}
+                       </li>
+                    {%else%}
+                       <li style="display: inline"></li>
+                    {%endif%}   
+           {%endfor%}
+       </ul>
+    {%endfor%}
+            
+  {%else%}
+            <h3 style="text-align: center;">Lo sentimos no se encontraron ALUMNOS para listar.</h3>
+  {%endif%}
+            
+</div>  
+<div style="clear: both;"></div>
+  

@@ -1,0 +1,180 @@
+{# src/Acme/BlogBundle/Resources/views/Blog/index.html.twig #}
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block contenido%}  
+<div id="caja_herramientas_calificar" style="display: none;position: fixed;right: 170px;top: 50px;margin-top: 80px;border-style: inset inset;border-color: gray gray;border-width: thin thin">
+    <div id="calificar_foto_valornota" style="text-align: center;font-size:6.0em;font-weight: 900;margin-bottom: 20px;
+         position: absolute;right: 10px;top: 25px;"> 
+                      
+                            0
+                        </div>
+    <div style="height: 70px;width: 100px;position: relative;margin-left: 15px;">
+        <div style="width: 31%;position: absolute;left: 35px;">
+            <button class="btn" style="width: 5px;" onclick="procesarMoverArriba(this)" value="1.2"><span class="ui-icon ui-icon-arrowthick-1-n"></span></button>
+            <button class="btn" style="width: 5px;margin-top: 8px;" onclick="procesarMoverAbajo(this)" value="1.2"><span class="ui-icon ui-icon-arrowthick-1-s"></span></button>
+        </div>
+        <button class="btn " style="width: 5px;position: absolute;top: 20px;left: 3px;" onclick="procesarMoverDerecha(this)" value="1.2"><span class="ui-icon ui-icon-arrowthick-1-w"></span></button>
+        <button class="btn" style="width: 5px;position: absolute;top: 20px;left: 67px;" onclick="procesarMoverIzquierda(this)" value="1.2"><span class="ui-icon ui-icon-arrowthick-1-e"></span></button>
+        
+        
+    </div>
+        <div>
+            <span>Asistió ?</span><br />   
+            <button class="btn " style="width: 5px;" onclick="procesarTomaMasAsitencia();"><i class="icon-ok"></i>Si</button>
+            <button class="btn" style="width: 5px;" onclick="procesarTomaMenosAsitencia()"><i class="icon-remove"></i>No</button> 
+        </div> 
+     <div>     
+         <button class="btn" style="width: 5px" onclick="procesarGrupoA(this)" value="1.2"><span style="background-color:  rgb(255, 255, 136);">&nbsp;&nbsp;</span><span class="ui-icon ui-icon-person"></span><span id="grupo_a">0</span></button>
+         <input id="VALOR_NOTA_GRUPO_A" style="width: 20px;"/>
+        <button class="btn" style="width: 5px" onclick="procesarGrupoB(this)" value="1.2"><span style="background-color: rgb(205, 235, 139);">&nbsp;&nbsp;</span><span class="ui-icon ui-icon-person"></span><span id="grupo_b"></span></button>
+        <input id="VALOR_NOTA_GRUPO_B" style="width: 20px;"/>
+        <label class="checkbox">
+<input type="checkbox" id="input_check_actualizado_automatico" onclick="procesarCheckCalificacionGrupo(this);"> Actualizado automatico.
+</label>
+        <a class="btn"  href="#" onclick="updateAllAlumnos();"><i class="icon-refresh"></i> actualizar</a>
+
+     </div>
+        
+        <div style="background-color:darkgrey;padding: 4px">       
+         <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.0">1.0</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="1.1">1.1</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.2">1.2</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="1.3">1.3</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.4">1.4</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.5">1.5</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.6">1.6</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="1.7">1.7</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.8">1.8</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="1.9">1.9</button><br/>
+
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.0">2.0</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="2.1">2.1</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.2">2.2</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.3">2.3</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.4">2.4</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="2.5">2.5</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.6">2.6</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.7">2.7</button>
+        
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="2.8">2.8</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="2.9">2.9</button><br/>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.0">3.0</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.1">3.1</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.2">3.2</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="3.3">3.3</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.4">3.4</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.5">3.5</button>
+        
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.6">3.6</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="3.7">3.7</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.8">3.8</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="3.9">3.9</button><br/>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.0">4.0</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="4.1">4.1</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.2">4.2</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.3">4.3</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.4">4.4</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="4.5">4.5</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.6">4.6</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.7">4.7</button>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="4.8">4.8</button>
+        <button class="btn" style="width: 5px"  onclick="colocarNotaInput(this)" value="4.9">4.9</button><br/>
+        <button class="btn" style="width: 5px" onclick="colocarNotaInput(this)" value="5.0">5.0</button>
+        
+     </div>   
+</div>
+    <div id="select_calificar_nota"  >
+{#--------------------Menu Superior Derecho---------------------------#}        
+     <div class="btn-toolbar"  style="float: right;">
+         <div class="btn-group" > 
+            <a href="#" onclick="indexDescriptoresProfesorinfoAcademicaDefectoAno();" class="btn btn-info">
+              <i class="icon-chevron-left icon-white"></i><i class="icon-chevron-left icon-white"></i>
+              Realizar Informe-Periodo.
+          </a>
+             </div>       
+          <div class="btn-group" >   
+             <a href="#" onclick="indexCargaAcademicainfoAcademicaDefectoAno();" class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-comment icon-white"></i>
+              Actividades.<span class="caret"></span>
+          </a> 
+             <ul class="dropdown-menu">          
+              <li><a onclick="newinfoAcademicaDefectoAno(4);" href="#">
+                      <i class="icon-plus-sign"></i> Nuevo.</a></li>            
+              <li><a href="#" onclick="generarCargaAcademicainfoAcademicaDefectoAno();">
+                      <i class="icon-refresh"></i> Editar</a></li>
+                <li><a href="#" onclick="generarCargaAcademicainfoAcademicaDefectoAno();">
+                      <i class="icon-trash"></i> Eliminar</a></li>
+          </ul>
+              </div>
+          <div class="btn-group" >   
+              <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" onclick="indexdesempenoinfoAcademicaDefectoAno();">
+              <i class="icon-th icon-white"></i>Desempeños <span class="caret"></span></a>
+          <ul class="dropdown-menu">   
+               <li><a href="#" onclick="indexdesempenoinfoAcademicaDefectoAno();">
+                      <i class="icon-refresh"></i> Listar</a></li>
+              <li><a onclick="newdesempenoinfoAcademicaDefectoAno();" href="#">
+                      <i class="icon-plus-sign"></i> Nuevo.</a></li>                                       
+          </ul>
+              </div>
+        </div>
+{#----------------------------------------------------#}            
+     <div class="input">
+      <select id="periodo_calificar_nota" name="asignatura_grupo" onchange="updatePeriodoGrupo()">
+        <option value="*">Periodos Académicos</option>
+        {%for g_a in periodos%}  
+               
+                    <option value="{{g_a.id}}">{{g_a}}</option>                
+                 
+            
+        {%endfor%}
+      </select> 
+    <select id="asignatura_grupo" name="asignatura_grupo" onchange="updateGrupoAsignatura()">
+        <option value="*">Seleccione grupo-asignatura</option>
+        {%for g_a in grupo_asignatura%}  
+                
+                    <option value="{{g_a.grupo.id}};{{g_a.asignatura.id}}">{{g_a.grupo}}--{{g_a.asignatura}}</option>                
+                
+            
+        {%endfor%}
+      </select> 
+         </div> 
+            <div style="clear: both"></div>        
+            <div class="well" id="capa_ram_actividades_desempenos_calificar_nota" style="width: 80%;display: none;">
+                POr favor crea tu actividd o descripto
+            </div>
+    </div>
+
+    
+<div id="form_calificar_nota">    
+<form action="{{ path('grupo_calificar', {'id_asignatura':1, 'id_grupo': 1,'id_dimension':2}) }}" method="post" >    
+
+        <div style="float: left;margin-left: 0px ">
+            <ul style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+                <li style="width: 150px;height: 50px;"></li>   
+            {%if entities | length>0%}    
+               {%for ent in entities[0]%}
+              
+                <li style="margin: 0 0 0 0">
+                    <input type="text"  class="alumnos" name="{{ent.alumno.id}}" readonly style="width: 200px;height: 30px;" value="{{ent.alumno|raw }}" />
+                </li>
+                {%endfor%}    
+             {%endif%}   
+            </ul>
+      </div>  
+    {% for f_v_a in form_view%}
+      <div style="float: left;margin-left: 0px ">
+            <ul id="dim{{entities[loop.index0][0].id}}" style="list-style: none;margin:0 0 0 0;padding: 0 0 0 0;">
+                <li style="width: 50px;height: 50px;"><div class="tarea">{{entities[loop.index0][0].dimension|raw}}</div></li>   
+            {% for f_v in f_v_a%}                                                     
+               <li style="margin: 0 0 0 0">    
+                    {{ form_widget(f_v.nota) }}    
+                    {{ form_rest(f_v) }}
+                </li>        
+            {% endfor%}  
+            </ul> 
+     </div>
+    {%endfor%}
+</form>
+ </div>            
+    <div style="clear: both"></div>
+{% endblock %}

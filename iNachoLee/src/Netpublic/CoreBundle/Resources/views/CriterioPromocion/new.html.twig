@@ -1,0 +1,28 @@
+<h3>Agregar Criterio Academico</h3>
+<div class="col-lg-12">
+    <form style="background-color: white;" method="post" name="new_criterio_promocion" id="new_criterio_promocion">
+        <div class="col-lg-12" >
+        <div class="col-lg-1"> 
+        {{ form_widget(form.tipo, { 'attr': {'style':'display:inline;'} }) }}
+                
+         </div>
+         <div class="col-lg-10"> 
+         <span style="font-size: 16px;">Año escolar. En</span>     
+         
+         {{ form_widget(form.grado, { 'attr': {'style':'display:inline;'} }) }}
+             
+         <span style="font-size: 16px;">si</span>
+         {{ form_widget(form.es_area_asg, { 'attr': {'style':'display:inline;'} }) }} 
+         <span style="font-size: 16px;">perdida(s)</span>
+         {{ form_widget(form.simbolo, { 'attr': {'style':'display:inline;'}}) }}
+         {{ form_widget(form.valor, { 'attr': {'style':'display:inline;width:40px;'} }) }}
+         {{ form_widget(form._token, { 'attr': {'style':'display:inline;'} }) }}
+         </div>
+         <div class="col-lg-1">    
+         <button class="btn btn-primary" type="submit" onclick="createCriterioAcademicoAno();">Agregar</button>
+         </div>
+     </div>       
+    </form>
+    <button class="btn btn-primary" type="submit" onclick="indexCriterioAcademicoAno();"> Atras</button>
+     
+    </div>

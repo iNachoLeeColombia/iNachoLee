@@ -1,0 +1,43 @@
+
+<div>
+
+  
+<div  class="well" style="background-color: #F9F9F9;">
+{%for grado in grados%}
+        <div style="
+             background-color: orange;
+             text-align: center;
+             height: 30px;
+             font-size: 18px;
+             padding-top: 10px;
+             color: white;
+             font-weight: 900;
+             width: 19%;
+             ">{{grado|upper}}
+                 
+             </div>
+      {%for grupo in grupos if grupo.grado.id==grado.id%}
+        <div 
+               style="    
+               padding-top: 0px;
+               padding-left: 0px;
+               font-size: 10px;                        
+               float: left;
+               color: gray;
+               ">   
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{grupo|upper}}
+            <div  class="well" id="capa{{grupo.id}}"
+                   style="
+                    height: 200px;
+                    width: 350px;
+                    margin-left: 10px;
+                   "
+                   >
+              
+              </div>
+       </div>        
+      {%endfor%}
+          <div style="clear: both;"></div>    
+  </div>      
+{%endfor%}
+</div>

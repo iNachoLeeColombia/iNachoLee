@@ -1,0 +1,62 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+{%block breadcrumb%}
+<li><i class="fa fa-cog"></i>
+			<a href="{{ path('usuario') }}">Gestor de administración.</a>
+</li>
+{%endblock%}  
+{%block page_header%}
+ <h1>Gestión de matriculas por grupo.<small>
+ <i class="icon-double-angle-right"></i>
+    Configuración de sitema
+     </small>
+</h1>
+{%endblock%}
+
+{%block  sub_container  %}
+<strong>Ubica los estudiantes para gestionar la matricula.</strong> 
+<div class="col-lg-12">
+        <select id="grado" onchange="mostrarAlumnosGestorMatricula();getGruposGradoEstandar('grado','grupo');">
+        <option value="*">Grado ?</option>
+        {%for grado in grados%}
+        <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}
+    </select> 
+    <select id="grupo" onchange="mostrarAlumnosGestorMatricula();">
+            <option value="*"> Grupo?</option>
+        
+    </select>
+    <select id="sede" onchange="mostrarAlumnosGestorMatricula();">
+        <option value="*">Sede ?</option>
+        {%for sede in sedes%}
+        <option value="{{sede.id}}">{{sede}}</option>
+        {%endfor%}
+    </select>
+    
+</div>
+<div class="col-lg-12" style="color: white;margin-top: 20px;">---</div>
+<div>
+    Para cambiar por lote en cada año.
+    {%for ano in anos_escolares%}
+    <div class="col-lg-12">
+        <div class="col-lg-5">    
+            {{ano}}
+            <select id="pgrado{{ano.id}}" onchange="getGruposGradoEstandar('pgrado{{ano.id}}','pgrupo{{ano.id}}');">
+                <option value="*">Grado ?</option>
+                {%for grado in grados%}
+                    <option value="{{grado.id}}">{{grado}}</option>
+                {%endfor%}
+            </select> 
+            <select id="pgrupo{{ano.id}}" onchange="procesarCambioAnoEscolar({{ano.id}});">
+            <option value="*"> Grupo?</option>
+        
+    </select>  
+        </div>
+        <div class="col-lg-7"></div>
+    </div>
+    {%endfor%}     
+</div>
+<div id="container-newgestormatricula">
+    
+</div>
+{%endblock%}

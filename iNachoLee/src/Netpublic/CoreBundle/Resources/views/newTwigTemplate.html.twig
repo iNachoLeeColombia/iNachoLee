@@ -1,0 +1,95 @@
+<table  class="table table-bordered table-boletin"
+        style="margin-top: 15px;">
+    <tr style="height: 40px;font-weight: 900;" class="encabezado">
+        <td>
+            <span class="label_bc3 label_bc3_texto" id="label_15_{{alumno.id}}"
+                  data-alumno-id="{{alumno.id}}"
+                  onclick="procesarClickLabelBc3(this);"
+                  ondblclick="procesarDbClicLabelBc3(this);"
+                  onmouseout="procesarOutLabelBc3(this);"
+                  onmouseover="procesarSobreLabelBc3(this);" >Areas/Asignaturas
+            </span>
+          </td>
+        {%for periodo_academico in periodos_escolares%}
+          <td>P{{loop.index}}</td>
+        {%endfor%}
+          <td><span class="label_bc3 label_bc3_texto" id="label_16_{{alumno.id}}"
+                    data-alumno-id="{{alumno.id}}"
+                    onclick="procesarClickLabelBc3(this);"
+                    ondblclick="procesarDbClicLabelBc3(this);"
+                    onmouseout="procesarOutLabelBc3(this);"
+                    onmouseover="procesarSobreLabelBc3(this);" >Def
+              </span>
+           </td>
+           <td>
+               <span class="label_bc3 label_bc3_texto"
+                     id="label_17_{{alumno.id}}"
+                     data-alumno-id="{{alumno.id}}"
+                     onclick="procesarClickLabelBc3(this);"
+                     ondblclick="procesarDbClicLabelBc3(this);"
+                     onmouseout="procesarOutLabelBc3(this);"
+                     onmouseover="procesarSobreLabelBc3(this);" >Desemp 
+               </span>
+               </td>
+               <td>
+                   <span class="label_bc3 label_bc3_texto" id="label_18_{{alumno.id}}"
+                         data-alumno-id="{{alumno.id}}"
+                         onclick="procesarClickLabelBc3(this);"
+                         ondblclick="procesarDbClicLabelBc3(this);"
+                         onmouseout="procesarOutLabelBc3(this);"
+                         onmouseover="procesarSobreLabelBc3(this);" >Descriptores|Logros
+                   </span>
+                </td>
+                <td>
+                    <span class="label_bc3 label_bc3_texto" id="label_19_{{alumno.id}}"
+                          data-alumno-id="{{alumno.id}}"
+                          onclick="procesarClickLabelBc3(this);"
+                          ondblclick="procesarDbClicLabelBc3(this);"
+                          onmouseout="procesarOutLabelBc3(this);"
+                          onmouseover="procesarSobreLabelBc3(this);"
+                          >F
+                    </span>
+                    </td> 
+                </tr> 
+   {%for areas in datos%}
+                <tr {%if areas.desempeno=='BAJO'%} 
+                    style="color: red;font-weight: 600;"
+        {%elseif areas.desempeno=='SUPERIOR'%} 
+                    style="color: green;font-weight: 600;"
+        {%endif%}>
+                    <td>{{areas.nombre|upper}}</td>
+        {%for periodo_academico in periodos_escolares%}
+                    <td>P{{loop.index}}</td>
+        {%endfor%} 
+                    <td>{{areas.nota_promedio_acumalativa}}</td>
+                    <td>{{areas.desempeno}}</td>
+        {%if areas.inasistencia!=0%}
+                    <td> </td>   
+     {%else%}
+                    <td>  </td>
+        {%endif%}
+                </tr>
+      {% for asignaturas_area in areas.asignaturas%} 
+                <tr> 
+                    <td>{{asignaturas_area.asignatura.nombre|lower}}</td>
+                      {%for periodos_asignatura in asignaturas_area.asignatura.periodos %} 
+                    <td>{{periodos_asignatura.periodo.nota}}</td>
+             {%endfor%}
+                    <td>{{asignaturas_area.asignatura.nota}}</td>
+                    <td>-</td>
+                    <td style="text-align: justify;">
+               {%for desempenos_asg in asignaturas_area.asignatura.desempenos%}
+                  {%for desempeno_asg in desempenos_asg%}
+                      {{desempeno_asg}}
+                  {%endfor%}
+               {%endfor%}
+                        </td>
+                        <td>
+             {%if asignaturas_area.asignatura.inasistencias!=0%}
+                   {{asignaturas_area.asignatura.inasistencias}}
+             {%endif%} 
+                            </td>
+                        </tr>
+      {%endfor%}
+{%endfor%}
+                    </table>

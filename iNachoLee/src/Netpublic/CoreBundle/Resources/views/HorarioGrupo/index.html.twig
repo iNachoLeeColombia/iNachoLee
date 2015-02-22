@@ -1,0 +1,47 @@
+<h1>HorarioGrupo list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tipo</th>
+            <th>Dia_columna</th>
+            <th>Hora_fila</th>
+            <th>Posicion</th>
+            <th>Posicion_columna</th>
+            <th>Valor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('horariogrupo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.tipo }}</td>
+            <td>{{ entity.diacolumna }}</td>
+            <td>{{ entity.horafila }}</td>
+            <td>{{ entity.posicion }}</td>
+            <td>{{ entity.posicioncolumna }}</td>
+            <td>{{ entity.valor }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('horariogrupo_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('horariogrupo_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('horariogrupo_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

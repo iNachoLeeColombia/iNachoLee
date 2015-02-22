@@ -1,0 +1,95 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block sub_container%} 
+    <div class="col-md-12" style="height: 200px;padding: 20px;border: lightgray solid thin;margin-top: 20px;">
+        <div class="col-md-3"> 
+        {%if entity.usuario.getEsFotoperfil()==TRUE%}
+            <img alt="{{app.user.alumno}}" class="img-circle" 
+                src="{{asset('uploads/documents/strongalumno'~entity.id~'.png')}}" alt="{{entity}}" />
+         {%else%}
+                <img alt="{{entity}}" 
+                     class="nav-user-photo img-circle"
+                     src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{entity}}" />                    
+         {%endif%}
+        </div> 
+        <div class="col-md-9">
+            <span class="light-grey" style="font-size: 24px;">{{entity}}</span>
+            <br/>
+            <span>
+                {%for matricula in entity.getMatriculaAlumno%}
+                    En el {{matricula.ano}} curso {{matricula.grupo}}<br/>
+                {%endfor%}
+                
+            </span>
+        </div>    
+    </div>
+    <nav role="navigation" class="navbar-inl navbar-default col-md-12" >
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{path('alumno_perfiladmin',{'id': entity.id})}}" >Inicio</a></li>
+            <li><a href="#" onclick="imprimirMisNotas({{entity.id}},1,{{ano_escolar_activo.id}})">Mis Notas.</a></li>
+            <li><a href="#" onclick="verMisDescriptores({{entity.id}});">Mis Descriptores.</a></li>
+            <li><a href="#" onclick="indexObservacionAlumno({{entity.id}});">Mi Observador.</a></li>
+            <li><a href="#" onclick="verRecuperaciones({{entity.id}});"> 
+                    Recuperaciones.
+                    {%if nro_recuperaciones>0%}
+                    <span class="badge badge-important">{{nro_recuperaciones}}</span>
+                    {%endif%}
+                </a></li>
+                <li>
+                <a  href="{{path('alumno_vermatricula',{'alumno_id': entity.id })}}" data-toggle="modal" data-target="#myModal_generica">
+                         Matriculas
+                     </a>
+                </li>    
+            
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Acciones <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                <li class="disabled"><a href="#">Asignar grupo</a></li>
+                <li class="disabled"><a href="#">Retirar grupo</a></li>
+                <li class="disabled"><a href="#">Cambiar grupo</a></li>
+                {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or  is_granted('ROLE_PROFESORES')%}
+
+                <li class="divider"></li>
+                <li><a href="#" onclick="borrarAlumno({{entity.id}});">Borrar</a></li>
+                <li><a href="#" onclick="editContrasenIdUsuario({{entity.usuario.id}});">Cambiar Contraseña</a></li>
+                <li class="divider"></li>
+                
+                <li><a href="{{path('alumno_editperfil',{'id':entity.id})}}" >Editar Perfil</a></li>
+                {%endif%}
+              </ul>
+            </li>
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Informes <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                  <li><a href="#" onclick="mostrarBoletinPerfil({{entity.id}},5);">Boletin</a></li>
+                <li><a href="#"  onclick="mostrarCertificadoPerfil({{entity.id}});">Certificado de estudio</a></li>
+                <li><a href="#"  onclick="mostrarConstanciaPerfil({{entity.id}});">Constancia de estudio</a></li>
+                <li><a href="#"  onclick="mostrarcarnetPerfil({{entity.id}});">Carnet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    
+<div class="col-md-12" style="margin-top: 30px;">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"  id="container-minostas-perfil">
+        <div class="col-md-7"style="border-right: gainsboro solid thin;">
+            {{render(controller('NetpublicCoreBundle:Alumno:asignaturasperdidas',{'alumno_id':entity.id}))}}
+        </div>
+         <div class="col-md-5" style="border-left: gainsboro solid thin;">
+            <h4 class="light-grey">Notas de Periodos Academicos.</h4>
+            
+        </div>
+        
+    </div>
+    <div class="col-md-1"></div>
+</div>
+{%endblock%}

@@ -1,0 +1,67 @@
+<div id="capa_form_elememt">
+                                        <div  id="capa_ram"></div>
+                                        <div 
+                                            style="
+                                            background-color: orange;
+                                            width: 25%;
+                                            color: white;
+                                            font-size: 18px;
+                                            font-weight: 900;
+                                            float: right">
+                                            Ano Escolar Activo: {{ano_escolar_activo}}
+                                        </div>
+                                        <div class="col-lg-12">                              
+        <div class="control-group col-lg-5">
+          <label>Año Escolar activo</label>       
+          <select id="ano_escolar_activo"
+                             class="form-control"
+                             name="ano_escolar_activo"
+                             onchange="getPeriodosAcademicosAnoEscolar_doble('ano_escolar_activo','periodo_escolar_activo')">
+                                            
+                                            {%if ano_escolar_activo != null%}
+                                            {%for ano_escolar in anos_escolares %}
+                                                <option   
+                                                    {%if ano_escolar.id==ano_escolar_activo.id%}
+                                                        selected="selected"
+                                                    {%endif%}    
+                                                    value="{{ano_escolar.id}}">
+                                                   {{ano_escolar}}
+                                                </option>        
+                                            {%endfor%}                                                    
+                                              {%else%}  
+                                                <option value="*">Seleccione Un Año Escolar, Como activo</option>
+                                                {%for ano_escolar in anos_escolares %}
+                                                <option                                               
+                                                    value="{{ano_escolar.id}}">
+                                                   {{ano_escolar}}
+                                                </option>        
+                                            {%endfor%}    
+                                            
+                                            {%endif%}    
+                                        
+                                        </select>
+        </div>         
+        <div class="control-group col-lg-7">
+                                            <label>Periodo escolar activo</label>                      
+                     <select name="periodo_escolar_activo" class="form-control" id="periodo_escolar_activo">
+                         {%if periodo_escolar_activo is null%}
+                             <option value="*">Seleccione Periodo Activo</option>
+                             {%for pe in periodo_escolares%}                                                                                                                                                                   <option 
+                                   <option        
+                                    value="{{pe.id}}">{{pe}}  
+                                   </option>                                 
+                             {%endfor%}      
+                         {%else%}    
+                             {%for pe in periodo_escolares%}                                                                                                                                      
+                             <option 
+                                {%if pe.id==periodo_escolar_activo.id%}
+                                   selected="selected"
+                                {%endif%}   
+                                value="{{pe.id}}">{{pe}}  
+                             </option>                                
+                            {%endfor%}      
+                        {%endif%}  
+                     </select>   
+</div>
+                                                </div>
+                                        

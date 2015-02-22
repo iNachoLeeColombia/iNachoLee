@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                              <th>Id</th>
+                                              <th>Dia-Hora Clase(Profesor)</th>
+                                              <th>Grupo</th>
+                                              <th>Asignatura</th>
+                                              <th>Hora</th>
+                                            </tr>
+                                        </thead>
+ <tbody>
+{% for edit_form in forms%}   
+    <tr>
+                                       
+   
+        <td>{{ form_widget(edit_form.profesor, { 'attr': {'onchange': 'updatevariosCargaAcademicainfoAcademicaDefectoAno(this)'} }) }}</td>
+        <td>{{ form_widget(edit_form.grupo,{ 'attr': {'onchange': 'updatevariosCargaAcademicainfoAcademicaDefectoAno(this)','disabled':'disabled'} }) }}</td>
+        <td>{{ form_widget(edit_form.asignatura, { 'attr': {'onchange': 'updatevariosCargaAcademicainfoAcademicaDefectoAno(this)','disabled':'disabled'} })}}</td>
+        <td>{{ form_widget(edit_form.aula, { 'attr': {'onchange': 'updatevariosCargaAcademicainfoAcademicaDefectoAno(this)'} }) }}</td>
+        <td>{{ form_widget(edit_form.horario_aula, { 'attr': {'onchange': 'updatevariosCargaAcademicainfoAcademicaDefectoAno(this)'} }) }}    </td>
+        <td style="display: none;">{{ form_rest(edit_form) }} </td> 
+    </tr>
+    
+{% endfor%}
+    
+ </tbody>
+</table>     
+</ul>        
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+{#</form>#}
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cargaacademica') }}">
+            Back to the list
+        </a>
+    </li>
+    
+</ul>
+ 

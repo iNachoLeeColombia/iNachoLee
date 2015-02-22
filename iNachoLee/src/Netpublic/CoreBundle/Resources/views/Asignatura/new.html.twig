@@ -1,0 +1,45 @@
+<h4>Gestion de Areas | Asignaturas.</h4>
+<div class="col-md-12" style="padding: 30px;">
+    <div class="col-md-12">
+    <div class="col-md-4">
+        <div class="form-group-sm">
+        <label>
+            Nombre:
+        </label>
+         <input class="form-control" id="nombre_area" type="text" onkeyup="procesarPrimerAsg();"/>
+        </div>
+    </div>
+    <div class="col-md-8">
+    <div class="form-group-sm">
+        <label>
+            Duración en horas
+        </label>    
+        <input class="form-control" id="horas_duracion" style="width: 40px;" type="text" /><br/>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-12" style="border-bottom: gray thin solid;padding-bottom: 30px;">
+        <div class="col-md-4">
+            <select id="select_new_area"  class="form-control">
+                <option value="*" >Selecciona el grado</option>
+                {%for grado in grados%}
+                    <option value="{{grado.id}}">{{grado}}</option>
+                {%endfor%}    
+            </select>
+        </div>    
+    <div class="col-md-8"></div>    
+    </div>
+    <h4>Agregar asignaturas.</h4>
+    <div class="col-md-12">
+        <label>Numero Asg</label>
+        <input type="text" value="1" style="width: 40px;" id="nro_asg" onkeyup="procesarAgregarAsg();">
+        <div id="container-nuevo-area" style="margin-top: 5px;">
+            <label>Asignatura </label> <input class="nombre_asg" type="text" placeholder="Asignatura" >
+            <input style="width: 40px;" class="f_asg" type="text" value="1" ><span style="background-color: yellow;font-size: 9px;">Numero de veces en la semana</span>
+        </div>
+    </div>    
+    <div class="btn-group" style="margin-top: 30px;">
+        <button class="btn btn-default btn-xs" onclick="indexAsignaturainfoAcademicaDefectoAno(1)"><< Atras</button>    
+        <button  class="btn btn-default btn-xs" onclick="createAsignaturainfoAcademicaDefectoAno(1,1);" type="submit">Guardar</button>
+        <button  class="btn btn-default btn-xs" onclick="createnewAsignaturainfoAcademicaDefectoAno(1,2);" type="submit">Guardar & Nuevo</button>
+    </div>    

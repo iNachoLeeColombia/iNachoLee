@@ -1,0 +1,10 @@
+<select id="select_{{token}}" onchange="procesarAnoEscolares('select_{{token}}')">
+    {%for ano in anos%}
+        <option
+            {%if ano_activo_id==ano.id%}
+                selected="selected"
+            {%endif%} 
+            value="{{ano.id}}"
+            >{{ano}}</option>
+    {%endfor%}    
+</select>

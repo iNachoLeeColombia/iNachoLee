@@ -1,0 +1,99 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+{%block contenido %}
+
+<div>
+    <div class="modal-header">
+        <h3>Mejores Estudiantes de La IE</h3>
+    </div>
+        <div class="modal-body">
+            <div> 
+ 
+ <div class="btn-group" style="float: right;margin-bottom: 5px;">
+   <a class="btn btn-primary" href="#"><i class="icon-cog icon-white"></i> Acciones</a>
+   <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+   <ul class="dropdown-menu">
+       <li>
+       <a href="#" onclick="calcularMejoresAlumnosAlumno(-1);">       
+       <i class="icon-align-center"></i>
+              Obtener Promedios.</a></li>
+       
+       <li class="divider"></li>
+   <li>
+       <a href="#" onclick="calcularMejoresAlumnosAlumno(0);">       
+       <i class="icon-align-justify"></i>
+              Establecer Puestos Alumnos-xSEDE.</a></li>
+       <li>
+       <a href="#" onclick="calcularMejoresAlumnosAlumno(1);">       
+       <i class="icon-align-center"></i>
+              Establecer Puestos Alumnos-xGRADO.</a></li>
+      <li>
+       <a href="#" onclick="calcularMejoresAlumnosAlumno(2);">       
+       <i class="icon-align-right"></i>
+              Establecer Puestos Alumnos-xGRUPO.</a></li>
+    </ul>
+   
+    </div>  
+<div style="clear: both;"></div>                  
+                </div>               
+                <div class="controls well" style="background-color: lightgray;">
+                <select id="sede_mejores"  onchange="buscarMejoresAlumnosAlumno();">
+                    <option value="*">Sede ?</option>
+                    <option value="0">Todas las sedes</option>
+            {%for sede in sedes%}
+                    <option value="sede{{sede.id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{sede}}</option>
+                    {%endfor%}
+             </select>
+
+
+                <select id="colegio_mejores"  onchange="buscarMejoresAlumnosAlumno();">
+                    
+                        <option value="0">Grado-Grupo ? </option>
+                        {%for grado in grados%}                        
+                        <option value="grado{{grado.id}}">&nbsp;&nbsp;&nbsp;{{grado}}</option>                                                        
+                                {%for grupo in grupos if grupo.grado is not null and grupo.grado.id==grado.id%}                                   
+                                   
+                                   <option value="grupo{{grupo.id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{grupo}}</option>
+                                {%endfor%}
+                        {%endfor%}    
+                                  
+                    
+                </select>
+    <div class="well" style="float: right;width: 20%;background-color:buttonface;margin-bottom: 0px;">
+                                                                            
+        <select style="display: inline;"  id="ano_escolar_mejores" onchange="getPeriodosAcademicosAnoEscolar(this);">
+            {%if ano_escolar_activo is null%}
+            <option value="*">Año Escolar.</option>            
+            {%endif%}
+            {%for ano_escolar in entities%}
+            <option 
+                {%if ano_escolar.id==ano_escolar_activo.id%}
+                    selected="selected"
+                {%endif%}    
+                value="{{ano_escolar.id}}">{{ano_escolar}}</option>
+            {%endfor%}
+        </select>
+        <select style="display: inline;"  
+                id="perido_escolar_perfil_alumno" 
+                onchange="buscarMejoresAlumnosAlumno();">
+            <option value="{{periodo_escolar_activo.id}}">{{periodo_escolar_activo}}</option>
+        </select>
+        <div># Items<br/>
+            <input type="text" id="nro_items" value="30" style="width: 28px;background-color: orange;height: 28px;font-size: 18ppz;color: white;font-weight: bolder;"/>
+         </div>
+    </div>
+    <div style="clear: both;"></div>
+                </div>     
+                    <div class="well" id="ram_mejores_estudiante">
+
+                    </div>    
+                
+            
+                
+     </div>    
+        <div class="modal-footer">
+            <a href="{{path('usuario')}}"  class="btn">Cancelar</a>
+        </div>    
+
+</div>
+{%endblock%}

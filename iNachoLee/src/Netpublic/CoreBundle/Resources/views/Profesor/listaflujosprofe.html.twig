@@ -1,0 +1,195 @@
+ <div class="col-lg-12" >
+     {%for profesor in entities%}
+         <div class="col-lg-5" id="div_profe{{profesor.id}}" style="border: lightgray solid thin;margin-bottom: 20px;padding-top: 10px;">
+            <div class="col-lg-3">
+                <a class="thumbnail" style="float: left;" href="{{ path('profesor_perfiladmin', { 'id': profesor.id }) }}">   
+                    {%if profesor.usuario.getEsFotoperfil()==TRUE%}
+                        <img  style="width:45px;height: 45px;" src="{{asset('uploads/documents/strongprofesor'~profesor.id~'.jpg')}}" />        
+                    {%else%}
+                        <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+                    {%endif%} 
+               </a>
+           </div>
+            <div class="col-lg-9" style="font-size: 11px;" >
+                <a href="{{ path('profesor_perfiladmin', { 'id': profesor.id }) }}">
+                    &nbsp;&nbsp;{{profesor}}
+                </a>
+                 {%if porcentajes[loop.index0]<=49%} 
+                        {%if porcentajes[loop.index0]==0%}
+                            <div data-percent="{{porcentajes[loop.index0]}}%" class="progress" style="margin-bottom: 0px;">
+                                <div style="width:{{porcentajes[loop.index0]}}%;" class="progress-bar progress-bar-danger"></div>
+                            </div>
+                            <div style="color: orangered;height: 55px;">Ojo,Este profesor no ha ingresado notas.
+                            &nbsp;&nbsp;&nbsp;<a href="#" onclick="newSeguimientoProfesor('{{profesor.id}}','flujo_profe{{profesor.id}}');">Ver ++</a>
+       
+                            </div>
+                        {%else%}    
+                            <div data-percent="{{porcentajes[loop.index0]}}%" class="progress" style="margin-bottom: 0px;">
+                                <div style="width:{{porcentajes[loop.index0]}}%;" class="progress-bar progress-bar-danger"></div>
+                            </div>
+                            <ul class="light-grey" style="font-size: 10px;margin-top: 0px;padding-top: 0px;list-style: none;">
+                            <li>
+                                <strong>Ultimo Ingreso a iNachoLee</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoIngreso|date('m-d h:i')}}    
+                            </li>
+                            <li>
+                                <strong>Ultima Calificación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoCalificaion|date('m-d h:i')}}
+                            </li>
+                            <li>
+                                <strong>Ultima Publicación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoPublicacion|date('m-d h:i')}}
+                                &nbsp;&nbsp;&nbsp;<a href="#" onclick="newSeguimientoProfesor('{{profesor.id}}','flujo_profe{{profesor.id}}');">Ver ++</a>
+                            </li>    
+                            </ul>
+                        {%endif%}
+                {%elseif porcentajes[loop.index0]>49 and porcentajes[loop.index0]<100 %}  
+                            <div data-percent="{{porcentajes[loop.index0]}}%" class="progress" style="margin-bottom: 0px;">
+                                <div style="width:{{porcentajes[loop.index0]}}%;" class="progress-bar progress-bar-warning"></div>
+                            </div>
+                            <ul class="light-grey" style="font-size: 10px;margin-top: 0px;padding-top: 0px;list-style: none;">
+                            <li>
+                                <strong>Ultimo Ingreso a iNachoLee</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoIngreso|date('m-d h:i')}}    
+                            </li>
+                            <li>
+                                <strong>Ultima Calificación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoCalificaion|date('m-d h:i')}}
+                            </li>
+                            <li>
+                                <strong>Ultima Publicación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoPublicacion|date('m-d h:i')}}
+                                &nbsp;&nbsp;&nbsp;<a href="#" onclick="newSeguimientoProfesor('{{profesor.id}}','flujo_profe{{profesor.id}}');">Ver ++</a>
+                            </li>    
+                            </ul>
+             {%else%}
+                <div  data-percent="{{porcentajes[loop.index0]}}"  class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{porcentajes[loop.index0]}}%">
+                    </div>
+                </div>
+                <div style="font-size: 10px;color: gray;margin-left: 40px;">
+                    <h6 class="yellow"><i class="icon icon-ok-circle icon-2x green"></i> Felicitaciones!!!&nbsp;&nbsp;&nbsp;<a href="#" onclick="newSeguimientoProfesor('{{profesor.id}}','flujo_profe{{profesor.id}}');">Ver ++</a>
+       </h6>
+                </div>
+            {%endif%}            
+          </div> 
+                 <div class="col-lg-12" id="flujo_profe{{profesor.id}}"></div>     
+         </div>
+         <div class="col-lg-1"></div>    
+         {%if loop.index%2==0%}
+         <div class="col-lg-12"></div>
+        {%endif%}
+          {%endfor%}    
+      </div>
+    
+
+
+{#<table class="table table-striped">
+{%for entity in entities%}
+    <tr>
+        <td>
+            <div style="float: left;">    
+                <a class="thumbnail" style="float: left;" href="{{ path('profesor_perfiladmin', { 'id': entity.id }) }}">   
+                    {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                        <img  style="width:45px;height: 45px;" src="{{asset('uploads/documents/strongprofesor'~entity.id~'.jpg')}}" />        
+                    {%else%}
+                        <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+                    {%endif%} 
+                </a>      
+            <a  style="margin-left: 10px;" href="{{ path('profesor_perfiladmin', { 'id': entity.id }) }}">         
+                {{entity}}
+            </a>
+            {%if porcentajes[loop.index0]<=49%} 
+                {%if porcentajes[loop.index0]==0%}
+                    <div style="color: orangered;margin-left: 65px;">Ojo,Este profesor no ha ingresado notas.</div>
+                {%else%}
+                    <div data-percent=" {{porcentajes[loop.index0]}}" style="margin-left: 65px;" class="progress">
+                        <div class="progress-bar progress-bar-danger" style="width: {{porcentajes[loop.index0]}}%">
+                            
+                        </div>
+                    </div>
+                    <div style="font-size: 10px;color: gray;margin-left: 40px;">
+                        <ul style="list-style: none;">
+                            <li>
+                                <strong>Ultimo Ingreso a iNachoLee</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoIngreso|date('Y-m-d h:i:s')}}    
+                            </li>
+                            <li>
+                                <strong>Ultima Calificación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoCalificaion|date('Y-m-d h:i:s')}}
+                            </li>
+                            <li>
+                                <strong>Ultima Publicación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoPublicacion|date('Y-m-d h:i:s')}}
+                            </li>    
+                        </ul>
+                    </div>
+          {%endif%}  
+    {%elseif porcentajes[loop.index0]>49 and porcentajes[loop.index0]<100 %}  
+
+            <div data-percent="{{porcentajes[loop.index0]}}" style="margin-left: 65px;" class="progress">
+                <div class="progress-bar progress-bar-warning" style="width: {{porcentajes[loop.index0]}}%">
+                                 </div>
+            </div>
+            <div style="font-size: 10px;color: gray;margin-left: 40px;">
+                <ul style="list-style: none;">
+                    <li>
+                        <strong>Ultimo Ingreso a iNachoLee</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoIngreso|date('Y-m-d h:i:s')}}    
+                    </li>
+                    <li>
+                        <strong>Ultima Calificación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoCalificaion|date('Y-m-d h:i:s')}}
+                    </li>
+                    <li>
+                        <strong>Ultima Publicación</strong>: {{publicacion_periodo[loop.index0].getFechaUltimoPublicacion|date('Y-m-d h:i:s')}}
+                    </li>    
+                </ul>
+            </div>
+   {%else%}
+            {{porcentajes[loop.index0]}}%
+            <div  data-percent="{{porcentajes[loop.index0]}}" style="margin-left: 65px;" class="progress">
+                <div class="progress-bar progress-bar-success" style="width: {{porcentajes[loop.index0]}}%">
+                </div>
+            </div>
+<div style="font-size: 10px;color: gray;margin-left: 40px;">
+    <h5 class="yellow"><i class="icon icon-ok-circle icon-2x green"></i> Felicitaciones!!!</h5>
+</div>
+   {%endif%}
+                    
+    </div>
+        <div style="float: right;">
+                <a href="#"
+             onclick="newSeguimientoProfesor('{{entity.id}}','flujo_profe{{entity.id}}');"                       
+                       >Ver ++</a> 
+                <button id="button{{entity.id}}"
+                        {%if publicacion_periodo[loop.index0].tipo==1%} 
+                            {%if modificaciones[loop.index0]>0%}
+                                 class="btn btn-warning"
+                            {%else%}
+                                 disabled="disabled"
+                                 class="btn btn-success"
+                            {%endif%}
+                         {%else%}
+                                 
+                              class="btn btn-danger"                         
+                        {%endif%}
+                        
+                    onclick="publicarnotasProfesores({{entity.id}});">
+                            {% if publicacion_periodo[loop.index0].tipo==1%}
+                                {%if modificaciones[loop.index0]>0%}
+                                    Volver A Publicar
+                                    <span style="background-color: white;color: black;font-weight: 900;font-size: 12px;">
+                                        
+                                        &nbsp;{{modificaciones[loop.index0]}}&nbsp;<span style="font-size: 8px;">Modificaciones</span>                            
+                                        &nbsp;
+                                    {%else%}
+                                        Publicación De notas: <span style="font-weight: 900;color: white;">OK</span>
+                                {%endif%}
+                                
+                            {%else%}
+                                No Se ha Publicado Notas.                            
+                            {%endif%}
+                         </button>
+        </div>    
+        <div style="clear: both;"></div>
+        <div id="flujo_profe{{entity.id}}" 
+             style="display: none;"
+
+             >
+            
+        </div>
+   </td>     
+</tr>
+
+{%endfor%}
+    </table>#}        

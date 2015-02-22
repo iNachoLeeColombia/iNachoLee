@@ -1,0 +1,49 @@
+{% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or  is_granted('ROLE_PROFESORES')%}
+
+<div class="col-lg-12">
+    <h5 class="light-grey col-lg-8">Observador Del Estudiante</h5>
+    <a href="#" class="col-lg-4 pull-right text-right" onclick="newObservacionAlumno({{alumno_id}});">Agregar observación</a>
+</div>
+{%endif%}
+<div id="sub-contaner-observador-estudiante" class="col-lg-12">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Profesor</th>
+            <th>Periodo Academico</th>
+            <th>Tipo</th>
+            <th>Contenido</th>
+            <th>Imprimir</th>
+            <th>Mostrar en boletin</th>    
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a>{{entity.dueno}}</a></td>
+            <td>{{ entity.periodo }}</td>
+            <td>{{entity.tipo}}</td>
+            <td>
+                <div id="capa_observador_alumno_{{entity.id}}">
+                {{entity.contenido}}
+                </div>
+                    {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or  is_granted('ROLE_PROFESORES')%}
+
+                   <span id="editar_a_{{entity.id}}">
+                     <a href="#" onclick="editObservadoralumno({{entity.id}});">editar</a>
+                   </span>   
+                    <span id="update_a_{{entity.id}}" style="display: none;">
+                        <a href="#" onclick="updateObservadoralumno({{entity.id}});">actualizar</a>
+                    </span>    
+                    <a href="#" onclick="deleteObservadoralumno({{entity.alumno.id}},{{entity.id}});">eliminar</a>  
+                    {%endif%}
+     
+            </td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,31 @@
+<h3 style="text-align: center;">Horario De Clase {{grupo}}</h3>
+<table class="table table-bordered">
+    <thead>
+    <th>Hora</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+    <th>Domingo</th>
+    </thead>
+    <tr>      
+        
+{%for celda_h_c in celdas_h_c%} 
+         {%if loop.first%}                         
+            <td>{{horas[loop.index0]}} -{{horas[loop.index0]+1}}</td><td>{{celda_h_c.carga_academica}}</td>   
+            
+         {%else%}
+                <td>{{celda_h_c.carga_academica}}</td>   
+         {%endif%}    
+        {%if loop.index%7==0%}            
+        </tr><tr>
+            {%if loop.last!=loop.index%}
+            <td>{{horas[loop.index0+1]}}-{{horas[loop.index0+1]+1}}</td>
+             {%endif%}   
+        {%endif%}    
+                   
+{%endfor%}
+</table>        
+        

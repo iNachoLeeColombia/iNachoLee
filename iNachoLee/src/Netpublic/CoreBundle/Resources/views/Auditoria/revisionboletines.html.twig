@@ -1,0 +1,23 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%} 
+{%if auditoria_activa!=null%}
+<h3 style="text-align: center;">{{auditoria_activa}}.
+    <span style="font-size: 10px;">
+        <br/>Plazo para revisar:
+        Desde {%if auditoria_activa.getFechaInicio %}{{auditoria_activa.getFechaInicio|date('Y/m/d h:i:s')}}
+              {%endif%}
+        Hasta {{auditoria_activa.getFechaFinal|date('Y/m/d h:i:s')}}</span></h3>
+
+{%for grupo in grupos_director%}
+<div class="well" style="background-color: gainsboro;width: 70%;margin-left: 120px;">
+
+    Descargar Boletines Del Grupo <strong>{{grupo}}</strong><br/>
+    <a href="{{ path('grupo_imprimirboletinesgrupo',{'grupo_id': grupo.id,'_format':'pdf'})}}">PDF</a>
+    <a href="#">Ver En Linea</a>
+    
+</div>
+{%endfor%}
+{%else%}
+<h3 style="text-align: center;">No Hay Revisión De Boletines Activa.</h3>
+{%endif%}
+{%endblock%}

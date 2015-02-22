@@ -1,0 +1,29 @@
+<h5>Editar Grupo</h5>
+{%if es_ajax%}
+
+    {{ form_widget(edit_form) }}
+    <p>
+        <a href="#" class="btn" onclick="updateGrupoinfoAcademicaDefectoAno({{entity.id}})">Actualizar</a>
+    </p>
+    <a href="#" onclick="indexGrupoinfoAcademicaDefectoAno();">
+            << Atras
+        </a>
+
+{%endif%}
+{%if not es_ajax%}
+    <form action="{{ path('grupo_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Actualizar</button>
+    </p>
+</form>
+    <ul class="record_actions">
+    <li>
+        <a href="{{ path('grupo') }}">
+            Back to the list
+        </a>
+    </li>
+ 
+</ul>
+{%endif%}
+

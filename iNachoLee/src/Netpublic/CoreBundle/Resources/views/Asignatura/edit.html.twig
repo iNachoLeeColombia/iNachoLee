@@ -1,0 +1,55 @@
+     <div class="btn-toolbar"  style="float: right;">
+         
+          <div class="btn-group" >   
+              <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" onclick="indexTemaAsignaturainfoAcademicaDefectoAno({{entity.id}});">
+              <i class="icon-th icon-white"></i>Temas De Asignatura<span class="caret"></span></a>
+          <ul class="dropdown-menu">   
+               <li><a href="#" onclick="indexTemaAsignaturainfoAcademicaDefectoAno({{entity.id}});">
+                      <i class="icon-refresh"></i> Listar</a></li>
+              <li><a onclick="newTemaAsignaturainfoAcademicaDefectoAno({{entity.id}});" href="#">
+                      <i class="icon-plus-sign"></i> Nuevo.</a></li>                                       
+          </ul>
+              </div>
+        </div>
+<form id="edit_form_asignatura"  name="edit_form_asignatura" role="form" class="form-horizontal" method="post" {{ form_enctype(edit_form) }}>
+{%if tipo==1%}        
+   <div class="form-group">    
+    {{ form_label(edit_form.duracion_minutos,null, { 'label': 'Horas Semanales.', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}        
+    {{ form_widget(edit_form.duracion_minutos,{'attr':{'class':'col-xs-10 col-sm-5'}}) }}        
+    </div>
+{%endif%}        
+ <div class="form-group">    
+{{ form_label(edit_form.nombre,null,
+{ 'label': 'Nombre', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+{{ form_widget(edit_form.nombre,{'attr':{'class':'col-xs-10 col-sm-5'}}) }}
+</div> 
+<div class="form-group">    
+{{ form_label(edit_form.grado,null,{ 'label': 'Grado.', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+{{ form_widget(edit_form.grado,{'attr':{'class':'col-xs-10 col-sm-5'}}) }}
+</div>
+<div class="well" style="background-color: #dff0d8;float: right;" id="capa_ram_lista_temas_asignatura">
+   
+</div>   
+{%if tipo!=1%}
+        <div class="form-group">       
+{{ form_label(edit_form.area,null,
+{ 'label': 'Area', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+{{ form_widget(edit_form.area,{'attr':{'class':'col-xs-10 col-sm-5'}}) }}
+     </div>
+        <div class="form-group">   
+{{ form_label(edit_form.frucuencia_semana,null,
+{ 'label': 'Frecuencia Semanal', 'label_attr': {'class': 'col-sm-3 control-label no-padding-right'} }) }}
+{{ form_widget(edit_form.frucuencia_semana,{'attr':{'class':'col-xs-10 col-sm-5'}}) }}            
+</div>
+{%endif%}
+{{ form_widget(edit_form._token) }}
+<br/>    
+<button onclick="updateAsignaturainfoAcademicaDefectoAno('{{entity.id}}','{{tipo}}');" class="btn btn-xs" type="submit">Actualizar</button>
+    
+    </form>
+
+        {#<button  onclick="updateAsignaturainfoAcademicaDefectoAno({{entity.id}},{{tipo}})" type="submit">Editar</button>
+#}
+        <a onclick="indexAsignaturainfoAcademicaDefectoAno({{tipo}})" href="#">
+            << Atras
+        </a>

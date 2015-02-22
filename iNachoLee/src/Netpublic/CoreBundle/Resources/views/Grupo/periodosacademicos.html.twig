@@ -1,0 +1,10 @@
+        <option value="*">Periodos Académicos</option>
+        {%for g_a in periodos%}                
+        <option style="padding-left: 10px;font-size: 12px;font-weight: bold;" value="{{g_a.id}}">{{g_a}}</option>                                            
+       
+        {%for g_a_ in dim_periodo_escolar%}
+                 {%for ul in g_a_ if g_a.id==ul.padre.id%}   
+        <option style="margin-left: 10px;" value="{{ul.id}}">&nbsp;&nbsp;&nbsp;&nbsp;{{ul}}</option>                                            
+                  {%endfor%}  
+        {%endfor%}                    
+         {%endfor%}   

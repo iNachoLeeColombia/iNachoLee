@@ -1,0 +1,33 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Ingreso de Información Academica{% endblock %}
+{%block contenido %} 
+   
+<form id="3" name="3" {#action="{{ path('alumno_create') }}"#} method="post">    
+<div class="modal-header">              
+              <h3>Información De Padres</h3>
+</div>
+<div style="width: 50%;float: left;">  
+<h5>Información De la Padre.</h5>    
+    {{ form_widget(edit_padre_form) }}
+      {{ form_rest(edit_padre_form) }} 
+    </div>        
+ <div style="width: 50%;float: left;">        
+<h5>Información De la Madre.</h5>
+      {{ form_widget(edit_madre_form) }}
+      {{ form_rest(edit_madre_form) }} 
+     </div> 
+    <div style="clear: both"></div>                       
+           
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="button_createPadres" onclick="createPadresinfoAcademicaDefectoAno1({{tipo}});" >Guardar Padres</button>
+              
+            </div> 
+
+    </form>    
+<div id="capa_ram_new_alumno" style="display: none;">
+    
+</div>
+{%endblock%}
+    
+    
+

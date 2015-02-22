@@ -1,0 +1,210 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block sub_container%} 
+<div style="background-color: white;">
+    <div class="col-md-12">    
+        <div class="col-md-12" style="height: 200px;border: lightgray solid thin;">
+         {%if entity.usuario.getEsFotoperfil()==TRUE%}
+            <img alt="{{app.user.alumno}}" class="img-circle" 
+                src="{{asset('uploads/documents/strongprofesor'~entity.id~'.png')}}" alt="{{entity}}" />
+         {%else%}
+                <img alt="{{entity}}" 
+                     class="nav-user-photo"
+                     src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{entity}}" />                    
+         {%endif%}    
+        <span class="light-grey">{{entity.nombre}}<small style="font-size: 9px;"> (@{{entity.usuario.username}}) {{entity.sede}}</small></span>                                                   
+        <h4>{{entity}}</h4>
+        </div>
+    
+    </div>
+    <div class="col-md-12">        
+      <nav role="navigation" class="navbar-inl navbar-default col-md-12" >
+      <div id="bs-example-navbar-collapse-1" >
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{path('profesor_perfiladmin',{'id': entity.id})}}" >Inicio</a></li>
+            <li><a href="#" >Horario clase.</a></li>
+            <li><a href="#" onclick="verMisDescriptores({{entity.id}});">Flujo de trabajo.</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Acciones <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                <li  class="disabled"><a href="#" onclick="listar_entrega_notasprofesor({{entity.id}});">Desactivar</a></li>
+                <li><a href="#" onclick="editContrasenIdUsuario({{entity.usuario.id}});">Cambiar Contraseña</a></li>
+                <li><a href="#" onclick="listar_entrega_notasprofesor({{entity.id}});">Fechas de entrega</a></li>
+                <li>
+              
+            <a {%if app.user.profesor%}  
+                href="{{path('profesor_edit', { 'id': entity.id })}}"
+                 {%else%}
+                href="{{ path('alumno_edit', { 'id': entity.id }) }}"
+                {%endif%}
+                 >
+              <i class="icon-edit"></i> Editar Perfil
+            </a>
+              </li>
+                
+              </ul>
+            </li>
+              <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Informes <b class="caret"></b></a>
+              <ul role="menu" class="dropdown-menu">
+                  <li class="disabled" ><a href="#" onclick="mostrarBoletinPerfil({{entity.id}},5);">Hoja de vida</a></li>
+                <li  class="disabled" ><a href="#"  onclick="mostrarCertificadoPerfil({{entity.id}});">Memorandos</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      
+    </nav>
+      
+   </div>
+    <div class="col-lg-12" style="margin-top: 30px;">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10"  id="container-minostas-perfil">
+         <form action="{{ path('profesor_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_errors(edit_form) }}
+            
+        <div class="col-sm-12 widget-container-span ui-sortable">
+	<div class="widget-box">
+            <div class="widget-header">
+                <h5 class="smaller">Información Del Alumno</h5>
+                    <div class="widget-toolbar no-border">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+				<a href="#home" data-toggle="tab">Información Básica Del Profesor.</a>
+                            </li>
+                            <li>
+                                <a href="#ubicacion" data-toggle="tab">Datos de ubicación</a>
+                            </li>
+                            <li>
+                                <a href="#laborales" data-toggle="tab">Datos laborales</a>
+                            </li>
+                            <li>
+                                <a href="#foto" data-toggle="tab">Foto</a>
+                            </li>
+                            
+			</ul>
+                        </div>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-6">
+                        <div class="tab-content">
+                            <div class="tab-pane in active" id="home">
+                                {{ form_label(edit_form.sede, null, { 'label': 'Sede:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.sede) }} 
+{#{ form_label(edit_form.tipo) }}            
+{{ form_widget(edit_form.tipo) }#}                                           
+{{ form_label(edit_form.tipo_documento, null, { 'label': 'Tipo De Documento:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.tipo_documento) }}                                 
+{{ form_label(edit_form.cedula, null, { 'label': 'Cedula:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.cedula) }} 
+                                    
+{{ form_label(edit_form.nombre, null, { 'label': 'Primer Nombre:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.nombre) }}                                                                                             
+{{ form_label(edit_form.nombre1, null, { 'label': 'Segundo Nombre:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.nombre1) }}                                                                                                                                 
+{{ form_label(edit_form.apellido, null, { 'label': 'Primer Apellido:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.apellido) }}                                                                                             
+                                    
+{{ form_label(edit_form.apellido1, null, { 'label': 'Segundo Apellido:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.apellido1) }}                               
+
+                                    
+{{ form_label(edit_form.genero, null, { 'label': 'Sexo:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.genero) }}    
+                                    
+{{ form_label(edit_form.fecha_nacimiento, null, { 'label': 'Fecha De Nacimiento:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.fecha_nacimiento) }}   
+                                    
+{{ form_label(edit_form.departamento, null, { 'label': 'Departamento Nacimiento:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.departamento) }}                               
+{{ form_label(edit_form.municipio, null, { 'label': 'Municipio Nacimiento:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.municipio) }} 
+                                    
+{{ form_label(edit_form.fecha_vinculacion, null, { 'label': 'Fecha De Vinculación:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.fecha_vinculacion) }}                               
+{{ form_label(edit_form.nivel_educativo_aprobado, null, { 'label': 'Nivel Educativo Aprobado:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.nivel_educativo_aprobado) }}                                                                   
+{{ form_label(edit_form.estado_civil, null, { 'label': 'Estado Civil:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.estado_civil) }}                               
+{{ form_label(edit_form.numero_hijos, null, { 'label': 'NUmero De hijos:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.numero_hijos) }}                               
+{{ form_label(edit_form.fecha_retiro, null, { 'label': 'Fecha de Retiro:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.fecha_retiro) }}  
+                                    
+{{ form_label(edit_form.libreta_militar, null, { 'label': 'Libreta Militar:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.libreta_militar) }}                               
+                                    
+{{ form_label(edit_form.distrito, null, { 'label': 'Distrito:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.distrito) }}                               
+                                    
+{{ form_label(edit_form.clase, null, { 'label': 'Clase:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.clase) }} 
+
+                            </div>
+                            <div class="tab-pane" id="ubicacion">
+                              {{ form_label(edit_form.ubicacion, null, { 'label': 'Ubicación:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.ubicacion) }}    
+
+{{ form_label(edit_form.cargo, null, { 'label': 'Cargo:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.cargo) }}    
+{{ form_label(edit_form.zona, null, { 'label': 'Zona:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.zona) }}    
+{{ form_label(edit_form.fuente_recursos, null, { 'label': 'Fuente Recursos:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.fuente_recursos) }}    
+{{ form_label(edit_form.tipo_vinculacion, null, { 'label': 'Tipo De Vinculación:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.tipo_vinculacion) }}    
+{{ form_label(edit_form.nombre_cargo, null, { 'label': 'Nombre Cargo:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.nombre_cargo) }}    
+{{ form_label(edit_form.doc_dir_comision, null, { 'label': 'DOCENTES Y DIRECTIVOS DOCENTES EN COMISION:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.doc_dir_comision) }}    
+{{ form_label(edit_form.amenazados, null, { 'label': 'Amenazado:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.amenazados) }}    
+{{ form_label(edit_form.fecha_status_amenazado, null, { 'label': 'Fecha De Amenaza:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.fecha_status_amenazado) }}    
+
+                            </div>
+                            <div class="tab-pane" id="laborales">
+          
+ {{ form_label(edit_form.grado_escalafon, null, { 'label': 'Grado En Escalafon:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.grado_escalafon) }}   
+ {{ form_label(edit_form.sobresueldo_recibido, null, { 'label': 'SobreSueldo:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.sobresueldo_recibido) }}   
+ {{ form_label(edit_form.nivel_ensenanza, null, { 'label': 'Nivel Enseñanaza:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.nivel_ensenanza) }}   
+ {{ form_label(edit_form.etnoeducador, null, { 'label': 'Etnoeducador:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.etnoeducador) }}   
+ {{ form_label(edit_form.area_ensenanza_nombrado, null, { 'label': 'Area Enseñanza Nombrado:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.area_ensenanza_nombrado) }}   
+ {{ form_label(edit_form.area_ensenanza_tecnica, null, { 'label': 'Area Enseñanza Tecnica:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.area_ensenanza_tecnica) }}   
+ {{ form_label(edit_form.descripcion_otra_area, null, { 'label': 'Descripción De Otra Area:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.descripcion_otra_area) }}   
+ 
+          
+                            </div>
+                            <div class="tab-pane" id="foto">
+                                 {{ form_label(edit_form.foto_academica, null, { 'label': 'Foto Acádemica:', 'attr': {'for': 'xlInput'} }) }}            
+{{ form_widget(edit_form.foto_academica) }}   
+      
+                            </div>
+                            
+                    </div>
+                </div>
+</div>
+</div>
+</div>
+                 {{ form_widget(edit_form._token) }}   
+
+                 <button class="btn btn-primary pull-right" type="submit">Actualizar</button>  
+                 <div class="clearfix"></div>
+    </form>
+            
+    
+        
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+</div>        
+{%endblock%}

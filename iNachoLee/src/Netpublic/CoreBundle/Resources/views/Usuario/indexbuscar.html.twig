@@ -1,0 +1,192 @@
+
+   
+<div class="well" style="
+                background-color:lightgray;
+                position: relative;"
+                id="capa_filtros_buscar_usuario_superior">
+    
+    <div id="capa_formato_html_xls_pdf" style="
+         position: absolute;
+         top: 100px;
+         left: 30%;
+         background-color:#F5F5F5;
+         width: 350px;
+         height: 70px;
+         padding-left: 5px;
+         padding: 0 0;
+         display: none;"
+         class="well">         
+          
+    </div>
+    <div style="float: left;width: 70%;">
+    <select id="tipo_filtro_usuario" style="width: 160px;" onchange="procesarAllfiltros(this);">
+        <option value="*"> Usuario?</option>        
+        <option value="0">Alumno </option>
+        <option value="1">Acudiente</option>
+        <option value="2">Profesor</option>
+        <option value="3">Administrativo</option>
+        <option value="4">Rector</option>
+    </select>
+    <select id="sedes_filtro_usuario" style="width: 160px;" onchange="procesarAllfiltros(this);">
+        <option value="*">Sede(s)</option>
+        {%for sede in sedes%}        
+            <option value="{{sede.id}}">{{sede}}</option>
+        {%endfor%}  
+        <option value="*">Todas Las Sedes</option>
+            
+    </select>
+               
+    <select id="grado_filtro_usuario"  class="span2"   onchange="procesarAllfiltros(this);">
+        <option value="*">Grado</option>
+          {%for grado in grados%}        
+            <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}      
+        <option value="*">Todos Los Grados</option>
+            
+    </select>
+      
+        <select   class="span2"   id="ntp_inacholeebundle_type_grupos" onchange="procesarAllfiltros(this);">                  
+            <option value="*">Grupos</option>
+        </select>  
+            {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or is_granted('ROLE_PROFESOR')%}
+   {#Filtros para Habilitar#}      
+            <select class="span2"  id="ntp_inacholeebundle_condicion_ie" onchange="procesarAllfiltros(this);">                  
+            <option value="*">X Condicion En IE?</option>                
+            <option value="habilitar">Habilitaron</option>
+            <option value="aprobar">Aprobaron</option>
+            <option value="reprobar">Reprobaron</option>
+            <option value="recuperar">Recuperaron</option>
+            <option value="repetir">Repitente</option>
+            <option value="desertar">Desertaron</option>
+            <option value="trasladar">Trasladado a Otra IE</option>
+            <option value="nuevo">Nuevo</option>            
+        </select>  
+            {%endif%}
+                     
+        </div>        
+    <div class="well" style="float: right;width: 20%;background-color:buttonface;margin-bottom: 0px;">
+        
+        <select style="display: inline;" onchange="getPeriodosAcademicosAnoEscolar(this);" id="ano_escolar_filtros_usaurio">
+            {%if ano_escolar_activo is null%}
+            <option value="*">Año Escolar.</option>
+            {%endif%}
+            {%for ano_escolar in anos_escolares%}
+            <option
+                {%if ano_escolar.id==ano_escolar_activo.id%}
+                {%endif%}    
+                value="{{ano_escolar.id}}">{{ano_escolar}}</option>
+            {%endfor%}
+        </select>
+        <select style="display: inline;" id="perido_escolar_perfil_alumno" disabled="">
+            {%if periodo_escolar_activo is null%}
+            <option value="*">Periodo Academico.</option>
+            {%else%}
+            <option value="{{periodo_escolar_activo.id}}">
+                {{periodo_escolar_activo}}
+            </option>
+            {%endif%}
+        </select>
+        <div># Items<br/>
+            <input type="text" id="item" value="30" style="width: 28px;background-color: orange;height: 28px;font-size: 18ppz;color: white;font-weight: bolder;"/>
+         </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+{#--------------------Menu Superior Derecho---------------------------#}        
+<div id="check_box_all_usuarios_filtros">
+    
+<input type="checkbox" id="input_check_all" onclick="allUsuariosFiltros();">Seleccionar todos.
+{%if mostrar_button_seleccionar==1%}
+<a class="btn btn-warning" style="float: right" onclick="procesar_seleccionar_usuarios_filtros();">Seleccionar Destinatarios</a>
+{%endif%}
+<div style="clear: both;"></div>
+</div>
+
+{% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR')%}
+<div class="btn-toolbar"  style="float: right;" id="menu_herramientas_filtros">
+                
+          <div class="btn-group" >   
+             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-print icon-white"></i>
+              Informes.<span class="caret"></span>
+          </a> 
+             <ul class="dropdown-menu">          
+                 <li style="padding-left: 5px;"><a href="#">
+                      <span style="font-weight: bolder;">Alumno(s).</span></a></li>            
+              <li style="padding-left: 15px"><a onclick="newFormatoImprimirUsuario(1);" href="#">
+                      <i class="icon-camera"></i> Carnet(s).</a></li>                                  
+              {#<li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(2);">
+                      <i class="icon-th-list"></i> Planilla+Notas</a></li>
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(3);">
+                      <i class="icon-file"></i> Planilla En Blanco</a></li>#}
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(4);">
+                      <i class="icon-trash"></i> Boletines</a></li>                      
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(5);">
+                      <i class="icon-calendar"></i> Certificado De Estudio.</a></li>                      
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(6);">
+                      <i class="icon-calendar"></i> Constancia De Estudio.</a></li>                      
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(7);">
+                      <i class="icon-chevron-up"></i> Mejores Estudiante</a></li>                      
+                <li style="padding-left: 15px"><a href="#" onclick="newFormatoImprimirUsuario(8);">
+                      <i class="icon-bookmark"></i> Libro Final</a></li>                      
+                      
+                      
+             <li style="padding-left: 5px;"><a onclick="newinfoAcademicaDefectoAno(4);" href="#">                         
+                      <span style="font-weight: bolder;">Profesor(es).</span></a></li>            
+                      <li style="padding-left: 15px"><a onclick="newinfoAcademicaDefectoAno(4);" href="#">
+                      <i class="icon-list-alt"></i> Hoja De Vida.</a></li>                                  
+              <li style="padding-left: 15px"><a href="#" onclick="generarCargaAcademicainfoAcademicaDefectoAno();">
+                      <i class="icon-stop"></i> Anexo Resolución 166</a></li>
+                <li style="padding-left: 15px"><a href="#" onclick="generarCargaAcademicainfoAcademicaDefectoAno();">
+                      <i class="icon-camera"></i> Carnet</a></li>
+
+          </ul>
+              </div>
+          <div class="btn-group" >   
+              <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" >
+              <i class="icon-tags icon-white"></i> Acciones <span class="caret"></span></a>
+          <ul class="dropdown-menu">   
+              {# <li><a href="#" onclick="promoverGrupoAlumnoUsuario();">
+                      <i class="icon-share-alt"></i> Promover</a></li>#}
+              {#<li><a onclick="newdesempenoinfoAcademicaDefectoAno();" href="#">
+                      <i class="icon-list"></i> Filtro(s) De Entrada</a></li>                                    #}   
+              <li><a onclick="cambiarOtroGrupoaUsuario();" href="#">
+                      <i class="icon-share-alt"></i> Mover A Nuevo Grupo</a></li>                                       
+                     {# <li><a href="#" onclick="newgrupoAnoEscolarUsuarioViejo();">
+                      <i class="icon-random"></i> Renovar Matricula</a></li> #}
+                      <li><a onclick="cancelarMatriculaUsuario();" href="#">
+                            <i class="icon-arrow-left"></i> Retirar De Grupo</a></li>                                                             
+                         
+              <li><a onclick="newgrupoAnoEscolarUsuario();" href="#">
+                      <i class="icon-random"></i> Asignar Grupo</a></li>                                                             
+                      <li><a onclick="eliminarVariosUsuario();" href="#">
+                            <i class="icon-trash"></i> Borrar</a></li>                                                             
+              <li><a href="#" onclick="cambiarFechaDeEntregaVarios();">
+                      <i class="icon-calendar"></i> Cambiar Fecha De Entrega</a></li>        
+              
+          </ul>
+              </div>
+           
+
+
+         
+        </div>
+    
+{#----------------------------------------------------#}            
+ 
+<div style="clear: both;"></div>
+
+<div id="sup_capa_ram_informes_buscar_usuarios">
+    <a href="#" onclick="cerrarcapa_ram_informes_buscar_usuarios();">
+        <span style="float: right;"><span style="font-size: xx-large">x</span><span>Cerrar</span></span></a>
+<div id="capa_ram_informes_buscar_usuarios" >
+    
+    
+</div>
+</div>        
+{%endif%}   
+<div id="capa_ram_buscar_usuarios">
+    
+</div>
+   

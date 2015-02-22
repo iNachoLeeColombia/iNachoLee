@@ -1,0 +1,43 @@
+        
+<div class="col-lg-12" style="font-size: 9px;">
+    <a style="margin: 0 0 ;padding: 0 0;" class="btn btn-yellow btn-sm" href="#"
+       onclick="
+           $('#flujo_profe'+{{id_profesor}}).hide();
+           $('html, body').animate({ scrollTop: $('#div_profe{{id_profesor}}').offset().top }, 'slow');;
+       "><i class="icon icon-remove-circle"></i> cerrar</a>   
+ <table class="table table-bordered">
+        <thead>
+            <th>Grado</th>
+            <th>Grupo</th>
+            <th>Asignatura</th>            
+            <th>Porcentaje</th>
+            <th>Acciones</th>           
+                        
+        </thead>
+        {%for c_a in carga_academica%}
+        <tr>
+            <td>{{c_a.grupo.grado}}</td>
+            <td>{{c_a.grupo}}</td>
+            <td>{{c_a.asignatura}}</td>            
+                
+            <td>{{porcentajes[loop.index0]}}%</td>
+            <td>
+                {%if modificados[loop.index0]>0%}
+                <span style="background-color: orange;color: black;font-weight: 900;font-size: 12px;">
+                                        
+                                        &nbsp;{{modificados[loop.index0]}}&nbsp;</span>                            
+                 {%else%}
+                    
+                    <a target="_blank" href="{{path('colegio_listacomponentes')}}" >Ir Modelo Evaluativo</a>
+                 {%endif%}                                                   
+                                                     </td>
+            
+        </tr>
+        {%endfor%}
+    
+    </table>
+                
+</div> 
+
+                               
+

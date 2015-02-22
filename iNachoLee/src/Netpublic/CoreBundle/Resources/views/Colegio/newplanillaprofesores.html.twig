@@ -1,0 +1,40 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container %} 
+    <h3>
+      Planilla de los profesores
+    </h3>
+        <div>
+        <a href="{{path('colegio_listaplanillas')}}" class="btn">
+            Consolidado Final de año.
+        </a>
+        <a href="{{path('colegio_getplanillagrupo')}}" class="btn">
+            Consolidado: Notas de asignaturas .
+        </a>
+        <a href="{{path('colegio_newplanillaprofesores')}}" class="btn  btn-primary">
+            Planillas de los profesores.
+        </a>    
+    </div>
+
+    <div class="col-md-12" style="padding-top: 20px;background-color: whitesmoke;">    
+    {%for profe in profesores%}        
+        <div class="btn-group col-md-12" style="margin-bottom: 10px;">
+            <a href="{{path('profesor_getvariasplanillaadmin',{'profesor_id': profe.id,'tipo':1})}}" class="btn btn-default" style="width: 400px;text-align: left;"> <i class="icon icon-user"></i> {{profe}}
+                <span style="text-align: right;">&nbsp;&nbsp;&nbsp; 
+                    <i class="icon icon-download-alt icon-white"></i>(todas)
+                </span>    
+            </a>
+            {%set index=loop.index0%}    
+       <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"> Exportar una a una <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                {%for ca in cargas[index]%}
+                <li>
+                    <a href="{{path('profesor_getunaplanillaadmin',{'tipo':1 ,'carga_academica_id': ca.id})}}">{{ca.asignatura}} - - {{ca.grupo}}</a>
+                </li>
+                {%endfor%}
+                
+            </ul>
+        </div>
+       
+    {%endfor%}
+</div>    
+{%endblock%} 

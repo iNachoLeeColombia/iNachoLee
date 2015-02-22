@@ -1,0 +1,154 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block contenido %}
+Auditoria Activa :
+<span style="color: orange;">
+{{auditoria_activa}}
+</span>
+
+<h3 style="text-align: center;margin-bottom: 10px;margin-top: 10px;">
+    Ultimas NOVEDADES.(Retiros,Cambios De grupo y Adiciones.)
+</h3>
+<div class="well" style="
+                background-color:lightgray;
+                position: relative;
+                width: 90%;
+                margin-left: 20px;
+                "
+                id="capa_filtros_buscar_usuario_superior">
+ <div class="btn-group" style="float: right;">
+                 <button class="btn btn-primary" onclick="procesarSolicitudesMultipleAuditoria();">
+                     <i class="icon-retweet icon-white"></i> Procesar</button>
+
+</div>
+</div>
+<div style="width: 90%;margin-left: 20px;">
+<div style="float: left;">
+    
+    <select id="sedes_filtro_usuario" style="width: 160px;" onchange="procesarFiltrosVerSolicitudesAuditorias(this);" >
+        <option value="*">Sede(s)</option>
+        {%for sede in sedes%}        
+            <option value="{{sede.id}}">{{sede}}</option>
+        {%endfor%}        
+    </select>
+               
+    <select id="grado_filtro_usuario"  class="span3"   onchange="procesarFiltrosVerSolicitudesAuditorias(this);getGruposGradoEstandar('grado_filtro','grupo_filtro');">
+        <option value="*">Grado</option>
+          {%for grado in grados%}        
+            <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}      
+    </select>
+      
+        <select   class="span3"   id="ntp_inacholeebundle_type_grupos" onchange="procesarFiltrosVerSolicitudesAuditorias(this);">                  
+            <option value="*">Grupos</option>
+        </select>  
+                     
+        </div>
+        
+        <div class="input-append" style="float: right;">
+            
+            <button  style="float: right;"  class="btn" type="button" onclick="procesarFiltrosVerSolicitudesAuditorias(this);">Buscar</button>
+        <input style="float: right;" class="span6" placeholder="Nombre,Cedula"
+                       id="input_query" type="text">
+                
+        </div> 
+         
+</div>
+   <div style="clear: both;"></div>
+   <div id="capa_ram_auditorias">              
+<div>
+       <div class="pagination pagination-right" style="float: right;">  
+{#    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_auditorias','{{ path('auditoria_buscarlistarsolicitudes', { 'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_auditorias','{{ path('auditoria_buscarlistarsolicitudes', { 'page': page }) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarFiltroPaginador('capa_ram_auditorias','{{ path('auditoria_buscarlistarsolicitudes', { 'page': paginador.nextPage }) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>
+  #}                      
+</div>
+
+</div> 
+           <div style="clear: both;">
+           
+           </div>           
+<table class="table table-condensed">
+    <thead>
+                <tr>
+                    <th><input type="checkbox"  id="input_check_all_auditoria" onclick="allAlumnosAuditoria();"  ></th>          
+                  <th>Alumno
+                      <br/>
+                      Grado | Grupo
+                  </th>
+                  <th>Solicitud</th>
+                  <th>Auditoria</th>
+                  <th>Fecha De Solicitud</th>
+                  <th>Profesor Quien Reporto</th>                
+                </tr>
+     </thead>           
+    {%for solicitud in solicitudes%}
+        <tr>
+            <td><input type="checkbox"  class="fila_alumno" value="{{solicitud.id}}" id="input_ver_solicitud{{solicitud.id}}" /></td>
+            <td>
+                {{solicitud.alumno}}<br/>
+                 {{solicitud.alumno.grado}} |  {{solicitud.alumno.grupo}}
+            </td>
+            <td>
+                {% if solicitud.tipo==0%}
+                    Asignar grupo {{solicitud.grupo}}
+                {%endif%}    
+                {% if solicitud.tipo==1%}
+                    Cambiar De Grupo.<br/>
+                    De: {{solicitud.alumno.grupo}} A {{solicitud.grupo}}                    
+                {%endif%}                    
+                {% if solicitud.tipo==2%}
+                    Retirar Del grupo
+                            {%if solicitud.alumno.grupo is null%}
+                            {{solicitud.grupo}}
+                            
+                            {%else%}
+                             {{solicitud.alumno.grupo}}
+                            {%endif%} 
+                {%endif%}    
+                    {%if solicitud.getEsRealizada()==1 %}
+                    <span style="color: white;background-color: green;">PROCESADA</span>
+                    {%endif%}
+                </td>
+            
+            <td>
+                {{solicitud.auditoria}}
+            </td>
+            <td>
+                {{solicitud.getFechaSolicitud()|date("Y m d")}}
+            </td>
+            <td>
+                {{solicitud.profesor}}
+            </td>
+            <td>
+                
+                <a class="btn btn-small {%if solicitud.getEsRealizada()==1%}
+                     disabled
+                    {%endif%}
+                "    
+                    id="btn_procesarSolicitudUnoUno{{solicitud.id}}"  href="#" onclick="procesarSolicitudUnoUnoAuditoria({{solicitud.id}});">Procesar</a> 
+            </td>
+            
+        </tr>
+    {%endfor%}
+</table>
+</div>        
+{%endblock%}

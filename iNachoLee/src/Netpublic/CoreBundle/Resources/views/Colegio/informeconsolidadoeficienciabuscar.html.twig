@@ -1,0 +1,58 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block todo_pagina%}
+<div>
+    <div class="pagination pagination-right" >  
+    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('colegio_informeconsolidadoeficienciabuscar', { 'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('colegio_informeconsolidadoeficienciabuscar', { 'page': page }) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('colegio_informeconsolidadoeficienciabuscar', { 'page': paginador.nextPage }) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>
+</div>
+<div  class="well" style="background-color: #F9F9F9;">
+    <svg id="svg_donut" width="600" height="400">
+    </svg>
+</div>
+{%endblock%}
+{%block js%}
+<script> 
+    console.log(d3.selectAll('co'));
+var cScale = d3.scale.linear().domain([0, 100]).range([0, 2 * Math.PI]);
+
+data = [[0,50,"#AA8888"], [50,75,"#88BB88"], [75,100,"#8888CC"]]
+
+var vis = d3.select("#svg_donut");
+
+var arc = d3.svg.arc()
+.innerRadius(0)
+.outerRadius(100)
+.startAngle(function(d){return cScale(d[0]);})
+.endAngle(function(d){return cScale(d[1]);});
+
+vis.selectAll("path")
+.data(data)
+.enter()
+.append("path")
+.attr("d", arc)
+.style("fill", function(d){return d[2];})
+.attr("transform", "translate(300,200)");
+console.info(typeof(+'4'));
+console.info(typeof('4'));
+
+</script>
+{%endblock%}

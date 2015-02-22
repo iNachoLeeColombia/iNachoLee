@@ -1,0 +1,13 @@
+{%if repuesta==1%}
+
+<a class="thumbnail" href="#" style="margin-right:10px;">
+    <img style="width:80px;height: 80px;"
+         src="{{asset('uploads/documents/strongalumno'~alumno_id~'.jpg')}}" />
+</a>        
+{%else%}
+<a class="thumbnail" href="#" style="margin-right:10px;">
+    <img style="width:80px;height: 80px;"
+         src="{{asset('uploads/documents/strongavatar.png')}}" />
+</a>      
+
+{%endif%}    

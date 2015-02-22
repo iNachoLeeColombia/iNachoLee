@@ -1,0 +1,305 @@
+
+<table class="table table-striped">
+    
+        {%for a_d_array in actividades_desempenos%}
+   
+            <tr>
+                 
+            {%for a_d in a_d_array%}
+                     
+                    {%if loop.first%}
+                    <td style="font-size:18px;">{{a_d.desempeno}}</td>
+                    {%endif%}
+                    <td>
+                        
+                      {%if a_d.porcentaje==0%}
+                      <div id="{{a_d.id}}" class="capa_actividades">
+                           <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==10%}
+                     <div id="{{a_d.id}}" class="capa_actividades">
+                          <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==20%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==30%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         
+                        <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                          
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==40%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==50%}
+                     <div id="{{a_d.id}}" class="capa_actividades">
+                          <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==60%}
+                     <div id="{{a_d.id}}" class="capa_actividades">
+                          <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==70%}
+                     <div id="{{a_d.id}}" class="capa_actividades">
+                          <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==80%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_white" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==90%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_white" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                      {%if a_d.porcentaje==100%}
+                    <div id="{{a_d.id}}" class="capa_actividades">
+                         <div style="font-size:13px;color: green">{{a_d.actividad}}</div>
+                                        <div id="{{a_d.id}}0"  style="background-color: red;
+                                                                      border-style: solid solid;
+                                                                      border-color:  red  red;
+                                                                      " class="{{a_d.id}} puntaje_all influencia_white" >  </div>
+                                        <div id="{{a_d.id}}1"  class="{{a_d.id}} puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}2"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}3"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}4"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}5"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}6"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}7"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}8"  class="{{a_d.id}}  puntaje_all influencia_black" >  </div>
+                                        <div id="{{a_d.id}}9"  class="{{a_d.id}}  puntaje_all influencia_black" >   </div>
+                                        <div id="{{a_d.id}}10" class="{{a_d.id}}  puntaje_all influencia_black" style="">  </div>
+                                        <div id="{{a_d.id}}11" class="{{a_d.id}}"  style="float: left;                                                                                           
+                                                                                          background-color: #F5F5F5;
+                                                                                          border-style: solid solid;
+                                                                                          border-color:  #F5F5F5  #F5F5F5;">{{a_d}} %</div>
+                                        
+                      </div>
+                      {%endif%}
+                    </td>
+                
+            {%endfor%}    
+              </tr>      
+        {%endfor%}    
+    
+</table>  
+<button style="float: right" onclick="hacerCalculosActividadesDesempeno();" class="btn btn-primary" type="submit">Realizar Calculos </button>       
+<button style="float: right;margin-right: 6px;" onclick="$('#capa_ram_actividades_desempenos_calificar_nota').hide('slow');" class="btn" type="submit"> Cancelar</button>
+<div style="clear: both;"></div>
+{#        <tbody>
+             <tr>
+          {%for a in actividades%}                                          
+              {% if loop.index0 is divisibleby(nro_actividades)%}
+                 </tr><tr id="{{a.desempeno.id}}" class="desempeno_class"><td>{{a.desempeno.id}}</td>
+              {%endif%}
+              <td>
+                      {%set a_d.porcentaje=a.a_d.porcentaje%}
+
+                      
+              </td>                             
+          {%endfor%}
+        </tbody>
+      </table>
+<button style="float: right" onclick="hacerCalculosActividadesDesempeno();" class="btn btn-primary" type="submit">Realizar Calculos </button>
+#}

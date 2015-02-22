@@ -1,0 +1,39 @@
+<h5>Ingresar Alumno Nuevo</h5>
+
+<table  class="zebra-striped">
+    <thead>
+        <tr>
+            <th  class="blue header"> Id</th>
+            <th  class="yellow header">Nombre</th>
+            <th  class="red header">Movil</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('alumno_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.movil }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="#" onclick="showAlumnoinfoAcademicaDefectoAno({{entity.id}})">show</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="editarAlumnoinfoAcademicaDefectoAno({{entity.id}})">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="#" onclick="newAlumnoinfoAcademicaDefectoAno();">
+            Create a new entry
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,299 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Flujo de trabajo de los profesores.{% endblock %}
+{%block  sub_container  %} 
+		<div class="col-xs-12">
+                    <div class="row">
+                         <div class="space-6"></div>
+                        <h4 class="light-grey">
+                            <i class="icon-bar-chart"></i>
+                            Avances en sedes.
+			</h4>
+                                
+                        <div class="col-lg-12 infobox-container">
+                          
+                                {%for sede_data in data_graficos.sedes%}
+                                <div class="infobox
+                                    {%if sede_data.porcentaje<50%} 
+                                     infobox-red
+                                    {%else%}
+                                     infobox-green
+                                    {%endif%} 
+                                     infobox-small infobox-dark col-lg-5" style="width: 300px;">
+                                    <div class="infobox-progress">
+                                        <div style="width: 39px; height: 39px; line-height: 39px;"
+                                             class="easy-pie-chart percentage easyPieChart" 
+                                             data-percent="{{sede_data.porcentaje}}" data-size="39">
+                                            <span class="percent">{{sede_data.porcentaje}}</span>%
+                                                <canvas width="39" height="39"></canvas></div>
+                                    </div>
+                                        <div class="infobox-data" style="max-width: 250px;">
+                                        <div class="infobox-content">Avance</div>
+                                        <div class="infobox-content"><span style="font-size: 9px;">{{sede_data.nombre|upper}}</span></div>
+                                    </div>
+				</div>
+                                {%endfor%}
+			</div>
+
+									
+			</div><!-- /row -->
+                        <div class="row">
+                            <div class="space-6"></div>
+                        <div class="hr hr32 hr-dotted"></div>
+                        <div class="col-lg-12">
+                            <h5 class="light-grey col-lg-6">
+                                <i class="icon-bar-chart"></i>
+                                Atrasos y avances sede principal.
+                            </h5>
+                            <h5 class="light-grey col-lg-6">
+                                <i class="icon-bar-chart"></i>
+                                Avances de profesores(todas las sedes) .
+                            </h5>
+                        </div>
+                            <div class="col-sm-5">
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-flat widget-header-small">
+                                        <h5>
+                                            <i class="icon-signal"></i>
+                                            Avances y atrasos
+					</h5>
+                                     </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <div style="
+                                                 width: 90%; min-height: 150px;
+                                                 padding: 0px;
+                                                 position: relative;"
+                                                 id="piechart-placeholder">
+                                                     <canvas height="150" width="361"
+                                                             style="direction: ltr; position: absolute;
+                                                             left: 0px; top: 0px; width: 361px; height: 150px;"
+                                                             class="flot-base">
+                                                     </canvas>
+                                                     <canvas height="150" width="361"
+                                                             style="direction: ltr;
+                                                             position: absolute;
+                                                             left: 0px;
+                                                             top: 0px;
+                                                             width: 361px;
+                                                             height: 150px;"
+                                                             class="flot-overlay">
+                                                     </canvas>
+                                                     <div class="legend">
+                                                         <div style="
+                                                              position: absolute;
+                                                              width: 95px;
+                                                              height: 110px; 
+                                                              top: 15px;
+                                                              right: -30px;
+                                                              background-color: rgb(255, 255, 255);
+                                                              opacity: 0.85;
+                                                              "> 
+                                                           </div>
+                                                            
+                                                         </div>
+                                                 </div>
+                                                <div class="hr hr8 hr-double"></div>
+                                                    <div class="clearfix">
+                                                        <div class="grid2">
+                                                            <span class="grey">
+                                                                <i class="icon-user icon-2x red"></i>
+                                                                    muy atrasados
+                                                            </span>
+                                                            <h4 class="bigger pull-right">?</h4>
+							</div>
+                                                        <div class="grid2">
+                                                            <span class="grey">
+                                                                <i class="icon-user icon-2x green"></i>
+                                                                &nbsp; Hay que felicitar.
+                                                            </span>
+                                                            <h4 class="bigger pull-right">?</h4>
+							</div>
+                                                      
+                                                    </div>
+					</div><!-- /widget-main -->
+                                    </div><!-- /widget-body -->
+				</div><!-- /widget-box -->
+                            </div><!-- /span -->
+                            <div class="col-lg-7" style="font-size: 10px;">
+                                {{ render(controller('NetpublicCoreBundle:Profesor:informeavancerectroceso20'))}}
+                            </div>
+                        <div class="clearfix"></div>
+                        <div class="hr hr32 hr-dotted"></div>
+     
+                        <div class="col-lg-12">
+                             <div class="space-6"></div>
+                            <div class="col-lg-12">
+                               <div class="space-6"></div>
+                                <h6 class="light-grey">
+                                <i class="icon-bar-chart"></i>
+                                    Flujo de trabajo de profesores.
+                                </h6>
+                               <div class="col-lg-12" >
+                                   <div class="col-lg-9">
+                                        <div class="form-group col-lg-2">  
+                                            <label class="light-grey">Sede</label> 
+                                                <select class="form-control"  name="sedes_filtro_usuario" id="sedes_filtro_usuario" onchange="listaSeguimientoProfesores(1);">
+                                                    <option value="*">Sede</option>
+                                                        {%for sede in sedes%}
+                                                            <option value="{{sede.id}}">{{sede}}</option>
+                                                                {%endfor%}
+                                                </select>
+                                         </div>   
+                                         <div class="form-group col-lg-3">
+                                            <label class="light-grey">valor mínimo</label>  
+                                                <select  class="form-control" name="minimo" id="minimo" onchange="listaSeguimientoProfesores(1);">
+                                                    <option value="0">Minimo</option>
+                                                        {%for i in range(0, 100, 10)%}
+                                                            <option value="{{i}}">{{i}}%</option>
+                                                        {%endfor%}
+                                                </select>
+                                        </div>
+                                        <div class="form-group col-lg-3">  
+                                            <label class="light-grey">valor máximo</label> 
+                                                <select class="form-control"  name="maximo" id="maximo" onchange="listaSeguimientoProfesores(1);">
+                                                    <option value="0">Máximo</option>
+                                                        {%for i in range(0, 100, 10)%}
+                                                            <option value="{{i}}">{{i}}%</option>
+                                                        {%endfor%}
+                                                </select>
+                                        </div>
+                                    <div class="col-lg-4"></div>       
+                                </div> 
+                                    <div class="col-lg-3" id="nav-search" >
+                                        <form class="form-search ">
+                                            <span class="input-icon">
+                                                <input  class="nav-search-input" id="my-input2" onkeyup="listaSeguimientoProfesores(1)"; autocomplete="off" type="text">
+                                                <i class="icon-search nav-search-icon"></i>
+                                            </span>
+                                        </form>
+                                    </div>
+                                     
+                               </div>
+                               <div class="space-14 col-lg-12"></div>
+                               <div class="widget-main no-padding col-lg-12" id="capa_ram_flujo_profesor">     
+                                  
+                                </div>            
+                            </div>        
+                                                  </div>
+                        </div>
+                        <div class="hr hr32 hr-dotted"></div>
+                </div><!-- /.col -->
+		<!-- basic scripts -->
+{%block js_final%}
+		<script type="text/javascript">
+			jQuery(function($) {
+				$('.easy-pie-chart.percentage').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+					var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+					var size = parseInt($(this).data('size')) || 50;
+					$(this).easyPieChart({
+						barColor: barColor,
+						trackColor: trackColor,
+						scaleColor: false,
+						lineCap: 'butt',
+						lineWidth: parseInt(size/10),
+						animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
+						size: size
+					});
+				})
+			
+				$('.sparkline').each(function(){
+					var $box = $(this).closest('.infobox');
+					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+					$(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
+				});
+			
+			
+			
+			
+			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+			  var data = [
+				{ label: "Avance en <br/>{{data_graficos.sede_principal.nombre}}.",  data: {{data_graficos.sede_principal.avance}}, color: "#68BC31"},
+				{ label: "Faltante en<br/> {{data_graficos.sede_principal.nombre}}",  data: {{100-data_graficos.sede_principal.avance}}, color: "#DA5430"},
+                           ]
+			  function drawPieChart(placeholder, data, position) {
+			 	  $.plot(placeholder, data, {
+					series: {
+						pie: {
+							show: true,
+							tilt:0.8,
+							highlight: {
+								opacity: 0.25
+							},
+							stroke: {
+								color: '#fff',
+								width: 2
+							},
+							startAngle: 2
+						}
+					},
+					legend: {
+						show: true,
+						position: position || "ne", 
+						labelBoxBorderColor: null,
+						margin:[-30,15]
+					}
+					,
+					grid: {
+						hoverable: true,
+						clickable: true
+					}
+				 })
+			 }
+			 drawPieChart(placeholder, data);
+			
+			 /**
+			 we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+			 so that's not needed actually.
+			 */
+			 placeholder.data('chart', data);
+			 placeholder.data('draw', drawPieChart);
+			
+			
+			
+			  var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+			  var previousPoint = null;
+			
+			  placeholder.on('plothover', function (event, pos, item) {
+				if(item) {
+					if (previousPoint != item.seriesIndex) {
+						previousPoint = item.seriesIndex;
+						var tip = item.series['label'] + " : " + item.series['percent']+'%';
+						$tooltip.show().children(0).text(tip);
+					}
+					$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+				} else {
+					$tooltip.hide();
+					previousPoint = null;
+				}
+				
+			 });
+			
+			
+			})
+		</script>
+	
+{%endblock%}
+<div style="display: none;" class="tooltip top in">
+    <div class="tooltip-inner"></div></div>
+                </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

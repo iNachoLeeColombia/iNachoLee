@@ -1,0 +1,4 @@
+<option value="*">Asistencia</option>
+{%for a_p in asistencia_periodo%}
+<option value="{{a_p.id}}">{{a_p}}({{a_p.padre}})</option>
+{%endfor%}

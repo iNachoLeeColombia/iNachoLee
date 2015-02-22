@@ -1,0 +1,27 @@
+        
+        <table style="background-color:white;margin-bottom: 20px;color:black;width: 330px;border-style: solid;">
+            <tr>
+                <td>       
+                                         
+                        <img style="width:60px;height: 90px" src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}" />   
+                        {{colegio}}
+                    
+                 </td>
+           <tr>      
+                 <td>
+                     <div style="font-size:15px;">
+                         {%if alumno.usuario.getEsFotoperfil()==TRUE%}                       
+                                <img style="width:80px;height: 90px;float: left;margin-right: 10px;" src="{{asset('uploads/documents/strongalumno'~alumno.id~'.jpg')}}" />        
+                         {%else%}
+                                 <img style="width:80px;height: 150px;float: left;" src="{{asset('uploads/documents/strongavatar.png')}}" />        
+                         {%endif%}
+                         {{alumno}}
+                    <div style="font-size: 9px;color: #707070;margin-left: 10px;">Grado: {{alumno.grado}} Grupo: {{alumno.grupo}}</div>
+                    <div style="font-size: 9px;color: #707070;margin-left: 10px;">Codigo: {{alumno.id}} Cedula: {{alumno.cedula}}</div>
+                                    
+                    </div>        
+                    
+                 </td>
+          </tr>
+          </table>    
+        

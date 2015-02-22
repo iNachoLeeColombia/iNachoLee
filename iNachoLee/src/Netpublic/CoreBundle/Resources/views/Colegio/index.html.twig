@@ -1,0 +1,36 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container %} 
+<h5>Colegio Y Sedes</h5>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Codigo_dane</th>
+            <th>Encargado</th>
+            <th>Metodoligia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('colegio_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.codigodane }}</td>
+            <td>{{ entity.rector }}</td>
+            <td>{{ entity.metodologia }}</td>
+            <td>
+                
+                        
+                        <a href="{{ path('colegio_edit', { 'id': entity.id }) }}">editar</a>
+                
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>      
+<a href="{{ path('colegio_new') }}">Nuevo</a>
+
+{%endblock%}

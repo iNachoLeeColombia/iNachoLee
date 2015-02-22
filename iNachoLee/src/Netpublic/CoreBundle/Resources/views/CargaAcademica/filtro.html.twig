@@ -1,0 +1,84 @@
+{%if cargas_academicas|length !=0%}
+<div>
+{%for grado in grados%}
+<div style="background-color: lightgray;">
+        <span class="grado">
+            <input type="checkbox"
+                   id="grado{{grado.id}}"
+                   onclick="allCheckBox('grado{{grado.id}}','_grado{{grado.id}}')" />   Grado: {{grado}}
+        </span>       
+        <span class="asignar_ca" style="float: right;">                
+                 <button 
+                        id="button_contrato{{grado.id}}"
+                        class="btn"
+                        onclick="mostrarHorarioGrado({{grado.id}});"
+                        ><i class="icon-adjust icon-white"></i>
+                    Tiempo Libre...
+                </button>
+        </span>
+        <div style="clear: both;"></div>    
+        <div id="capa_ram_ca_grado{{grado.id}}"> </div>         
+            
+ </div>       
+{%for grupo in grupos %}
+      <div style="margin-left: 20px;">
+          <span style="float: left;">
+            <input class="_grado{{grado.id}}"                   
+                   type="checkbox" id="grupo{{grupo.id}}"
+                   onclick="allCheckBox('grupo{{grupo.id}}','asignatura{{grado.id}}{{grupo.id}}')
+                   "/>
+            {{grupo}}
+        </span>
+                    <a 
+                style="float: left;margin-left: 10px;"
+                href="#" onclick="mostrarHorarioGrupo('{{grupo.id}}');"
+                > Tiempo Libre...</a>
+            <div style="clear: both;"></div>
+            <div  id="capa_ram_ca_grupo{{grupo.id}}">
+            </div>        
+          </div>       
+        <table class="table table-striped">
+        {%for c_a in cargas_academicas if grupo.id==c_a.grupo.id%}
+        <tr>
+        
+           <td> 
+           <span style="margin-left: 20px;float: left;">
+                <input class="asignatura{{grado.id}}{{grupo.id}} _grado{{grado.id}} optionsCheckboxLibres"
+                       data-id={{c_a.id}}
+                       type="checkbox" />
+              <span {%if not c_a.getTieneProfesor%}
+                  style="color: orangered;font-weight: 900;"
+                   {%endif%}
+                  >
+               {{c_a.asignatura}}<span style="font-size: 8px;">({{c_a.asignatura.grado}}</span>)
+               <span style="font-size: 10px;">Dicatada por :{{c_a.profesor}}</span>
+               en el año
+                    {%if c_a.getAnoEscolar is null%}
+               
+               <strong class="red">no tiene aun</strong>
+                    {%else%}
+                        {{c_a.getAnoEscolar}} <i class="icon icon-check green"></i>
+                    {%endif%}    
+              </span>
+            </span></td>
+            <td>
+            <a 
+                style="float: left;margin-left: 10px;"
+                href="#" onclick="mostrarHorarioContrato('{{c_a.id}}');"
+                > Tiempo Libre...</a>
+            <div style="clear: both;"></div>
+            <div  id="capa_ram_ca_contrato{{c_a.id}}">
+            </div>
+            </td>
+        
+       </tr> 
+        {%endfor%}
+        </table>                
+    {%endfor%}       
+      
+
+{%endfor%}        
+</div>    
+{%else%}
+<h3 style="color: green;text-align: center;">No hay Carga Academica.</h3>
+{%endif%}

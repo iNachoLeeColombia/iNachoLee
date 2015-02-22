@@ -1,0 +1,34 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}
+Ojo pero no estas en la RED SABER.
+{% endblock %}
+{%block  sub_container  %}
+<h4 class="well">
+Configuración de la RedSaber y sistemas moviles
+</h4>
+<div class="well col-md-12">
+    <div class="col-md-12">
+        Tenemos una nueva versión para usted <button onclick="procesarActualizacioniNachoLee();" class="btn btn-primary"><i class="icon icon-download"></i> Actulizar</button> 
+    </div>
+    <div class="col-md-12">
+        <h5>Sistema Wifi(Red inalambrica RedSaber)</h5>
+        <div class="col-md-12">
+        Estado: Activo <button class="btn btn-default">Parar</button>
+        </div> 
+        <div class="form-group col-md-2">
+            <label>Canal</label>
+            <select class="form-control">
+            
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                
+            </select>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary"><i class="icon icon-download"></i> Realizar Backup</button>
+    </div>
+    
+</div>    
+{%endblock%}

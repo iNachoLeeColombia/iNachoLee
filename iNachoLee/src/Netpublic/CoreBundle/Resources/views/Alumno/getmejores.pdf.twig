@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+
+<pdf>
+    <dynamic-page page-size="letter-landscape">   
+<table class="table table-bordered">
+    <tr>
+        <td>Puesto</td>
+                            <td>Nombre Y Apellidos</td>
+                            <td>Promedio De Notas</td>
+                            <td>Grado</td>                            
+                            <td>Grupo</td>                            
+    </tr>
+                            {%for entity in entities%}
+                                <tr>
+                                <td>{{entity.puesto}}</td>
+                            <td>
+ 
+              {{entity.alumno}}
+          </td>
+        <td>{{entity.nota}}</td>
+                            <td>{{entity.alumno.grado}}</td>
+                            <td>{{entity.alumno.grupo}}</td>
+                            </tr>
+
+
+                           {%endfor%} 
+                        </table>
+        </dynamic-page>
+</pdf>

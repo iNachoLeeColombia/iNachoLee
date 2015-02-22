@@ -1,0 +1,53 @@
+<td>
+                <input type="checkbox" value="{{alumno.id}}" /><a href="#">foto-{{alumno}}-Grado:{{alumno.grado()}}</a><span>(estudiante)</span>
+            </td>
+            <td>
+                <select  id="pago_matricula{{alumno.id}}" style="width: 60px" >
+             {% if matricula.getEsPagoMatricula()%}
+                <option selected="selected" value='1'>Si</option>
+                <option value='0'>No</option>
+             {%else%}  
+                <option value='1'>Si</option>
+                <option selected="selected" value='0'>No</option>
+              {%endif%} 
+         </select>
+                </td>          
+          <td>      
+              <input type="text" style="width: 60px" readonly="true" value="{{alumno.grado}}"/>
+         </td>
+         <td>
+         <input type="text" style="width: 60px" readonly="true" value="{{alumno.grado.getGradoSiguiente()}}"/>
+         </td>
+         <td>
+         <input type="text" style="width: 60px" readonly="true" value="{{matricula.ano()}}"/>
+         </td>
+         <td>
+         <input type="text" style="width: 80px" readonly="true" value="Pendiente"/>
+         </td>          
+         <td>
+          
+         <select id="es_papeles{{alumno.id}}" style="width: 60px" >
+             
+             
+             {% if matricula.getEsPapeles()%}
+                <option selected="selected" value='1'>Si</option>
+                <option value='0'>No</option>
+             {%else%}  
+                <option value='1'>Si</option>
+                <option selected="selected" value='0'>No</option>
+              {%endif%} 
+         </select>
+         </td>          
+         <td><textarea  id="observaciones{{alumno.id}}"  style="width: 80px;height: 50px" rows="6">{{matricula.observaciones}}</textarea>
+         
+         </td> 
+         <td>
+              
+             {% if matricula.getEsMatricula()%}
+                <span class="ui-icon ui-icon-check"></span><span style="font-size: 0.5em">Renovadad</span>
+             {%else%}  
+                 <span class="ui-icon ui-icon-alert"></span><span style="font-size: 0.5em">No Renovadad</span>
+              {%endif%} 
+          </td>   
+         <td><a onclick="guardarAlumnoGestorAdministrativo('{{alumno.id}}','{{matricula.id}}')" href="#"><span class="ui-icon ui-icon-disk"></span>Guardar</a></td>
+   

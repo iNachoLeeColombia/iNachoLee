@@ -1,0 +1,46 @@
+<table class="table table-bordered">
+
+       <tr> 
+{%for nota in notas%}        
+        <td>{{nota.dimension}}</td>
+{%endfor%}
+        <td>Nota Definitiva</td>
+       </tr>
+    <tr>
+{%for nota in notas%}
+
+        <td>{{nota.nota}}</td>
+        
+{%endfor%}
+        <td>
+            {%for nt_d in nota_definitiva %}
+            {{nt_d.nota}}
+            {%endfor%}    
+        </td>
+        </tr>       
+    </table> 
+
+<fieldset>
+    <legend>
+    Fallas De Asistencia.
+    </legend>
+        {%for asistencia in asistencias%}
+        <input type="text" class="span1" id="asistencia_filtro_nota" value="{{asistencia.nota}}">
+        {%endfor%}
+</fieldset>
+
+<fieldset>
+    <legend>
+        Descriptor(es).
+    </legend>        
+        <div class="well">
+            {{descripion_desempeno_resultado|raw}}
+        </div>
+     <legend>
+        Observaciones
+        <div class="well">
+            {{observacion_sobresaliente_desempeno_resultado|raw}}
+            {{observacion_perdida_desempeno_resultado|raw}}    
+        </div>
+    </legend>           
+</fieldset>

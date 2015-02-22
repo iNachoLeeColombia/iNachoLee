@@ -1,0 +1,14 @@
+<table class="table table-condensed">
+    <tr>
+        <td>Nombre Del Alumno.</td>
+        <td>Grupo Anterior.</td>
+        <td>Grupo Actual.</td>
+    </tr>   
+{%for alumno in alumnos%}
+<tr>
+<td> {{alumno}}</td>
+<td>{{grupos[loop.index0]}}</td>
+<td>{{alumno.grupo}}</td>
+</tr>
+{%endfor%}
+</table>

@@ -1,0 +1,47 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block contenido%} 
+                    
+           {%if not entity.usuario.getEsAlumno%}
+                <div style="float:left ">
+                {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 140px;height: 150px;" src="{{asset('uploads/documents/strongprofesor'~entity.id~'.jpg')}}"  alt="{{entity}}" />
+                {%else%}
+                    <img style="width: 140px;height: 150px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{entity}}" />                    
+                {%endif%}
+                    </div>
+                    <div style="float:right;padding-top: 20px;">
+                        
+                        <h2>{{entity}}</h2>
+                        </div>       
+           {%else%}
+                    <div style="float:left ">
+                {%if entity.usuario.getEsFotoperfil()==TRUE%}
+                        <img  style="width: 140px;height: 150px;" src="{{asset('uploads/documents/strongprofesor'~entity.id~'.jpg')}}"  alt="{{entity}}" />
+                {%else%}
+                    <img style="width: 140px;height: 150px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{entity}}" />                    
+                {%endif%}
+                        </div>
+                    <div style="float:right;padding-top: 20px;">
+                        
+                        <h2>{{entity}}</h2>  
+                </div>    
+                                                                       
+           {%endif%}
+                    
+<div style="clear: both;"></div>
+<span style="color: green;"> No olvides.Por defecto,el nombre de usuario es:<strong style='color:red;'>{{entity.usuario.getUsername}}</strong> y la "cedula" se 
+                            convierten automaticamente en el "nombre usuario" y la "contrase�a" del Perfil</span>
+<table class="table">
+    <tr><th>Sede:</th><td>{{entity.sede}}</td></tr>
+    <tr><th>Cedula:</th><td>{{entity.cedula}}</td></tr>
+</table>  
+<div class="modal-footer">
+    
+    <a  href="{{ path('usuario') }}" class="btn" >
+            Terminar</a>
+    
+    <a href="{{ path('profesor_edit', {'id': entity.id}) }}" class="btn btn-primary" >
+            Editar Profesor</a>
+   </div>
+{%endblock%}

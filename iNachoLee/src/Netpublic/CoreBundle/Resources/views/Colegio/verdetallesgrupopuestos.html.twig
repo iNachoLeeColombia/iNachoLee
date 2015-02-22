@@ -1,0 +1,25 @@
+{%if nivel_academico|length >0%}
+<table class="table table-condensed" style="font-size: 10px;">
+    <thead>
+        <tr>
+            <td>Puesto</td>
+            <td>Nombre Completo.</td>
+            <td>Nota</td>
+            
+        </tr>
+    </thead>  
+{%for na in nivel_academico%}
+ <tr>
+     <td>{{loop.index}}</td>
+     <td>
+    {{na.alumno}}
+     </td>
+     <td>
+         {{na.nota|number_format(1)}}
+     </td>
+ </tr>         
+{%endfor%}
+    </table>
+{%else%}
+<span style="margin-left: 20px;;font-size: 9px;background-color: yellow;color: black;">Los Puestos aun no estan generados. Click en "Actualizar", para hacerlo.</span>
+{%endif%}

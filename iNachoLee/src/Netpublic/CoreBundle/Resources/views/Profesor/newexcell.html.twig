@@ -1,0 +1,90 @@
+<div id="capa_ram_newAlumno">
+    <form class="form-horizontal" action="{{path('profesor_createexcell')}}" method="post"  enctype="multipart/form-data">
+  <div class="control-group col-lg-3">
+            <select id="sede_excell" class="form-control" name="sede">
+            <option value="*">Seleccione Sede</option>
+            {%for sede in sedes%}
+            <option value="{{sede.id}}">{{sede}}</option>
+            {%endfor%}
+        </select>
+  </div>
+  <div class="col-lg-4">
+        
+  </div>      
+  <div class="col-lg-5">      
+        <div class="form-group">    
+              <h4 style="margin-bottom: 20px;">Datos Pertenecientes a la Hoja de EXCEL</h4>
+              <select id="tipo_excell" class="form-control" name="es_nombre_completo"
+                      onchange="if($('#tipo_excell').val()==1){$('#div_nombre_completo').show();$('#div_nombre_por_partes').hide();}else{$('#div_nombre_completo').hide();$('#div_nombre_por_partes').show();}">
+                  <option value="*" >Nombre completo o Separado</option>
+                  <option value="1" >Nombre completo</option>
+                  <option value="2" >Nombre separado</option>
+              </select>
+
+         </div> 
+        <div class="form-group">
+            <div style="display: none;" id="div_nombre_completo">
+                <select class="form-control" id="columna_nombre" name="columna_nombre">
+                   <option value="*">Ubicación del nombre(Columna)</option>
+                   {%for columna in 'A'..'Z'%}
+                       <option value="{{columna}}" >{{columna}}</option>            
+                   {%endfor%}            
+                </select>
+            </div>
+            <div style="display: none;" id="div_nombre_por_partes">
+                <select class="form-control" id="columna_nombre" name="columna_nombre1">
+                   <option value="*">Ubicación del primer nombre(Columna)</option>
+                   {%for columna in 'A'..'Z'%}
+                       <option value="{{columna}}" >{{columna}}</option>            
+                   {%endfor%}            
+                </select>
+                <select class="form-control" id="columna_nombre" name="columna_nombre2">
+                   <option value="*">Ubicación del segundo Nombre(Columna)</option>
+                   {%for columna in 'A'..'Z'%}
+                       <option value="{{columna}}" >{{columna}}</option>            
+                   {%endfor%}            
+                </select>
+                <select class="form-control" id="columna_nombre" name="columna_apellido1">
+                   <option value="*">Ubicación del primer apellido(Columna)</option>
+                   {%for columna in 'A'..'Z'%}
+                       <option value="{{columna}}" >{{columna}}</option>            
+                   {%endfor%}            
+                </select>
+                <select class="form-control" id="columna_nombre" name="columna_apellido1">
+                   <option value="*">Ubicación del segundo apellido(Columna)</option>
+                   {%for columna in 'A'..'Z'%}
+                       <option value="{{columna}}" >{{columna}}</option>            
+                   {%endfor%}            
+                </select>
+            </div>    
+            <select class="form-control" id="columna_nombre" name="fila_nombre">
+            <option value="*"  >Ubicación Del Nombre(FILA)</option>
+            {%for fila in 1..40%}
+                    <option value="{{fila}}" > Fila{{fila}}</option>
+            {%endfor%}
+            </select>
+      </div>
+     <div class="form-group">     
+            <select class="form-control" id="columna_doc_identidad" name="columna_ti">
+                <option value="*" >Ubicación Documento De Identidad(COLUMNA)</option>
+                {%for columna in 'A'..'Z'%}
+                    <option value="{{columna}}" >{{columna}}</option>            
+                {%endfor%}
+            </select>
+      </div>           
+  
+       <input type="file" class="form-control" name="archivo_excell">        
+   </div>
+        <div class="col-lg-12 container" style="margin-top: 20px;">       
+        <div class="col-lg-4"></div>
+         <div class="col-lg-4"></div>
+         <div class="col-lg-4">
+  <a onclick="newAlumnoUnoUnoLoteDefectoAno();" name="btn_finalizar" class="btn">Cancelar</a>
+  <button value="1" name="btn_registrar" class="btn" >Registrar</button>
+</div>
+ </div>        
+ </form>
+<div id="capa_ram_new_alumno" style="display: none;">
+    
+</div>
+</div>  

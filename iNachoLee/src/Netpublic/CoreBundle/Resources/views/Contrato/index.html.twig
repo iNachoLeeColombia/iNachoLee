@@ -1,0 +1,76 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%}  
+<h5>Lista de Contratos-Asignaturas Del Profesor</h5>
+<table class="table-condensed">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Asignatura</th>
+            <th>Horas Contratadas Semanales</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+{%if es_ajax%}    
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('contrato_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{entity.asignatura  }}</td>
+            <td>{{entity.getHorasContratadas()  }}</td>
+            <td>
+                <ul style="list-style-type: none;">
+                    <li style="float: left;">
+                        <a onclick="showcontratoinfoAcademicaDefectoAno({{ entity.id}})" href="#">show</a>
+                    </li>
+                    <li style="float: left;margin-left: 5px;">
+                        | <a onclick="editarcontratoinfoAcademicaDefectoAno({{entity.id}})" href="#">editar</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>    
+<ul style="list-style-type: none;">
+<li>
+        <button type="submit" class="btn btn-primary" onclick="newcontratoinfoAcademicaDefectoAno();">
+            Nuevo Contrato
+        </button>
+    </li>
+</ul>    
+{%else%}
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('contrato_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.getHorasContratadas() }}</td>
+            <td>{{ entity.getHorasBuffer() }}</td>
+            <td>
+                
+                <div id="{{entity.id}}" style="display: inline">
+                    
+                    <a href="{{ path('contrato_show', { 'id': entity.id }) }}">show</a>            
+                      <a href="{{ path('contrato_edit', { 'id': entity.id }) }}">edit</a>
+                   
+                     <form style="display:inline " action="{{ path('contrato_delete', {'id':entity.id }) }}" method="post">
+                        {{ form_widget(delete_form[loop.index0]) }}
+                        <span>
+                            <button class="ui-button-primary btn_eliminar_test" >eliminar</button>
+                        </span>
+                    </form>                          
+                    </div>      
+                   
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>            
+<ul>
+    {
+    <li>
+        <a href="{{ path('contrato_new')}}" >Create a new entry</a>
+    </li>    
+    
+</ul>
+{%endif%}            
+
+{%endblock%}

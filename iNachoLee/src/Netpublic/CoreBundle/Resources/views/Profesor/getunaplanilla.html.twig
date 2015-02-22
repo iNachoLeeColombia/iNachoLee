@@ -1,0 +1,29 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificar Grupo{% endblock %}
+{%block contenido%}
+
+{%set nombres_dimensiones=notas_alumnos[0]%}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        <td>#</td>
+        <td>Nombre Completo</td>
+        {%for dim in nombres_dimensiones%}
+        <td>{{dim.dimension}}</td>
+        {%endfor%}
+        </tr>
+    </thead>
+    <tbody>
+        {%for notas_alumno in notas_alumnos%}
+            
+          <tr>
+            <td>{{loop.index}}</td>  
+            <td>{{alumnos[loop.index0]}}</td>  
+            {% for nota_dimensiones in notas_alumno%}
+                  <td>{{nota_dimensiones}}</td>
+           {%endfor%}
+          </tr>        
+        {%endfor%}
+    </tbody>
+</table>
+{%endblock%}

@@ -1,0 +1,102 @@
+
+<form id="new_desenpeno" name="new_desenpeno" {#action="{{ path('desempeno_create') }}"#}>
+
+
+<div class="clearfix" >              
+    {{ form_errors(edit_form) }}
+    </div>        
+{{form_widget(edit_form._token)}}
+
+<div class="clearfix" style="float: left;width: 40%;">  
+        <div class="controls"  style="float: left;width: 40%">
+                  {{ form_label(edit_form.aspecto_evaluar, null, { 'label': 'Aspecto Evaluar', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.aspecto_evaluar) }}
+                </div> 
+        </div>
+                {{ form_label(edit_form.descripcion_inf, null, { 'label': 'Desempeño(En infinitivo)', 'attr': {'onkeyup': 'generarstringdesempeno();'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.descripcion_inf, { 'attr': {'style': 'width:350px;height:80px;','onkeyup': 'generarstringdesempeno();'} }) }}
+                </div> 
+
+ 
+        <div style="clear: both"></div>       
+        <div class="controls" style="width: 100%">
+               
+                <div class="input">                
+                    {{ form_widget(edit_form._token) }}
+                </div> 
+        </div>   
+       
+    </div>
+<div style="float: right;width: 40%">
+    
+     <div class="input" >                
+         <div class="textaarea_edit" id="_desempenotype_descripcion_sobresaliente"></div>
+    </div>     
+    
+     <div class="input">                
+                    <div class="textaarea_edit"  id="_desempenotype_descripcion_excelente"></div>
+    </div> 
+    
+     <div class="input">                
+                    <div class="textaarea_edit"  id="_desempenotype_descripcion_aceptable"></div>
+    </div> 
+    
+     <div class="input">                
+                <div class="textaarea_edit"  id="_desempenotype_descripcion_insuficiente"></div>
+    </div> 
+      
+</div>
+<div style="clear: both"></div>
+         <div class="controls" style="width: 100%;display: none">
+                  {{ form_label(edit_form.descripcion_sobresaliente, null, { 'label': 'Descripcion Por sobresaliente', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.descripcion_sobresaliente,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+        </div> 
+         <div class="controls" style="width: 100%;display: none">
+                  {{ form_label(edit_form.descripcion_excelente, null, { 'label': 'Descripcion Por sobresaliente', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.descripcion_excelente,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+        </div> 
+         <div class="controls" style="width: 100%;display: none">
+                  {{ form_label(edit_form.descripcion_aceptable, null, { 'label': 'Descripcion Por sobresaliente', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.descripcion_aceptable,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+        </div> 
+         <div class="controls" style="width: 100%;display: none">
+                  {{ form_label(edit_form.descripcion_insuficiente, null, { 'label': 'Descripcion Por sobresaliente', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.descripcion_insuficiente,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+        </div> 
+
+ <div class="controls" style="width: 100%">
+                  {{ form_label(edit_form.observacion_perdida, null, { 'label': 'Nota por perdida', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.observacion_perdida,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+        </div> 
+ {{ form_widget(edit_form) }}
+<div class="controls" style="width: 100%">
+                  {{ form_label(edit_form.observacion_sobresaliente, null, { 'label': 'Nota por Sobresaliente', 'attr': {'for': 'foo'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.observacion_sobresaliente,{ 'attr': {'style': 'width:350px;height:30px;'} }) }}
+                </div> 
+</div> 
+  
+<button class="btn btn-primary"  onclick="updatedesempenoinfoAcademicaDefectoAno({{entity.id}},{{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});" type="submit">Actualizar</button>
+<button class="btn" onclick="indexdesempenoinfoAcademicaDefectoAno({{periodo_id}},{{grupo_id}},{{carga_id}},{{asignatura_id}});" type="submit">Cancelar</button>
+</form>
+

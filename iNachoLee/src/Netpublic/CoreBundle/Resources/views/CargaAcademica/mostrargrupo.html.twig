@@ -1,0 +1,10 @@
+{%for carga in carga_academica%}
+<li class="parent_li ca" id="ca_{{carga.id}}">
+    <span class="items_remoto" id="compo_{{carga.id}}" data-id="{{carga.id}}" title="Collapse this branch">
+        {{carga.asignatura|upper}}<small style="font-size: 10px;"> Dictada por <i class="icon-user"></i> {{carga.profesor}}</small> 
+    </span>
+        <input type="checkbox" value="{{carga.id}}" class="destino carga grupo_mi_{{carga.grupo.id}}"  >
+       <ul id="ul_compo_{{carga.id}}">
+      </ul>
+  </li>
+{%endfor%}

@@ -1,0 +1,16 @@
+<table class="table table-condensed">
+     <tr>
+            <td>Profesor</td>
+            <td>Periodo Academico</td>
+            <td>Nueva Fecha De Publicación</td>
+        </tr>        
+
+{%for profesor in profesores%}
+       
+<tr>
+    <td>{{profesor}}</td>
+    <td>{{periodo}}</td>
+    <td>{{fecha_inicio|date("Y-m-d h:i:s")}} - {{fecha_final|date('Y-m-d h:i:s')}}</td>
+</tr>
+{%endfor%}
+</table>

@@ -1,0 +1,29 @@
+
+
+<table  class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="blue header">Nombre</th>
+            <th class="yellow header">Areas/Asignaturas</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr>            
+            <td>{{ entity.nombre }}</td>
+            <td>
+            {%for a in entity.asignaturas%}
+                 {% if(a.getEsArea()!=1)   %}                   
+                    <span style="font-size: small;;">{{a.area}}</span> - <span style="font-size: x-small;">{{a.nombre}}</span><br/>
+                 {%endif%}   
+            {%endfor%}
+            </td>
+           
+        </tr>
+        </tbody>
+        </table>
+<a href="#" onclick="indexGradoinfoAcademicaDefectoAno();" class="btn">
+            << Atras
+        </a>
+  
+    

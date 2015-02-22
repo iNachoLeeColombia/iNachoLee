@@ -1,0 +1,73 @@
+{%for comp in componentes%}
+{%if loop.first and comp.profesor!=null%}
+{%set profesor=comp.profesor.id%}
+{%endif%}
+<div class="capa_hermano{{loop.index}}" 
+     
+    style="padding-left: 20px;margin-bottom: 7px;
+    "  >   
+    <div style="float: left;width: 30px;">    
+    <span>
+        <span style="float: left;">
+            <input 
+                   id="componente{{comp.id}}"
+                   data-fuente="check_carga_academica{{id_ca}}"
+                   data-clase-destino="item{{comp.id}}"
+                   data_ca={{id_ca}} 
+                   type="checkbox"
+                   data-clase-me="componetes_ca{{id_ca}}"
+                   data-clase-padre="check_carga_academica{{id_ca}}"
+                   class="hermanos_{{loop.index}} componetes_ca{{id_ca}} componente cbox"
+                   onchange="allcheckProfesoresCopiar('componente{{comp.id}}','item{{comp.id}}',this);"
+                   style="margin-left: 10px;" value="{{comp.id}}" /> 
+    </span>
+
+    </span>
+</div>        
+<div style="margin-left: 0px;float: left;width: 160px;
+   {%if comp.tipo==1%}
+        background-color: #3A87AD;
+        color: white;
+        font-weight: 900;
+    {%endif%}
+    {%if comp.tipo==4%}
+        background-color: white;
+        color: gray;
+        font-weight: 900;
+    {%endif%}
+
+    {%if comp.tipo==3%}
+        background-color: #D9EDF7;
+        color: white;
+        font-weight: 900;
+
+    {%endif%}
+    ">
+        {{comp|upper}}
+            {%if comp.tipo==4%}
+         <span id="letrero_copiar{{comp.id}}"  
+               class="letrero"  
+               style="font-size: 9px;color: white;background-color: orange;font-weight: 900;"></span>{%endif%}
+       </div>
+    <div style="margin-left: 10px;float: left;">
+        <a style="float: left;" href="#" id="anchor_mas_detalles_componente{{comp.id}}" 
+           class="mas_detalles_componente" 
+           onclick="mostrarDetallesComponente({{id_ca}},{{comp.id}});">  Ver ++ </a> 
+            <span  id="label_seleccionarHermanos{{comp.id}}" style="font-size: 7px;color: orange;float: left;">
+                <label class="checkbox" style="font-size: 8px;">
+                <input type="checkbox" id="seleccionarHermanos{{comp.id}}"
+               class="hermano_lado{{loop.index}}"
+               onchange="procesarcheckCambioHermanos({{comp.id}},{{loop.index}});"
+               style="margin-left: 2px;" />
+        repetir
+        </label>
+    </span>
+   
+        </div>
+        <div style="clear: both;"></div>   
+   <div id="capa_ram_profesores_componentes{{comp.id}}" style="display: none;">
+   
+   </div>     
+</div>        
+
+{%endfor%}

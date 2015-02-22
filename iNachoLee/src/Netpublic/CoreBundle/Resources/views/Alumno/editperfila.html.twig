@@ -1,0 +1,190 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Ingreso de Información Academica{% endblock %}
+{%block  sub_container  %} 
+<form action="{{ path('alumno_updateperfila', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+{{ form_errors(edit_form) }}
+<div>              
+        
+    <div id="accordion">                              
+                <h3>
+                    <a   href="#" tabindex="-1" >Información del Estudiante.</a></h3>
+                </h3>
+            <div>
+                    <div id="new_colegio_ano_escolar" style="height: 450px">                                                                
+                        <div id="tabs1">
+                            
+                            <ul>
+                                <li><a  href="#tabs1-0">Datos Básicos</a></li>
+                                <li><a  href="#tabs1-1"> Ubicación.</a></li> 
+                                <li><a  href="#tabs1-2">Datos Adicionales.</a></li>
+                                <li><a  href="#tabs1-3">Acudiente. </a></li> 
+                                <li><a  href="#tabs1-4">Colegio Anterior </a></li> 
+                            </ul>
+                                <div id="tabs1-0">                                
+                                    {#{ form_label(edit_form.sede) }}            
+                                                   
+                                                {{ form_widget(edit_form.sede) }#}
+                                               
+                                            {{ form_label(edit_form.departamento, null, { 'label': 'Depto Expedición', 'attr': {'for': 'xlInput'} }) }}            
+                                                   
+                                                {{ form_widget(edit_form.departamento) }}
+                                              
+                                            {{ form_label(edit_form.municipio, null, { 'label': 'Municipio Expedición', 'attr': {'for': 'xlInput'} }) }}            
+                                                 
+                                                {{ form_widget(edit_form.municipio) }}
+                                                
+                                            {{ form_label(edit_form.fecha_nacimiento, null, { 'label': 'Fecha De Nacimiento', 'attr': {'for': 'xlInput'} }) }}            
+                                                       
+                                                {{ form_widget(edit_form.fecha_nacimiento) }}
+                                                               
+                                              
+                                            {{ form_label(edit_form.depto_nacimiento, null, { 'label': 'Depto Donde Naciste?', 'attr': {'for': 'xlInput'} }) }}            
+                                                       
+                                                {{ form_widget(edit_form.depto_nacimiento) }}
+                                                
+                                            {{ form_label(edit_form.municipio_nacimiento, null, { 'label': 'Municipio Donde Naciste?', 'attr': {'for': 'xlInput'} }) }}            
+                                                  
+                                                {{ form_widget(edit_form.municipio_nacimiento) }}
+                                               
+                                            {{ form_label(edit_form.genero, null, { 'label': 'Genero', 'attr': {'for': 'xlInput'} }) }}            
+                                                     
+                                                {{ form_widget(edit_form.genero) }}
+                                                    
+                               
+                                </div>
+                            <div id="tabs1-1">
+                                           {{ form_label(edit_form.direccion_residencia, null, { 'label': 'Direccion de Residencia', 'attr': {'for': 'xlInput'} }) }}            
+                                                 
+                                                {{ form_widget(edit_form.direccion_residencia) }}
+                                               
+                                            {{ form_label(edit_form.telefono, null, { 'label': 'Telefono', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.telefono) }}
+                                                 
+                                            {{ form_label(edit_form.depto_ubicacion, null, { 'label': 'Departamento Donde vives?', 'attr': {'for': 'xlInput'} }) }}            
+                                                     
+                                                {{ form_widget(edit_form.depto_ubicacion) }}
+                                               
+                                            {{ form_label(edit_form.municipio_ubicacion, null, { 'label': 'Municipio Donde Vives', 'attr': {'for': 'xlInput'} }) }}            
+                                                   
+                                                {{ form_widget(edit_form.municipio_ubicacion) }}
+                                                
+                                            {{ form_label(edit_form.zona, null, { 'label': 'Zona', 'attr': {'for': 'xlInput'} }) }}            
+                                                 
+                                                {{ form_widget(edit_form.zona) }}
+                                                   
+                                            {{ form_label(edit_form.localidad_vereda, null, { 'label': 'Localidad', 'attr': {'for': 'xlInput'} }) }}            
+                                                    
+                                                {{ form_widget(edit_form.localidad_vereda) }}
+                                              
+                                            {{ form_label(edit_form.barrio, null, { 'label': 'Barrio', 'attr': {'for': 'xlInput'} }) }}            
+                                                     
+                                                {{ form_widget(edit_form.barrio) }}
+                                                     
+                                            {{ form_label(edit_form.estrato_socioeconomico, null, { 'label': 'Estrato', 'attr': {'for': 'xlInput'} }) }}            
+                                                     
+                                                {{ form_widget(edit_form.estrato_socioeconomico) }}
+                                               
+                                            {{ form_label(edit_form.sisben, null, { 'label': 'Sisben', 'attr': {'for': 'xlInput'} }) }}            
+                                                       
+                                                {{ form_widget(edit_form.sisben) }}
+                                                    
+                                            {{ form_label(edit_form.eps, null, { 'label': 'Eps', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.eps) }}
+                                                
+                                            {{ form_label(edit_form.ars, null, { 'label': 'Ars', 'attr': {'for': 'xlInput'} }) }}            
+                                                     
+                                                {{ form_widget(edit_form.ars) }}
+                                               
+                            </div>                            
+                            <div id="tabs1-2">
+                                               {{ form_label(edit_form.poblacion_vitima_conflito, null, { 'label': 'Población Victima Del Conflito', 'attr': {'for': 'xlInput'} }) }}            
+                                                        
+                                                {{ form_widget(edit_form.poblacion_vitima_conflito) }}
+                                                   
+                                            {{ form_label(edit_form.ultimo_depto_expulsor, null, { 'label': 'Depto de donde fuieste expulsado.?', 'attr': {'for': 'xlInput'} }) }}            
+                                                       
+                                                {{ form_widget(edit_form.ultimo_depto_expulsor) }}
+                                                  
+                                            {{ form_label(edit_form.tipo_municipio_expulsor, null, { 'label': 'Municipio de donde fuiste expulsado?', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.tipo_municipio_expulsor) }}
+                                                  
+                                            {{ form_label(edit_form.es_sector_privado, null, { 'label': 'Proveniente del sector privado?', 'attr': {'for': 'xlInput'} }) }}            
+                                                   
+                                                {{ form_widget(edit_form.es_sector_privado) }}
+                                                     
+                                            {{ form_label(edit_form.es_otro_municipio, null, { 'label': 'Vienes de otro municipio', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.es_otro_municipio) }}
+                                             
+                                            {{ form_label(edit_form.tipo_discapacidad, null, { 'label': 'Tiendes Discapacidades?', 'attr': {'for': 'xlInput'} }) }}            
+                                                   
+                                                {{ form_widget(edit_form.tipo_discapacidad) }}
+                                            {{ form_label(edit_form.capacidad_excepcionales, null, { 'label': 'Caplacidades Excepcionales', 'attr': {'for': 'xlInput'} }) }}            
+                                                
+                                                {{ form_widget(edit_form.capacidad_excepcionales) }}
+                                                   
+                                            {{ form_label(edit_form.etnia, null, { 'label': 'Pertneces a alguna Etnia?', 'attr': {'for': 'xlInput'} }) }}            
+                                                   
+                                                {{ form_widget(edit_form.etnia) }}
+                                                   
+                                            {{ form_label(edit_form.resguardo, null, { 'label': 'Perteneces a algun resguardo?', 'attr': {'for': 'xlInput'} }) }}            
+                                                    
+                                                {{ form_widget(edit_form.resguardo) }}
+                                                              
+                            </div>                            
+                            <div id="tabs1-3">
+                                {%if entity.acudiente is null%}
+                                    No Ingresado, aun.
+                                {%else%} 
+                                 <a   
+     href="{{ path('alumno_perfilacudientefiltro', { 'id': entity.acudiente.id }) }}"                                    
+     >
+                                {{entity.acudiente}}
+</a>                                     
+                                {%endif%}    
+                            </div>  
+                            
+                            <div id="tabs1-4">
+                                                  {{ form_label(edit_form.colegio_estudio_ultimo_ano, null, { 'label': 'Colegio donde estudio el ultimo año', 'attr': {'for': 'xlInput'} }) }}            
+                                               
+                                                {{ form_widget(edit_form.colegio_estudio_ultimo_ano) }}
+                                                  
+                                            {{ form_label(edit_form.direccion_colegio_proveniente, null, { 'label': 'Direccion ', 'attr': {'for': 'xlInput'} }) }}            
+                                                  
+                                                {{ form_widget(edit_form.direccion_colegio_proveniente) }}
+                                                     
+                                            {#{ form_label(edit_form.grado_proveniente, null, { 'label': 'Grado Cursado', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.grado_proveniente) }#}
+                                                   
+                                            {#{ form_label(edit_form.ano, null, { 'label': 'Año en el que terminaste', 'attr': {'for': 'xlInput'} }) }}            
+                                                       
+                                                {{ form_widget(edit_form.ano) }#}
+                                                    
+                                            {#{ form_label(edit_form.motivo_retiro, null, { 'label': 'Por que te retiraste?', 'attr': {'for': 'xlInput'} }) }}            
+                                                      
+                                                {{ form_widget(edit_form.motivo_retiro) }#}
+                                                     
+                            </div>                            
+                            
+                        </div>                    
+                   </div>
+                        <div style="clear: both"></div>
+                </div>        
+                
+
+           </div> 
+   <button style="float: right" class="ui-button-primary" type="submit">Actualizar</button>         
+        
+        
+
+ {{ form_widget(edit_form._token) }}
+<div style="clear: both;"></div>  
+        
+ </div>                  
+    </form>
+{
+{%endblock%}

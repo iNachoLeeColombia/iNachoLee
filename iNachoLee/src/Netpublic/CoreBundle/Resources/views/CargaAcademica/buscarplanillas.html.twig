@@ -1,0 +1,43 @@
+
+{%for ca in cargas_academicas%}
+    <div class="well" style="width: 90%;margin-left: 10px;">
+    <div>          
+        <div style="float: left;font-size: 12px;">
+            Grado {{ca.grupo.grado}}- Grupo {{ca.grupo}}<br/> {{ca.asignatura}}<br/><strong>{{ca.profesor}}</strong></div>
+           <div class="btn-group" >
+            <div class="btn-group" style="float: right;margin-left: 10px;">
+            
+            <button class="btn btn-info">Excel Todos-Profesor <i class="icon-arrow-right icon-white"></i></button>
+                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{path('profesor_getvariasplanillaadmin',{'tipo': 1,'profesor_id':ca.profesor.id})}}">Planillas Con Notas</a>
+                    </li>
+                    <li>
+                        <a href="{{path('profesor_getvariasplanillaadmin',{'tipo': 0,'profesor_id':ca.profesor.id})}}">Planilla Sin Notas</a>
+                    </li>
+                    
+                </ul>
+           
+            </div>
+       
+               <div class="btn-group" style="float: right;margin-left: 5px;">
+            <button class="btn btn-info">Excel <i class="icon-arrow-right icon-white"></i></button>
+                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{path('profesor_getunaplanillaadmin',{'tipo': 1,'carga_academica_id':ca.id})}}">Planillas Con Notas</a>
+                    </li>
+
+                    <li>
+                        <a href="{{path('profesor_getunaplanillaadmin',{'tipo': 0,'carga_academica_id': ca.id})}}">Planillas Sin Notas</a>
+                    </li>
+
+                </ul>
+           
+               </div>
+       </div>        
+    
+</div>
+</div>
+{%endfor%}

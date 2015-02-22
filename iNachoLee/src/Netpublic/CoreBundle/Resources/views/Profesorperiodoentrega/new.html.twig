@@ -1,0 +1,16 @@
+<h4>Fecha de Entrega de Profesores</h4>
+
+<form name="1" id="1" {#action="{{ path('profesorperiodoentrega_create') }}"#} method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn" onclick="createfecha_entregainfoAcademicaDefectoAno({{id_profesor}})">Crear</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="#" onclick="indexfecha_entregainfoAcademicaDefectoAno({{id_profesor}});">
+            Atras
+        </a>
+    </li>
+</ul>

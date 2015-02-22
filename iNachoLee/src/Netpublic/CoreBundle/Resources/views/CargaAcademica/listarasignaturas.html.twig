@@ -1,0 +1,38 @@
+<h3 style="text-align: center;">Lista De  Asignaturas</h3>
+{%for grado in grados%}
+<table class="table table-striped" style="margin-bottom: 15px;">
+    <tr><td  style="background-color: gray;
+             text-align: center;
+             font-size: px;
+             font-weight: bolder;
+             color: white;
+             ">
+            {{grado}}</td></tr>    
+    {%for asignatura in asignaturas if asignatura.grado.id==grado.id%}
+        <tr>
+        <td>    
+            <div style="float: left;">   
+        {{asignatura}} <br/>
+        <span style="font-size: 10px;color: gray;">Frecuencia en la Semana: {{asignatura.getFrucuenciaSemana}}
+            </span>
+          </div>          
+                
+                    
+                
+                <div style="float: right;">        
+        <span style="margin-left: 25px;">
+            <a class="btn" href="#" onclick="mostrarHorarioAsignatura({{asignatura.id}});"
+             >Tiempo Libre....</a>
+     </span>
+                    </div>
+                <div style="clear: both;"></div>          
+                <div id="capa_ram_ca_asignatura{{asignatura.id}}">
+         
+     </div>
+        </td>             
+      <tr>    
+     </tr>   
+    </tr>
+    {%endfor%}
+</table>
+{%endfor%}

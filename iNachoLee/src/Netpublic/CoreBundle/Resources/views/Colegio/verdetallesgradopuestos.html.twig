@@ -1,0 +1,27 @@
+{%for d in data%}
+<div style="margin-left: 20px;margin-top: 10px;font-size: 10px;"> 
+                <div style="float: left;width: 70%;">  
+                 {{d.nombre}}
+                {%if d.cambios>0%}    
+                    <span style="color: white;background-color: orange;font-weight: 900;font-size: 7px;">
+                    (Puestos Sin Actualizar).
+                </span>
+                {%endif%}
+             </div>
+                    <div style="float: left;width: 20%;">
+                                                 
+                            <a href="#" onclick="sincronizarNotasPuestos({{d.id}});"> <i class="icon-refresh"></i> Actualizar | 
+                            <a href="#" 
+                               id="anchor_gupo{{d.id}}"
+                               class="mas_detalles"
+                               onclick="mostrarVerMasVerMenos(
+                                           'capa_ram_mejores_estudiantes_grupo{{d.id}}',
+                                           'colegio/{{d.id}}/verdetallesgrupopuestos',this);">   Ver ++</a>
+              </div>       
+                    <div style="clear: both;"></div>      
+            <div id="capa_ram_mejores_estudiantes_grupo{{d.id}}">
+
+            </div>
+
+            </div>
+{%endfor%}

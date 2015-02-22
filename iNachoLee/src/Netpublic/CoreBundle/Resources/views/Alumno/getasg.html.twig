@@ -1,0 +1,9 @@
+<option value="*" >Asignaturas.</option>
+    {%for asignaturas__ in asignaturas if asignaturas__.getEsArea()%}
+            <option  style="margin-left: 2px;font-size: 16px;font-weight: bold;" value="{{asignaturas__.id}}"> {{asignaturas__}}</option>
+            {%for asignatura in asignaturas if not asignatura.getEsArea() and asignatura.area.id==asignaturas__.id%}
+                <option style="margin-left: 8px;" value="{{asignatura.id}}">
+                    &nbsp; &nbsp; {{asignatura}}
+                </option>
+            {%endfor%}
+    {%endfor%}

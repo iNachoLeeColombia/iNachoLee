@@ -1,0 +1,43 @@
+<h5>Observación</h5>
+
+<table class="table">
+    <tbody>
+        
+        <tr>
+            <th>Contenido</th>
+            <td>{{ entity.contenido }}</td>
+        </tr>
+        <tr>
+            <th>Profesor</th>
+            <td>{{ entity.dueno }}</td>
+        </tr>
+    </tbody>
+</table>
+ 
+<ul class="record_actions" style="list-style-type: none;">
+    <li style="float: left;">
+        {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or is_granted('PROFESOR')%}
+        <a class="btn" onclick="indexObservacionAlumno({{entity.alumno.id}});" href="#">
+            Atras
+        </a>
+        {%endif%}
+        {% if is_granted('ROLE_ESTUDIANTE')%}
+        <a class="btn" onclick="indexObservacionPerfilAlumno({{entity.alumno.id}});" href="#">
+            Atras
+        </a>
+        {%endif%}            
+    </li>
+    {% if is_granted('ROLE_RECTOR') or  is_granted('ROLE_AUXILIAR') or is_granted('PROFESOR')%}
+    <li style="float: left;">
+        <a class="btn" onclick="editObservacionAlumno({{entity.id}});" href="#">
+            Editar
+        </a>
+    </li>
+    <li style="float: left;margin-left: 5px;">
+        <form id="1" name="1" {#action="{{ path('observacion_delete', { 'id': entity.id }) }}"#} method="post">
+            {{ form_widget(delete_form) }}
+                <button onclick="deleteObservacionAlumno('{{entity.id}}','{{entity.alumno.id}}');" class="btn btn-warning" type="submit">Eliminar</button>
+        </form>
+    </li>
+    {%endif%}
+</ul>

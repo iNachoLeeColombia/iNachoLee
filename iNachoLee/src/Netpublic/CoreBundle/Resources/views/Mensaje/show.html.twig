@@ -1,0 +1,71 @@
+{% extends es_ajax ? "NetpublicCoreBundle::layout_ajax.html.twig" :"NetpublicCoreBundle::layout.html.twig" %}
+{%block contenido%}  
+{%if not es_ajax%}
+<h4 style="color: green">Mensaje Enviado Correctamente.</h4>
+{%endif%}
+<h5>Mensaje</h5>
+
+<div style="margin-bottom: 10px;text-align: right;">    
+    {%if entity.tipo==0%}
+                    <span class="label">Información</span> 
+                {%elseif entity.tipo==1%}   
+                    <span class="label label-important">LLamado De Atención.</span> 
+                {%elseif  entity.tipo==2%}
+                    <span class="label label-success">Felicitaciones</span>                 
+                {%elseif  entity.tipo==3%}
+                    <span class="label label-warning">Envio De Boletines</span> 
+                {%endif%}                    
+</div>
+
+<div class="well">
+    {%if entity.getEsDocumentoAdjunto%}
+    <div class="well">
+        <span >Documento adjunto: </span> 
+        
+        <a target="_blank" href="{{asset('uploads/documents/'~entity.getUrlDocAdjunto())}}">Documendo Anejo.(Descargar Ahora)</a>
+    </div>
+    {%endif%}    
+        <div style="margin-bottom: 3px;">
+            <span style="font-size: x-large">Asunto: {{entity.asunto}}</span> 
+    </div>    
+        <div style="background-color: #eee;" class="well">
+            <div>           
+ {%if puedes_mostrar_enlace_descarga==1%}
+     {%set alumno_acudiente=destinatario.alumno%}               
+     {%if alumno_acudiente.tipo==0 %}    
+        <a  target="_blank" href="{{ path('alumno_imprimirboletin', { 'alumno_id': alumno_acudiente.id }) }}">    
+            Boletin Academico(Ver Online)
+        </a>
+                    <a  style="margin-left: 20px;" target="_blank" href="{{ path('alumno_imprimirboletin', { 'alumno_id': alumno_acudiente.id,'_format': 'pdf' }) }}">    
+            Boletin Academico<img src="{{asset('bundles/netpubliccore/images/pdficon.gif')}}">.
+        </a>
+      {%else%}
+         {%set hijos=alumno_acudiente.getAlumnoAcudiente%}
+         {%for hijo in hijos%}  
+                    <h5 style="color: orchid;">{{hijo}}</h5>           
+        <a  target="_blank" href="{{ path('alumno_imprimirboletin', { 'alumno_id': hijo.id }) }}">    
+            Boletin Academico(Ver Online)
+        </a>
+                   <a  style="margin-left: 20px;" target="_blank" href="{{ path('alumno_imprimirboletin', { 'alumno_id': hijo.id,'_format': 'pdf' }) }}">    
+            Boletin Academico<img src="{{asset('bundles/netpubliccore/images/pdficon.gif')}}">.
+        </a>
+         {%endfor%}           
+                    
+     {%endif%} 
+{%endif%}                    
+                </div>
+            {{ entity.cuerpohtml|raw }}
+            </div>
+     
+        <a href="#" onclick="indexMensajeinfoAcademicaDefectoAno();">
+            <i class="icon-arrow-left"></i>  Bandeja entrada
+        </a>  |
+        
+<a href="{{ path('mensaje_new') }}"> <i class="icon-pencil"></i> Redactar.
+   
+        </a>
+
+</div>    
+{%endblock%}
+
+

@@ -1,0 +1,16 @@
+{%for grado in grados%}
+<div style="padding-left: 20px;margin-top: 10px;">
+    <div style="float: left;width: 30%;">{{grado}} </div> 
+    <div  style="float: left;" id="mostrar_fin_gneracion{{grado.id}}">
+        <a  href="#" onclick="verDetallesGradoHoracioClase({{grado.id}});">Ver ++</a> | 
+        <i class="icon-retweet"></i> <a href="#"  onclick="generarPorParteGradoHorarioClase({{grado.id}});">Generar</a>    
+    </div>    
+    
+    <div style="clear: both;"></div>
+    <div style="display: none;" id="capa_detalles_grado{{grado.id}}">
+    </div>
+    <div style="color: gainsboro;text-align: left;">
+        -------------------------------------------------------------------------------------------------------</div>
+    
+</div>        
+{%endfor%}

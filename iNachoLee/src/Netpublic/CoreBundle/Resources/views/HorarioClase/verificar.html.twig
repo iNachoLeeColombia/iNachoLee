@@ -1,0 +1,33 @@
+
+{%if cargas_academicas|length>0%}
+
+<table class="table table-condensed">
+    <thead>
+    <th>#</th>
+    <th>Carga Academica</th>
+    <th style="color: orangered;">Error</th>
+    </thead>
+{%for ca in cargas_academicas%}
+ <tr>
+     <td>{{loop.index}}</td> 
+     <td>{{ca}}</td>
+     <td>
+        {%if ca.getEstadoAsignacion==3 %} 
+             <span>
+                 No hay fichas Disponibles para el profesor, 
+                 Aunque el grupo si tiene disponibilidad
+             </span>
+        {%endif%}
+        {%if ca.getEstadoAsignacion==4 %} 
+             <span>
+                 No hay fichas disponibles para el profesor y el grupo.
+             </span>
+        {%endif%}
+             
+     </td>        
+ </tr>        
+{%endfor%}
+</table>
+{%else%}
+<h2 style="color: green;">Los Horarios De Clase Se Generaran Exitosamente.</h2>
+{%endif%}

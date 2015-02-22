@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>    
+{% 
+include 'NetpublicCoreBundle:Alumno:_imprimirboletin1.pdf.twig' with {
+                  'datos':datos,
+                  'alumno':alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'observaciones':observaciones
+
+                   } only 
+%}
+</pdf>        

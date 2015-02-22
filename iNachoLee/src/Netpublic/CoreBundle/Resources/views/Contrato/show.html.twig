@@ -1,0 +1,36 @@
+           <div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3>Detalles Del Contrato</h3>
+            </div>
+<div class="modal-body"> 
+ <div>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Asignatura</th>
+            <td>{{ entity.asignatura }}</td>
+        </tr>
+        <tr>
+            <th>Horas Contratadas Semanales</th>
+            <td>{{ entity.getHorasBuffer() }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>  
+ <a onclick="indexcontratoinfoAcademicaDefectoAno({{id_profesor_profesor}});" class="btn " ><< Atras</a>                   
+
+
+<div style="clear: both"></div>                       
+            </div>
+            <div class="modal-footer">
+                <form id="1" name="1" {#action="{{ path('contrato_delete', { 'id': entity.id }) }}"#} method="post">
+            {{ form_widget(delete_form) }}
+                        
+                        <button type="submit" onclick="deletecontratoinfoAcademicaDefectoAno('{{entity.id}}','{{id_profesor_profesor}}');" class="btn  btn-primary">Eliminar</button>
+<a onclick="indexcontratoinfoAcademicaDefectoAno({{id_profesor_profesor}});" class="btn">Atras</a>                                                
+        </form>
+            </div>

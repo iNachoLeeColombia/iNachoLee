@@ -1,0 +1,36 @@
+{%for alumno in alumnos%}
+<div class="col-xs-5 no-imprimir" style="border: lightgray dotted thin;font-size: 13px;color: gray;margin: 0 0;padding: 0 0;">
+    <a target="_blank" style="margin: 0 0;padding: 0 0;" href="{{ path('alumno_perfiladmin', { 'id': alumno.id }) }}"> 
+         <div class="col-xs-12" style="margin: 0 0;padding: 0 0;">
+             <div class="col-lg-3" style="margin: 0 0;padding: 0 0;"> 
+             {%if alumno.usuario.getEsFotoperfil()==TRUE%}
+                <img  style="width:45px;
+                     height: 45px;                                          
+                    " src="{{asset('uploads/documents/strongalumno'~alumno.id~'.jpg')}}" />        
+            {%else%}
+                <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+            {%endif%}
+           </div>     
+           <div class="col-lg-9" >        {{alumno|lower}}
+        {%if alumno.getSituacionAcademicaAnoAnterior==1 and alumno.getEsHabilitacion()==0%}
+        <span class="label label-success label-sm arrowed-in arrowed-in-right pull-right">
+            <i class="icon icon-ok-circle"></i>   Aprobo
+        </span>
+        {%endif%}
+        {%if alumno.getSituacionAcademicaAnoAnterior==2 and alumno.getEsHabilitacion()==0%}
+        <span class="label label-danger label-sm arrowed-in arrowed-in-right pull-right">Reprobo</span>
+        {%endif%}
+        {%if alumno.getEsHabilitacion()==1%}
+        <span class="label label-warning label-sm arrowed-in arrowed-in-right pull-right">Recupero</span>
+        {%endif%}
+        </div>
+         </div>        
+       </a>
+        
+</div>
+<div class="col-xs-1"></div>
+
+{%if loop.index%2==0%}
+<div class="col-xs-12" style="margin-top: 10px;"></div>
+{%endif%}
+{%endfor%}

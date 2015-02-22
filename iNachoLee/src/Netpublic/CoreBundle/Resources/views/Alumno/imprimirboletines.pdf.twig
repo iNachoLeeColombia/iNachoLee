@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>                
+             {%for alumno_datos in alumnos_datos%}
+                {%if alumno_datos.plantilla==1%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin1.pdf.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'rectores':rectores,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'observaciones':alumno_datos.observaciones
+
+                   } only %}
+                 {%endif%}  
+                {%if alumno_datos.plantilla==2%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin2.pdf.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'rectores':rectores,
+                  'observaciones':alumno_datos.observaciones
+
+                   } only %}
+                 {%endif%}  
+                {%if alumno_datos.plantilla==3%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin3.pdf.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'rectores':rectores,
+                  'observaciones':alumno_datos.observaciones,
+                  'nro_alumnos_grupo':alumno_datos.nro_alumnos_grupo,
+                  'promedio_grupo':alumno_datos.promedio_grupo,
+                  'promedio_alumno':alumno_datos.promedio_alumno.promedio_estudiante,
+                  'puesto_alumno':alumno_datos.promedio_alumno.puesto
+
+                   } only %}
+                 {%endif%}
+             {%if alumno_datos.plantilla==4%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin4.pdf.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'rectores':rectores,
+                  'observaciones':alumno_datos.observaciones
+
+                   } only %}
+                 {%endif%}  
+             {%if alumno_datos.plantilla==5%}
+                 {% include 'NetpublicCoreBundle:Alumno:_imprimirboletin5.pdf.twig' with {
+                  'datos':alumno_datos.datos,
+                  'alumno':alumno_datos.alumno,
+                  'colegio':colegio,
+                  'ano_escolar_activo':ano_escolar_activo,
+                  'periodo_escolar_activo': periodo_escolar_activo,
+                  'periodos_escolares': periodos_escolares,
+                  'rectores':rectores,
+                  'observaciones':alumno_datos.observaciones,
+                  'nro_alumnos_grupo':alumno_datos.nro_alumnos_grupo,
+                  'promedio_grupo':alumno_datos.promedio_grupo,
+                  'promedio_alumno':alumno_datos.promedio_alumno.promedio_estudiante,
+                  'puesto_alumno':alumno_datos.promedio_alumno.puesto
+
+                   } only %}
+                 {%endif%}  
+        
+             {%endfor%}         
+</pdf>
+        

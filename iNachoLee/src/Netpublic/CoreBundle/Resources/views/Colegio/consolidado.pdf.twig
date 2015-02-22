@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>
+    <dynamic-page page-size="letter-landscape">
+    <div  style="font-size: 10px;width: 970px;color:gray;" >              
+      {%for datos_grado in x %}                           
+           {%if loop.index<=6%} 
+           <div style="float: left;width: 158px;height: 500px;">
+               <div border.style="solid" border.color="#0070A8" style="text-align: center;
+                    height: 50px;
+                    background-color: #005C8A;
+                    color: white;
+                    font-size: 18px;                    
+                    "><strong>{{datos_grado[0]}}</strong></div>
+               <div>
+                   <div border.style="solid" border.color="#0070A8"   style="background-color: #FFFFFF;text-align: center;">
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alum</div>
+                             <div  border.style="solid" border.color="#0070A8"   style="float:left;width: 30px;">Super</div>
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alto</div>           
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Basico</div>                                                     
+                             <div  style="float:left;width: 30px;">Bajo</div>                                                             
+                         </div> 
+                   {%for data_area in datos_grado[1]%}
+                       <div  border.style="solid" border.color="#0070A8"  
+                             style="background-color: #E1EEF4;height: 25px;font-size: 14px;" >
+                        {{data_area[0]}}</div>
+                         
+                          <div style="width: 100%;"></div>           
+                          <div border.style="solid" border.color="#0070A8" style="background-color: white;">                             
+                         {%for data in data_area[1]%}                                    
+                                  <div {%if loop.index!=loop.last%}border.style="solid" border.color="#0070A8"{%endif%}  style="background-color: white;float:left;text-align: center;width: 30px;">{{data}}</div>
+                         {%endfor%}
+                         </div>   
+                            <div style="width: 100%;"></div>
+                   {%endfor%}
+               </div>
+           </div>             
+           {%endif%} 
+      {%endfor%} 
+     </div>       
+     </dynamic-page> 
+     <dynamic-page page-size="letter-landscape">   
+     <div  style="font-size: 10px;width: 970px;color:gray;" >              
+      {%for datos_grado in x %}                           
+           {%if loop.index>6 and loop.index<=12%} 
+           <div style="float: left;width: 158px;height: 500px;">
+               <div border.style="solid" border.color="#0070A8" style="text-align: center;
+                    height: 50px;
+                    background-color: #005C8A;
+                    color: white;
+                    font-size: 18px;                    
+                    "><strong>{{datos_grado[0]}}</strong></div>
+               <div>
+                   <div border.style="solid" border.color="#0070A8"   style="background-color: #FFFFFF;text-align: center;">
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alum</div>
+                             <div  border.style="solid" border.color="#0070A8"   style="float:left;width: 30px;">Super</div>
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alto</div>           
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Basico</div>                                                     
+                             <div  style="float:left;width: 30px;">Bajo</div>                                                             
+                         </div> 
+                   {%for data_area in datos_grado[1]%}
+                       <div  border.style="solid" border.color="#0070A8"  
+                             style="background-color: #E1EEF4;height: 25px;font-size: 14px;" >
+                        {{data_area[0]}}</div>
+                         
+                          <div style="width: 100%;"></div>           
+                          <div border.style="solid" border.color="#0070A8" style="background-color: white;">                             
+                         {%for data in data_area[1]%}                                    
+                                  <div {%if loop.index!=loop.last%}border.style="solid" border.color="#0070A8"{%endif%}  style="background-color: white;float:left;text-align: center;width: 30px;">{{data}}</div>
+                         {%endfor%}
+                         </div>   
+                            <div style="width: 100%;"></div>
+                   {%endfor%}
+               </div>
+           </div>             
+           {%endif%} 
+      {%endfor%} 
+     </div>      
+    </dynamic-page>
+         <dynamic-page page-size="letter-landscape">   
+     <div  style="font-size: 10px;width: 970px;color:gray;" >              
+      {%for datos_grado in x %}                           
+           {%if loop.index>12%} 
+           <div style="float: left;width: 158px;height: 500px;">
+               <div border.style="solid" border.color="#0070A8" style="text-align: center;
+                    height: 50px;
+                    background-color: #005C8A;
+                    color: white;
+                    font-size: 18px;                    
+                    "><strong>{{datos_grado[0]}}</strong></div>
+               <div>
+                   <div border.style="solid" border.color="#0070A8"   style="background-color: #FFFFFF;text-align: center;">
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alum</div>
+                             <div  border.style="solid" border.color="#0070A8"   style="float:left;width: 30px;">Super</div>
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Alto</div>           
+                             <div border.style="solid" border.color="#0070A8"    style="float:left;width: 30px;">Basico</div>                                                     
+                             <div  style="float:left;width: 30px;">Bajo</div>                                                             
+                         </div> 
+                   {%for data_area in datos_grado[1]%}
+                       <div  border.style="solid" border.color="#0070A8"  
+                             style="background-color: #E1EEF4;height: 25px;font-size: 14px;" >
+                        {{data_area[0]}}</div>
+                         
+                          <div style="width: 100%;"></div>           
+                          <div border.style="solid" border.color="#0070A8" style="background-color: white;">                             
+                         {%for data in data_area[1]%}                                    
+                                  <div {%if loop.index!=loop.last%}border.style="solid" border.color="#0070A8"{%endif%}  style="background-color: white;float:left;text-align: center;width: 30px;">{{data}}</div>
+                         {%endfor%}
+                         </div>   
+                            <div style="width: 100%;"></div>
+                   {%endfor%}
+               </div>
+           </div>             
+           {%endif%} 
+      {%endfor%} 
+     </div>      
+    </dynamic-page>
+    
+</pdf>        

@@ -1,0 +1,41 @@
+<h1>CondicionCargaacademicacolegio</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Tipo</th>
+            <td>{{ entity.tipo }}</td>
+        </tr>
+        <tr>
+            <th>Dia_columna</th>
+            <td>{{ entity.diacolumna }}</td>
+        </tr>
+        <tr>
+            <th>Hora_fila</th>
+            <td>{{ entity.horafila }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('condicioncargaacademicacolegio') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('condicioncargaacademicacolegio_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('condicioncargaacademicacolegio_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

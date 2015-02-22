@@ -1,0 +1,52 @@
+{%for grupo in usuarios%}
+{%if loop.first%}
+<div class="col-md-2 img-circle" style="font-size: 10px;padding: 10px;background-color: #FFFFFF;">
+      <i class="fa fa-users fa-2x"></i> <br/>
+      <button 
+          {%if tipo==1%}
+          onclick="mostrarListaGrupo('container-grupo-fuente','container-listagrupo-fuente','0')"
+          {%endif%}
+          {%if tipo==2%}
+          onclick="mostrarListaGrupo('container-grupo-destino','container-listagrupo-destino','0')"
+          {%endif%} 
+          >
+              Sin Grupo
+      </button>
+          <br/>
+          
+          <label>
+                <input type="radio"
+                   value="0"
+                   class="{%if tipo==1%}grupo_fuente{%elseif tipo==2%}grupo_destino{%endif%}"
+                   id="grupo_0"
+                   name="label"
+                   >
+                </label>
+                  
+</div>
+{%endif%}
+<div class="col-md-2  img-circle" style="font-size: 10px;margin-left: 5px;padding: 10px;background-color: #FFFFFF;">
+      <i class="fa fa-users fa-2x"></i> <br/>
+      <button 
+          {%if tipo==1%}
+          onclick="mostrarListaGrupo('container-grupo-fuente','container-listagrupo-fuente','{{grupo.id}}')"
+          {%endif%}
+          {%if tipo==2%}
+          onclick="mostrarListaGrupo('container-grupo-destino','container-listagrupo-destino','{{grupo.id}}')"
+          {%endif%} 
+          >
+           {{grupo}}
+      
+      </button>
+                <br/>
+                <label>
+                <input type="radio"
+                   value="{{grupo.id}}"
+                   class="{%if tipo==1%}grupo_fuente{%elseif tipo==2%}grupo_destino{%endif%}" type="checkbox"
+                   id="grupo{{grupo.id}}"
+                   name="label"
+                   >
+                </label>
+                
+</div>
+{%endfor%}

@@ -1,0 +1,258 @@
+<div class="well" id="resultado_filtros">
+    <div style="background-color: gray;font-size: 26px;height: 40px;padding-top: 9px;padding-left: 9px;font-weight: bolder;color: white;width: 5%;">
+        {{nro_usuarios}}
+    <script>  
+$(function ()  
+{ $(".example").popover();  
+});  
+</script>  
+        </div> <span style="color: gray;">Usuarios cargados</span>
+  <div class="pagination pagination-right" >  
+{#    <ul>
+{% if paginador.currentPage > 1 %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('usuario_buscar', { 'page': paginador.previousPage}) }}');">Anterior</a></li>
+{% else %}
+<li class="previous disabled"><a href="#">Anterior</a></li>
+{% endif %}
+{% for page in paginador.minPageInRange..paginador.maxPageInRange %}
+{% if page == paginador.currentPage %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+{% else %}
+<li><a onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('usuario_buscar', { 'page': page }) }}');">{{ page
+}}</a></li>
+{% endif %}
+{% endfor %}
+{% if paginador.currentPage < paginador.lastPage %}
+<li><a href="#" 
+        onclick="mostrarFiltroPaginador('capa_ram_buscar_usuarios','{{ path('usuario_buscar', { 'page': paginador.nextPage }) }}');">Siguiente</a></li>
+{% else %}
+        <li class="disabled"><a href="#">Siguiente</a></li>
+{% endif %}
+</ul>#}
+</div>
+{%for u in usuarios%}        
+
+  {%if u.getEsAlumno%}      
+
+       {%set alumno=u.alumno%}  
+      
+        <div   style="
+              color:gray;
+              font-size: 10px;             
+              float: right;              
+              padding: 10px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-top: 0px;
+              margin-right: 50px;
+              
+              "
+                class="example well"
+   rel="popover"
+   data-content="
+   Año Escolar({{ano_escolar_activo}}) <br/>
+   {%if alumno.getEsNuevo==1%}
+      Estudiante Nuevo
+   {%else%}   
+      Estudiante Antiguo
+   {%endif%}</br>
+   {%if alumno.repitente==1%}
+      Estudiante Repitente
+   {%endif%}</br>
+
+    {%for m_a in alumno.getMatriculaAlumno%}  
+      {%if m_a.getEsUltimaMatricula==1 and m_a.ano.id==ano_escolar_activo.id%}
+        Ultima Matricula Realizada {{m_a.ano}}</br>
+      {%else%}  
+        No Ha realizado Proceso de Matricula para el ano Escolar {{ano_escolar_activo}}</br>
+      {%endif%}  
+    {%endfor%}</br>  
+{%for seg in u.alumno.getNivelAcademico if seg.puesto != null%}  
+                   {%if seg.tipo==0%}
+                       Puesto-Sede:{{seg}}
+                   {%endif%}        
+                   {%if seg.tipo==1%}
+                       Puesto-Grado:{{seg}}
+                   {%endif%}        
+                   {%if seg.tipo==2%}
+                       Puesto-Grupo:{{seg}}
+                   {%endif%}                                   
+{%endfor%}</br> 
+{%if alumno.getSituacionAcademicaAnoAnterior==1%}
+<span style='color:green;'>  Situancion Academica Año Anterior: <strong>APROBO</strong></span>                        
+<br/>
+{%for gp in alumno.grado.getGradoPromovido%}
+    {{gp}}<br/>
+{%endfor%}
+{%elseif alumno.getSituacionAcademicaAnoAnterior==2%}     
+  <span style='color:red;'>Situancion Academica Año Anterio: <strong>RE-APROBO</strong></span>                        
+  <br>
+{%elseif alumno.getSituacionAcademicaAnoAnterior==8%}                                              
+  Situancion Academica Año Anterior:No Culmino Año Escolar
+{%else%}  
+  No Promovido Aun.
+{%endif%}</br>                       
+{%if alumno.getEsHabilitacion==1%}
+  <span style='color:red;'>Tiene La posibilidad De Habilitar</span>
+{%endif%}</br>  
+{%if alumno.getCondicionFinalizarAnoAnterior==3%}  
+  Situación Academica Año actual: DESERTO
+{%elseif alumno.getCondicionFinalizarAnoAnterior==5%}  
+  Situación Academica Año actual: Translado a otra institucion
+{%else%}   --
+{%endif%}  </br>
+{%if alumno.getEsrecuperacion()==1%}
+    Realizo Actividades de Recuperación exitosamente
+{%endif%}
+
+       
+   
+   
+   "
+   data-original-title="{{alumno}}(@{{alumno.usuario}})"
+              >
+                  <div class="well" style="
+                       float: left;
+                       width: 20px;
+                       height: 20px;
+                       text-align: center;
+                       padding: 0 0 0 0;
+                       background-color: lightgray;
+                       margin-right: 5px;
+                       margin-top: 15px;
+                       margin-bottom: 0px;
+                       " >      
+                      <input type="checkbox" value="{{alumno.usuario.id}}" class="fila_alumno_filtro">
+            </div>
+ <div class="well" style="float: right;
+                       width: 150px;
+                       margin-bottom: 0px;
+                       margin-right: 0px">     
+<a {%if alumno.tipo==0%}
+     href="{{ path('alumno_perfiladmin', { 'id': alumno.id }) }}"
+   {%else%}
+     href="{{ path('alumno_perfilacudientefiltro', { 'id': alumno.id }) }}"                
+   {%endif%}
+ >
+    <div>
+            {%if u.getEsfotoperfil %}
+                        
+                        <img style="width:30px;height: 40px;float: left;margin-right: 10px;" src="{{asset('uploads/documents/strongalumno'~alumno.id~'.jpg')}}" />        
+            {%else%}
+                        <img style="width:30px;height: 40px;float: left;" src="{{asset('uploads/documents/miniavatar.png')}}" />        
+            {%endif%}
+                         
+                        <span style="font-weight: bolder;color: rgb(59, 89, 152);">{{alumno}}(@{{alumno.usuario}})</span>
+                    
+                                       
+                    </div>        
+             </a>
+          <div style="clear: both;"></div>
+          <div style="margin: 0px 0px;padding: 0px 0px">              
+              <span>Grado</span>:{{alumno.grado}}
+              <span>Grupo</span>:{{alumno.grupo}}
+              <span>Movil</span>:{{alumno.movil}}
+              
+          </div>
+             
+             </div>
+                </div>
+                
+  {%else%}
+      {%set profe=u.profesor%}  
+        <div  class="well example" 
+              style="
+              color:gray;
+              font-size: 10px;           
+              float: left;              
+              padding: 10px;
+              padding-bottom: 0px;
+              padding-right: 0px;
+              padding-top: 0px;
+              margin-right: 10px;
+              background-color: gainsboro;
+              "
+              
+   rel="popover"
+   data-content="<span>Sede:{{profe.sede}}</span>
+       {%for grupos_director in profe.getGrupoDir%}
+                Director de Grupo:{{grupos_director}}
+       {%endfor%}
+       Nivel Academico: {{profe.getNivelEducativoAprobado}}         
+   "
+   data-original-title="{{profe}}(@{{profe.usuario}})"   
+  
+              >
+             <div class="well" style="
+                       float: left;
+                       width: 20px;
+                       height: 20px;
+                       text-align: center;
+                       padding: 0 0 0 0;
+                       background-color: lightgray;
+                       margin-right: 5px;
+                       margin-top: 15px;
+                       " >       
+            <input type="checkbox" value="{{profe.usuario.id}}" class="fila_alumno_filtro">
+            </div>
+                  
+            <div class="well" style="float: right;
+                       width: 150px;
+                       margin-bottom: 0px;
+                       margin-right: 0px;
+                       margin-top: 0px;
+                       padding-top: 0px;
+                       
+                       "
+                      
+                       > 
+                     {%if profe.tipo==2%}
+<a href="#" onclick="newgestionarCargaAcademica('{{loop.index}}','{{profe.id}}');"><div style="                           
+                           color: orangered;
+                           font-weight: bolder;
+                           float: right;
+                           width: 70%;
+                           ">< CargaAcademica ></div>
+                        
+                         </a>      
+                     {%endif%}
+<a href="{{ path('profesor_perfiladmin', { 'id': profe.id }) }}"
+    >
+                <div>
+                     {%if u.getEsFotoperfil()==TRUE%}
+                    <img  style="width:30px;
+                          height: 40px;
+                          float: left;
+                          margin-right: 10px;
+                          " src="{{asset('uploads/documents/miniprofesor'~profe.id~'.jpg')}}" />        
+
+                {%else%}
+                    <img style="width:30px;height: 40px;float: left;"  src="{{asset('uploads/documents/miniavatar.png')}}" alt="InachoLee" />                    
+                {%endif%} 
+          
+                    <span style="font-weight: bolder;color: rgb(59, 89, 152);">{{profe}}(@{{profe.usuario}})</span><br/>
+                           
+                    </div>        
+             </a>  </div>            
+            <div style="clear: both;"></div>
+            <div id="profe{{profe.id}}"
+                 style="
+                 display: none;
+                 width: 700px;
+                
+                 ">                
+            
+           </div>      
+            
+                </div>
+        
+       
+       
+        {%if loop.index%3==0%}
+          <div style="clear: both;"></div>      
+        {%endif%}
+      
+  {%endif%}      
+{%endfor%}        
+ <div style="clear: both;"></div>       
+</div>

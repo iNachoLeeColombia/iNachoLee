@@ -1,0 +1,61 @@
+{%if entities|length>0%}
+<h3>Lista De Publicaciones.</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha Publicación En Muro.</th>            
+            <th>Tipo De Publicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('auditoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>
+                <a {%if entity.tipo==1%}
+                        href="{{path('auditoria_versolicitudes')}}"
+                    {%elseif entity.tipo==2%}
+                        href="#"
+                    {%else%}
+                        
+                    {%endif%}
+                    target="_blank">
+                    {{ entity.nombre }}
+                 </a>   
+            </td>
+            <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d H:i:s') }}{% endif %}
+                -- {% if entity.fechafinal %}{{ entity.fechafinal|date('Y-m-d H:i:s') }}{% endif %}
+            </td>            
+            <td>
+                {%if entity.tipo==1%}
+                    Auditoria
+                {%elseif entity.tipo==2%}
+                    Revisión De Boletines Dir Grupo   
+                {%elseif entity.tipo==3%}
+                    Revisión De Boletin Alumno   
+                
+                {%else%}
+                {%endif%}    
+            </td>
+            <td>
+                    <a href="#" onclick="mostrarEditarAuditoria({{entity.id}});">editar & publicar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{%else%}
+
+<h2 style="text-align: center;"> No hay Publicaciones, para mostrar.</h2>
+{%endif%}
+<ul>
+    <li>
+        <a href="#" onclick="mostrarNewAuditoria();">
+            Nueva Publicación.
+        </a>
+    </li>
+</ul>

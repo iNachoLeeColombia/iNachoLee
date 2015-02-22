@@ -1,0 +1,31 @@
+
+{%for alumno in entities%}
+<div class="col-lg-6" style="border-top: whitesmoke solid thin;border-right:  whitesmoke solid thin;padding-top: 4px;">     
+     <div  class="col-lg-2">    
+           <a   class="thumbnail" href="{{ path('profesor_perfiladmin', { 'id': alumno.id }) }}">   
+            {%if alumno.usuario.getEsFotoperfil()==TRUE%}
+                <img  style="width:45px;
+                     height: 45px;                                          
+                    " src="{{asset('uploads/documents/strongprofesor'~alumno.id~'.jpg')}}" />        
+            {%else%}
+                 <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+            {%endif%} 
+        </a>      
+        </div>         
+         <div  class="col-lg-6" style="text-align: left;padding: 0 0 0 0;">   
+       
+           <a href="{{ path('profesor_perfiladmin', { 'id': alumno.id }) }}">
+        {{alumno}}
+    </a>    <br/>
+    <a href="#"
+       onclick="verImformeEstudinteicfesGeneral({{alumno.id}});"
+       ><i class="fa fa-bar-chart-o"></i>  Ver informe.</a>     
+                
+   </div>
+            
+  </div>
+  
+
+     
+{%endfor%}
+       

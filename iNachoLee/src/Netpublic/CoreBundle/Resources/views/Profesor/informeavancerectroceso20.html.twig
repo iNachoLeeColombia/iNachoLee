@@ -1,0 +1,72 @@
+<div class="col-lg-12" style="border: whitesmoke solid thin;">
+  <div class="col-lg-6" style="overflow-y: scroll;height: 280px;">
+  <h6 class="light-grey"><i class="fa fa-user green"></i> Profesores pilosos</h6>   
+    {%for profe_bueno in profesores_buenos%}
+    <div style="border-top: whitesmoke solid thin;padding-top: 5px;">     
+       <div class="col-lg-4">    
+        <a class="thumbnail" href="{{ path('profesor_perfiladmin', { 'id': profe_bueno.profesor.id }) }}">   
+            {%if profe_bueno.profesor.usuario.getEsFotoperfil()==TRUE%}
+                <img  style="width:45px;
+                     height: 45px;                                          
+                    " src="{{asset('uploads/documents/strongprofesor'~profe_bueno.profesor.id~'.jpg')}}" />        
+            {%else%}
+                 <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+            {%endif%} 
+        </a>      
+        </div>         
+           <div  class="col-lg-8">   
+       
+           <a href="{{ path('profesor_perfiladmin', { 'id': profe_bueno.profesor.id }) }}">
+        &nbsp;&nbsp;{{profe_bueno.profesor}}
+    </a>
+        {%if profe_bueno.avance==0%}
+           <p class="red" style="padding-left: 20px;">Profesor perezoso o falla al iniciar sesion.</p>     
+        {%else%}        
+           <div data-percent="{{profe_bueno.avance}}%" class="progress">
+               <div style="width:{{profe_bueno.avance}}%;" class="progress-bar progress-bar-success"></div>
+            </div>
+        {%endif%}        
+   </div>
+    <div class="clearfix"></div>        
+  </div>
+  
+{%endfor%}
+      </div>
+
+    
+    
+    <div class="col-lg-6" style="overflow-y: scroll;height: 280px;">
+            <h6 class="light-grey"><i class="fa fa-user red"></i> Profesores atrasados</h6>   
+    {%for profe_malo in profesores_malos%}
+    <div style="border-top: whitesmoke solid thin;padding-top: 5px;">     
+       <div class="col-lg-4">    
+        <a class="thumbnail" href="{{ path('profesor_perfiladmin', { 'id': profe_malo.profesor.id }) }}">   
+            {%if profe_malo.profesor.usuario.getEsFotoperfil()==TRUE%}
+                <img  style="width:45px;
+                     height: 45px;                                          
+                    " src="{{asset('uploads/documents/strongprofesor'~profe_malo.profesor.id~'.jpg')}}" />        
+            {%else%}
+                 <img style="width:45px;height: 45px;"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="InachoLee" />                    
+            {%endif%} 
+        </a>      
+        </div>         
+           <div  class="col-lg-8">   
+       
+           <a href="{{ path('profesor_perfiladmin', { 'id': profe_malo.profesor.id }) }}">
+        &nbsp;&nbsp;{{profe_malo.profesor}}
+    </a>
+        {%if profe_malo.avance==0%}
+           <p class="red" style="padding-left: 20px;">Profesor perezoso o falla al iniciar sesion.</p>     
+        {%else%}        
+           <div data-percent="{{profe_malo.avance}}%" class="progress">
+               <div style="width:{{profe_malo.avance}}%;" class="progress-bar progress-bar-danger"></div>
+            </div>
+        {%endif%}        
+   </div>
+           <div class="clearfix"></div>        
+  </div>
+  
+{%endfor%}
+      </div>
+
+</div>        

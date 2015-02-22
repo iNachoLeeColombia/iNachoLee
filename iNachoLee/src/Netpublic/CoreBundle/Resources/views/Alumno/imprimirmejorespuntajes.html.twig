@@ -1,0 +1,5 @@
+        <table>
+            {%for n in notas_promedios%}
+                <tr><td>{{n.alumno}}</td><td>{{n.dimension.padre}}</td><td>{{n}}</td><td>{{loop.index0+1}} Puesto</td></tr>
+            {%endfor%}
+        </table>

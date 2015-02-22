@@ -1,0 +1,10 @@
+{%for comp in componentes_items%}
+<li class="parent_li componente" id="compo_{{comp.id}}">
+    <span class="items_remoto" id="comp_redsaber_{{comp.id}}" data-id={{comp.id}}  data-carga-id="{{carga.id}}" title="Collapse this branch">
+    <i class="icon-plus-sign"></i>{{comp}}</span>
+        <input type="checkbox" class="compo item_redsaber" value="{{comp.id}}" data-carga-id="{{carga.id}}" onchange="procesarComponenteEvaluar(this,{{comp.id}},{{carga.grupo.id}});">
+        <ul id="item_{{comp.id}}">
+      {#{ render(controller('NetpublicCoreBundle:Dimension:showcaitems', {'ca_id': carga.id,'dimension_id':comp.id }))}#}
+    </ul>
+  </li>
+{%endfor%}

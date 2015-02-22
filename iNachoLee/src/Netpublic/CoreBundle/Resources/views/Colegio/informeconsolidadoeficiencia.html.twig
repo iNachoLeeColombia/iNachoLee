@@ -1,0 +1,94 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{% block title %}Informe: Consolidado para la eficiencia-{{ano_escolar_activo}}/{{periodo_activo}}{% endblock %}
+{%block  sub_container  %}
+
+<div>
+    <div style="margin-right: 10px;" class="btn-group">
+                <button class="btn btn-default btn-sm" type="button" onclick="">
+                    <span><input type="checkbox" checked="checked" id="input_check_boletin" style="margin: 0 0;padding: 0 0;" class="checkbox_informe_bc3"></span> 
+                    <i class="fa fa-print blu"></i> Sedes</button>
+  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-sm" type="button">
+      <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul role="menu" class="dropdown-menu">
+      {%for sede in sedes%}
+          <li><a href="{{path('colegio_informeconsolidadoeficiencia',{'sede_id': sede.id}) }}">
+          <div class="checkbox">
+          {{sede}}
+          </div></a>  
+     </li>
+     {%endfor%}
+    </ul>
+</div>
+ 
+   <div id="capa_tabla_CE">     
+    <table class="table table-bordered small table-boletin">
+        <tr>
+            <td rowspan="2" class="center">Cursos
+                <br/>
+                <a href="#" onclick="actualizarTablaCE();"><i class="icon icon-refresh"></i> <small>actualizar</small></a>
+            </td>
+            {%for asg in asignaturas%}
+            <td colspan="4">{{asg}}</td>
+            {%endfor%}
+         </tr>
+            <tr>
+            {%for asg1 in asignaturas%}
+                {%for des in descriptores%}
+                    <td>{{des}}</td>
+                {%endfor%}
+            {%endfor%}
+            </tr>
+        {%for grado in grados%}
+            {%set grado_asg=loop.index0 %}
+            <tr>
+            <td>{{grado}}</td>
+            {%for asg1 in asignaturas%}
+                {%set index_asg=loop.index0%}
+                {%for des in descriptores%}
+            <td style="{%if index_asg is odd%}background-color: #D8D8D8;{%else%}background-color: #E8E8E8;{%endif%}">
+                        <div
+                            class="
+                            {%if data[grado_asg][index_asg][loop.index0]["nro"]<5%}
+                                green
+                            {%elseif data[grado_asg][index_asg][loop.index0]["nro"]>=5 and data[grado_asg][index_asg][loop.index0]["nro"]<9%}
+                                grey
+                            {%else%}
+                                red
+                            {%endif%}
+                            "
+                            >
+                            {%if des=='Super'%}
+                                {% set des_num=4 %}
+                            {%elseif des=='Alto'%}
+                                {% set des_num=3 %}
+                            {%elseif des=='Básico'%}
+                                {% set des_num=2 %}
+                            {%elseif des=='Bajo'%}
+                                {% set des_num=1 %}
+                            {%else%}
+                                {%set des_num=0%}
+                            {%endif%}
+                            <a href="#" onclick="showDetallesCeldaInformeConsolidado('{{des_num}}','{{grado.id}}','{{data[grado_asg][index_asg][loop.index0]["asg"]}}');">
+                                {{data[grado_asg][index_asg][loop.index0]["nro"]}}
+                            </a>        
+                        </div>        
+                    </td>
+                {%endfor%}
+            {%endfor%}
+            </tr>
+            <tr  style="display: none;" class="item_detalles">
+                <td colspan="{{asignaturas|length*4}}">
+                    <div style="display: none;"  id="capa_grado{{grado.id}}">
+                    </div>
+                </td>
+            </tr>
+        {%endfor%}    
+                
+    </table>    
+   </div>
+  </div> 
+
+ {%endblock%}
+

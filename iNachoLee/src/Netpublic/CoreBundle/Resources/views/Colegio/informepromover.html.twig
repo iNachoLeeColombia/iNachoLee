@@ -1,0 +1,82 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Informe de Alumnos: Aprueban | Reprueban | Recuperan.{% endblock %}
+{%block  sub_container  %} 
+<div class="col-sm-12">
+    <h5 class="light-grey">Informe de Alumnos: Aprueban | Reprueban | Recuperan</h5>  
+    <div class="col-sm-12 pull-left no-imprimir" style="margin-bottom: 20px;">
+        <select id="sede" onchange="procesarFiltrosInformePromover();">
+            <option value="*">Sede</option>
+            {%for sede in sedes%}
+            <option value="{{sede.id}}">{{sede}}</option>
+            {%endfor%}
+    </select>
+            <select id="grado_id" onchange="procesarFiltrosInformePromover(); getGruposGradoEstandar('grado_id','grupo_id')">
+        <option value="*">Grado</option>
+        {%for grado in grados%}
+        <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}
+    </select>
+            <select id="grupo_id" onchange="procesarFiltrosInformePromover();">
+                <option value="*">Grupo</option>
+    </select>
+   </div>    
+   
+<div class="col-sm-5">
+    <div class="widget-box">
+        <div class="widget-body">
+            <div class="widget-main">
+                <div id="piechart-placeholder" style="
+                        width: 90%; min-height: 150px;
+                        padding: 0px;
+                        position: relative;">
+                    <canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;" width="352" height="150">
+                    </canvas>
+                    <canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 352px; height: 150px;" width="352" height="150">
+                    </canvas>
+                    <div class="legend"><div style="position: absolute; width: 277px; height: 64px; top: 15px; right: -30px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:15px;right:-30px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #68BC31;overflow:hidden"></div></div></td><td class="legendLabel">Avance en <br>INSTITUCIÓN EDUCATIVA ANTONIO RICAURTE.</td></tr><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid #DA5430;overflow:hidden"></div></div></td><td class="legendLabel">Faltante en<br> INSTITUCIÓN EDUCATIVA ANTONIO RICAURTE</td></tr></tbody></table></div></div>
+                        <div class="hr hr8 hr-double"></div>
+                        <div class="clearfix"></div>
+                        <div class="grid2">
+                            <span class="grey small" >
+                                <i class="icon-user icon-2x red"></i>
+                                perdienron: <span id="nro_pierden">
+                                {{nro_alumnos_perdieron}}</span>
+                            </span>
+                            <h4 class="bigger pull-right"></h4>
+			</div>
+                        <div class="grid2">
+                            <span class="grey small" >
+                                <i class="icon-user icon-2x warning"></i>
+                                recuperan: <span id="nro_recuperan">{{nro_alumnos_recuperan}}</span>
+                            </span>
+                            <h4 class="bigger pull-right"></h4>
+			</div>
+                        <div class="grid2">
+                            <span class="grey small">
+                                <i class="icon-user icon-2x green"></i>
+                                ganaron: <span id="nro_ganan">{{nro_alumnos_ganaron}}</span>
+                            </span>
+                            <h4 class="bigger pull-right"></h4>
+			</div>
+                        <div class="grid2">
+                            <span class="grey small" >
+                                <i class="icon-resize-small icon-2x red"></i>
+                                No se sabe: <span id="nro_nosesabe">{{nro_total_alumnos-(nro_alumnos_ganaron+nro_alumnos_recuperan+nro_alumnos_perdieron)}}</span>
+                            </span>
+                            <h4 class="bigger pull-right"></h4>
+			</div>    
+                    </div>
+	</div><!-- /widget-main -->
+    </div><!-- /widget-body -->
+</div><!-- /widget-box -->
+<div class="col-sm-7" id="rapper-informe-promover" style="border: lightgrey solid thin;overflow-y: scroll;padding-top: 10px;">
+    
+</div>
+ </div>       
+{%endblock%}
+
+{%block js_final%}
+<script type="text/javascript">
+		dibujarPie({{nro_alumnos_recuperan}},{{nro_alumnos_ganaron}},{{nro_alumnos_perdieron}});
+</script>
+{%endblock%}

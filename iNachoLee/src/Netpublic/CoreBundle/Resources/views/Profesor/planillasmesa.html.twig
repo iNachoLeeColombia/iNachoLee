@@ -1,0 +1,342 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Calificación De Notas.{% endblock %}
+{%block container %}
+<div class="modal fade" id="myModal2"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 1000px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12" id="wrapper-body-complete">
+    <h2 style="text-align: center;color: gray;margin-top: 0px">Mesa con planilla de <strong>{{profesor|upper}}.</strong></h2>
+    <div style="width: 100%;">
+            <ol class="breadcrumb">
+              <li class="active">
+                  <a href="{{path('usuario')}}"><i class="fa fa-dashboard"></i> Inicio</a>
+              </li>
+              <li >
+                  <i class="fa fa-edit"></i> <a id="miga_pan_primer_nivel" href="{{path('profesor_planillasmesa')}}">Mesa con planillas de {{profesor}}</a>
+            
+              </li>
+              <li >
+                   <a id="miga_pan_segundo_nivel" href="#"></a>
+            
+              </li>
+              <li >
+                   <a id="miga_pan_tercer_nivel" href="#"></a>
+            
+              </li>
+              
+              
+            </ol>
+          </div>
+   <div>
+    
+    <div class="well" style="position: fixed;
+                    
+                    border-top: 1px solid #BBBBBB;
+                    border-left: 1px solid #BBBBBB;                    
+                    height: 80px;
+                    bottom: 0px;
+                    right: 0;
+                    margin: 0;
+                    padding: 0 40px 30px 20px;
+                    background-color: #BBBBBB;
+                    z-index: 60000000">
+                 <h5 style="text-align: center;">Lapiz ágil.</h5>
+                 <div class="btn-group">
+                     <a class="btn btn-default" href="#" onclick="mostrarLapizAgil(1);" >
+                     <icon class="icon icon-2x icon-pencil"></icon>
+                 </a>
+                     <a class="btn btn-default" href="#" onclick="mostrarLapizAgil(-1);" >
+                    <img src="{{asset('bundles/netpubliccore/images/lapiz_agil_ocultar.png')}}" alt="Posición Superior" />
+                 </a>
+                 </div>
+                 <div class="clearfix"></div>
+        </div>   
+    <div id="cla_1" 
+         style="display: none;
+         position: fixed;
+         right: 5px;
+         top: 40px;
+         margin-top: 90px;
+         border-style: inset inset;
+         border-color: gray gray;
+         border-width: thin thin;" >
+
+    {{include('NetpublicCoreBundle:Profesor:_lapizAgilDerecha.html.twig')}} 
+    </div>        
+        
+       
+    <div id="select_calificar_nota"  >
+        
+{#--------------------Menu Superior Derecho---------------------------#}
+            <div>
+         
+            <div style="clear: both;"></div>
+          </div>  
+<div class="well" id="capa_ram_actividades_desempenos_calificar_nota" style="width: 90%;display: none;margin-top: 10px;margin-left: 25px;">
+                
+            </div>          
+            <div style="clear: both;"></div>       
+{#----------------------------------------------------#}            
+     <div class="input">
+
+         </div> 
+            <div style="clear: both"></div>        
+            
+    </div>
+<div style="clear: both"></div>        
+    
+<div id="form_calificar_nota" style="margin-top: 0px;">
+  
+ </div>            
+<div class="well-large">
+    
+    <div id="new_colegio_ano_escolar" >                                                                
+                        <div class="col-lg-12">
+                            <h2 id="nav-tabs"></h2>
+                            <div>
+                            <ul class="nav nav-tabs">
+                                {%for periodo in periodos_academicos%}
+                                    {% set periodo_posicion=loop.index0 %}
+                                    <li {%if periodo_activo.id==periodo.id%}class="active"{%endif%}>
+                                        <a data-toggle="tab" href="#tabs1-{{loop.index}}">{{periodo}}</a>
+                                    </li>
+                                {%endfor%}
+                            </ul>
+                            <div class="tab-content" id="myTabContent" style="background-color: #FFFFFF;position: relative;padding-top: 20px;"> 
+                                {%for periodo in periodos_academicos%}                            
+                              <div id="tabs1-{{loop.index}}" class="col-md-12 tab-pane fade {%if  periodo_activo.id==periodo.id%}active in{%endif%}" >  
+                                 <div class="col-md-12">
+                                    {%for carga in carga_activa%}                                        
+                                        <div class="col-md-10" >
+                                             <div id="{{carga.id}}"
+                                           class="col-md-12">
+                                            <div class="panel panel-info">           
+                <div class="panel-heading" title="Click aqui para iniciar a calificar esta planilla" >
+                  <a href="#" onclick="notasPeriodoGrupoAsignatura({{periodo.id}},'{{carga.grupo.id}};{{carga.asignatura.id}};{{periodo.id}};{{carga.id}}',2);$('#new_colegio_ano_escolar').css('margin-top','150px');">                                        
+              
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 text-left">
+                            &nbsp;&nbsp; <i class="fa fa-edit fa-5x"></i>
+                        </div>
+                        <div class="col-md-8 col-xs-6 text-left">
+                            <p class="announcement-heading" style="font-size: 25px;">
+                          Planilla<strong> {{carga.asignatura|upper}} {{carga.grupo}}</strong>
+                            </p>    
+                            avance
+                            {%if porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje>=50%}                                
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" style="width: {{porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje}}%">
+                                             {{porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje}}%
+                                    </div>
+                                </div>
+                                {%elseif porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje==0%}
+                                     <span style="text-align: center;color: red;font-weight: 900;">
+                                          Ojo atrasado.                                                        
+                                     </span>
+                                {%else%}
+                                <div class="progress">
+                                         <div class="progress-bar progress-bar-danger" style="width: {{porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje}}%">
+                                               {{porcentaje_ca_activa_Periodo[loop.parent.loop.index0].porcetaje}}%
+                                         </div>
+                                     </div>
+                          {%endif%}
+                        </div>
+                    </div>
+                </a>          
+              </div>
+               
+              <div class="panel-body" style="font-size: 10px;">
+                  <div class="row col-md-12" >
+                      <div class="col-md-8">
+                          <h6 style="font-weight: 900;color: red;"><i class="icon icon-bug"></i> Necesitan refuerzos.</h6>
+                            <div class="col-md-12">
+                                
+                            {%for a_p in alumnos_pierden%}
+                                <div class="col-md-1">                    
+
+                                            {%if a_p.alumno.usuario.getEsFotoperfil()==TRUE%}
+                                                <img style="width: 35px;height: 35px;" src="{{asset('uploads/documents/strongprofesor'~a_p.alumno.id~'.png')}}" />
+                                            {%else%}
+                                                <img style="width: 35px;height: 35px;" alt="{{a_p.alumno}}" src="{{asset('uploads/documents/strongavatar.png')}}" />                    
+                                            {%endif%}
+                                           
+                                        </div>
+                                        <div class="col-md-2"> {{a_p.alumno}}</div>
+                                       
+                                        {%if loop.index%4==0%}
+                                            <div class="clearfix"></div>
+                                            <div style="padding-top: 10px;margin: 10px;border-bottom: #BBBBBB thin dotted;"></div>
+                                        {%endif%}    
+                            {%endfor%}
+                               </div>
+                               <h6 style="font-weight: 900;color: green;"><i class="icon icon-check-sign"></i> Felicitaciones </h6>
+                            <div class="col-md-12">
+                                
+                            {%for a_p in alumnos_ganan%}
+                                <div class="col-md-1">                    
+
+                                            {%if a_p.alumno.usuario.getEsFotoperfil()==TRUE%}
+                                                <img style="width: 35px;height: 35px;" src="{{asset('uploads/documents/strongprofesor'~a_p.alumno.id~'.png')}}" />
+                                            {%else%}
+                                                <img style="width: 35px;height: 35px;" alt="{{a_p.alumno}}" src="{{asset('uploads/documents/strongavatar.png')}}" />                    
+                                            {%endif%}
+                                           
+                                        </div>
+                                        <div class="col-md-3"> {{a_p.alumno}}</div>
+                                       
+                                        {%if loop.index%3==0%}
+                                            <div class="clearfix"></div>
+                                            <div style="padding-top: 10px;margin: 10px;border-bottom: #BBBBBB thin dotted;"></div>
+                                        {%endif%}    
+                            {%endfor%}
+                               </div>
+                            
+                      </div>
+                   <div  class="col-md-4" style='border-left: #BBBBBB thin solid;position: relative;height: 200px;width: 250px;'>
+                        <div id="placeholder{{periodo.id}}" style='position: relative;height: 200px;width: 250px;'>
+                        </div>
+                  </div>
+                  </div>
+              </div>
+              
+              <div class="panel-footer announcement-bottom" style="font-size: 12px;text-align: center;">
+                  <div class="row">
+                      <div class="btn-group col-xs-12 text-left" style="margin-left: 10px;">
+                          <a class="btn btn-default" href="#" onclick="notasPeriodoGrupoAsignatura({{periodo.id}},'{{carga.grupo.id}};{{carga.asignatura.id}};{{periodo.id}};{{carga.id}}',2);
+                                                                       ;$('#new_colegio_ano_escolar').css('margin-top','150px'); ">                                        
+               
+                            Ingresar notas.
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                      
+                          {%set alumno_id=data[loop.index0].alumno_id %}
+                      <a class="btn btn-default" href="{{path('alumno_previsualizarboletin',{'alumno_id': alumno_id ,'asignatura_id':carga.asignatura.id})}}" 
+                         data-toggle="modal" data-target="#myModal2"
+                         >Previsualizar Logros.<i class="fa fa-arrow-circle-right"></i></a>
+                      
+                      <a class="btn btn-default"  href="#" onclick="indexdesempenoinfoAcademicaDefectoAno({{periodo.id}},{{carga.grupo.id}},{{carga.id}},{{carga.asignatura.id}});">Ingresar logros.
+                      <i class="fa fa-arrow-circle-right"></i>
+                      </a>
+                      <a class="btn btn-default"  href="{{path('profesor_getunaplanilla',{'tipo': 1,'carga_id':carga.id})}}">  Descargar planilla. <i class="fa fa-download"></i></a>
+                                                      
+
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+                                         </div>
+                                         </div>
+                                       {%set p_s=app.request.get('page')+1%}
+                                       {%set p_a=app.request.get('page')-1%}
+                                         <div class="btn-group-vertical col-md-2" >
+                                    <a href="{{path('profesor_planillasmesa')}}?page={%if p_s<=nro_cargas%}{{p_s}}{%else%}{{nro_cargas}}{%endif%}"  class="btn btn-default"><i class="icon icon-chevron-right icon-4x"></i>
+                                        <br/>pasar planilla
+                                    </a>
+                                             
+                                    <a href="{{path('profesor_planillasmesa')}}?page={%if p_a>0%} {{p_a}} {%else%}1{%endif%}" class="btn btn-default">
+                                        <i class="icon icon-chevron-left icon-4x"></i>
+                                        <br/>planilla anterior
+                                    </a>
+                                </div>
+                                                                                 
+                                    {%endfor%}
+                                    </div>
+                                    <div class="col-md-12" style="font-size: 10px;color: gray;">
+                                 {%for carga in carga_profesor%}
+                                     <a href="{{path('profesor_planillasmesa')}}?page={{loop.index}}">
+                                         
+                                     <div class="col-md-2" style="height: 70px;padding: 5px;border-left: #BBBBBB thin solid;border-bottom:  #BBBBBB thin solid;border-top:  #BBBBBB thin solid;;">
+                                         Avance
+                                         
+                                         {%if data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje>=50%}                                
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success " style="width: {{data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje}}%">
+                                             {{data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje}}%
+                                    </div>
+                                </div>
+                                {%elseif data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje==0%}
+                                    <br/> 
+                                    <span style="text-align: center;color: red;font-weight: 900;">
+                                          Ojo atrasado.                                                        
+                                     </span>
+                                    <br/>
+                                {%else%}
+                                <div class="progress">
+                                         <div class="progress-bar progress-bar-danger" style="width: {{data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje}}%">
+                                               {{data[loop.index0].avanceTodosPeriodos[loop.parent.loop.index0].porcetaje}}%
+                                         </div>
+                                     </div>
+                          {%endif%}    
+                                             Planilla <strong>{{carga.asignatura}} {{carga.grupo}}</strong>
+                                         
+                                     </div>
+                                     </a>        
+                                 {%endfor%}    
+                             </div> 
+                             </div>
+                                    
+                            {%endfor%}
+                             <div class="clearfix"></div>         
+                           </div>
+                             
+                   </div>        
+               </div> 
+                                          
+   </div>                  
+</div>
+                             
+                                                    
+<div class="clearfix"></div>
+</div>
+</div>
+<div style="color: white;">
+    dasdas
+    <br/>
+    dasdas
+    <br/>
+
+</div>    
+{%endblock%}
+{%block js_final%}
+<script type="text/javascript">
+// Randomly Generated Data
+    var data=[];
+    data[0]={
+        label: "Ganan",
+        data: {{data_grafico.ganan}}
+    };
+    data[1]={
+        label: "Pierden",
+        data: {{data_grafico.pierden}}
+    };
+    dibujarPie("{{periodo_activo.id}}",data);
+    function dibujarPie(id,data) {
+		var placeholder = $("#placeholder"+id);
+                placeholder.unbind();
+                $.plot(placeholder, data, {
+                    series: {
+			pie: { 
+                        	show: true
+			}
+                    }
+		});
+    }
+
+
+</script>
+{%endblock%}

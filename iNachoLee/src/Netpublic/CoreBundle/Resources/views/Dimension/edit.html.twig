@@ -1,0 +1,84 @@
+{% if entity.tipo==0%}
+<h5>Crear Año Escolar</h5>
+{% endif%}
+{{form_errors(edit_form)}}
+ {#%if not es_ajax%}                                   #}
+<form id="form_newDimencion"  name="form_newDimencion" {#action="{{ path('dimension_create', {'entity.tipo':tipo}) }}"#} method="post" {#{ form_enctype(form) }#}>
+    <input type="hidden" name="tipo" id="entity.tipo" value="{{entity.tipo}}" >
+ {#%endif%#}  
+            <div class="clearfix">
+                {% if entity.tipo==0%}
+                   {{ form_label(edit_form.nombre, null, { 'label': 'Año(Ej:2012)', 'attr': {'for': 'xlInput'} }) }}
+                {%else%} 
+                    {{ form_label(edit_form.nombre, null, { 'label': 'Nombre', 'attr': {'for': 'xlInput'} }) }}
+                {% endif%}                            
+                <div class="input">                
+                    {{ form_widget(edit_form.nombre, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%if entity.tipo==4 or entity.tipo==6%}
+            {#{ form_label(edit_form.ano_escolar, null, { 'label': 'Años Escolar', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(edit_form.ano_escolar, { 'attr': {'class': 'span2','onchange': 'getPeriodosAcademicosAnoEscolar_doble("dimension_ano_escolar","dimension_periodoacademico");'} }) }}
+            {{ form_label(edit_form.periodoacademico, null, { 'label': 'Periodo Academico', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(edit_form.periodoacademico, { 'attr': {'class': 'span2','onchange': "getDimSuperiorAcademicosAnoEscolar_doble('dimension_periodoacademico','dimension_padre');"} }) }}<span style="font-size: x-large;font-weight: bold"></span>
+            #}{{ form_label(edit_form.ponderado, null, { 'label': 'Porcentaje', 'attr': {'for': 'xlInput'} }) }}
+            {{ form_widget(edit_form.ponderado, { 'attr': {'class': 'span1'} }) }}<span style="font-size: x-large;font-weight: bold">%</span>
+            {%endif%}
+                    {{ form_widget(edit_form._token) }}
+            {#%if entity.tipo!=0 and entity.tipo!=1%}
+            <div class="clearfix">              
+                {{ form_label(edit_form.es_carita_feliz, null, { 'label': 'Caritas', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.es_carita_feliz, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%#}
+            {%if entity.tipo!=0 %}
+            {%if entity.tipo==6 %}
+            <div class="clearfix">              
+                {{ form_label(edit_form.padre, null, { 'label': 'Periodo Escolar ', 'attr': {'for': 'xlInput'} }) }}
+            {%else%}
+                    {{ form_label(edit_form.padre, null, { 'label': 'Dimension Superior', 'attr': {'for': 'xlInput'} }) }}
+            {%endif%}        
+                <div class="input">                
+                    {{ form_widget(edit_form.padre, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%}
+            {%if entity.tipo!=0  and entity.tipo!=1 and entity.tipo!=4 and entity.tipo!=6%}
+            <div class="clearfix">              
+                {{ form_label(edit_form.asignatura, null, { 'label': 'Asignatura', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.asignatura, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+            {%endif%}
+            {%if entity.tipo!=0  and entity.tipo!=1 and entity.tipo!=6%}
+            <div class="clearfix">              
+                {{ form_label(edit_form.grupo, null, { 'label': 'Grupo', 'attr': {'for': 'xlInput'} }) }}
+            
+                <div class="input">                
+                    {{ form_widget(edit_form.grupo, { 'attr': {'class': 'xlarge'} }) }}
+                </div>       
+            </div> 
+           
+            {%endif%}
+     {%if entity.tipo==1%}
+                    {{ form_label(edit_form.fecha_inicio) }}
+                    {{ form_widget(edit_form.fecha_inicio) }}
+            {{ form_label(edit_form.fecha_final) }}
+                    {{ form_widget(edit_form.fecha_final) }}
+            {%endif%}
+    <div>        
+     {%if entity.tipo==1%}
+                    {{ form_label(edit_form.nivel) }}
+                    {{ form_widget(edit_form.nivel) }}
+     {%endif%}
+   </div>         
+{#% if not es_ajax%#}    
+            <input type="submit" value="Actualizar" onclick="updateinfoAcademicaDefectoAno('{{entity.id}}','{{entity.tipo}}');" />
+    </form>
+
+

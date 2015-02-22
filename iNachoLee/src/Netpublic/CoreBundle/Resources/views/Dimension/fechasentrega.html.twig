@@ -1,0 +1,45 @@
+{%set fecha_actual= "now"|date("Y-m-d h:i:s")%}
+{%set fecha_actual_mes= mes_espanol[fecha_actual|date("n")]%}
+{%set fecha_actual_dia= dias_espanol[fecha_actual|date("w")]%}
+
+<span style="font-size: 23px;margin-left: 20px;font-weight: bolder;">Hoy es {{fecha_actual_dia}}  {{fecha_actual|date("d")}} del año {{fecha_actual|date("Y")}}</span>
+{%for e in entities%}
+    {%set fecha_inicio=e.getFechaInicio()|date("Y-m-d h:i:s")%}
+    {%set mes_letra_fecha_inicio=mes_espanol[e.getFechaInicio|date("n")]%}
+    {%set dia_letra_fecha_inicio=dias_espanol[e.getFechaInicio|date("w")]%}
+
+    {%set fecha_final=e.getFechaFinal()|date("Y-m-d h:i:s")%}
+    {%set mes_letra_fecha_final=mes_espanol[e.getFechaFinal()|date("n")]%}
+    {%set dia_letra_fecha_final=dias_espanol[e.getFechaFinal()|date("w")]%}
+
+    {%if fecha_actual< fecha_final and fecha_actual>fecha_inicio%}
+<div class="well" style="background-color: beige; margin-bottom: 20px;width: 90%;margin-left: 20px;">
+    <div style="float: left;">
+        <a style="width: 110px;" class="thumbnail">
+            {%if colegio.rector!=null%}
+                {%if colegio.rector.usuario.getEsFotoperfil()==TRUE%}
+                    <img  style="width: 110px;height: 110px;" src="{{asset('uploads/documents/strongprofesor'~colegio.rector.id~'.jpg')}}" alt="{{colegio.rector}}" />
+                {%else%}
+                    <img style="width: 110px;height: 110px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{colegio.rector}}" />                    
+                {%endif%}    
+            {%else%}      
+                    <img style="width: 110px;height: 110px;" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{colegio.rector}}" />                    
+            {%endif%}                                                           
+  
+        </a>
+    </div>
+        <div style="float: right;width:80%;">
+            <span>{{colegio.rector}} dice >></span>
+            <p>Saludes, {{app.user}}      
+     Aun puedes ingresar notas, Del <span style="color: red">{{e}}.</span> </p><span style="font-size: 12px;">Plazo: Desde
+        -|{{dia_letra_fecha_inicio}} {{fecha_inicio|date("d")}} de {{mes_letra_fecha_inicio}}
+        del año {{fecha_inicio|date("Y")}} {{e.getFechaInicio|date("g:i:s")}} |-   Hasta
+        -|{{dia_letra_fecha_final}} {{fecha_final|date("d")}} de {{mes_letra_fecha_final}}
+            del año {{fecha_final|date("Y")}}|  {{e.getFechaFinal()|date("g:i:s")}}
+        </span>
+    </div>
+        <div style="clear: both;"></div>    
+</div>
+    {%endif%}
+
+{%endfor%}

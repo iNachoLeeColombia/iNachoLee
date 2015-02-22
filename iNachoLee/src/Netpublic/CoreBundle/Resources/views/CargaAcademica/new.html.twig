@@ -1,0 +1,32 @@
+<div style="padding-left: 10px;">
+<h5>Nueva Carga Academica.</h5>
+<div style="float: left;width: 60%;">
+{{ form_label(form.grado, null, { 'label': 'Grado', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+{{ form_widget(form.grado, { 'attr': {'onchange':'getGrupoGradoCargaAcademica()','class': 'input-xlarge'} }) }}               
+<div class="control-group">
+            {{ form_label(form.grupo, null, { 'label': 'Grupo', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+            <div class="controls">
+               {{ form_widget(form.grupo, { 'attr': {'onchange':'getAsignaturasGrupoCargaAcademica()','class': 'input-xlarge'} }) }}               
+            </div>
+</div>
+<div class="control-group">
+            {{ form_label(form.asignatura, null, { 'label': 'Asignatura', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+            <div class="controls">
+               {{ form_widget(form.asignatura, { 'attr': {'onchange':'getProfesorAsignaturaCargaAcademica()','class': 'input-xlarge'} }) }}               
+               <span  id="informador_errores_asignatura_carga_academica"></span>          
+            </div>
+        {{form_widget(form._token)}}
+</div>
+<div class="control-group">
+            {{ form_label(form.profesor, null, { 'label': 'Profesor', 'attr': {'for': 'foo','class': 'control-label'} }) }}            
+            <div class="controls">
+               {{ form_widget(form.profesor, { 'attr': {'onchange': 'getDisponibilidadCA()','class': 'input-xlarge','id': 'focusedInput'} }) }}               
+                    <span  id="informador_errores_profesor_carga_academica"></span>     
+            </div>
+</div>
+    </div>
+<div style="float: right;padding-top: 80px;width: 40%;">
+    <div id="notificador_general_ca"></div>
+</div>   
+</div>
+<div style="clear: both"></div>

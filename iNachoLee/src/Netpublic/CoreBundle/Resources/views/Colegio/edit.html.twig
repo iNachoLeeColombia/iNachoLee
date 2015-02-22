@@ -1,0 +1,217 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Editar Sede{% endblock %}
+{%block  sub_container  %}
+<div>
+<form action="{{ path('colegio_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_errors(edit_form) }}
+      
+<ul class="nav nav-pills">
+    <li class="active">
+        <a href="#" onclick="$('#datos_adicionales').hide();$('#datos_basicos').show();$('#nota_minima').hide();">Datos Básicos</a>
+    </li>
+    <li>
+        <a href="#" onclick="$('#datos_adicionales').show();$('#datos_basicos').hide();$('#nota_minima').hide();">Datos Adicionales</a>
+    </li>
+    <li>
+        <a href="#" onclick="$('#datos_adicionales').hide();$('#datos_basicos').hide();$('#nota_minima').show();">Nota Minima | Valoraciones | Escala Nacional</a>
+    </li>
+    
+  </ul>
+</div>
+    <div id="datos_basicos">
+    {{ form_label(edit_form.nombre) }}                                 
+    {{ form_widget(edit_form.nombre) }}
+    {{ form_label(edit_form.codigo_dane) }}
+    {{ form_widget(edit_form.codigo_dane, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.rector, null, { 'label': 'Nombre Rector', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.rector, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.sector, null, { 'label': 'Sector', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.sector, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.calendario, null, { 'label': 'Calendario', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.calendario, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.propiedad_juridica, null, { 'label': 'Propiedad Juridica', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.propiedad_juridica, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.numero_sedes, null, { 'label': 'Numero Sedes', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.numero_sedes, { 'attr': {'class': 'xlarge'} }) }}
+    {{ form_label(edit_form.nucleo, null, { 'label': 'Nucleos', 'attr': {'for': 'foo'} }) }}
+    {{ form_widget(edit_form.nucleo, { 'attr': {'class': 'xlarge'} }) }}
+ {{ form_label(edit_form.genero, null, { 'label': 'Genero', 'attr': {'for': 'foo'} }) }}
+            
+                    {{ form_widget(edit_form.genero, { 'attr': {'class': 'xlarge'} }) }}
+                        
+                 {{ form_label(edit_form.es_subsidio, null, { 'label': 'Ofrece Subsidio?', 'attr': {'for': 'check1'} }) }}
+                 {{ form_widget(edit_form.es_subsidio, { 'attr': {'id': 'check1'} }) }}
+                                     
+                 {{ form_label(edit_form.es_principal, null, { 'label': 'Sede Principal?', 'attr': {'for': 'check2'} }) }}
+                 {{ form_widget(edit_form.es_principal, { 'attr': {'id': 'check2'} }) }}
+                       
+                {{ form_label(edit_form.discapacidades, null, { 'label': 'Discapacidades', 'attr': {'for': 'foo'} }) }}
+            
+          
+                    {{ form_widget(edit_form.discapacidades, { 'attr': {'class': 'xlarge'} }) }}
+                                       
+                {{ form_label(edit_form.capacidades_excepcionales, null, { 'label': 'Capacidades Excepcionales', 'attr': {'for': 'foo'} }) }}
+                    {{ form_widget(edit_form.capacidades_excepcionales, { 'attr': {'class': 'xlarge'} }) }}
+                           
+                {{ form_label(edit_form.etnias, null, { 'label': 'Etnias', 'attr': {'for': 'foo'} }) }}
+                    {{ form_widget(edit_form.etnias, { 'attr': {'class': 'xlarge'} }) }}
+                                                
+                {{ form_label(edit_form.resguardo, null, { 'label': 'Resguardos', 'attr': {'for': 'foo'} }) }}
+                    {{ form_widget(edit_form.resguardo, { 'attr': {'class': 'xlarge'} }) }}
+                                                     
+                {{ form_label(edit_form.novedad_inst, null, { 'label': 'Novedad De la Institucion', 'attr': {'for': 'foo'} }) }}
+                    {{ form_widget(edit_form.novedad_inst, { 'attr': {'class': 'xlarge'} }) }}
+                               
+                {{ form_label(edit_form.metodologia, null, { 'label': 'Metodologia', 'attr': {'for': 'foo'} }) }}
+            
+          
+                    {{ form_widget(edit_form.metodologia, { 'attr': {'class': 'xlarge'} }) }}
+               
+                            </div>
+<div id="datos_adicionales" style="display: none;" >                  
+                    <div id="new_colegio_ano_escolar" style="height: 300px">                                                                
+                        <div id="tabs1">
+                            
+                            <ul>
+                                <li><a onclick="indexinfoAcademicaDefectoAno__(0);" href="#tabs1-0">Emblema(s) heráldico</a></li>
+                                <li><a onclick="indexinfoAcademicaDefectoAno__(0);" href="#tabs1-1">Datos Adicionales</a></li>
+                                <li><a onclick="indexinfoAcademicaDefectoAno__(1);" href="#tabs1-2">Datos Adicionales(Solo Colegios-No Oficiales) </a></li>                                
+                            </ul>
+                            <div id="tabs1-0">
+                                {{ form_label(edit_form.himno_colegio) }}                         
+                                {{ form_widget(edit_form.himno_colegio) }}                    
+                                {{ form_label(edit_form.escudo_colegio) }}                         
+                                {{ form_widget(edit_form.escudo_colegio) }}                        
+                            </div>
+                                <div id="tabs1-1">                                                                        
+                                        {{ form_label(edit_form.zona, null, { 'label': 'Zona', 'attr': {'for': 'foo'} }) }}                         
+                                        {{ form_widget(edit_form.zona, { 'attr': {'class': 'xlarge'} }) }}                    
+                                        {{ form_label(edit_form.barrio, null, { 'label': 'Barrio', 'attr': {'for': 'foo'} }) }}                                      
+                                        {{ form_widget(edit_form.barrio, { 'attr': {'class': 'xlarge'} }) }}                
+                                        {{ form_label(edit_form.direccion, null, { 'label': 'Direccion', 'attr': {'for': 'foo'} }) }}                                   
+                                        {{ form_widget(edit_form.direccion, { 'attr': {'class': 'xlarge'} }) }}             
+                                        {{ form_label(edit_form.depto, null, { 'label': 'Departamento', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(edit_form.depto, { 'attr': {'class': 'xlarge'} }) }}             
+                                        {{ form_label(edit_form.municipio, null, { 'label': 'Municipio', 'attr': {'for': 'foo'} }) }}           
+                                        {{ form_widget(edit_form.municipio, { 'attr': {'class': 'xlarge'} }) }}           
+                                        {{ form_label(edit_form.telefono, null, { 'label': 'Telefono', 'attr': {'for': 'foo'} }) }}                 
+                                        {{ form_widget(edit_form.telefono, { 'attr': {'class': 'xlarge'} }) }}          
+                                        {{ form_label(edit_form.fax, null, { 'label': 'NIT', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(edit_form.fax, { 'attr': {'class': 'xlarge'} }) }}           
+                                        {{ form_label(edit_form.web, null, { 'label': 'Sitio Web', 'attr': {'for': 'foo'} }) }}                  
+                                        {{ form_widget(edit_form.web, { 'attr': {'class': 'xlarge'} }) }}               
+                                        {{ form_label(edit_form.email, null, { 'label': 'Email', 'attr': {'for': 'foo'} }) }}             
+                                        {{ form_widget(edit_form.email, { 'attr': {'class': 'xlarge'} }) }}
+                                    </div>
+                            <div id="tabs1-2">                                                                  
+                                        {{ form_label(edit_form.numero_linc_func, null, { 'label': 'Numero de Licencia De Funcionamiento', 'attr': {'for': 'foo'} }) }}                       
+                                        {{ form_widget(edit_form.numero_linc_func, { 'attr': {'class': 'xlarge'} }) }}                      
+                                        {{ form_label(edit_form.regimen_costos, null, { 'label': 'Regimen de Costos', 'attr': {'for': 'foo'} }) }}                        
+                                        {{ form_widget(edit_form.regimen_costos, { 'attr': {'class': 'xlarge'} }) }}                   
+                                        {{ form_label(edit_form.rango_promedio, null, { 'label': 'Rango Promedio', 'attr': {'for': 'foo'} }) }}                               
+                                        {{ form_widget(edit_form.rango_promedio, { 'attr': {'class': 'xlarge'} }) }}                  
+                                        {{ form_label(edit_form.idioma, null, { 'label': 'Idioma', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(edit_form.idioma, { 'attr': {'class': 'xlarge'} }) }}                 
+                                        {{ form_label(edit_form.nucleo_privado, null, { 'label': 'Nucleos', 'attr': {'for': 'foo'} }) }}                    
+                                        {{ form_widget(edit_form.nucleo_privado, { 'attr': {'class': 'xlarge'} }) }}
+                           </div>                    
+                   </div>                      
+                </div>                         
+                </div>                                  
+<div id="nota_minima" style="display: none;">
+                <div>
+                    <fieldset>
+                        <legend>Numero De areas Minima para Habilitar.</legend>
+                {{ form_label(edit_form.maximo_areas_habilitar) }}                    
+                {{ form_widget(edit_form.maximo_areas_habilitar) }}
+                        </fieldset>  
+                    <fieldset>
+                        <legend>Nota Minima & Cifras Significativas.</legend>
+                {{ form_label(edit_form.nota_minima) }}                    
+                {{ form_widget(edit_form.nota_minima) }}
+                {{ form_label(edit_form.numero_cifrasignificativa) }}                    
+                {{ form_widget(edit_form.numero_cifrasignificativa) }}
+                        
+                        </fieldset>       
+                    </div>        
+                <div>
+                       <fieldset><legend>Escala Nacional</legend>
+                   <div>                     
+                       <div style="float: left">
+                        {{form_label(edit_form.valor_minimo_deficiente,null,{'label': 'Nota minima Desempeño Bajo'})}}                    
+                        {{form_widget(edit_form.valor_minimo_deficiente)}}
+                       </div>         
+                           <div style="float: left">    
+                        {{form_label(edit_form.valor_maximo_deficiente,null,{'label': 'Nota máxima Desempeño Bajo'})}}                    
+                        {{form_widget(edit_form.valor_maximo_deficiente)}}
+                         </div>
+                   
+                  </div>
+                            
+                        <div style="clear: both"></div>      
+                  <div>  
+                      
+                      <div style="float: left">
+                            {{form_label(edit_form.valor_minimo_insuficiente,null,{'label': 'Nota máxima Desempeño Básico'})}}                    
+                            {{form_widget(edit_form.valor_minimo_insuficiente)}}
+                            </div>         
+                           <div style="float: left"> 
+                            {{form_label(edit_form.valor_maximo_insuficiente,null,{'label': 'Nota máxima Desempeño Básico'})}}                    
+                            {{form_widget(edit_form.valor_maximo_insuficiente)}}
+                             </div> 
+                 </div>
+                          <div style="clear: both"></div>   
+                 <div>  
+                    
+                     <div style="float: left">
+                            {{form_label(edit_form.valor_minimo_aceptable,null,{'label': 'Nota máxima Desempeño Alto'})}}                    
+                            {{form_widget(edit_form.valor_minimo_aceptable)}}
+                            </div>         
+                           <div style="float: left"> 
+                            {{form_label(edit_form.valor_maximo_aceptable,null,{'label': 'Nota máxima Desempeño Alto'})}}                    
+                            {{form_widget(edit_form.valor_maximo_aceptable)}}
+                                   </div> 
+                 </div>  
+                        
+                            <div style="clear: both"></div>   
+                        <div style="float: left">
+                            {{form_label(edit_form.valor_minimo_sobresaliente,null,{'label': 'Nota máxima Desempeño Superior'})}}                    
+                            {{form_widget(edit_form.valor_minimo_sobresaliente)}}
+                        </div>         
+                           <div style="float: left"> 
+                            {{form_label(edit_form.valor_maximo_sobresaliente,null,{'label': 'Nota máxima Desempeño Superior'})}}                    
+                            {{form_widget(edit_form.valor_maximo_sobresaliente)}}
+                                   </div> 
+                            <div style="clear: both"></div> 
+                
+                           </fieldset>         
+                        <div style="clear: both"></div>     
+                    </div>        
+                <div>
+                                           <fieldset><legend>Valoración</legend>
+                {{ form_label(edit_form.tipo_valoracion) }}                    
+                {{ form_widget(edit_form.tipo_valoracion) }}
+                                               </fieldset>
+                    </div>            
+            </div>       
+
+              
+                {{ form_rest(edit_form) }}
+             <p>
+        <button style="float: right;margin-top: 20px;" class="ui-button-primary" type="submit">Actualizar</button>
+    </p>
+    </div>
+    </form>
+ 
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

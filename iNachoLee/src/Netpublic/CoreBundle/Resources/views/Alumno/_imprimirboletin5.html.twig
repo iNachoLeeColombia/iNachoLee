@@ -1,0 +1,212 @@
+<table style="margin: 0 0;padding: 0 0;">  
+          <tr>
+         <td style="padding-top: 10px;padding-left: 10px;">           
+          <img style="width:110px;height:110px;" 
+               src="{{asset('uploads/documents/escudo_colegio'~colegio.id~'.png')}}"
+                />   
+          </td>
+          <td style="width: 80%;">          
+            <h2 style="font-size: 25px;font-weight: 900;text-align: center;margin-bottom: 0px;padding-bottom: 0px;">{{colegio}}</h2>
+              <p style="color: gray;font-size: 10px;text-align: center;margin-top: 0px;padding-top: 0px;">
+                aprobada por Resolución Nacional N° 
+                {{colegio.getNumeroLincFunc()}} Nit: {{colegio.fax}}
+                
+                REGISTRO DANE {{colegio.getCodigoDane()}}                                       
+            
+            </p>
+            <h3 style="color: black;font-size: 18px;text-align: center;padding-top: 0px;padding-bottom: 0px;margin-top: 0px;margin-bottom: 0px;">
+                BOLETIN DEL INFORME DE DESEMPEÑO.
+            <p style="font-size: 10px;margin: 0 0;padding: 0 0;">
+                (Básica Y Media)
+            </p>
+                
+            </h3>
+            
+              
+         </td>        
+         <td style="padding-right: 10px;padding-top: 10px;">           
+          {%if alumno.usuario.getEsFotoperfil()==TRUE%}
+                        <img style="width:110px;height: 110px;" 
+                             src="{{asset('uploads/documents/strongalumno'~alumno.id~'.jpg')}}"
+                       
+                        {%else%}
+                             
+                        <img style="width:110px;height: 110px;margin-left: 15px;"
+                        src="{{asset('uploads/documents/strongavatar.png')}}"
+                        />        
+                        {%endif%}
+          </td>                   
+         </tr>
+  </table>
+  
+<div style="margin-top: 4px;">
+    <div class="outer" style="font-size:12px;">
+        <img src="{{asset('uploads/documents/f1.png')}}" class="grayBg" />
+            <div class="inner">
+                <table>
+                    <tr style="margin: 0 0;padding: 0 0;">
+                         <td  style="width:60%;padding-left: 10px;" border.type="none">
+                            <strong>NOMBRES Y APELLIDOS:</strong> 
+                                {{alumno.apellido}} {{alumno.apellido1}} {{alumno.nombre}} {{alumno.nombre1}}
+                        </td>
+                        <td style="width:20%;" border.type="none" >
+                                <strong>GRADO:</strong> {{alumno.grado}}
+                        </td>
+                        <td style="width:20%;" border.type="none" >
+                            <strong>GRUPO:</strong> {{alumno.grupo}}
+                        </td>
+                    </tr> 
+                    <tr style="margin: 0 0;padding: 0 0;">
+                        <td  style="width:25%;padding-left: 10px;" border.type="none" >
+                            <strong>PUESTO EN GRUPO: </strong>
+                            {{puesto_alumno}}/{{nro_alumnos_grupo}}                           
+                        </td>
+                        <td colspan="2" style="width:50%;">
+                            <strong>AÑO|PERIODO ESCOLAR: </strong>{{ano_escolar_activo}}|{{periodo_escolar_activo}}
+                        </td>
+                    </tr> 
+                </table>
+        </div>                 
+</div>
+ </div>
+<div>
+    
+    <table style="font-size: 8px;margin-top: 3px;">
+        <tr>
+            <td border.type="none" colspan="2" style="text-align: left;">
+                <strong>Escala Numerica.</strong>
+            </td>
+            <td style="width:55%">
+                
+            </td>
+            <td border.type="none"  colspan="1" style="text-align: center;">
+                <strong>Promedios</strong>
+            </td>
+            
+        </tr>
+        <tr>
+            <td border.type="none"  style="width: 120px;">
+            De 4.5 A 5.0
+            </td>
+            <td border.type="none" >
+                Superior
+            </td>
+            <td>
+                
+            </td>
+            
+            <td border.type="none" >
+                
+            </td>
+         </tr>
+        <tr>
+            <td border.type="none" >
+            De 4.0 A 4.5
+            </td>
+            <td border.type="none" >
+                Alto
+            </td>
+            <td>
+                
+            </td>
+            <td border.type="none"  style="text-align: center;">
+                       Promedio Del Grupo: {{promedio_grupo|number_format(2,'.',',')}}
+            </td>
+        </tr>
+        <tr>
+            <td border.type="none" >
+                De 3.0 A 3.9
+            </td>
+            <td border.type="none" >
+                Básico
+            </td>
+            <td>
+                
+            </td>
+            <td border.type="none"  style="text-align: center;">
+                Promedio Del Estudiante: {{promedio_alumno|number_format(2,'.',',')}}
+            </td>
+        </tr>
+        <tr>
+            <td border.type="none" >
+            De 1.0 A 3.0
+            </td>
+            <td border.type="none" >
+                Bajo
+            </td>
+            <td>
+                
+            </td>
+            <td border.type="none" >
+            
+            </td>
+        </tr>
+   </table>    
+        <table class="table table-bordered table-boletin">
+       <thead>
+            <tr>
+                <td>Areas/Asignaturas</td>
+                {%for periodo_academico in periodos_escolares%}
+                <td class="{%if loop.last%}item_fast_boletin{%endif%}">                    
+                    P{{loop.index}}
+                </td>
+                {%endfor%}
+                <td>Def</td>
+                <td>Desmp</td>
+                <td>Fallas</td>
+            </tr>
+     </thead>
+     <tbody>
+            {%for areas in datos%}
+            <tr>
+                <td><strong>  {{areas.nombre|upper}}</strong></td>
+                {%for periodo_academico in periodos_escolares%}
+                <td class="{%if loop.last%}item_fast_boletin{%endif%}"></td>
+                {%endfor%}
+                <td>
+                    {{areas.nota_promedio_acumalativa|number_format(2,'.',',')}}
+                </td>
+                <td>
+                    {{areas.desempeno}}
+                </td>
+                <td>
+                {%if areas.inasistencia!=0 and areas.inasistencia!=-1  %}   
+                    {{areas.inasistencia}}
+                {%endif%}
+                </td>        
+                        
+            </tr>
+            {%for asignaturas_area in areas.asignaturas%}
+            <tr>
+                <td class="asg_item ">{{asignaturas_area.asignatura.nombre|lower}}</td>
+                {%for periodos_asignatura in asignaturas_area.asignatura.periodos %}
+                    <td class="{%if loop.last%}item_fast_boletin{%endif%}" >
+                        {{periodos_asignatura.periodo.nota|number_format(2,'.',',')}}
+                    </td>
+                {%endfor%}
+                    <td>
+                        {{asignaturas_area.asignatura.nota|number_format(2,'.',',')}}
+                    </td>
+                    <td> </td>
+                    <td>
+                        {%if asignaturas_area.asignatura.inasistencias !=0 and asignaturas_area.asignatura.inasistencias !=-1 %}
+                            {{asignaturas_area.asignatura.inasistencias}}
+                        {%endif%}
+                    </td>
+                    
+            </tr>
+           {%endfor%}
+            
+            {%endfor%}
+     </tbody>
+   </table>        
+        <div style="text-align: center;">
+    _______________________________<br/>
+    Director De Grupo
+</div>
+        <div style="font-size: 7px;text-align: center;">        
+                Pagina Web: {{colegio.getWeb}}-
+                
+                Telefono: {{colegio.telefono}}
+</div>                
+<div class="footer-div"></div>      

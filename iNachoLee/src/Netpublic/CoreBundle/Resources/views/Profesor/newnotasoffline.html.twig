@@ -1,0 +1,63 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block breadcrumb%}
+
+{%endblock%}  
+{%block page_header%}
+ <h1>Calificación con planillas de excell.<small>
+ <i class="icon-double-angle-right"></i>
+    Selección de archivo | Descargar planillas								</small>
+</h1>
+{%endblock%}
+{%block  sub_container %}  
+<form method="post" action="{{path('profesor_createnotasoffline')}}"   enctype="multipart/form-data">
+<div class="modal-header">
+    <div class="controls">  
+        <div style="float: left;">
+            <span>Seleccione Archivo de Excel con notas.</span>    
+        <input type="file" name="notas_offline">
+        </div>
+        <div style="float: right;margin-left: 20px;">    
+        <a 
+           style="margin-left: 25px;" 
+            {%if not es_ready_only%}
+           href="{{path('profesor_getplanillaconnotas',{'tipo': 1})}}
+           {%endif%}
+           ">
+        <img src="{{asset('bundles/netpubliccore/images/icono-excel.gif')}}"><br/>
+        <span style="font-size:x-small;">Descargar Planilla <br/>Con Notas</span>
+        </a>
+        </div>
+            <div style="float: right;">    
+        <a style="margin-left: 25px;" 
+            {%if not es_ready_only%}
+           href="{{path('profesor_getplanillaconnotas',{'tipo': 0})}}">
+            {%endif%}   
+        <img src="{{asset('bundles/netpubliccore/images/icono-excel.gif')}}"><br/>
+        <span style="font-size:x-small;">Descargar Planilla<br/> Sin Notas</span>
+        </a>
+        </div>
+        <div style="clear: both;"></div>   
+    </div>
+</div>
+   <div class="pull-right">    
+    <button 
+         {%if es_ready_only%}
+            disabled="disabled"
+         {%endif%}   
+        class="btn 
+         {%if not es_ready_only%}
+        btn-primary
+         {%else%}
+        btn btn-danger
+        {%endif%}
+        "><i class="icon-upload icon-white"></i>
+             {%if not es_ready_only%}
+            Subir Notas
+            {%else%}
+            Tiempo Agotado,comuníquese con Administración
+            {%endif%}
+        </button>
+    <a href="#" class="btn">Cancelar</a>
+    </div>       
+  </form>      
+{%endblock%}

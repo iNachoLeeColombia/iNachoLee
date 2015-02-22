@@ -1,0 +1,3 @@
+blob 0 ->	 a=    343	 p=  823.80 (  409.00 extern)	 pconvex=  818.29	 ext=1	 c=157.45	 l=  411.07
+blob 1 ->	 a=      0	 p=    6.00 (    3.00 extern)	 pconvex=    6.00	 ext=1	 c=0.00	 l=    3.00
+blob 2 ->	 a=      0	 p=    4.00 (    2.00 extern)	 pconvex=    4.00	 ext=1	 c=0.00	 l=    2.00

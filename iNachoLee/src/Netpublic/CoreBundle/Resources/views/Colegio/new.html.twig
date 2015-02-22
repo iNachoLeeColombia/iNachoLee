@@ -1,0 +1,281 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Mi colegio.{% endblock %}
+{%block  sub_container  %} 
+<div>
+    <span style="background-color: yellow;">
+        Datos obligatorios: Nombre de la sede, Nro de sedes y el tipo notas. No olvidar seleccionar la sede principal
+    </span>  
+    <form action="{{ path('colegio_create') }}" method="post" {{ form_enctype(form) }} >       
+        <div style="position: relative;top: 150px;">{{ form_errors(form) }}
+        </div>    
+<div class="col-sm-12 widget-container-span ui-sortable">
+	<div class="widget-box">
+            <div class="widget-header">
+                    <div class="widget-toolbar no-border">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+				<a href="#home" data-toggle="tab">Datos Básicos</a>
+                            </li>
+                            <li>
+                                <a href="#emblemas" data-toggle="tab">Emblema(s) heráldico</a>
+                            </li>
+                            <li>
+                                <a href="#datos_adicionales" data-toggle="tab">Datos adicionales</a>
+                            </li>
+                            <li>
+                                <a href="#otros_datos" data-toggle="tab">Datos Adicionales II</a>
+                            </li>
+                            <li>
+                                <a href="#valores" data-toggle="tab">Escala de valoración</a>
+                            </li>
+			</ul>
+                        </div>
+            </div>
+            <div class="widget-body">
+                    <div class="widget-main padding-6">
+                        <div class="tab-content">
+                            <div class="tab-pane in active" id="home">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.nombre) }}                                 
+                                         {{ form_widget(form.nombre,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.codigo_dane) }}                                 
+                                         {{ form_widget(form.codigo_dane,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.rector) }}                                 
+                                         {{ form_widget(form.rector,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.sector) }}                                 
+                                         {{ form_widget(form.sector,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.calendario) }}                                 
+                                         {{ form_widget(form.calendario,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.propiedad_juridica) }}                                 
+                                         {{ form_widget(form.propiedad_juridica,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.numero_sedes) }}                                 
+                                         {{ form_widget(form.numero_sedes,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.nucleo) }}                                 
+                                         {{ form_widget(form.nucleo,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                    
+                               
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.genero) }}                                 
+                                         {{ form_widget(form.genero,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.es_subsidio) }}                                 
+                                         {{ form_widget(form.es_subsidio,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.es_principal) }}                                 
+                                         {{ form_widget(form.es_principal,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.discapacidades) }}                                 
+                                         {{ form_widget(form.discapacidades,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.capacidades_excepcionales) }}                                 
+                                         {{ form_widget(form.capacidades_excepcionales,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.etnias) }}                                 
+                                         {{ form_widget(form.etnias,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                         {{ form_label(form.resguardo) }}                                 
+                                         {{ form_widget(form.resguardo,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                         {{ form_label(form.novedad_inst) }}                                 
+                                         {{ form_widget(form.novedad_inst,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                         {{ form_label(form.metodologia) }}                                 
+                                         {{ form_widget(form.metodologia,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="emblemas">
+                               <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.himno_colegio) }}                         
+                                        {{ form_widget(form.himno_colegio) }}  
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                    
+                                        {{ form_label(form.escudo_colegio) }}                         
+                                        {{ form_widget(form.escudo_colegio) }}
+                                    </div>    
+                            </div>
+                            </div>        
+                            <div class="tab-pane" id="datos_adicionales">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.zona, null, { 'label': 'Zona', 'attr': {'for': 'foo'} }) }}                         
+                                        {{ form_widget(form.zona, {'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.barrio, null, { 'label': 'Barrio', 'attr': {'for': 'foo'} }) }}                                      
+                                        {{ form_widget(form.barrio,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>    
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.direccion, null, { 'label': 'Direccion', 'attr': {'for': 'foo'} }) }}                                   
+                                        {{ form_widget(form.direccion, {'attr': {'class': 'form-control'} }) }}             
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.depto, null, { 'label': 'Departamento', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(form.depto,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.municipio, null, { 'label': 'Municipio', 'attr': {'for': 'foo'} }) }}           
+                                        {{ form_widget(form.municipio,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.telefono, null, { 'label': 'Telefono', 'attr': {'for': 'foo'} }) }}                 
+                                        {{ form_widget(form.telefono, {'attr': {'class': 'form-control'} }) }}    
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    
+                                    <div class="form-group col-md-6">
+                                        {{ form_label(form.fax, null, { 'label': 'Fax', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(form.fax,{'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        {{ form_label(form.web, null, { 'label': 'Sitio Web', 'attr': {'for': 'foo'} }) }}                  
+                                        {{ form_widget(form.web, {'attr': {'class': 'form-control'} }) }}   
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        {{ form_label(form.email, null, { 'label': 'Email', 'attr': {'for': 'foo'} }) }}             
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'} }) }}
+                                    </div>    
+                            </div>
+                            </div>        
+                            <div class="tab-pane" id="otros_datos">
+                               {{ form_label(form.numero_linc_func, null, { 'label': 'Numero de Licencia De Funcionamiento', 'attr': {'for': 'foo'} }) }}                       
+                                        {{ form_widget(form.numero_linc_func, { 'attr': {'class': 'xlarge'} }) }}                      
+                                        {{ form_label(form.regimen_costos, null, { 'label': 'Regimen de Costos', 'attr': {'for': 'foo'} }) }}                        
+                                        {{ form_widget(form.regimen_costos, { 'attr': {'class': 'xlarge'} }) }}                   
+                                        {{ form_label(form.rango_promedio, null, { 'label': 'Rango Promedio', 'attr': {'for': 'foo'} }) }}                               
+                                        {{ form_widget(form.rango_promedio, { 'attr': {'class': 'xlarge'} }) }}                  
+                                        {{ form_label(form.idioma, null, { 'label': 'Idioma', 'attr': {'for': 'foo'} }) }}            
+                                        {{ form_widget(form.idioma, { 'attr': {'class': 'xlarge'} }) }}                 
+                                        {{ form_label(form.nucleo_privado, null, { 'label': 'Nucleos', 'attr': {'for': 'foo'} }) }}                    
+                                        {{ form_widget(form.nucleo_privado, { 'attr': {'class': 'xlarge'} }) }}
+                            </div>
+                            <div class="tab-pane" id="valores">
+                                <div>
+                                    <fieldset>
+                        <legend>Nota Minima.</legend>
+                {{ form_label(form.nota_minima) }}                    
+                {{ form_widget(form.nota_minima) }}
+                        </fieldset>       
+                                </div>        
+                                <div>
+                                <fieldset><legend>Escala Nacional</legend>
+                                <div>                     
+                       <div>
+                        {{form_label(form.valor_minimo_deficiente)}}                    
+                        {{form_widget(form.valor_minimo_deficiente)}}
+                       </div>         
+                           <div style="float: left">    
+                        {{form_label(form.valor_maximo_deficiente)}}                    
+                        {{form_widget(form.valor_maximo_deficiente)}}
+                         </div>
+                   
+                  </div>
+                                  
+                  <div>  
+                      
+                      <div>
+                            {{form_label(form.valor_minimo_insuficiente)}}                    
+                            {{form_widget(form.valor_minimo_insuficiente)}}
+                            </div>         
+                           <div> 
+                            {{form_label(form.valor_maximo_insuficiente)}}                    
+                            {{form_widget(form.valor_maximo_insuficiente)}}
+                             </div> 
+                 </div>
+                             
+                 <div>  
+                    
+                     <div>
+                            {{form_label(form.valor_minimo_aceptable)}}                    
+                            {{form_widget(form.valor_minimo_aceptable)}}
+                            </div>         
+                           <div> 
+                            {{form_label(form.valor_maximo_aceptable)}}                    
+                            {{form_widget(form.valor_maximo_aceptable)}}
+                                   </div> 
+                 </div>  
+                        
+                            <div></div>   
+                        <div>
+                            {{form_label(form.valor_minimo_sobresaliente)}}                    
+                            {{form_widget(form.valor_minimo_sobresaliente)}}
+                        </div>         
+                           <div> 
+                            {{form_label(form.valor_maximo_sobresaliente)}}                    
+                            {{form_widget(form.valor_maximo_sobresaliente)}}
+                                   </div> 
+                
+                            </div>
+                                                              <fieldset><legend>Valoración</legend>
+                {{ form_label(form.tipo_valoracion) }}                    
+                {{ form_widget(form.tipo_valoracion) }}
+                                               </fieldset>
+                         {{ form_rest(form) }}
+                
+			</div>
+                                   
+                    </div>
+		</div>
+	</div>
+</div>
+</div>
+          
+        <button style="float: right;margin-top: 20px;" class="ui-button-primary" type="submit">Siguiente</button>
+  
+             
+        
+
+ </form>
+ 
+</div>
+
+
+{% endblock %}
+

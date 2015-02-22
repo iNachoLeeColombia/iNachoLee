@@ -1,0 +1,36 @@
+ <table border="2" class="table table-bordered">
+    <thead>    
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+    <th>Domingo</th>
+    </thead>
+    
+    {%for c_h in clases_hora%}
+        <tr>
+            {% for c in c_h %}
+                <td> 
+                    
+                    
+                    {%if c.tipo==0%}
+                        libre
+                    {%elseif c.tipo==1%}
+                        {{c.getCargaAcademica.grupo}}-{{c.getCargaAcademica.asignatura}}
+                    {%elseif c.tipo==2%}                        
+                        Festivo
+                    {%elseif c.tipo==3%}    
+                        <span style="color: white">    
+                            ------
+                        </span>   
+                    {%endif%}                        
+                    
+                        
+                </td>
+            {%endfor%}    
+        </tr>
+    {%endfor%}    
+    
+</table>

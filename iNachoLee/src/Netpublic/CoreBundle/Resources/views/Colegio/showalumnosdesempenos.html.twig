@@ -1,0 +1,21 @@
+<div>
+{%for a_d in alumnos_notas%}
+    
+    <div style="border: lightgray dotted thin;font-size: 13px;color: gray;margin-left: 10px;padding: 0 0;" class="col-xs-2">
+    <a href="/app_dev.php/alumno/19/perfiladmin" style="margin: 0 0;padding: 0 0;" target="_blank"> 
+         <div style="margin: 0 0;padding: 0 0;" class="col-xs-12">
+             <div style="margin: 0 0;padding: 0 0;" class="col-lg-3"> 
+                <img alt="InachoLee" src="/uploads/documents/strongavatar.png" style="width:45px;height: 45px;">                    
+            </div>     
+           <div class="col-lg-9">{{a_d.alumno}}
+           <span class="label label-warning label-sm arrowed-in arrowed-in-right pull-right">
+               Nota en {{a_d.asignatura}}:{{a_d}}
+           </span>
+                </div>
+         </div>        
+       </a>
+        
+</div>
+         
+{%endfor%}
+</div>

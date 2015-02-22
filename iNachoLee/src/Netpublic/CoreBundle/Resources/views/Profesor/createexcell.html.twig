@@ -1,0 +1,39 @@
+{% extends "NetpublicCoreBundle::layout.html.twig" %}
+{%block  sub_container %} 
+<div class="modal-header">              
+     <h3>Usuarios Registrados</h3>
+</div>
+
+<table class="table bordered-table">
+    <thead>
+    <th>Usuario</th>
+    <th>Primer Nombre</th>
+    <th>Segundo Nombre</th>
+    <th>Primer Apellido</th>
+    <th>Segundo Apellido</th>
+    <th>Sede</th>   
+    <th>Tipo De Usuario</th>
+    <th>Cedula</th>
+    </thead>        
+{%for usuario in usuarios%}
+    <tr>
+        <td>{{usuario}}</td>
+        <td>{{usuario.profesor.nombre}}</td>
+        <td>{{usuario.profesor.nombre1}}</td>
+        <td>{{usuario.profesor.apellido}}</td>
+        <td>{{usuario.profesor.apellido1}}</td>
+        <td>{{usuario.profesor.sede}}</td>                     
+        {%set tipo=usuario.profesor.tipo%}
+        <td>{%if tipo==2%}
+                profesor
+             {%else%}   
+                error
+            {%endif%}
+        </td>
+        <td>{{usuario.profesor.cedula}}</td>
+        
+    </tr>
+{%endfor%}
+</table>
+<a onclick="newAlumnoUnoUnoLoteDefectoAno();" name="btn_finalizar" class="btn">Finalizar</a>
+{%endblock%}

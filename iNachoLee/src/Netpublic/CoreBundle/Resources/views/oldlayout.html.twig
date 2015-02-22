@@ -1,0 +1,615 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+{%endblock%}
+{% block body %}
+{%if app.user%}
+<div id="container-encuestas" class="well col-lg-10" style="
+     z-index: 200;
+     position: absolute;left: 100px;top: 20px;
+     {{render(controller('NetpublicRedsaberBundle:ExamenIcfes:visible'))}};
+     
+     ">
+   {%set examen_id=app.session.get('examen_id')%}
+     {{render(controller('NetpublicRedsaberBundle:ExamenIcfes:bienvenida',{'examen_id': examen_id}))}}
+           
+         
+</div>
+     
+{%endif%}
+		<div id="navbar" class="navbar navbar-default">
+                    <div id="navbar-container" class="navbar-container">
+                        <div class="navbar-header pull-left">
+                            <a class="navbar-brand" href="#">
+				<small>
+                                    
+					<img src="{{ asset('bundles/netpubliccore/images/logo.png') }}" alt="InachoLee" />
+                                </small>
+                            </a><!-- /.brand -->
+                          </div><!-- /.navbar-header -->
+                           {%if app.user%}  
+                          <div class="navbar-header pull-left" style="padding-top: 6px;padding-left: 56px;">
+                <div class="nav-search " id="nav-search">
+				<form class="form-search">
+														<div class="row">
+															<div class="col-xs-12 col-sm-18">
+																<div class="input-group">
+                                                                                                                                    <input type="text" placeholder="alumno,profesor" class="form-control search-query" id="my-input3"  onkeyup="mostrarMensajeNotificador('Cargando alumnos. ')" style="width: 150px;">
+																	<span class="input-group-btn">
+																		<button class="btn btn-purple btn-sm" type="button">
+																			Buscar
+																			<i class="icon-search icon-on-right bigger-110"></i>
+																		</button>
+																	</span>
+																</div>
+															</div>
+														</div>
+													</form>
+																
+                </div><!-- #                  
+				</div><!-- #                  
+                                                        	<!-- #nav-search -->
+                </div>
+                
+                       
+                            <div id="alerta_principal"  style="
+                       padding: 0px 0px;
+                       margin: 0px 0px;
+                       z-index: 2000000000;
+                       position: absolute;
+                       top:200px;
+                       left: 500px;
+                       font-size: 18px;
+                       background-color: rgb(249, 237, 190);
+                       font-weight: bolder;
+                       ">
+                  
+                        </div>        
+                
+       	                <div role="navigation" class="navbar-header pull-right">
+                                
+                            <ul class="nav ace-nav">
+				<li class="purple">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-bell-alt icon-animated-bell"></i>
+                                            <span class="badge badge-important">8</span>
+				    </a>
+                                    <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                                        <li class="dropdown-header">
+                                            <i class="icon-warning-sign"></i>
+                                                8 Notificaciones
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="clearfix">
+                                                    <span class="pull-left">
+                                                        <i class="btn btn-xs no-hover btn-pink icon-comment"></i>
+                                                            Nuevo comentario
+                                                    </span>
+                                                    <span class="pull-right badge badge-info">+12</span>
+						</div>
+                                            </a>
+					</li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="btn btn-xs btn-primary icon-user"></i>
+										Tu pregunta icfes.
+                                            </a>
+					</li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="clearfix">
+                                                    <span class="pull-left">
+                                                        <i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
+												Profesores atrasados.
+                                                    </span>
+                                                    <span class="pull-right badge badge-success">+8</span>
+						</div>
+                                            </a>
+					</li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="clearfix">
+                                                    <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-info icon-twitter"></i>
+												Profesores al día.
+                                                    </span>
+                                                    <span class="pull-right badge badge-info">+11</span>
+                                                </div>
+                                            </a>
+					</li>
+                                        <li>
+                                            <a href="#">
+                                                Ver todas las notificaciones.
+						<i class="icon-arrow-right"></i>
+                                            </a>
+					</li>
+				    </ul>
+				</li>
+                                <li class="green">
+                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-envelope icon-animated-vertical"></i>
+                                            <span class="badge badge-success">5</span>
+					</a>
+                                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+					<li class="dropdown-header">
+                                            <i class="icon-envelope-alt"></i>
+									5 Mensajes
+					</li>
+                                        <li>
+                                            <a href="#">
+                                                <img alt="{{app.user.profesor}}" class="msg-photo" src="{{asset('uploads/documents/miniavatar.png')}}" alt="{{app.user.profesor}}" />                      
+                                                    <span class="msg-body">
+                                                        <span class="msg-title">
+                                                            <span class="blue">Alex:</span>
+                                                            Por favor pasar por donde el rector.
+							</span>
+                                                        <span class="msg-time">
+                                                            <i class="icon-time"></i>
+                                                            <span>Hace un momento</span>
+							</span>
+						    </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img alt="{{app.user.profesor}}" class="msg-photo" src="{{asset('uploads/documents/miniavatar.png')}}" alt="{{app.user.profesor}}" />                      
+                                                <span class="msg-body">
+                                                        <span class="msg-title">
+                                                            <span class="blue">Susan:</span>
+                                                            Podemos vernos mañana en la sala de informatica ...
+                                                        </span>
+                                                        <span class="msg-time">
+                                                            <i class="icon-time"></i>
+                                                            <span>Hace 20 minutos</span>
+                                                        </span>
+                                                    </span>
+                                            </a>
+					</li>
+                                    <li>
+			  	<a href="#">
+			<img alt="{{app.user.profesor}}" class="msg-photo" src="{{asset('uploads/documents/miniavatar.png')}}" alt="{{app.user.profesor}}" />                      
+                                           <span class="msg-body">
+					<span class="msg-title">
+                                            <span class="blue">Bob:</span>
+                                            Felicitaciones te invitamos al concuros Momentos
+					</span>
+                                        <span class="msg-time">
+					<i class="icon-time"></i>
+                                            <span>3:15 pm</span>
+					</span>
+					</span>
+					</a>
+					</li>
+
+								<li>
+									<a href="inbox.html">
+										Ver todos los mensajes.
+										<i class="icon-arrow-right"></i>
+									</a>
+								</li>
+	
+                                                                </ul>
+						</li>
+                               <li class="light-blue">
+                                <a class="dropdown-toggle" href="{{ path('usuario') }}" data-toggle="dropdown">
+                                    {%if app.user%} 
+                                    {%if not app.user.getEsAlumno%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img alt="{{app.user.profesor}}" class="nav-user-photo" src="{{asset('uploads/documents/strongprofesor'~app.user.profesor.id~'.png')}}" alt="{{app.user.profesor}}" />
+                                        {%else%}
+                                            <img alt="{{app.user.profesor}}" class="nav-user-photo" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.profesor}}" />                    
+                                        {%endif%}   
+                                        {{app.user.profesor.nombre}}
+                                   {%else%}
+                                        {%if app.user.getEsFotoperfil()==TRUE%}
+                                            <img alt="{{app.user.alumno}}" class="nav-user-photo" 
+                                                 src="{{asset('uploads/documents/strongprofesor'~app.user.alumno.id~'.png')}}" alt="{{app.user.alumno}}" />
+                                        {%else%}
+                                            <img alt="{{app.user.alumno}}" class="nav-user-photo" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.alumno}}" />                    
+                                        {%endif%}    
+                                        {{app.user.alumno.nombre}}                                                       
+                                    {%endif%}
+                                    {%endif%}   
+                                         <i class="icon-caret-down"></i>
+				</a>
+                                                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                                            <li>
+									<a href="{{path('usuario')}}">
+										<i class="icon-user"></i>
+										Mi perfil
+									</a>
+								</li>
+                                                            <li class="disabled">
+									<a href="#">
+										<i class="icon-cog"></i>
+										Configuración
+									</a>
+								</li>
+{% if is_granted('ROLE_ESTUDIANTE') or is_granted('ROLE_ACUDIENTE') %}        
+          <li>
+            <a  href="{{ path('alumno_editperfila', { 'id': app.user.alumno.id }) }}">
+              <i class="icon-edit"></i> Editar Perfil
+            </a>
+          </li>        
+{%endif%}
+{% if is_granted('ROLE_PROFESORES') or is_granted('ROLE_RECTOR')  or is_granted('ROLE_AUXILIAR')%}        
+         <li>
+              
+            <a {%if app.user.profesor%}  
+                href="{{path('profesor_edit', { 'id': app.user.profesor.id })}}"
+                 {%else%}
+                href="{{ path('alumno_edit', { 'id': app.user.alumno.id }) }}"
+                {%endif%}
+                 >
+              <i class="icon-edit"></i> Editar Perfils
+            </a>
+              </li>        
+{%endif%}         
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="{{ path('logout') }}">
+										<i class="icon-off"></i>
+										Salir
+									</a>
+								</li>
+							</ul>
+						</li>
+                            </ul><!-- /.ace-nav -->
+                        </div><!-- /.navbar-header -->
+                      {%else%}
+                        {%block login%}
+                        {%endblock%}
+                      {%endif%} 
+		    </div><!-- /.container -->
+		</div>
+                <div id="main-container" class="main-container">
+                    {%block main_container%}
+                       	<div class="main-container-inner">
+                            <a href="#" id="menu-toggler" class="menu-toggler">
+					<span class="menu-text"></span>
+				</a>
+                        {%block menu_left%}
+                                <div id="sidebar" class="sidebar no-imprimir">
+					<div id="sidebar-shortcuts" class="sidebar-shortcuts">
+						<div id="sidebar-shortcuts-large" class="sidebar-shortcuts-large">
+							<button class="btn btn-success">
+								<i class="icon-bar-chart"></i>
+							</button>
+
+							<button class="btn btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+
+							<button class="btn btn-warning">
+								<i class="icon-group"></i>
+							</button>
+
+							<button class="btn btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+
+						<div id="sidebar-shortcuts-mini" class="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+                                            <li style="height: 150px;text-align: center;" >
+                                                {%if app.user%}                                 
+                                                    {%if not app.user.getEsAlumno%}
+                                                          {%if app.user.getEsFotoperfil()==TRUE%}
+                                                    <img class="img-circle" style="width: 130px;" src="{{asset('uploads/documents/strongprofesor'~app.user.profesor.id~'.png')}}" alt="{{app.user.profesor}}" />
+                {%else%}
+                   <img class="img-circle" src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.profesor}}" />                    
+                {%endif%}    
+                                                    {%else%}
+                                                           {%if app.user.getEsFotoperfil()==TRUE%}
+                   <img class="img-circle" style="width: 130px;" src="{{asset('uploads/documents/strongalumno'~app.user.alumno.id~'.png')}}" alt="{{app.user.alumno}}" />
+                {%else%}
+                   <img class="img-circle"  src="{{asset('uploads/documents/strongavatar.png')}}" alt="{{app.user.alumno}}" />                    
+                {%endif%}    
+                    
+                                                    {%endif%}
+                                                {%endif%}        
+                                            </li>                                  
+                                            <li class="active">
+                                                 <a  href="{{ path('usuario') }}">
+                                                        <i class="fa fa-home icon-white"></i> Inicio
+                                                 </a>
+                                            </li>
+                                            {% if is_granted('ROLE_ESTUDIANTE')%}
+          <li>
+              <a href="{{ path('alumno_notas', {'id': app.user.alumno.id}) }}">
+                  <i class="icon-edit"></i> Mis Notas
+              </a>
+          </li>
+          <li>
+              <a href="#" onclick="mostrarHorarioAlumno({{app.user.alumno.id}});" >
+                  <i class="icon-align-justify"></i> Horario Clase
+              </a>
+          </li>
+         {%endif%} 
+                                            {% if is_granted('ROLE_ACUDIENTE')%}
+          <li>
+              <a href="#" onclick="listarAlumnosAcudienteAlumno({{app.user.alumno.id}});">
+                  <i class="icon-edit"></i> Notas De Hijos
+              </a>
+          </li>
+         {%endif%}           
+                                            {% if is_granted('ROLE_PROFESORES') %}  
+                                                <li>
+                                                    <a href="{{path('profesor_newnotasoffline')}}" onclick="newNotasOfflineProfesor();">
+                                                        <i class="icon-upload"></i> Subir Nota-Excel.
+                                                    </a>
+                                                </li>
+                                                
+                                                <li>
+                                                <a href="#" onclick="mostrarFlujoDeTrabajoDelProfsor({{app.user.profesor.id}});">
+                                                <i class="icon-sitemap"></i>Mi Flujo De Trabajo .</a>
+                                                </li>    
+                                                <li><a href="{{ path('profesor_planillasmesa') }}"><i class="icon-edit"></i> Calificar Notas.</a></li>
+                                                <li><a onclick="mostrarHorarioClaseProfesor({{app.user.profesor.id}})" href="#"><i class="icon-align-left"></i> Horario Clase.</a></li>
+                                            {%endif%}
+                                                
+                                                 <li>
+                                                    <a href="#" onclick="editContrasenaUsuario();">
+                                                        <i class="fa fa-pause"></i> Cambiar Contraseña.</a>
+                                                </li>
+                                                
+                                                <li><a href="http://www.inacholee.org"><i class="fa fa-flag"></i> Help</a></li>
+                                                <li>
+                                                    <a  href="{{ path('logout') }}" onclick="newperfilProfesorinfoAcademicaDefectoAno();" style="color: red;font-weight: bold;">
+                                                    <i class="icon-off"></i>Salir.</a>
+                                                </li> 
+                                        </ul><!-- /.nav-list -->
+                                        <div id="sidebar-collapse" class="sidebar-collapse">
+                                            <i data-icon2="icon-double-angle-right" data-icon1="icon-double-angle-left" class="icon-double-angle-left"></i>
+                                        </div>
+                               </div>
+             
+                        {%endblock%}
+                        <div id="primary_container">  
+<!--Primary container-->                               
+     {%block primary_container%}
+                     
+      <div class="main-content">
+         <div id="breadcrumbs" class="breadcrumbs no-imprimir">
+             <ul class="breadcrumb" id="breadcrumb">
+                   <li><i class="icon-home home-icon"></i>
+			<a href="{{ path('usuario') }}">Inicio</a>
+                   </li>
+                   {%block breadcrumb%}
+                        <li class="active">Estadisticas</li>
+                        
+                   {%endblock%}                  
+                       
+	       </ul>
+               {{render(controller('NetpublicCoreBundle:Colegio:anoperiodoactivo'))}}  
+                 <!-- .breadcrumb -->
+	 		    </div>
+                                    <div class="page-content">
+                                        <div class="page-header  no-imprimir" id="page_header" style="margin-bottom: 10px;border-bottom: thin solid gainsboro;">
+                                           {% if is_granted('ROLE_RECTOR') or is_granted('ROLE_PROFESORES') %}        
+ 
+                                            <div class="col-lg-12"> 
+                                                <h5>Que quieres hacer?</h5>
+                                            </div>    
+                                            <div class="col-lg-12">                                            
+                                                <div class="col-lg-5" style="background-color: Honeydew;height: 220px;">
+                                                    <h6>Red Saber.</h6>
+                                                    <a style="font-size: 11px;"  href="{{path('examenicfes_new')}}">
+                                                    <div class="col-lg-6 center" style="height: 50px;border-bottom: gainsboro dashed thin;border-right: gainsboro dashed thin;">
+                                                        <i class="fa fa-smile-o fa-2x"></i><br/> 
+                                                        Realizar Exámen ICFES
+                                                    </div>
+                                                    </a>        
+                                                    <a style="font-size: 11px;"  href="{{path('examenicfes_listarevisar')}}">
+                                                    <div class="col-lg-6 center" style="height: 50px;border-bottom: gainsboro dashed thin;">
+                                                        <i class="icon icon-ok-circle icon-2x"></i><br/>
+                                                        Revisar  Exámen ICFES
+                                                    </div>
+                                                    </a>        
+                                                    <div class="clearfix"></div>
+                                                    <a style="font-size: 11px;"  href="{{path('pregunta')}}">
+                                                    <div class="col-lg-6 center"  style="height: 50px;border-right: gainsboro dashed thin;padding-top: 10px;">
+                                                        <i class="fa fa-file-o fa-2x"></i><br/>
+                                                        Ingresar nueva pregunta                                                  
+                                                    </div>
+                                                    </a>        
+                                                    <a style="font-size: 11px;"  href="{{path('colegio_losentimos')}}">
+                                                    <div class="col-lg-6 center" style="padding-top: 10px;">  
+                                                        <i class="fa fa-tasks fa-2x"></i><br/>
+                                                        Mirar informes.
+                                                    </div>
+                                                    </a>        
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-lg-12" style="text-align: right;margin-top: 50px;">                                                    
+                                                        <a  href="{{path('colegio_losentimos')}}">Ver todas..</a> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                    <div class="col-lg-5" style="background-color: whitesmoke;height: 220px;">
+                                                        <h6>iNachoLee</h6>
+                                                        <a style="font-size: 11px;" href="#" onclick="newAlumnoUnoUnoLoteDefectoAno();">
+                                                            <div class="col-lg-6 center" style="height: 70px;border-bottom: gainsboro dashed thin;border-right: gainsboro dashed thin;">
+                                                                <i class="fa fa-user fa-2x"></i><br/> 
+                                                                    Ingresar nuevos alumnos|profesores|acudientes.
+                                                            </div>
+                                                        </a>        
+                                                    <a style="font-size: 11px;" href="{{path('colegio_newgestorgrupo')}}" >
+                                                    <div class="col-lg-6 center" style="height: 70px;border-bottom: gainsboro dashed thin;">
+                                                        <i class="fa fa-file-text icon-2x"></i><br/>
+                                                        Sincronizar lista de estudiantes
+                                                    </div>
+                                                    </a>        
+                                                    <div class="clearfix"></div>
+                                                    <a style="font-size: 11px;" href="{{path('colegio_informeboletines')}}">
+                                                    <div class="col-lg-6 center"  style="height: 50px;border-right: gainsboro dashed thin;padding-top: 10px;">
+                                                        <i class="fa fa-print fa-2x"></i><br/>
+                                                        Quiero imprimir boletines-Certificaciones -constancia.                                                  
+                                                    </div>
+                                                    </a>        
+                                                    <a style="font-size: 11px;" href="{{path('colegio_listacomponentes')}}" >
+                                                    <div class="col-lg-6 center" style="padding-top: 10px;">  
+                                                        <i class="fa fa-barcode fa-2x"></i><br/>
+                                                        Ir a componente de evaluación.
+                                                    </div>
+                                                    </a>        
+                                                    <div class="clearfix"></div>
+                                                    <div class="col-lg-12" style="text-align: right;margin-top: 20px;">                                                    
+                                                        <a href="{{path('colegio_menuconfiguracion')}}">Ver todas..</a> 
+                                                    </div>
+                                                
+                                                    
+                                                </div>
+                                                <div class="col-lg-2" style="background-color:Ivory;height: 220px;">
+                                                    <h6>Personerox</h6>
+                                                   <a style="font-size: 11px;" href="{{path('colegio_losentimos')}}">
+                                                    <div class="col-lg-6 center" style="padding-top: 10px;">  
+                                                        <i class="fa fa-instagram fa-2x"></i><br/>
+                                                        Crear elección.
+                                                    </div>
+                                                    </a> 
+                                                    <a style="font-size: 11px;"  href="{{path('colegio_losentimos')}}">
+                                                    <div class="col-lg-6 center" style="padding-top: 10px;">  
+                                                        <i class="fa fa-bar-chart-o fa-2x"></i><br/>
+                                                        Ver resultados.
+                                                    </div>
+                                                    </a>        
+                                                    
+                                                         
+                                                </div>    
+                                            </div>
+                                            {%endif%}    
+                                            {%block page_header%}
+                                                
+                                            {%endblock%} 
+                                                <div class="clearfix"></div>    
+                                            
+                                         </div><!-- /.page-header -->
+                                        <div>                                            
+                                            <div id=" sub_container ">
+                                                {%block  sub_container %}
+                                                {%endblock%}    
+                                            </div><!-- /.col -->
+					</div><!-- /.row -->
+                                    </div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+				<div id="ace-settings-container" class="ace-settings-container">
+					
+				</div><!-- /#ace-settings-container -->
+
+                <!-- Modal -->
+         <div class="modal fade  no-imprimir" id="myModal_generica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Importar pregunta</h4>
+      </div>
+      <div class="modal-body">
+        Cargando espere...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Importar ahora!!</button>
+      </div>
+    </div>
+  </div>
+</div>                            
+                                   
+                                   
+                                {%endblock%}
+                           </div>        
+                       </div><!-- /.main-container-inner        
+                   {%endblock%}    
+		</div><!-- /.main-container -->
+                    </div>
+            
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery-1.10.2.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/bootstrap.min.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.json-2.3.min.js') }}"></script>        
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+                <!-- ace scripts -->
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/handlebars.js') }}"></script>        
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/tooltip.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/typeahead.bundle.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/popover.js') }}"></script>  
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/bootstrap-tree.js') }}"></script> 
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/datepicker.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/timepicker.js') }}"></script>  
+                                                                                      
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.easy-pie-chart.min.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.sparkline.min.js') }}"></script>        
+                
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/flot/jquery.flot.js') }}"></script>        
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/flot/jquery.flot.pie.js') }}"></script>  
+                <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/flot/jquery.flot.resize.js') }}"></script>  
+                
+		<!-- inline scripts related to this page -->
+                   <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/inacho_00.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/colegio.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/grado.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/asignatura.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/profesor.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/alumno.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/grupo.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/cargaacademica.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/aula.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/usuario.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/desempeno.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/contrato.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/dimension.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/mensaje.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/observacion.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/helper_filtros.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/jquery.rotate.min.js') }}"></script>    
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/inacho_00.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/tema_asignatura.js') }}"></script>     
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/profesor_periodo_entrega.js') }}"></script>        
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/criterio_academico.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/criteriopromocion.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/redsaber.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/horarioclase.js') }}"></script>           
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/auditoria.js') }}"></script>  
+                    <script type="text/javascript" src="{{ asset('bundles/netpubliccore/js/main.js') }}"></script> 
+{%block js_final%}
+   
+ {%endblock%}
+ {%if app.user%}
+   <script> 
+        buscarUsuarioPrincipal("usuario/buscar.json","my-input3");
+   </script>
+ {%endif%}
+ 
+{%endblock %}

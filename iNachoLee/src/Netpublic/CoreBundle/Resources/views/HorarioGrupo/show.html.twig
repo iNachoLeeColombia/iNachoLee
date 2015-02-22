@@ -1,0 +1,53 @@
+<h1>HorarioGrupo</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Tipo</th>
+            <td>{{ entity.tipo }}</td>
+        </tr>
+        <tr>
+            <th>Dia_columna</th>
+            <td>{{ entity.diacolumna }}</td>
+        </tr>
+        <tr>
+            <th>Hora_fila</th>
+            <td>{{ entity.horafila }}</td>
+        </tr>
+        <tr>
+            <th>Posicion</th>
+            <td>{{ entity.posicion }}</td>
+        </tr>
+        <tr>
+            <th>Posicion_columna</th>
+            <td>{{ entity.posicioncolumna }}</td>
+        </tr>
+        <tr>
+            <th>Valor</th>
+            <td>{{ entity.valor }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('horariogrupo') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('horariogrupo_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('horariogrupo_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

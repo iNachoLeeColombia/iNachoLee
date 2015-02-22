@@ -1,0 +1,31 @@
+<div>
+<div class="well-sm">
+<button class="btn btn-xs" onclick="$('#capa_ano_siguiente_grado{{grado_actual}}').hide();">X Ocultar</button>
+</div>
+{%for grupo in grupos_actuales%}
+<div class="col-lg-12" style="margin-bottom: 5px;">
+    
+<div data-id="{{grupo.id}}" class="col-lg-4" style="background-color: #FFFAFA;height: 40px;padding-top: 8px;">
+    {{grupo}}
+</div>
+<div class="col-lg-4" style="text-align: center;background-color: #FFFAFA;height: 40px;padding-top: 8px;">
+            
+            <button  onclick="promover({{grupo.id}})">
+                        <i class="icon  icon-mail-forward blue"></i>
+                    </button>
+            
+</div>
+    <div class="col-lg-4" style="background-color: #FFFAFA;height: 40px;">
+        
+    <div style="padding-left: 30px;">
+        <select class="grupo_destino" style="margin-top: 10px;" grupo-data-id={{grupo.id}} id="select_grupo_siguiente{{grupo.id}}">
+            <option value="*">Grupo</option>
+        {%for grupo_siguiente in grupos%}
+            <option value="{{grupo_siguiente.id}}">{{grupo_siguiente}}</option>
+        {%endfor%}    
+    </select>
+    </div>        
+</div>
+</div>    
+{%endfor%}
+</div>        

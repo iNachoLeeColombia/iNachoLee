@@ -1,0 +1,75 @@
+<div class="well" style="background-color: gray;">
+    <div  class="controls" >
+    <select onchange="mostrarFiltrorCargaAcademica();" id="ano_escolar_id">
+        <option value="*">Año Escolar ?</option>
+        {%for ano in ano_escolares%}
+        <option 
+            {%if ano.id==ano_escolar_activo.id%}
+                selected="selected"
+            {%endif%}    
+            value="{{ano.id}}">{{ano}}</option>
+        {%endfor%}    
+    </select>
+   
+    <select id="grado_id" onchange="
+        getGruposGradoEstandar('grado_id','grupo_id');
+        getAsignaturasGrado('grado_id','asignatura_id');
+        mostrarFiltrorCargaAcademica();
+            ">
+        <option value="*">Grado(Todos) ?</option>
+        {%for mi_grado in grados%}
+        <option value="{{mi_grado.id}}">{{mi_grado}}</option>
+        {%endfor%}
+    </select>
+        <select id="grupo_id" onchange="mostrarFiltrorCargaAcademica();">
+        <option value="*">Grupo ?</option>        
+    </select>
+        <select onchange="mostrarFiltrorCargaAcademica();" id="tipo_clase">
+        <option value="*">Disponibilidad De CA?</option>
+        <option value="0">Aun Sin Profesor</option>
+        <option value="1">Con Profesor Asignado</option>
+    </select>    
+        </div>       
+        <div class="controls well" style="background-color: lightgrey;position: fixed;right: 10px;top: 220px;">
+       <span class="profesor" style="float: left;">
+           <select id="profesor" class="span5" >
+                <option value="*">Profesor ?</option>
+                {%for profesor in profesores%}
+                <option value="{{profesor.id}}">   {{profesor|upper}}</option>
+                {%endfor%}
+            </select>
+        </span>  
+                <div style="clear: both;"></div>        
+                <div class="btn-group" style="float: left;margin-top: 20px;margin-left: 30px;">   
+                <button 
+                        id="button_contrato"
+                        class="btn btn-info"
+                        onclick="moverCaLibreNoLibre();"
+                        ><i class="icon-check icon-white"></i>
+                    Asignar profe
+                </button>
+                <button 
+                        id="button_contrato"
+                        class="btn btn-info"
+                        onclick="cambiarProfesorCa();"
+                        ><i class="icon-fast-forward icon-white"></i>
+                    Cambiar profe
+                </button>        
+                 <button
+                         id="button_contrato"
+                         class="btn btn-danger"
+                         onclick="moverCaNoLibreLibre();" 
+                         ><i class="icon-remove icon-white"></i>
+                    Retirar profe
+                </button>           
+         </div>
+                <div class="btn-group" style="margin-top: 20px;margin-left: 15px;">
+                    <a href="#" onclick="asignarAnoEscolarCarga();" class="btn"> Asignar año</a>
+                    <a href="#" onclick="eliminarCargaAcademica();" class="btn btn-danger"> Eliminar</a>
+                </div>      
+         </div>        
+</div>
+<div id="capa_ram_ca_contrato_filtro">
+    
+</div>
+

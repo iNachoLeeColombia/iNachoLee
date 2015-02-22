@@ -1,0 +1,32 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">
+         Matriculas para {{alumno}}
+        </h4>
+      </div>
+      <div class="modal-body">
+      
+        {%for matricula in matriculas%}
+            {{matricula.ano}} -
+            <select  id="select-grado-matricula{{matricula.id}}" onclick="getGruposGradoEstandar('select-grado-matricula{{matricula.id}}','select-grupo-matricula{{matricula.id}}')">
+                <option value="*">Grado</option>
+                {%for grado in grados%}
+                    <option value="{{grado.id}}">{{grado}}</option>
+                {%endfor%}    
+            </select>
+            <select data-id="{{matricula.id}}" class="activa" id="select-grupo-matricula{{matricula.id}}">
+                {%if matricula.grupo is null%}
+                    <option value="*">Grupo</option>
+                {%else%}
+                    <option value="{{matricula.grupo.id}}">{{matricula.grupo}}</option>
+                {%endif%}
+            </select>
+            <br>
+        {%endfor%}
+      </div>  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-primary"
+                onclick="enviarActualizacionMatriculas();$('#myModal_generica').modal('hide');">Actualizar matricula(s)
+        </button>
+      </div>    

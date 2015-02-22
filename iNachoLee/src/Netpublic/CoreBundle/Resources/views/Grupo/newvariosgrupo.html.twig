@@ -1,0 +1,4 @@
+{%for i in 1..nro_grupos%}
+        <input class="nombres  nombres_{{sede.id}}" type="text" value="{{label_grado}}0{{loop.index}}  {%if sede.getNombreCorto is null%}{{sede}} {%else%}{{sede.getNombreCorto}}{%endif%}"><br/>
+    
+    {%endfor%}

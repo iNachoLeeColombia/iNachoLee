@@ -1,0 +1,188 @@
+<h3 style="text-align: center;">
+Administración de Carga Academica
+</h3>
+<div>         
+        <div style="float: left;">
+<div class="controls">
+    <select id="grado{{id_profesor}}" onchange="getGruposGradoEstandar('grado{{id_profesor}}','grupo{{id_profesor}}');">
+        <option value="*">Grado?</option>
+        {%for grado in grados%}
+        <option value="{{grado.id}}">{{grado}}</option>
+        {%endfor%}
+    </select>
+        <select id="grupo{{id_profesor}}" onchange="showCargaAcademicaGradoGrupoCargaAcademica({{id_profesor}});">
+        <option>Grupo?</option>
+    </select>
+        
+</div>
+    </div>
+      <div style="float: right;">
+<button 
+    onclick="interCambiarHorarioClaseCargaAcademica({{id_profesor}});"
+    class="btn"
+    >InterCambiar Clases</button>
+<button
+    class="btn btn-danger"
+    onclick="$('#profe{{id_profesor}}').hide('slow')"
+    >
+    x Cerrar
+</button>
+              
+    </div>  
+</div>
+<div style="clear: both;"> </div>
+<div class="well">
+<div id="ca_libres{{id_profesor}}" class="controls" style="
+     background-color: olive;
+     width: 35%;
+     float: left;">
+     <p  style="color: white;font-size: 10px;font-weight: 900;">Carga Academica Ya Asignadas.</p>    
+    <label class="checkbox">
+    <input type="checkbox" value="option1" id="optionsCheckbox">
+     Todas
+     </label>
+    
+     {%for c_a in carga_academica_no_libres%}   
+    <label class="checkbox">
+    <input type="checkbox" value="option1" id="optionsCheckbox">
+     Matematica-SextoA
+     </label>
+     {%endfor%}    
+</div>    
+<div style="float: left;margin-left: 10px;">
+    <div>
+        <button onclick="moverCaLibreNoLibre({{id_profesor}});"><<</button>
+    </div>
+    <div>    
+        <button onclick="moverCaNoLibreLibre({{id_profesor}});">>></button>
+        </div>
+</div>
+
+<div id="ca_no_libres{{id_profesor}}" class="controls" style="
+     background-color: olive;
+     width: 35%;
+     float: left;
+     margin-left: 10px;
+     ">
+         <p style="color: white;font-size: 10px;font-weight: 900;">Carga Academica AUN no asignadas.</p>   
+    <label class="checkbox">
+    <input type="checkbox" value="option1" id="optionsCheckbox">
+Todas
+     </label>
+         
+     {%for c_a in carga_academica_libres%}   
+    <label class="checkbox">
+    <input type="checkbox" value="option1" id="optionsCheckbox">
+        {{c_a.asignatura.nombre}}-{{c_a.grupo}}
+     </label>
+     {%endfor%}    
+         
+</div>    
+<div style="clear: both;"></div>
+<div id="horario_clase_profe{{id_profesor}}">
+<table class="table table-bordered">
+    <thead>
+    <th>Horas</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+    <th>Miercoles</th>
+    <th>Jueves</th>
+    <th>Viernes</th>
+    <th>Sabado</th>
+    <th>Domingo</th>
+    </thead>
+    {%for h_c_p in h_c_profesor%}        
+        
+        {%if h_c_p.posicion%7==0  and h_c_p.posicion!=168 %}
+    <td  class="celda_libre"
+         data-id={{h_c_p.id}} onclick="cambiargestionarCargaAcademica(this);"
+        id="td_hc_p{{h_c_p.id}}"                       
+        >
+{%if h_c_p.tipo==1 %}     
+
+<span 
+    style="
+    font-size: x-small;
+    color: gray;
+    font-weight: bolder;
+    ">
+    
+{{h_c_p.getCargaAcademica.asignatura}}
+    -{{h_c_p.getCargaAcademica.grupo}}
+</span>
+
+                  {%elseif h_c_p.tipo==0%}
+        
+
+                        Libre
+                  {%else%}  
+                        Descanso
+                  {%endif%}      
+    </td>
+    </tr>
+    <tr><td>
+            {%if h_c_p.getHoraFila>=0 and h_c_p.getHoraFila<5%}
+                    {{h_c_p.getHoraFila + 7}} AM -{{h_c_p.getHoraFila + 7+1}} AM
+            {%elseif h_c_p.getHoraFila>16%} 
+                    {{h_c_p.getHoraFila -16}} AM -{{h_c_p.getHoraFila -16+1}} AM
+             {%elseif h_c_p.getHoraFila==16%} 
+                    12 PM - 1 AM
+             {%elseif h_c_p.getHoraFila==5%} 
+                    12 AM - 1 PM
+            {%else%}
+                   {{h_c_p.getHoraFila -5}} PM -{{h_c_p.getHoraFila -5+1}} PM 
+             {%endif%}    
+            </td>
+        {%elseif h_c_p.posicion==1%}
+        <tr><td>6 PM-7 PM</td>
+            <td class="celda_libre"
+                id="td_hc_p{{h_c_p.id}}"                       |
+               data-id={{h_c_p.id}} onclick="cambiargestionarCargaAcademica(this);"  
+                >
+                  {%if h_c_p.tipo==1 %}     
+
+<span
+    style="
+    font-size: x-small;
+    color: gray;
+    font-weight: bolder;
+    ">
+{{h_c_p.getCargaAcademica.asignatura}}
+    -{{h_c_p.getCargaAcademica.grupo}}</span>
+
+                  {%elseif h_c_p.tipo==0%}
+                        Libre
+                  {%else%}  
+
+                        Descanso
+                  {%endif%}      
+</td>
+        {%else%}    
+<td class="celda_libre" 
+ data-id={{h_c_p.id}} onclick="cambiargestionarCargaAcademica(this);"                        
+ id="td_hc_p{{h_c_p.id}}"                       
+ > 
+                  {%if h_c_p.tipo==1%}     
+                        
+<span 
+    style="
+    font-size: x-small;
+    color: gray;
+    font-weight: bolder;
+    ">
+{{h_c_p.getCargaAcademica.asignatura}}
+    -{{h_c_p.getCargaAcademica.grupo}}</span>
+
+                  {%elseif h_c_p.tipo==0%}
+
+                        Libre
+                  {%else%}  
+                        Descanso
+                  {%endif%}      
+                    </td>
+        {%endif%}
+    {%endfor%}
+</table>
+    </div>
+</div>
+<div style="clear: both;"></div> 

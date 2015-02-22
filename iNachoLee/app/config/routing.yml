@@ -1,0 +1,46 @@
+netpublic_redsaber:
+    resource: "@NetpublicRedsaberBundle/Resources/config/routing.yml"
+    prefix:   /
+netpublic_redsaber1:
+    resource: "@NetpublicRedsaberBundle/Controller"
+    type:     annotation    
+
+_welcome:
+    pattern:  /
+    #defaults: { _controller: AcmeDemoBundle:Welcome:index }
+    defaults: { _controller: NetpublicCoreBundle:Usuario:index }
+    requirements:
+        _method: GET|POST
+cargaacademica:
+    resource: "@NetpublicCoreBundle/Controller"
+    type: annotation
+login:
+    pattern: /login
+    defaults: { _controller: NetpublicCoreBundle:Security:login }
+    requirements:
+        _method: GET|POST
+        
+ 
+login_check:
+    pattern: /login_check
+    requirements:
+        _method: POST
+logout:
+    pattern: /logout
+    requirements:
+        _method: POST|GET  
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal
+
+
+netpublic_core:
+    resource: "@NetpublicCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

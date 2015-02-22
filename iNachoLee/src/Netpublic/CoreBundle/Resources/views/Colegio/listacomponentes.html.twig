@@ -1,0 +1,143 @@
+{% extends 'NetpublicCoreBundle::layout.html.twig' %}
+{% block title %}Gestor De Componentes.{% endblock %}
+{%set colores=['#3CD7DD','#55DDAD','#BB89AD','#CC89AD','#AA89AD']%}
+{%block container %}
+<div style="width: 100%;">
+            <ol class="breadcrumb">
+              <li class="active">
+                  <a href="{{path('usuario')}}"><i class="fa fa-home"></i> Inicio</a>
+              </li>
+              <li >
+                  <i class="fa fa-credit-card"></i> <a class="disabled" id="miga_pan_primer_nivel" href="#">Gestor de componentes</a>
+            
+              </li>
+              
+            </ol>
+          </div>
+<div class="container-principal"> 
+    <div class="sub-container-left pull-left">
+        <div class="col-md-10" style="font-size: 10px;">
+            {%for padre in padres%}
+                <div id="container_padre{{padre.id}}" 
+                     onmouseout="$('#padre_{{padre.id}}').hide();" 
+                     onmouseover="$('#padre_{{padre.id}}').show();"
+                     
+                     >
+            
+                <div style="height: 30px;">
+                 
+
+                    <span  class="pull-right " style="display: none;" id="padre_{{padre.id}}">
+                        <button id="btn_edit_actualizar_gc{{padre.id}}"
+                            onclick="procesarEdicionComonentesGC({{padre.id}});"
+                            style="border: none;text-decoration: none;"><i class="icon icon-edit icon-2x"></i> editar</button> 
+                        <button
+                            onclick="procesarEliminarCGC({{padre.id}},'{{url('colegio_listacomponentes')}}');"
+                            style="border: none;text-decoration: none;"><i class="icon icon-trash icon-2x"></i> eliminar</button>
+                              
+                    </span>
+                </div>
+            <div id="container_table_padre{{padre.id}}">                
+            <table id="tabla_padre{{padre.id}}" class="table table-bordered">
+                <tr>
+                    <td>
+                        <label>
+                <input type="radio"
+                   value="{{padre.id}}"
+                   onchange=""
+                   id="optionsRadios_{{padre.id}}"
+                   name="label"
+                   >
+                </label>
+                    </td>
+                {%for com in padre.padresgc if com.tipo!=4%}
+                    {%set idex=loop.index0%}
+                    {%for item in com.padresgc if item.tipo!=4 %}
+                            <td style="background-color: {{colores[idex]}}">                    
+                                {{item|lower}}
+                            {%if item.tipogc!=8%}
+                                ({{item.ponderado}}%)
+                            {%endif%}
+                            <span>
+                           <button onclick="procesarEliminarGC('{{item.id}}','{{url('colegio_listacomponentes')}}')" class="btn-sin-decoracion">
+                               <i class="icon icon-trash"></i>  Eliminar
+                           </button>
+                            </span>
+                            </td>
+                    
+                    {%endfor%}    
+                    <td  {%if com.tipogc==8%}
+                            style="background-color: #D9EDF7;"
+                            {%elseif com.tipogc==9%}
+                                style="background-color: white;"
+                            {%endif%}  >
+                       
+                        <span id="span_{{padre.id}}">{{com|upper}}</span> 
+                       {%if com.tipogc!=8%}
+                        ({{com.ponderado}}%)
+                       {%endif%}<br/>
+                       <span>
+                           <button onclick="procesarEliminarGC('{{com.id}}','{{url('colegio_listacomponentes')}}')" class="btn-sin-decoracion">
+                               <i class="icon icon-trash"></i>  Eliminar
+                           </button>
+                       </span>
+                   </td>
+                {%endfor%}
+                    <td style="background-color: #3A87AD;">{{padre|upper}}</td>
+                </tr>
+            </table>
+            </div>    
+            </div>    
+            {%endfor%} 
+        </div>
+        
+        <div>
+        <label>Ingrese el numero de componentes de la planilla.</label>
+        <input onkeyup="newNroComponentes();" type="text" id="nro_componentes" style="width: 40px;">
+        </div>
+        <div id="container-new-componentes-padre">     
+            
+        </div>
+
+    </div>
+        
+    <div id="sub-container-right" class="sub-container-right pull-right">
+        <div class="col-md-12"> 
+        <div class="col-md-10 ">
+            <div class="btn btn-group">
+                <button  class="btn" onclick="procesarPegarCG();">--Copiar componentes--</button>
+                
+            </div>        
+        </div>
+
+        <div class="col-md-2" style="font-size: 10px;">
+         
+        </div>    
+     </div>       
+     <div class="tree">
+        <ul>
+                                <li class="parent_li">
+                                    <span id="nodo_grado_comp"><i class="icon-plus-sign"></i> Grados
+                                    <br/>
+                                    <small style="font-size: 8.5px;">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Click para ver los grados.
+                                    </small>
+                                    </span>
+                                    <small id="operativo_grado" class="grado">
+                                        <input id="check_operativo_grado" type="checkbox" class="operatico-unico destino"> Operativo
+                                    </small>    
+                                    <small id="todos_grados" style="display: none;">
+                                        <input type="checkbox" id="check_todos_grados" onclick="allCheckBox('check_todos_grados','grados');">
+                                        Todos los grados
+                                    </small>
+                                    <ul id="ul_grados">
+                                    </ul>    
+			        </li>        
+			    </ul>
+         <div class="clearfix"></div>
+     </div>
+    </div> 
+    <div class="clearfix"></div>    
+</div>
+        
+{%endblock%}

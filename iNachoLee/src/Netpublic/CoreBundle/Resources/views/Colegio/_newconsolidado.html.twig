@@ -1,0 +1,79 @@
+<div style="display: none;" id="capa_grados_consolidado">
+{%for grado in grados%}
+<div>
+    <h4 style="text-align: center;">Grado{{grado}}</h4>
+<div  class="well" style="background-color: #DCDCDC;width: 92%;margin-left: 15px; "> 
+    <div style="float: left;">
+    <table>
+        <tr>
+            <td><span style="color:#696969;"> Alumnos</span></td>
+            <td><span style="color:#696969;"> Superior </span></td>
+            <td><span style="color:#696969;"> Alto </span></td>
+            <td><span style="color:#696969;"> Basico </span></td>
+            <td><span style="color:#696969;"> Bajo </span></td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <span class="well" style="
+         background-color: #2F69BF;
+         height: 10px;
+         padding: 0 0;
+         width: 40px;
+         color:  #2F69BF;
+         font-size: 9px;
+         ">.......</span>
+
+            </td>
+            <td style="text-align: center;">
+                <span class="well" style="
+         background-color: #A2BF2F;
+         height: 10px;
+         padding: 0 0;
+         width: 40px;
+         color:  #A2BF2F;
+         font-size: 9px;
+         ">.......</span>
+
+            </td>
+            <td style="text-align: center;">
+                    <span class="well" style="
+         background-color:#BFA22F;
+         padding: 0 0;
+         width: 40px;
+         color:   #BFA22F;
+         font-size: 9px;
+         ">.......</span>
+
+            </td>
+            <td style="text-align: center;">
+    <span class="well" style="
+         background-color:  #BF5A2F;
+         height: 10px;
+         padding: 0 0;
+         width: 40px;
+         color:   #BF5A2F;
+         font-size: 9px;
+         ">.......</span>
+            
+            </td>
+            <td style="text-align: center;">
+<span class="well" style="
+         background-color: #BF2F2F;
+         height: 10px;
+         padding: 0 0;
+         width: 40px;
+         color:  #BF2F2F;
+         font-size: 9px;
+         ">.......</span>                
+            </td>
+        </tr>
+    </table>    
+    </div>
+       {% include 'NetpublicCoreBundle:Colegio:iconoimpresion.html.twig' %}
+        <div style="clear: both;"></div> 
+    <div style="height: 700px;width: 100%;" id="grado_{{grado.id}}">
+</div>        
+</div>        
+</div>
+{%endfor%}
+</div>
