@@ -1,9 +1,9 @@
-netpublic_redsaber:
-    resource: "@NetpublicRedsaberBundle/Resources/config/routing.yml"
-    prefix:   /
-netpublic_redsaber1:
-    resource: "@NetpublicRedsaberBundle/Controller"
-    type:     annotation    
+#netpublic_redsaber:
+#    resource: "@NetpublicRedsaberBundle/Resources/config/routing.yml"
+#    prefix:   /
+#netpublic_redsaber1:
+#   resource: "@NetpublicRedsaberBundle/Controller"
+#    type:     annotation    
 
 _welcome:
     pattern:  /
