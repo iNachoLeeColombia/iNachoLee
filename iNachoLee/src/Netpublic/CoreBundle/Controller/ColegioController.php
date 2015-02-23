@@ -19,7 +19,45 @@ use Netpublic\CoreBundle\Util\Util;
  */
 class ColegioController extends Controller
 {
+     /**
+     * Lists all Colegio entities.
+     *
+     * @Route("/actualizarinl", name="colegio_actualizarinl")
+     * @Template()
+     */
+    public function actualizarinlAction()
+    {
+        $url="/home/vhost/host1/iNachoLee/iNachoLee/app/console ";
+        $url_git="/home/vhost/host1/iNachoLee/";
+        //Bajamos via git la ultima actualizacion
+        echo exec("git -C /home/vhost/host1/iNachoLee pull https://github.com/iNachoLeeColombia/iNachoLee.git master  2>&1");
+        //Generamos las entities
+        //echo exec("$url generate:doctrine:entities NetpublicCoreBundle");
+        //Actualizamos el modelo de datos.
+        //echo exec("$url doctrine:schema:update --force");
+        //Borramos cache
+        //echo exec("$url cache:clear --env=prod");
+        return new \Symfony\Component\HttpFoundation\Response(1);
+    }
+
     
+     /**
+     * Lists all Colegio entities.
+     *
+     * @Route("/realizarbackup", name="colegio_realizarbackup")
+     * @Template()
+     */
+    public function realizarbackupAction()
+    {
+        $user=$this->container->getParameter('database_user');
+        $contrasena=$this->container->getParameter('database_password');
+        $fecha = date("Y-m-j_h:i");
+        $base_dato=$this->container->getParameter('database_name');
+        $host=$this->getRequest()->getHost();
+        echo exec("/usr/bin/mysqldump -u $user -p$contrasena $base_dato>/home/vhost/host1/iNachoLee/iNachoLee/web/$base_dato$fecha.sql 2>&1");
+        $url="<a class='btn btn-info' href='http://$host/$base_dato$fecha.sql'> <i class='icon icon-check-sign'></i> Descargar</a>";
+        return new \Symfony\Component\HttpFoundation\Response($url);
+    }
     /**
      * Lists all Colegio entities.
      *
@@ -28,19 +66,12 @@ class ColegioController extends Controller
      */
     public function actualizarversionAction()
     {
-        $em=  $this->getDoctrine()->getManager();
-        //$comando1="/home/vhost/iNachoLee/iNachoLee/app/console ";
-        $url="/home/vhost/host1/iNachoLee/iNachoLee/app/console ";
-        $url_cache="/home/vhost/host1/iNachoLee/iNachoLee/app/cache";
-        $url_git="/home/vhost/host1/iNachoLee/iNachoLee";
-        //Bajamos via git la ultima actualizacion
-        echo exec("git -C $url_git pull origin master  2>&1");
-        //Actualizamos el modelo de datos.
-        //echo exec("$url  doctrine:schema:update --force");
-        //Borramos cache
-        echo "vamos con todo";
+        $outPut = shell_exec("echo bermu4523 | sudo -S /usr/bin/ap-hotspot start 2>&1 ");
+        echo "<pre>$outPut</pre>";
         
-        echo exec("whoami");
+        //echo exec("/usr/bin/nmcli  --nocheck d disconnect iface wlan0 2>&1" );
+        //echo exec("sudo /usr/bin/ap-hotspot stop 2>&1");
+        //echo exec("sudo /usr/bin/ap-hotspot/ap-hotspot start 2>&1");
         
         return new \Symfony\Component\HttpFoundation\Response("ok");
         

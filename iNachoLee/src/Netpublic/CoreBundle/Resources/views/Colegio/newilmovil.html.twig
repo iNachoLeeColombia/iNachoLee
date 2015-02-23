@@ -1,16 +1,37 @@
 {% extends 'NetpublicCoreBundle::layout.html.twig' %}
 {% block title %}
-Ojo pero no estas en la RED SABER.
+COnfiguración de iNachoLee++
 {% endblock %}
 {%block  sub_container  %}
-<h4 class="well">
-Configuración de la RedSaber y sistemas moviles
-</h4>
+<h3 class="well">
+Configuración de iNachoLee Plus
+</h3>
 <div class="well col-md-12">
+    <h4>Realizar Recuperación Del  Sistema</h4>
+    <p>
+        En caso de daño o perdida del sistema iNachoLee Plus, puedes restaurar el sistema completamente.<strong>Es buena hacer una por periodo academico</strong> 
+    </p>
     <div class="col-md-12">
-        Tenemos una nueva versión para usted <button onclick="procesarActualizacioniNachoLee();" class="btn btn-primary"><i class="icon icon-download"></i> Actulizar</button> 
+        <div class="col-md-5"> 
+        <button class="btn btn-default" onclick="realizarBackUp();"><i class="icon icon-download"></i> Realizar Backup Ahora! </button>
+        </div>
+        <div  class="col-md-7" id="container-backup"></div>
     </div>
+</div>    
+<div class="well col-md-12">
+    <h4>Actualizar Sistema iNachoLee(Plush)</h4>
+    <p>
+        Nuestras mejoras y las nuevas funcionalidades puedes descargarla ahora con un solo click. 
+    </p>
     <div class="col-md-12">
+        <div class="col-md-5"> 
+        <button class="btn btn-default" onclick="realizarActualizacioniNL();"><i class="icon icon-refresh"></i> Actualizar iNachoLee Ahora! </button>
+        </div>
+        <div  class="col-md-7" id="container-ainl"></div>
+    </div>
+</div>    
+
+<div class="col-md-12">
         <h5>Sistema Wifi(Red inalambrica RedSaber)</h5>
         <div class="col-md-12">
         Estado: Activo <button class="btn btn-default">Parar</button>
@@ -27,8 +48,9 @@ Configuración de la RedSaber y sistemas moviles
         </div>
     </div>
     <div class="col-md-12">
-        <button class="btn btn-primary"><i class="icon icon-download"></i> Realizar Backup</button>
     </div>
     
-</div>    
+        Tenemos una nueva versión para usted <button onclick="procesarActualizacioniNachoLee();" class="btn btn-primary"><i class="icon icon-download"></i> Actulizar</button> 
+    
+
 {%endblock%}
